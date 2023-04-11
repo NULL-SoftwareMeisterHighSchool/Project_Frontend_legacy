@@ -1,7 +1,7 @@
 import { InputHTMLAttributes } from "react";
 import { InputStateType } from '../../../types/common/input.type';
-import Critical from '../../../assets/images/Critical.svg';
-import Subtract from '../../../assets/images/Subtract.svg';
+import Critical from '@assets/images/Critical.svg';
+import Subtract from '@assets/images/Critical.svg';
 import * as S from "./style";
 
 
