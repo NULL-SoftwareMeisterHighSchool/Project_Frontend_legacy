@@ -1,40 +1,58 @@
 import { InputStateType } from '../../../types/common/input.type';
 import styled, { css, FlattenSimpleInterpolation } from "styled-components";
 
-export const Input = styled.input`
-    height: 48px;
-
+export const Input = styled.input<{ state: InputStateType }>`
+    width: calc( ${({width}) => width} - 28px);
+    height: 24px;
+    padding: 12px 14px;
     border-radius: 8px;
+    border: none;
+    
+    &:focus {outline:none;}
 
-    flex: none;
-    order: 1;
-    align-self: stretch;
-    flex-grow: 0;
+    ${({ state }) => state && getinputStyle[state]}
 `;  
 
-export const Title = styled.div`
-    font-family: 'Pretendard';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
+export const Titlebox = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    margin-bottom: 4px;
+    gap: 4px;
 
+    width: 52px;
+    height: 24px;
+`;
+
+export const Title = styled.div`
     color: #000000;
 `;
 
-const getButtonStyle: Record<InputStateType, FlattenSimpleInterpolation> = {
+export const Icon = styled.img`
+  width: 16px;
+  height: 16px;
+`;
+
+const getinputStyle: Record<InputStateType, FlattenSimpleInterpolation> = {
     DEFAULT: css`
       background-color: #EFF4F4;
-      color: #B6BEC1;
+      &::placeholder{
+        color: #B6BEC1;
+      }
+    `,
+
+    CRITICAL: css`
+      background: #FFE6D8;
+      &::placeholder{
+        color: #DB2C36;
+      }
     `,
   
     SUCCESS: css`
       background-color: #EFF4F4;
-      color: #B6BEC1;
-    ``,
-  
-    CRITICAL: css`
-      background: #FFE6D8;
-      color: #DB2C36;
+      &::placeholder{
+        color: #B6BEC1;
+      }
     `,
 };
