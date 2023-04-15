@@ -1,5 +1,6 @@
 import { ButtonStateType } from "../../../types/common/button.type";
 import styled, { css, FlattenSimpleInterpolation } from "styled-components";
+import { color } from "@styles/theme.style";
 
 export const Button = styled.button<{
 	width: string;
@@ -16,25 +17,25 @@ export const Button = styled.button<{
 	border: none;
 	border-radius: 8px;
 	cursor: pointer;
-	color: #ffffff;
+	color: ${color.white};
 	font-size: ${({ fontSize }) => fontSize};
 	${({ state }) => state && getButtonStyle[state]}
 	${({ disabled }) =>
 		disabled &&
 		css`
-			background-color: #e1e8ea;
-			color: #b6bec1;
+			background-color: ${color.grayLight1};
+			color: ${color.grayBase};
 		`};
 `;
 
 const getButtonStyle: Record<ButtonStateType, FlattenSimpleInterpolation> = {
 	DEFAULT: css`
-		background-color: #0084db;
+		background-color: ${color.primaryBase};
 		:hover {
-			background-color: #00abff;
+			background-color: ${color.primaryLight1};
 		}
 		:active {
-			background-color: #0063b7;
+			background-color: ${color.primaryDark1};
 		}
 	`,
 	ATTENTION: css`
@@ -66,23 +67,23 @@ const getButtonStyle: Record<ButtonStateType, FlattenSimpleInterpolation> = {
 	`,
 	CRITICAL: css`
 		background-color: #3349d8;
-		color: #eff4f4;
+		color: ${color.grayLight2};
 		:hover,
 		:active {
-			background-color: #eff4f4;
+			background-color: ${color.grayLight2};
 			color: #3349d8;
 		}
 	`,
 	GRAY: css`
-		background-color: #eff4f4;
-		color: #2e3133;
+		background-color: ${color.grayLight2};
+		color: ${color.grayDark2};
 		:hover {
-			background-color: #e1e8ea;
-			color: #000000;
+			background-color: ${color.grayLight1};
+			color: ${color.white};
 		}
 		:active {
-			background-color: #eff4f4;
-			color: #2e3133;
+			background-color: ${color.grayLight2};
+			color: ${color.grayDark2};
 		}
 	`,
 };
