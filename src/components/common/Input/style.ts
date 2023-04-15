@@ -1,14 +1,14 @@
 import { InputStateType } from '../../../types/common/input.type';
 import styled, { css, FlattenSimpleInterpolation } from "styled-components";
+import { BodyLarge } from '@styles/text.style';
+import {color} from '@styles/theme.style';
 
 export const Input = styled.input<{ state: InputStateType }>`
-    width: calc( ${({width}) => width} - 28px);
-    height: 24px;
+    height: 48px;
     padding: 12px 14px;
     border-radius: 8px;
     border: none;
-    
-    &:focus {outline:none;}
+    font-size: 16px;
 
     ${({ state }) => state && getinputStyle[state]}
 `;  
@@ -25,8 +25,8 @@ export const Titlebox = styled.div`
     height: 24px;
 `;
 
-export const Title = styled.div`
-    color: #000000;
+export const Title = styled(BodyLarge)`
+    color: ${color.black};
 `;
 
 export const Icon = styled.img`
@@ -36,9 +36,9 @@ export const Icon = styled.img`
 
 const getinputStyle: Record<InputStateType, FlattenSimpleInterpolation> = {
     DEFAULT: css`
-      background-color: #EFF4F4;
+      background-color: ${color.grayLight2};
       &::placeholder{
-        color: #B6BEC1;
+        color: ${color.grayBase};
       }
     `,
 
@@ -50,9 +50,9 @@ const getinputStyle: Record<InputStateType, FlattenSimpleInterpolation> = {
     `,
   
     SUCCESS: css`
-      background-color: #EFF4F4;
+      background-color: ${color.grayLight2};
       &::placeholder{
-        color: #B6BEC1;
+        color: ${color.grayBase};
       }
     `,
 };

@@ -29,7 +29,7 @@ const Input = ({
       </S.Titlebox>  
       <S.Input
         state={state}
-        width={width}
+        style={{width}}
         onChange={onChange}
         placeholder={placeholder}
         type={type}

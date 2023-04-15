@@ -14,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
     input, button {
         border: none;
         outline: none;
+        font-family: 'Pretendard';
     }
     
     input:focus, button:focus {
