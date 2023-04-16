@@ -3,22 +3,14 @@ import styled, { css, FlattenSimpleInterpolation } from "styled-components";
 import { color } from "@styles/theme.style";
 
 export const Button = styled.button<{
-	width: string;
-	height: string;
 	state: ButtonStateType;
 	fontSize: string;
 }>`
-	width: calc(${({ width }) => width} - 28px);
-	height: calc(${({ height }) => height} - 20px);
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	padding: 14px 20px;
-	border: none;
 	border-radius: 8px;
 	cursor: pointer;
-	color: ${color.white};
 	font-size: ${({ fontSize }) => fontSize};
+	color: ${color.white};
 	${({ state }) => state && getButtonStyle[state]}
 	${({ disabled }) =>
 		disabled &&
