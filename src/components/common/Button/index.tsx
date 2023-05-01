@@ -20,8 +20,7 @@ const Button = ({
 }: ButtonPropsType) => {
 	return (
 		<S.Button
-			width={width}
-			height={height}
+			style={{ width, height }}
 			state={state}
 			disabled={disabled}
 			fontSize={fontSize}
