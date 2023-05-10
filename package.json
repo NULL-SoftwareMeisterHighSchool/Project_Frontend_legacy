@@ -41,5 +41,9 @@
       "airbnb",
       "prettier"
     ]
-  }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ]
 }
