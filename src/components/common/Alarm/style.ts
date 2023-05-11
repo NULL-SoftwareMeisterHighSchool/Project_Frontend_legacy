@@ -1,6 +1,5 @@
-import { AlarmStateType } from "@types/common/alarm.type";
-import { BodyStrong } from "@styles/text.style";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+import { AlarmStateType } from "./alarm.type";
 
 const bgColorFor = {
   Attention: "#E6EFF4",

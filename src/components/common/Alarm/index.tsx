@@ -1,5 +1,5 @@
-import { AlarmStateType } from "@types/common/alarm.type";
-import { BodyStrong, BodyLarge } from "@styles/text.style.ts";
+import { AlarmStateType } from "./alarm.type";
+import { BodyStrong, BodyLarge } from "@styles/text.style";
 import Attention from "@assets/images/Attention.svg";
 import Success from "@assets/images/Success.svg";
 import Coution from "@assets/images/Coution.svg";
@@ -11,7 +11,7 @@ interface AlarmPropsType {
   bodyText: string;
 }
 
-const srcFor = {
+const stateFor = {
   Attention,
   Success,
   Coution,
@@ -20,7 +20,7 @@ const srcFor = {
 
 const Alarm = ({ state, bodyText }: AlarmPropsType) => (
   <S.Alarm state={state}>
-    <S.Icon src={srcFor[state]} />
+    <S.Icon src={stateFor[state]} />
     <BodyStrong>{state}</BodyStrong>
     {bodyText && <BodyLarge>{bodyText}</BodyLarge>}
   </S.Alarm>
