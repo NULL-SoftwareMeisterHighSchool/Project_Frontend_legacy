@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Maincontainer = styled.div`
 	display: flex;
@@ -246,13 +247,14 @@ export const Board = styled.div`
 	height: 424px;
 `;
 
-export const Post = styled.div`
+export const Post = styled(Link)`
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
 	padding: 18px 20px;
 	gap: 10px;
+	text-decoration: none;
 
 	width: 620px;
 	height: 53px;

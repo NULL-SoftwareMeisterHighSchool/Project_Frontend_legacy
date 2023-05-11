@@ -79,7 +79,7 @@ const Main = () => {
 					{
 							Dummy.post.map(
 								post => (
-									<S.Post key={post.id}>
+									<S.Post key={post.id} to="/">
 										<S.Posttitle>{post.title}</S.Posttitle>
 										<S.Postnamedate>
 											<S.Postname>{post.name}</S.Postname>
@@ -94,7 +94,7 @@ const Main = () => {
 					{
 							Dummy.post.map(
 								post => (
-									<S.Post key={post.id}>
+									<S.Post key={post.id} to="/">
 										<S.Posttitle>{post.title}</S.Posttitle>
 										<S.Postnamedate>
 											<S.Postname>{post.name}</S.Postname>
