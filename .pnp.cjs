@@ -43,6 +43,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-promise", "virtual:77118857cbaaada9085451781d85e6e4a8c471ba38cad46b2ac8d203273eba65ab29787199b09ec861488387fb4a06217f6dac86f514735292e03a873cd42e4f#npm:6.1.1"],\
             ["eslint-plugin-react", "virtual:77118857cbaaada9085451781d85e6e4a8c471ba38cad46b2ac8d203273eba65ab29787199b09ec861488387fb4a06217f6dac86f514735292e03a873cd42e4f#npm:7.32.2"],\
             ["react", "npm:18.2.0"],\
+            ["react-circular-progressbar", "virtual:77118857cbaaada9085451781d85e6e4a8c471ba38cad46b2ac8d203273eba65ab29787199b09ec861488387fb4a06217f6dac86f514735292e03a873cd42e4f#npm:2.1.0"],\
             ["react-dom", "virtual:77118857cbaaada9085451781d85e6e4a8c471ba38cad46b2ac8d203273eba65ab29787199b09ec861488387fb4a06217f6dac86f514735292e03a873cd42e4f#npm:18.2.0"],\
             ["react-is", "npm:18.2.0"],\
             ["react-router-dom", "virtual:77118857cbaaada9085451781d85e6e4a8c471ba38cad46b2ac8d203273eba65ab29787199b09ec861488387fb4a06217f6dac86f514735292e03a873cd42e4f#npm:6.10.0"],\
@@ -74,6 +75,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-promise", "virtual:77118857cbaaada9085451781d85e6e4a8c471ba38cad46b2ac8d203273eba65ab29787199b09ec861488387fb4a06217f6dac86f514735292e03a873cd42e4f#npm:6.1.1"],\
             ["eslint-plugin-react", "virtual:77118857cbaaada9085451781d85e6e4a8c471ba38cad46b2ac8d203273eba65ab29787199b09ec861488387fb4a06217f6dac86f514735292e03a873cd42e4f#npm:7.32.2"],\
             ["react", "npm:18.2.0"],\
+            ["react-circular-progressbar", "virtual:77118857cbaaada9085451781d85e6e4a8c471ba38cad46b2ac8d203273eba65ab29787199b09ec861488387fb4a06217f6dac86f514735292e03a873cd42e4f#npm:2.1.0"],\
             ["react-dom", "virtual:77118857cbaaada9085451781d85e6e4a8c471ba38cad46b2ac8d203273eba65ab29787199b09ec861488387fb4a06217f6dac86f514735292e03a873cd42e4f#npm:18.2.0"],\
             ["react-is", "npm:18.2.0"],\
             ["react-router-dom", "virtual:77118857cbaaada9085451781d85e6e4a8c471ba38cad46b2ac8d203273eba65ab29787199b09ec861488387fb4a06217f6dac86f514735292e03a873cd42e4f#npm:6.10.0"],\
@@ -4092,6 +4094,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["react", "npm:18.2.0"],\
             ["loose-envify", "npm:1.4.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["react-circular-progressbar", [\
+        ["npm:2.1.0", {\
+          "packageLocation": "./.yarn/cache/react-circular-progressbar-npm-2.1.0-11ab1459b1-dc118010a8.zip/node_modules/react-circular-progressbar/",\
+          "packageDependencies": [\
+            ["react-circular-progressbar", "npm:2.1.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:77118857cbaaada9085451781d85e6e4a8c471ba38cad46b2ac8d203273eba65ab29787199b09ec861488387fb4a06217f6dac86f514735292e03a873cd42e4f#npm:2.1.0", {\
+          "packageLocation": "./.yarn/__virtual__/react-circular-progressbar-virtual-548afd8f7f/0/cache/react-circular-progressbar-npm-2.1.0-11ab1459b1-dc118010a8.zip/node_modules/react-circular-progressbar/",\
+          "packageDependencies": [\
+            ["react-circular-progressbar", "virtual:77118857cbaaada9085451781d85e6e4a8c471ba38cad46b2ac8d203273eba65ab29787199b09ec861488387fb4a06217f6dac86f514735292e03a873cd42e4f#npm:2.1.0"],\
+            ["@types/react", "npm:18.0.34"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
           ],\
           "linkType": "HARD"\
         }]\

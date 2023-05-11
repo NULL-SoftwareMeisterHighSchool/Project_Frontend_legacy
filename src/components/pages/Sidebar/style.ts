@@ -111,3 +111,4 @@ export const Pagename = styled(Body2)`
 	order: 1;
 	flex-grow: 0;
 `;
+
