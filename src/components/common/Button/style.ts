@@ -6,7 +6,7 @@ export const Button = styled.button<{
 	state: ButtonStateType;
 	fontSize: string;
 }>`
-	padding: 14px 20px;
+	padding: 14px 22px;
 	border-radius: 8px;
 	cursor: pointer;
 	font-size: ${({ fontSize }) => fontSize};
