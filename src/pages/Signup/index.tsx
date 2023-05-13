@@ -1,3 +1,4 @@
+import React from "react";
 import LeftArrow from "@assets/images/pages/LeftArrow.svg";
 import LoginImage from "@components/pages/LoginImage";
 import { Link } from "react-router-dom";

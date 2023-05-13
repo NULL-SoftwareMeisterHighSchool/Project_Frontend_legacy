@@ -1,3 +1,4 @@
+import React from "react";
 import Eye from "@assets/images/pages/Eye.svg";
 import EyeClose from "@assets/images/pages/EyeClose.svg";
 import LoginImage from "@components/pages/LoginImage";
