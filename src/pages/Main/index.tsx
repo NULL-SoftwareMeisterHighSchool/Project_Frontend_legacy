@@ -64,14 +64,14 @@ const Main = () => {
 							<S.Bannertitle>인기 게시글</S.Bannertitle>
 							<S.Bannersubtitle>인기 있는 게시글을 만나보세요</S.Bannersubtitle>
 						</S.Bannertext>
-						<Button width='116px' height='48px' value={'게시글 더보기'}></Button>
+						<Button width='116px' height='48px' value='게시글 더보기'></Button>
 					</S.Banner>
 					<S.Banner>
 						<S.Bannertext>
 							<S.Bannertitle>기술 블로그</S.Bannertitle>
 							<S.Bannersubtitle>전공 지식을 습득해 보세요</S.Bannersubtitle>
 						</S.Bannertext>
-						<Button width='104px' height='48px' value={'기술 더보기'}></Button>
+						<Button width='104px' height='48px' value='기술 더보기'></Button>
 					</S.Banner>
 				</S.Twobanner>
 				<S.Twoboard>
