@@ -1,6 +1,6 @@
 import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import { Sidebar } from '@components/pages/Sidebar';
+import { Sidebar } from '@components/common/Sidebar';
 import Button from '@components/common/Button/index';
 import Dummy from "@fixtures/board.json";
 import * as S from './style';
