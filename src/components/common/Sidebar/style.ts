@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import {Body, Body2} from '@styles/text.style';
+import { color } from '@styles/theme.style';
 
 export const Fixed = styled.nav`
 	position: fixed;
@@ -19,7 +20,7 @@ export const Bar = styled.nav`
 	left: 0px;
 	top: 0px;
 
-	background: #EFF4F4;
+	background: ${color.grayLight2};
 `;
 
 export const User = styled(Body2)`
@@ -46,7 +47,7 @@ export const Line = styled.hr`
 	width: 200px;
 	height: 0px;
 
-	border: 1px solid #E1E8EA;
+	border: 1px solid ${color.grayLight1};
 `;
 
 export const Menu = styled.div`
@@ -103,7 +104,7 @@ export const Pagename = styled(Body2)`
 	line-height: 17px;
 
 	/* Gray Colors/Gray Dark 1 */
-	color: #7a8184;
+	color: ${color.grayDark1};
 
 	/* Inside auto layout */
 
