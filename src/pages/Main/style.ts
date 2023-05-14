@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { TitleLarge, BodyLarge, BodyStrong, Body2, SubTitle } from '@styles/text.style'
+import {color} from '@styles/theme.style';
 
-export const Maincontainer = styled.div`
+export const MainContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -16,7 +18,7 @@ export const Maincontainer = styled.div`
 		font-weight: 600;
 		font-size: 24px;
 		line-height: 36px;
-		color: #0084db;
+		color: ${color.primaryBase};
 	}
 
 	.CircularProgressbar {
@@ -34,20 +36,18 @@ export const Path = styled.div`
 
 	width: 76px;
 	height: 17px;
-	color: #0084db;
+	color:${color.primaryBase};
 `;
 
-export const Title = styled.div`
+export const Title = styled(TitleLarge)`
 	font-family: 'Pretendard';
 	font-style: normal;
-	font-weight: 600;
-	font-size: 40px;
 	line-height: 52px;
 
 	margin-top: -12px;
 	width: 70px;
 	height: 52px;
-	color: #000000;
+	color: ${color.black};
 `;
 
 export const Github = styled.div`
@@ -71,7 +71,7 @@ export const Score = styled.div`
 	gap: 40px;
 `;
 
-export const Circulartext = styled.div`
+export const CircularText = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -79,34 +79,30 @@ export const Circulartext = styled.div`
 	gap: 4px;
 `;
 
-export const Scoretitle = styled.div`
+export const ScoreTitle = styled(SubTitle)`
 	font-family: 'Pretendard';
 	font-style: normal;
-	font-weight: 600;
-	font-size: 20px;
 	line-height: 28px;
-	color: #0063b7;
+	color: ${color.primaryDark1};
 
 	flex: none;
 	order: 0;
 	flex-grow: 0;
 `;
 
-export const Scoresubtitle = styled.div`
+export const ScoreSubtitle = styled(BodyLarge)`
 	font-family: 'Pretendard';
 	font-style: normal;
-	font-weight: 400;
-	font-size: 16px;
 	line-height: 24px;
 
-	color: #0063b7;
+	color:  ${color.primaryDark1};
 
 	flex: none;
 	order: 1;
 	flex-grow: 0;
 `;
 
-export const comprehensive = styled.div`
+export const Comprehensive = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: flex-start;
@@ -125,36 +121,31 @@ export const Record = styled.div`
 	height: 47px;
 `;
 
-export const Recordtitle = styled.div`
+export const Recordtitle = styled(BodyStrong)`
 	font-family: 'Pretendard';
 	font-style: normal;
-	font-weight: 600;
-	font-size: 14px;
 	line-height: 20px;
 	/* identical to box height, or 143% */
 
 
 	/* Gray Colors/Gray Dark 1 */
 
-	color: #7A8184;
+	color: ${color.grayDark1};
 `;
 
-export const Recordscore = styled.div`
-	/* Body 2 */
+export const Recordscore = styled(Body2)`
 	font-family: 'Pretendard';
 	font-style: normal;
-	font-weight: 400;
-	font-size: 14px;
 	line-height: 17px;
 	/* identical to box height */
 
 
 	/* Gray Colors/Gray Dark 1 */
 
-	color: #7A8184;
+	color: ${color.grayDark1};
 `;
 
-export const Twobanner = styled.div`
+export const BannerArea = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: flex-start;
@@ -176,11 +167,11 @@ export const Banner = styled.div`
 
 	/* Gray Colors/Gray Light 2 */
 
-	background: #EFF4F4;
+	background: ${color.grayLight2};
 	border-radius: 8px;
 `;
 
-export const Bannertext = styled.div`
+export const BannerText = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -191,7 +182,7 @@ export const Bannertext = styled.div`
 	height: 56px;
 `;
 
-export const Bannertitle = styled.div`
+export const BannerTitle = styled(SubTitle)`
 	width: fit-content;
 	height: 28px;
 
@@ -199,18 +190,16 @@ export const Bannertitle = styled.div`
 
 	font-family: 'Pretendard';
 	font-style: normal;
-	font-weight: 600;
-	font-size: 20px;
 	line-height: 28px;
 	/* identical to box height, or 140% */
 
 
 	/* Gray Colors/Black */
 
-	color: #000000;
+	color: ${color.black};
 `;
 
-export const Bannersubtitle = styled.div`
+export const BannerSubtitle = styled(BodyLarge)`
 	width: fit-content;
 	height: 24px;
 
@@ -218,18 +207,16 @@ export const Bannersubtitle = styled.div`
 
 	font-family: 'Pretendard';
 	font-style: normal;
-	font-weight: 400;
-	font-size: 16px;
 	line-height: 24px;
 	/* identical to box height, or 150% */
 
 
 	/* Gray Colors/Black */
 
-	color: #000000;
+	color: ${color.black};
 `;
 
-export const Twoboard = styled.div`
+export const BoardArea = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: flex-start;
@@ -260,22 +247,20 @@ export const Post = styled(Link)`
 	height: 53px;
 `;
 
-export const Posttitle = styled.div`
+export const PostTitle = styled(Body2)`
 	width: fit-content;
 	height: 17px;
 
 	/* Body 2 */
 	font-family: 'Pretendard';
 	font-style: normal;
-	font-weight: 400;
-	font-size: 14px;
 	line-height: 17px;
 
 	/* Gray Colors/Black */
-	color: #000000;
+	color:${color.black};
 `;
 
-export const Postnamedate = styled.div`
+export const PostNameAndDate = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: flex-start;
@@ -287,34 +272,29 @@ export const Postnamedate = styled.div`
 `;
 
 
-export const Postname = styled.div`
+export const PostName = styled(Body2)`
 	width: fit-content;
 	height: 17px;
 
 	/* Body 2 */
 	font-family: 'Pretendard';
 	font-style: normal;
-	font-weight: 400;
-	font-size: 14px;
 	line-height: 17px;
 
 	/* Gray Colors/Gray Dark 1 */
-	color: #7A8184;
+	color: ${color.grayDark1};
 `;
 
-export const Postdate = styled.div`
+export const PostDate = styled(Body2)`
 	width: fit-content;
 	height: 17px;
 
-	/* Body 2 */
 	font-family: 'Pretendard';
 	font-style: normal;
-	font-weight: 400;
-	font-size: 14px;
 	line-height: 17px;
 
 	/* Gray Colors/Gray Base */
-	color: #B6BEC1;
+	color: ${color.grayBase};
 `;
 
 

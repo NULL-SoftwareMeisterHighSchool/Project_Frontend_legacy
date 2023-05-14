@@ -9,7 +9,7 @@ const Main = () => {
 	return (
 		<div>
 			<Sidebar />
-			<S.Maincontainer>
+			<S.MainContainer>
 				<S.Path>Menu {'>'} 메인</S.Path>
 				<S.Title>메인</S.Title>
 				<S.Github>
@@ -30,12 +30,12 @@ const Main = () => {
 									backgroundColor: '#3e98c7',
 								})}
 							/>
-							<S.Circulartext>
-								<S.Scoretitle>Text.User&apos;s</S.Scoretitle>
-								<S.Scoresubtitle>Github Stats</S.Scoresubtitle>
-							</S.Circulartext>
+							<S.CircularText>
+								<S.ScoreTitle>Text.User&apos;s</S.ScoreTitle>
+								<S.ScoreSubtitle>Github Stats</S.ScoreSubtitle>
+							</S.CircularText>
 					</S.Score>
-					<S.comprehensive>
+					<S.Comprehensive>
 						<S.Record>
 							<S.Recordtitle>Total Stars Earned</S.Recordtitle>
 							<S.Recordscore>0</S.Recordscore>
@@ -56,35 +56,35 @@ const Main = () => {
 							<S.Recordtitle>Contributed to</S.Recordtitle>
 							<S.Recordscore>10</S.Recordscore>
 						</S.Record>
-					</S.comprehensive>
+					</S.Comprehensive>
 				</S.Github>
-				<S.Twobanner>
+				<S.BannerArea>
 					<S.Banner>
-						<S.Bannertext>
-							<S.Bannertitle>인기 게시글</S.Bannertitle>
-							<S.Bannersubtitle>인기 있는 게시글을 만나보세요</S.Bannersubtitle>
-						</S.Bannertext>
+						<S.BannerText>
+							<S.BannerTitle>인기 게시글</S.BannerTitle>
+							<S.BannerSubtitle>인기 있는 게시글을 만나보세요</S.BannerSubtitle>
+						</S.BannerText>
 						<Button width='116px' height='48px' value='게시글 더보기'></Button>
 					</S.Banner>
 					<S.Banner>
-						<S.Bannertext>
-							<S.Bannertitle>기술 블로그</S.Bannertitle>
-							<S.Bannersubtitle>전공 지식을 습득해 보세요</S.Bannersubtitle>
-						</S.Bannertext>
+						<S.BannerText>
+							<S.BannerTitle>기술 블로그</S.BannerTitle>
+							<S.BannerSubtitle>전공 지식을 습득해 보세요</S.BannerSubtitle>
+						</S.BannerText>
 						<Button width='104px' height='48px' value='기술 더보기'></Button>
 					</S.Banner>
-				</S.Twobanner>
-				<S.Twoboard>
+				</S.BannerArea>
+				<S.BoardArea>
 					<S.Board>
 					{
 							Dummy.post.map(
 								post => (
 									<S.Post key={post.id} to="/">
-										<S.Posttitle>{post.title}</S.Posttitle>
-										<S.Postnamedate>
-											<S.Postname>{post.name}</S.Postname>
-											<S.Postdate>{post.date}</S.Postdate>
-										</S.Postnamedate>
+										<S.PostTitle>{post.title}</S.PostTitle>
+										<S.PostNameAndDate>
+											<S.PostName>{post.name}</S.PostName>
+											<S.PostDate>{post.date}</S.PostDate>
+										</S.PostNameAndDate>
 									</S.Post>
 								)
 							)
@@ -95,18 +95,18 @@ const Main = () => {
 							Dummy.post.map(
 								post => (
 									<S.Post key={post.id} to="/">
-										<S.Posttitle>{post.title}</S.Posttitle>
-										<S.Postnamedate>
-											<S.Postname>{post.name}</S.Postname>
-											<S.Postdate>{post.date}</S.Postdate>
-										</S.Postnamedate>
+										<S.PostTitle>{post.title}</S.PostTitle>
+										<S.PostNameAndDate>
+											<S.PostName>{post.name}</S.PostName>
+											<S.PostDate>{post.date}</S.PostDate>
+										</S.PostNameAndDate>
 									</S.Post>
 								)
 							)
 					}
 					</S.Board>
-				</S.Twoboard>
-			</S.Maincontainer>
+				</S.BoardArea>
+			</S.MainContainer>
 		</div>
 	);
 };
