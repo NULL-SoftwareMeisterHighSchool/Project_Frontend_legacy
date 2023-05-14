@@ -1,5 +1,5 @@
 import * as S from './style';
-import * as I from '@assets/images/allfie';
+import * as I from '@assets/images/allfile';
 
 export const Sidebar = () => {
 	return (
