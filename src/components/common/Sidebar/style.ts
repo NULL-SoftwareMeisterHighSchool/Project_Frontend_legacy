@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { color } from '@styles/theme.style';
 import {Body, Body2} from '@styles/text.style';
+import { color } from '@styles/theme.style';
 
 export const Fixed = styled.nav`
 	position: fixed;
