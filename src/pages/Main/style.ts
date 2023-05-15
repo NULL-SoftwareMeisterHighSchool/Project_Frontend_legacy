@@ -12,15 +12,6 @@ export const MainContainer = styled.div`
 
 	margin-left: 240px;
 
-	.CircularProgressbar-text {
-		font-family: 'Pretendard';
-		font-style: normal;
-		font-weight: 600;
-		font-size: 24px;
-		line-height: 36px;
-		color: ${color.primaryBase};
-	}
-
 	.CircularProgressbar {
 		width: 120px;
 		height: 120px;
