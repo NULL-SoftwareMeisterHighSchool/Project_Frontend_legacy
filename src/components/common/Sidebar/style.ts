@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { color } from '@styles/theme.style';
 import {Body, Body2} from '@styles/text.style';
 
 export const Fixed = styled.nav`
@@ -19,7 +20,7 @@ export const Bar = styled.nav`
 	left: 0px;
 	top: 0px;
 
-	background: #EFF4F4;
+	background: ${color.grayLight2};
 `;
 
 export const User = styled(Body2)`
@@ -46,7 +47,7 @@ export const Line = styled.hr`
 	width: 200px;
 	height: 0px;
 
-	border: 1px solid #E1E8EA;
+	border: 1px solid ${color.grayLight1};
 `;
 
 export const Menu = styled.div`
@@ -73,7 +74,7 @@ export const Subtitle = styled(Body)`
 	align-items: flex-start;
 	padding: 0px 0px 10px;
 
-	color: #7a8184;
+	color: ${color.grayDark1};
 `;
 
 export const Option = styled(Link)`
@@ -96,14 +97,12 @@ export const Icon = styled.img`
 	height: 24px;
 `;
 
-export const Pagename = styled(Body2)`
+export const PageName = styled(Body2)`
 	font-style: normal;
-	font-weight: 400;
-	font-size: 14px;
 	line-height: 17px;
 
 	/* Gray Colors/Gray Dark 1 */
-	color: #7a8184;
+	color: ${color.grayDark1};
 
 	/* Inside auto layout */
 
