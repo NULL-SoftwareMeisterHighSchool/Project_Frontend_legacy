@@ -27,11 +27,9 @@ export const MainContainer = styled.div`
 	}
 `;
 
-export const Path = styled.div`
+export const Path = styled(Body2)`
 	font-family: 'Pretendard';
 	font-style: normal;
-	font-weight: 400;
-	font-size: 14px;
 	line-height: 17px;
 
 	width: 76px;
@@ -121,7 +119,7 @@ export const Record = styled.div`
 	height: 47px;
 `;
 
-export const Recordtitle = styled(BodyStrong)`
+export const RecordTitle = styled(BodyStrong)`
 	font-family: 'Pretendard';
 	font-style: normal;
 	line-height: 20px;
@@ -133,7 +131,7 @@ export const Recordtitle = styled(BodyStrong)`
 	color: ${color.grayDark1};
 `;
 
-export const Recordscore = styled(Body2)`
+export const RecordScore = styled(Body2)`
 	font-family: 'Pretendard';
 	font-style: normal;
 	line-height: 17px;
@@ -260,7 +258,7 @@ export const PostTitle = styled(Body2)`
 	color:${color.black};
 `;
 
-export const PostNameAndDate = styled.div`
+export const PostInfo = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: flex-start;

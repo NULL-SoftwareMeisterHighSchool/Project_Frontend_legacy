@@ -37,24 +37,24 @@ const Main = () => {
 					</S.Score>
 					<S.Comprehensive>
 						<S.Record>
-							<S.Recordtitle>Total Stars Earned</S.Recordtitle>
-							<S.Recordscore>0</S.Recordscore>
+							<S.RecordTitle>Total Stars Earned</S.RecordTitle>
+							<S.RecordScore>0</S.RecordScore>
 						</S.Record>
 						<S.Record>
-							<S.Recordtitle>Total Commits</S.Recordtitle>
-							<S.Recordscore>120</S.Recordscore>
+							<S.RecordTitle>Total Commits</S.RecordTitle>
+							<S.RecordScore>120</S.RecordScore>
 						</S.Record>
 						<S.Record>
-							<S.Recordtitle>Total PRs</S.Recordtitle>
-							<S.Recordscore>12</S.Recordscore>
+							<S.RecordTitle>Total PRs</S.RecordTitle>
+							<S.RecordScore>12</S.RecordScore>
 						</S.Record>
 						<S.Record>
-							<S.Recordtitle>Total Issues</S.Recordtitle>
-							<S.Recordscore>0</S.Recordscore>
+							<S.RecordTitle>Total Issues</S.RecordTitle>
+							<S.RecordScore>0</S.RecordScore>
 						</S.Record>
 						<S.Record>
-							<S.Recordtitle>Contributed to</S.Recordtitle>
-							<S.Recordscore>10</S.Recordscore>
+							<S.RecordTitle>Contributed to</S.RecordTitle>
+							<S.RecordScore>10</S.RecordScore>
 						</S.Record>
 					</S.Comprehensive>
 				</S.Github>
@@ -81,10 +81,10 @@ const Main = () => {
 								post => (
 									<S.Post key={post.id} to="/">
 										<S.PostTitle>{post.title}</S.PostTitle>
-										<S.PostNameAndDate>
+										<S.PostInfo>
 											<S.PostName>{post.name}</S.PostName>
 											<S.PostDate>{post.date}</S.PostDate>
-										</S.PostNameAndDate>
+										</S.PostInfo>
 									</S.Post>
 								)
 							)
@@ -96,10 +96,10 @@ const Main = () => {
 								post => (
 									<S.Post key={post.id} to="/">
 										<S.PostTitle>{post.title}</S.PostTitle>
-										<S.PostNameAndDate>
+										<S.PostInfo>
 											<S.PostName>{post.name}</S.PostName>
 											<S.PostDate>{post.date}</S.PostDate>
-										</S.PostNameAndDate>
+										</S.PostInfo>
 									</S.Post>
 								)
 							)
