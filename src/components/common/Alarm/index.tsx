@@ -6,7 +6,7 @@ import Coution from "@assets/images/Coution.svg";
 import Critical from "@assets/images/Critical.svg";
 import * as S from "./style";
 
-interface AlarmPropsType {
+interface AlarmPropTypes {
   state: AlarmStateType;
   bodyText: string;
 }
@@ -18,7 +18,7 @@ const stateFor = {
   Critical,
 };
 
-const Alarm = ({ state, bodyText }: AlarmPropsType) => (
+const Alarm = ({ state, bodyText }: AlarmPropTypes) => (
   <S.Alarm state={state}>
     <S.Icon src={stateFor[state]} />
     <BodyStrong>{state}</BodyStrong>

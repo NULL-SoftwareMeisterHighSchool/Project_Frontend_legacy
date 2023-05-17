@@ -1,10 +1,10 @@
 import { InputHTMLAttributes } from "react";
-import { InputStateType } from "../../../types/common/input.type";
+import { InputStateType } from "./input.type";
 import Critical from "@assets/images/Critical.svg";
 import Sucess from "@assets/images/Success.svg";
 import * as S from "./style";
 
-export interface InputPropsType extends InputHTMLAttributes<HTMLInputElement> {
+export interface InputPropTypes extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;
   state?: InputStateType;
   width?: string;
@@ -19,7 +19,7 @@ const Input = ({
   name,
   value,
   onChange,
-}: InputPropsType) => {
+}: InputPropTypes) => {
   return (
     <>
       <S.Titlebox>
