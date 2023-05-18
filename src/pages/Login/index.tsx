@@ -41,7 +41,7 @@ const Login = () => {
 					</S.Inputs>
 					<S.Auth>
 						<S.Subtitle>
-							회원이 아니신가요? <Link to={"/Signup"}>회원가입</Link>
+							회원이 아니신가요? <Link to="/Signup">회원가입</Link>
 						</S.Subtitle>
 						<S.LoginBtn>로그인</S.LoginBtn>
 					</S.Auth>

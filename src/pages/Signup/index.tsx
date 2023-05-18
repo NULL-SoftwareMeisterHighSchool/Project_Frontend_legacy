@@ -13,7 +13,7 @@ const Signup = () => {
 					<S.Title>
 						<S.Subtitle>Sign up</S.Subtitle>
 						<S.Prev>
-							<Link to={"/Login"}>
+							<Link to="/Login">
 								<S.PrevBtn src={LeftArrow} />
 							</Link>
 							회원가입
@@ -41,7 +41,7 @@ const Signup = () => {
 					</S.Inputs>
 					<S.Auth>
 						<S.Subtitle>
-							회원이신가요? <Link to={"/Login"}>로그인</Link>
+							회원이신가요? <Link to="/Login">로그인</Link>
 						</S.Subtitle>
 						<S.SignupBtn>회원가입</S.SignupBtn>
 					</S.Auth>
