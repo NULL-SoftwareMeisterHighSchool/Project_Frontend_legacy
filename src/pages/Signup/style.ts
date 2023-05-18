@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { color } from "@styles/theme.style";
+import { BodyLarge, TitleLarge } from "@styles/text.style";
 
 export const Container = styled.div`
 	height: 100vh;
@@ -26,22 +27,11 @@ export const Title = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	span {
-		font-size: 16px;
-		line-height: 24px;
-	}
-	div {
-		font-weight: 600;
-		font-size: 40px;
-		line-height: 52px;
-	}
 `;
 
-export const Auth = styled(Title)`
-	span {
-		font-size: 14px;
-	}
-`;
+export const Subtitle = styled(BodyLarge)``;
+
+export const Auth = styled(Title)``;
 
 export const Inputs = styled.div`
 	display: flex;
@@ -90,6 +80,8 @@ export const Id = styled(Title)`
 	gap: 10px;
 `;
 
+export const Name = styled(Id)``;
+
 export const Password = styled(Id)``;
 
 export const PrevBtn = styled.div<any>`
@@ -101,7 +93,8 @@ export const PrevBtn = styled.div<any>`
 	margin-left: -54px;
 	cursor: pointer;
 `;
-export const Prev = styled.div`
+
+export const Prev = styled(TitleLarge)`
 	display: flex;
 	align-items: center;
 `;
