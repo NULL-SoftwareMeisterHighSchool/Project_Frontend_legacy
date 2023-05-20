@@ -14,8 +14,8 @@ import Success from '@assets/images/Success.svg';
 import Trophy from '@assets/images/icon/Trophy.svg';
 import UpArrow from '@assets/images/icon/UpArrow.svg';
 import UserIcon from '@assets/images/icon/User.svg';
+import UserImg from '@assets/images/User.png';
 
-import UserImg from '@assets/User.png';
 
 export {
 	UserImg,
