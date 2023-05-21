@@ -1,13 +1,16 @@
 import React from "react";
 import LeftArrow from "@assets/images/pages/LeftArrow.svg";
-import LoginImage from "@components/pages/LoginImage";
+import LoginIcon from "@assets/images/pages/LoginIcon.svg";
+import LoginImg from "@assets/images/pages/LoginImg.jpg";
 import { Link } from "react-router-dom";
 import * as S from "./style";
 
 const Signup = () => {
 	return (
 		<S.Container>
-			<LoginImage />
+			<S.LoginImage src={LoginImg}>
+				<img src={LoginIcon} />
+			</S.LoginImage>
 			<S.SignupForm>
 				<S.Wrapper>
 					<S.Title>
