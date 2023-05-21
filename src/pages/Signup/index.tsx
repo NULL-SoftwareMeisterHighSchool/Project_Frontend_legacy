@@ -1,47 +1,51 @@
+import React from "react";
 import LeftArrow from "@assets/images/pages/LeftArrow.svg";
-import LoginImage from "@components/pages/LoginImage";
+import LoginIcon from "@assets/images/pages/LoginIcon.svg";
+import LoginImg from "@assets/images/pages/LoginImg.jpg";
 import { Link } from "react-router-dom";
 import * as S from "./style";
 
 const Signup = () => {
 	return (
 		<S.Container>
-			<LoginImage />
+			<S.LoginImage src={LoginImg}>
+				<img src={LoginIcon} />
+			</S.LoginImage>
 			<S.SignupForm>
 				<S.Wrapper>
 					<S.Title>
-						<span>Sign up</span>
+						<S.Subtitle>Sign up</S.Subtitle>
 						<S.Prev>
-							<Link to={"/Login"}>
+							<Link to="/Login">
 								<S.PrevBtn src={LeftArrow} />
 							</Link>
 							회원가입
 						</S.Prev>
 					</S.Title>
 					<S.Inputs>
-						<S.Id>
-							<span>이름</span>
+						<S.Name>
+							<S.Subtitle>이름</S.Subtitle>
 							<S.InputBox>
 								<S.Input placeholder="실명을 입력해 주세요" />
 							</S.InputBox>
-						</S.Id>
+						</S.Name>
 						<S.Id>
-							<span>아이디</span>
+							<S.Subtitle>아이디</S.Subtitle>
 							<S.InputBox>
 								<S.Input placeholder="아이디를 입력해 주세요" />
 							</S.InputBox>
 						</S.Id>
 						<S.Password>
-							<span>비밀번호</span>
+							<S.Subtitle>비밀번호</S.Subtitle>
 							<S.InputBox>
 								<S.Input placeholder="영·숫자·기호 포함 8자 이상" />
 							</S.InputBox>
 						</S.Password>
 					</S.Inputs>
 					<S.Auth>
-						<span>
-							회원이신가요? <Link to={"/Login"}>로그인</Link>
-						</span>
+						<S.Subtitle>
+							회원이신가요? <Link to="/Login">로그인</Link>
+						</S.Subtitle>
 						<S.SignupBtn>회원가입</S.SignupBtn>
 					</S.Auth>
 				</S.Wrapper>
