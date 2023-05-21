@@ -1,7 +1,8 @@
 import React from "react";
 import Eye from "@assets/images/pages/Eye.svg";
 import EyeClose from "@assets/images/pages/EyeClose.svg";
-import LoginImage from "@components/pages/LoginImage";
+import LoginIcon from "@assets/images/pages/LoginIcon.svg";
+import LoginImg from "@assets/images/pages/LoginImg.jpg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import * as S from "./style";
@@ -47,7 +48,9 @@ const Login = () => {
 					</S.Auth>
 				</S.Wrapper>
 			</S.LoginForm>
-			<LoginImage />
+			<S.LoginImage src={LoginImg}>
+				<img src={LoginIcon} />
+			</S.LoginImage>
 		</S.Container>
 	);
 };
