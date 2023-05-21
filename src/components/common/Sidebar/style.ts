@@ -4,10 +4,6 @@ import styled from 'styled-components';
 import {Body, Body2} from '@styles/text.style';
 import { color } from '@styles/theme.style';
 
-export const Fixed = styled.nav`
-	position: fixed;
-`;
-
 export const Bar = styled.nav`
 	display: flex;
 	flex-direction: column;
