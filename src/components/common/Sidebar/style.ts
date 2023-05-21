@@ -78,37 +78,3 @@ export const Subtitle = styled(Body)`
 	color: ${color.grayDark1};
 `;
 
-export const Option = styled(Link)`
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	padding: 10px;
-	gap: 10px;
-
-	width: 200px;
-	height: 44px;
-
-	border-radius: 8px;
-	text-decoration: none;
-`;
-
-export const Icon = styled.img`
-	/* Computer */
-	width: 24px;
-	height: 24px;
-`;
-
-export const PageName = styled(Body2)`
-	font-style: normal;
-	line-height: 17px;
-
-	/* Gray Colors/Gray Dark 1 */
-	color: ${color.grayDark1};
-
-	/* Inside auto layout */
-
-	flex: none;
-	order: 1;
-	flex-grow: 0;
-`;
-
