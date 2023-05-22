@@ -24,17 +24,15 @@ const Ranking = () => {
 				</S.PageInfo>
 				<S.Category>
 					<S.Options>
-						{options.map((text, i) => {
-							return (
-								<Option
-									key={i}
-									idx={i}
-									text={text}
-									isOptionSelected={isOptionSelected[i]}
-									handleOptions={handleOptions}
-								/>
-							);
-						})}
+						{options.map((text, i) => (
+							<Option
+								key={i}
+								idx={i}
+								text={text}
+								isOptionSelected={isOptionSelected[i]}
+								handleOptions={handleOptions}
+							/>
+						))}
 					</S.Options>
 					{/* <S.Sorting /> */}
 				</S.Category>
@@ -48,9 +46,9 @@ const Ranking = () => {
 						<S.Class>기수</S.Class>
 						<S.Score>점수</S.Score>
 					</S.Info>
-					{Dummy.list.map((o) => {
-						return <Rank key={o.id} {...o} />;
-					})}
+					{Dummy.list.map((o) => (
+						<Rank key={o.id} {...o} />
+					))}
 				</S.Content>
 			</S.RankingContainer>
 		</div>
