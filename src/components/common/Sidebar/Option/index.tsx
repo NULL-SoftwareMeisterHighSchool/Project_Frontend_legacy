@@ -14,7 +14,7 @@ export const Option = ({
 }:OptionPropsType) => {
 	return (
 		<S.Option to={to}>
-			<S.Icon src={src} />
+			<S.Icon src={src} alt='아이콘'/>
 			<S.PageName>{pagename}</S.PageName>
 		</S.Option>
 	);
