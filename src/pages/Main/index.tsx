@@ -2,6 +2,7 @@ import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-pro
 import 'react-circular-progressbar/dist/styles.css';
 
 import Post from '@components/common/Post';
+import Record from '@components/pages/Main/Record';
 import { Sidebar } from '@components/common/Sidebar';
 import Button from '@components/common/Button/index';
 import Dummy from "@fixtures/board.json";
@@ -38,26 +39,11 @@ const Main = () => {
 						</S.CircularText>
 					</S.Score>
 					<S.Comprehensive>
-						<S.Record>
-							<S.RecordTitle>Total Stars Earned</S.RecordTitle>
-							<S.RecordScore>0</S.RecordScore>
-						</S.Record>
-						<S.Record>
-							<S.RecordTitle>Total Commits</S.RecordTitle>
-							<S.RecordScore>120</S.RecordScore>
-						</S.Record>
-						<S.Record>
-							<S.RecordTitle>Total PRs</S.RecordTitle>
-							<S.RecordScore>12</S.RecordScore>
-						</S.Record>
-						<S.Record>
-							<S.RecordTitle>Total Issues</S.RecordTitle>
-							<S.RecordScore>0</S.RecordScore>
-						</S.Record>
-						<S.Record>
-							<S.RecordTitle>Contributed to</S.RecordTitle>
-							<S.RecordScore>10</S.RecordScore>
-						</S.Record>
+						<Record title='Total Stars Earned' score='0' />
+						<Record title='Total Commits' score='120' />
+						<Record title='Total PRs' score='12' />
+						<Record title='Total Issues' score='0' />
+						<Record title='Contributed to' score='10' />
 					</S.Comprehensive>
 				</S.Github>
 				<S.BannerArea>

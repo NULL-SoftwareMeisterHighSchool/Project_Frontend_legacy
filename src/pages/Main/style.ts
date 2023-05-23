@@ -108,41 +108,6 @@ export const Comprehensive = styled.div`
 	gap: 80px;
 `;
 
-export const Record = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	padding: 0px;
-	gap: 10px;
-
-	width: fit-content;
-	height: 47px;
-`;
-
-export const RecordTitle = styled(BodyStrong)`
-	font-family: 'Pretendard';
-	font-style: normal;
-	line-height: 20px;
-	/* identical to box height, or 143% */
-
-
-	/* Gray Colors/Gray Dark 1 */
-
-	color: ${color.grayDark1};
-`;
-
-export const RecordScore = styled(Body2)`
-	font-family: 'Pretendard';
-	font-style: normal;
-	line-height: 17px;
-	/* identical to box height */
-
-
-	/* Gray Colors/Gray Dark 1 */
-
-	color: ${color.grayDark1};
-`;
-
 export const BannerArea = styled.div`
 	display: flex;
 	flex-direction: row;
