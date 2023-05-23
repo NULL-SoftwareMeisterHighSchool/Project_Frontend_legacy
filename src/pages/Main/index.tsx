@@ -1,5 +1,7 @@
 import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+
+import Post from '@components/common/Post';
 import { Sidebar } from '@components/common/Sidebar';
 import Button from '@components/common/Button/index';
 import Dummy from "@fixtures/board.json";
@@ -14,26 +16,26 @@ const Main = () => {
 				<S.Title>메인</S.Title>
 				<S.Github>
 					<S.Score>
-							<CircularProgressbarWithChildren
-								value={69}
-								text="A+"
-								styles={buildStyles({
-									// Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-									strokeLinecap: 'butt',
+						<CircularProgressbarWithChildren
+							value={69}
+							text="A+"
+							styles={buildStyles({
+								// Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+								strokeLinecap: 'butt',
 
-									// How long animation takes to go from one percentage to another, in seconds
-									pathTransitionDuration: 0.5,
+								// How long animation takes to go from one percentage to another, in seconds
+								pathTransitionDuration: 0.5,
 
-									// Colors
-									pathColor: `rgba(0, 132, 219)`,
-									trailColor: '#EFF4F4',
-									backgroundColor: '#3e98c7',
-								})}
-							/>
-							<S.CircularText>
-								<S.ScoreTitle>Text.User&apos;s</S.ScoreTitle>
-								<S.ScoreSubtitle>Github Stats</S.ScoreSubtitle>
-							</S.CircularText>
+								// Colors
+								pathColor: `rgba(0, 132, 219)`,
+								trailColor: '#EFF4F4',
+								backgroundColor: '#3e98c7',
+							})}
+						/>
+						<S.CircularText>
+							<S.ScoreTitle>Text.User&apos;s</S.ScoreTitle>
+							<S.ScoreSubtitle>Github Stats</S.ScoreSubtitle>
+						</S.CircularText>
 					</S.Score>
 					<S.Comprehensive>
 						<S.Record>
@@ -76,34 +78,22 @@ const Main = () => {
 				</S.BannerArea>
 				<S.BoardArea>
 					<S.Board>
-					{
+						{
 							Dummy.post.map(
 								post => (
-									<S.Post key={post.id} to="/">
-										<S.PostTitle>{post.title}</S.PostTitle>
-										<S.PostInfo>
-											<S.PostName>{post.name}</S.PostName>
-											<S.PostDate>{post.date}</S.PostDate>
-										</S.PostInfo>
-									</S.Post>
+									<Post id={post.id} title={post.title} name={post.name} date={post.date} to='' />
 								)
 							)
-					}
+						}
 					</S.Board>
 					<S.Board>
-					{
+						{
 							Dummy.post.map(
 								post => (
-									<S.Post key={post.id} to="/">
-										<S.PostTitle>{post.title}</S.PostTitle>
-										<S.PostInfo>
-											<S.PostName>{post.name}</S.PostName>
-											<S.PostDate>{post.date}</S.PostDate>
-										</S.PostInfo>
-									</S.Post>
+									<Post id={post.id} title={post.title} name={post.name} date={post.date} to='' />
 								)
 							)
-					}
+						}
 					</S.Board>
 				</S.BoardArea>
 			</S.MainContainer>
