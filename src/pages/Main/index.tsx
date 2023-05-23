@@ -2,6 +2,7 @@ import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-pro
 import 'react-circular-progressbar/dist/styles.css';
 
 import Post from '@components/common/Post';
+import Banner from '@components/pages/Main/Banner';
 import Record from '@components/pages/Main/Record';
 import { Sidebar } from '@components/common/Sidebar';
 import Button from '@components/common/Button/index';
@@ -47,20 +48,8 @@ const Main = () => {
 					</S.Comprehensive>
 				</S.Github>
 				<S.BannerArea>
-					<S.Banner>
-						<S.BannerText>
-							<S.BannerTitle>인기 게시글</S.BannerTitle>
-							<S.BannerSubtitle>인기 있는 게시글을 만나보세요</S.BannerSubtitle>
-						</S.BannerText>
-						<Button width='116px' height='48px' value='게시글 더보기'></Button>
-					</S.Banner>
-					<S.Banner>
-						<S.BannerText>
-							<S.BannerTitle>기술 블로그</S.BannerTitle>
-							<S.BannerSubtitle>전공 지식을 습득해 보세요</S.BannerSubtitle>
-						</S.BannerText>
-						<Button width='104px' height='48px' value='기술 더보기'></Button>
-					</S.Banner>
+					<Banner title='인기 게시글' subtitle='인기있는 게시글을 만나보세요' buttonValue='게시글 더보기' />
+					<Banner title='기술 블로그' subtitle='전공 지식을 습득해 보세요' buttonValue='기술 더보기' />
 				</S.BannerArea>
 				<S.BoardArea>
 					<S.Board>
