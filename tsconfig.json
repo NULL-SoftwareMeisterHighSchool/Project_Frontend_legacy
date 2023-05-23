@@ -17,6 +17,9 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "baseUrl": ".",
+    "typeRoots": [
+      "./markdown.d.ts"
+    ],
     "paths": {
       "@apis/*": ["src/apis/*"],
       "@assets/*": ["src/assets/*"],
@@ -32,6 +35,6 @@
       "@layouts/*": ["src/layouts/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "globals.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
