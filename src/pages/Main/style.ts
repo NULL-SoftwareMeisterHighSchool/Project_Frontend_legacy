@@ -10,8 +10,6 @@ export const MainContainer = styled.div`
 	padding: 60px 200px;
 	gap: 40px;
 
-	margin-left: 240px;
-
 	.CircularProgressbar {
 		width: 120px;
 		height: 120px;
