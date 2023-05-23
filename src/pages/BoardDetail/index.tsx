@@ -3,7 +3,7 @@ import remarkGfm from 'remark-gfm'
 
 import Dummy from "@fixtures/board.json";
 import { Sidebar } from '@components/common/Sidebar';
-import Comment from '@components/pages/Comment';
+import Comment from '@components/common/Comment';
 import * as S from './style';
 
 const MarkDown = `
