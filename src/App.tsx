@@ -2,7 +2,7 @@ import SkillBlog from "@pages/SkillBlog";
 
 function App() {
   return (
-  <div className="App"><BoardDetail /></div>
+  <div className="App"><SkillBlog /></div>
   );
 }
 
