@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import remarkGfm from 'remark-gfm'
 
+import AppLayout from '@layouts/AppLayout';
 import Post from '@components/common/Post';
 import Dummy from "@fixtures/board.json";
 import { Sidebar } from '@components/common/Sidebar';
@@ -15,8 +16,7 @@ const MarkDown = `
 
 const BoardDetail = () => {
   return (
-    <>
-      <Sidebar />
+    <AppLayout>
       <S.Post>
         <S.Thumbnail>
           <S.Img />
@@ -50,7 +50,7 @@ const BoardDetail = () => {
 					}
 					</S.Board>
       </S.Post>
-    </>
+    </AppLayout>
   );
 }
 

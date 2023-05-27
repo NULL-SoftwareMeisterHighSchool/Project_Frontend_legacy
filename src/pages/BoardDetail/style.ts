@@ -11,7 +11,7 @@ export const Post = styled.main`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 60px 520px 0px;
+ 
     gap: 40px;
 `; 
 
