@@ -3,11 +3,34 @@ import { Link } from 'react-router-dom';
 import { TitleLarge, BodyLarge, BodyStrong, Body2, SubTitle } from '@styles/text.style'
 import { color } from '@styles/theme.style';
 
+// export const MainContainer = styled.div`
+// 	display: flex;
+// 	flex-direction: column;
+// 	align-items: flex-start;
+// 	padding: 60px 200px;
+// 	gap: 40px;
+
+// 	.CircularProgressbar {
+// 		width: 120px;
+// 		height: 120px;
+// 	}
+
+// 	.CircularProgressbar-text {
+// 		font-family: 'Pretendard';
+// 		font-style: normal;
+// 		font-weight: 600;
+// 		font-size: 24px;
+// 		line-height: 36px;
+// 		color: ${color.primaryBase};
+// 	 }
+// `;
+
 export const MainContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	padding: 60px 200px;
+	
+	padding: 60px 0px;
 	gap: 40px;
 
 	.CircularProgressbar {
