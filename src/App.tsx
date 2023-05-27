@@ -1,8 +1,8 @@
-import SkillBlog from "@pages/SkillBlog";
+import BoardDetail from "@pages/BoardDetail";
 
 function App() {
   return (
-  <div className="App"><SkillBlog /></div>
+  <div className="App"><BoardDetail /></div>
   );
 }
 
