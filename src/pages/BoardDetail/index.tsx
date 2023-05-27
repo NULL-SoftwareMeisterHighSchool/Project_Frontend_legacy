@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import remarkGfm from 'remark-gfm'
 
+import Post from '@components/common/Post';
 import Dummy from "@fixtures/board.json";
 import { Sidebar } from '@components/common/Sidebar';
 import Comment from '@components/common/Comment';
@@ -43,13 +44,7 @@ const BoardDetail = () => {
 					{
 							Dummy.post.map(
 								post => (
-									<S.Post2 key={post.id} to="/">
-										<S.PostTitle>{post.title}</S.PostTitle>
-										<S.PostInfo>
-											<S.PostName>{post.name}</S.PostName>
-											<S.PostDate>{post.date}</S.PostDate>
-										</S.PostInfo>
-									</S.Post2>
+                  <Post id={post.id} to='/' title={post.title} name={post.name} date={post.date} padding='0px'/>
 								)
 							)
 					}
