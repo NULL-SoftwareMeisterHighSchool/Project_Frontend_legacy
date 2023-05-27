@@ -8,6 +8,8 @@ export const MainContainer = styled.div`
   gap: 12px;
 
   width: 305px;
+  height: 260px;
+  cursor: pointer;
 
   > img {
     width: 100%;
