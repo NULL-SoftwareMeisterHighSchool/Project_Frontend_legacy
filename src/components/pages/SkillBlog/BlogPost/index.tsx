@@ -1,25 +1,23 @@
 import * as S from "./style";
 
 type BlogPropsType = {
-  data: {
-    id: number;
-    name: string;
-    summary: string;
-    titleImg: string;
-    date: string;
-  }
+  id: number;
+  name: string;
+  summary: string;
+  titleImg?: string;
+  date: string;
 }
-const BlogPost = ({ data }: BlogPropsType) => {
+const BlogPost = ({ id,name,summary, titleImg, date }: BlogPropsType) => {
   return (
     <S.MainContainer>
-      <img src={data.titleImg} />
+      {titleImg && <img src={titleImg} />}
       <S.Title>
-        <S.TitleText>{data.name}</S.TitleText>
+        <S.TitleText>{name}</S.TitleText>
         <S.Line />
-        <S.TitleText>{data.date}</S.TitleText>
+        <S.TitleText>{date}</S.TitleText>
       </S.Title>
-      
-      <p>{data.summary}</p>
+
+      <p>{summary}</p>
     </S.MainContainer>
   )
 }
