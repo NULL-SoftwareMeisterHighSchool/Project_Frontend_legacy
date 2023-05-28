@@ -39,6 +39,9 @@ export const DropdownListBox = styled.div<{ isOpen: boolean }>`
     border-radius: 8px;
     overflow: hidden;
     cursor: pointer;
+    position: absolute;
+    width: 100%;
+    top: 56px;
 `;
 
 export const DropdownList = styled.div`
