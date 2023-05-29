@@ -9,7 +9,7 @@ interface PropTypes {
   width?: string;
 }
 
-const Dropdown = ({ describe, items, width = "300px" }: PropTypes) => {
+const Dropdown = ({ describe, items, width = "220px" }: PropTypes) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<ItemType>();
 
