@@ -7,9 +7,9 @@ const SearchFilter = () => {
   const filter2 = [{ text: "최신순" }, { text: "좋아요순" }, { text: "조회수순" }];
   return (
     <S.MainContainer>
-      <SearchBar placeholder="Placeholder" width="100%" />
-      <Dropdown describe="전체" items={filter1} />
-      <Dropdown describe="최신순" items={filter2} />
+      <SearchBar placeholder="Placeholder" width="800px" />
+      <Dropdown describe="전체" items={filter1}/>
+      <Dropdown describe="최신순" items={filter2}/>
     </S.MainContainer>
   )
 }
