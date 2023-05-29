@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Sidebar } from "@components/common/Sidebar";
+import AppLayout from "@layouts/AppLayout";
 import Option from "@components/pages/Ranking/Option";
 import Dummy from "@fixtures/rank.json";
 import * as S from "./style";
@@ -15,13 +15,10 @@ const Ranking = () => {
 	};
 
 	return (
-		<div>
-			<Sidebar />
+		<AppLayout>
 			<S.RankingContainer>
-				<S.PageInfo>
-					<S.Breadcrumb>Menu {">"} 랭킹</S.Breadcrumb>
-					<S.Title>랭킹</S.Title>
-				</S.PageInfo>
+				<S.Path>Menu {">"} 랭킹</S.Path>
+				<S.Title>랭킹</S.Title>
 				<S.Category>
 					<S.Options>
 						{options.map((text, i) => (
@@ -51,7 +48,7 @@ const Ranking = () => {
 					))}
 				</S.Content>
 			</S.RankingContainer>
-		</div>
+		</AppLayout>
 	);
 };
 
