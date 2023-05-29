@@ -3,10 +3,10 @@ import { color } from "@styles/theme.style";
 import styled from "styled-components";
 
 export const MainContainer = styled.div`
-  width: calc(100vw - 660px);
   display: flex;
   flex-direction: column;
   gap: 40px;
+  width: 1280px;
 `;
 
 export const TitleContainer = styled.div`
