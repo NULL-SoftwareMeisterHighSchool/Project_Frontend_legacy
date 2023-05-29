@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Sidebar } from "@components/common/Sidebar";
-import Option from "@components/pages/Option";
+import Option from "@components/pages/Ranking/Option";
 import Dummy from "@fixtures/rank.json";
 import * as S from "./style";
-import Rank from "@components/pages/Rank";
+import Rank from "@components/pages/Ranking/Rank";
 
 const Ranking = () => {
 	const [isOptionSelected, setIsOptionSelected] = useState<boolean[]>([false]);
