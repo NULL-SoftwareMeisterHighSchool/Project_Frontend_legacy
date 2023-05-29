@@ -6,9 +6,10 @@ import { DownArrow } from "@assets/images/allfiles";
 interface PropTypes {
   describe: string;
   items: ItemType[];
+  width?: string;
 }
 
-const Dropdown = ({ describe, items }: PropTypes) => {
+const Dropdown = ({ describe, items, width = "300px" }: PropTypes) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<ItemType>();
 
@@ -22,7 +23,7 @@ const Dropdown = ({ describe, items }: PropTypes) => {
   };
 
   return (
-    <S.Dropdown>
+    <S.Dropdown width={width}>
       <S.DropdownBox onClick={toggleOpen}>
         <S.Describe>{selectedItem?.text ? selectedItem.text : describe}</S.Describe>
         <S.Img src={DownArrow} />
