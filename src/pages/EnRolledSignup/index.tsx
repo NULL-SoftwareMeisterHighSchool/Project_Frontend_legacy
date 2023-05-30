@@ -10,7 +10,7 @@ import LeftArrow from "@assets/images/pages/LeftArrow.svg";
 type ArrayType = {
 	name: string, title: string, value: string, placeholder: string
 }
-const Signup = () => {
+const EnRolledSignup = () => {
 	const [pageNum, setPageNum] = useState(1);
 
 	const [userData, setUserData] = useState({
@@ -64,4 +64,4 @@ const Signup = () => {
 	);
 };
 
-export default Signup;
+export default EnRolledSignup;
