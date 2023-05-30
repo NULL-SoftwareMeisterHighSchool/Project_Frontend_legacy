@@ -20,7 +20,7 @@ const Input = ({
 }: InputPropTypes) => {
   const [text, setText] = useState('');
   return (
-    <>
+    <div>
       <S.Titlebox>
         {state != "DEFAULT" && (
           <S.Icon src={state == "SUCCESS" ? Sucess : Critical} />
@@ -36,7 +36,7 @@ const Input = ({
         name={name}
         value={text}
       />
-    </>
+    </div>
   );
 };
 
