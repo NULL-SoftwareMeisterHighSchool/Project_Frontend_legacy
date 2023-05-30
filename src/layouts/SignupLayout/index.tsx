@@ -12,7 +12,7 @@ const SignupLayout = ({ children }: SignupLayoutTypes) => {
   return (
     <S.Container>
       <S.LoginImage src={LoginImg}>
-        <img src={LoginIcon} />
+        <img src={LoginIcon} alt="Somei 로고"/>
       </S.LoginImage>
       <S.LoginForm>
         {children}
