@@ -60,4 +60,7 @@ export const Number = styled(BodyStrong)`
 	line-height: 20px;
 	gap: 10px;
 	border-radius: 8px;
+
+	background-color: ${(props)=>(props.color)};
+	color: ${(props)=>(props.color ? "#FFFFFF" : "#2E3133")}
 `;

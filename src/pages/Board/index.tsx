@@ -25,7 +25,7 @@ const Board = () => {
 				</S.Content>
 				<S.Pagination>
 					<S.LeftArrow src={LeftArrow}/>
-					<S.Number>1</S.Number>
+					<S.Number color="#0084DB">1</S.Number>
 					<S.Number>2</S.Number>
 					<S.Number>3</S.Number>
 					<S.Number>4</S.Number>
