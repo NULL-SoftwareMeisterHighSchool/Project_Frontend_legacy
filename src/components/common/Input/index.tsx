@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, useState } from "react";
+import { InputHTMLAttributes } from "react";
 import { InputStateType } from "./input.type";
 import Critical from "@assets/images/Critical.svg";
 import Sucess from "@assets/images/Success.svg";
@@ -17,8 +17,9 @@ const Input = ({
   placeholder,
   type = "text",
   name,
+  value,
+  onChange,
 }: InputPropTypes) => {
-  const [text, setText] = useState('');
   return (
     <div>
       <S.Titlebox>
@@ -30,11 +31,11 @@ const Input = ({
       <S.Input
         state={state}
         style={{ width }}
-        onChange={(e)=>{setText(e.target.value)}}
+        onChange={onChange}
         placeholder={placeholder}
         type={type}
         name={name}
-        value={text}
+        value={value}
       />
     </div>
   );
