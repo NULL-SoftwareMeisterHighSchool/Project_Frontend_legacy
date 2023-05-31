@@ -58,7 +58,7 @@ const GraduateSignup = () => {
             <S.SelectFileContainer>
               <BodyLarge>졸업장 사진</BodyLarge>
               <S.SelectFile >
-                <input type="file" />
+                <input type="file" accept="image/*"/>
                 <div> <img src={PlusIcon} /> </div>
               </S.SelectFile>
             </S.SelectFileContainer>
