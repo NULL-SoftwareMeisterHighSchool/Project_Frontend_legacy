@@ -21,7 +21,6 @@ export const Titlebox = styled.div`
     margin-bottom: 4px;
     gap: 4px;
 
-    width: 52px;
     height: 24px;
 `;
 
