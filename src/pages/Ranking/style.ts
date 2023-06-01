@@ -8,16 +8,6 @@ export const RankingContainer = styled.div`
 	gap: 40px;
 `;
 
-export const Path = styled(Body2)`
-	line-height: 17px;
-`;
-
-export const Title = styled(TitleLarge)`
-	line-height: 52px;
-	margin-top: -12px;
-
-`;
-
 export const Category = styled.div`
 	display: flex;
 	justify-content: space-between;
