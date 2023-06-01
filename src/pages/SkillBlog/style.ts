@@ -9,24 +9,6 @@ export const MainContainer = styled.div`
   width: 1280px;
 `;
 
-export const TitleContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 22.51px;
-`;
-
-export const Path = styled(Body2)`
-  font-family: "Pretendard";
-  font-style: normal;
-  color: ${color.black};
-`;
-
-export const Title = styled(TitleLarge)`
-  font-family: "Pretendard";
-  font-style: normal;
-  color: ${color.black};
-`;
-
 export const BlogContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
