@@ -15,10 +15,8 @@ const Ranking = () => {
 	};
 
 	return (
-		<AppLayout>
+		<AppLayout title="랭킹" path="Menu > 랭킹">
 			<S.RankingContainer>
-				<S.Path>Menu {">"} 랭킹</S.Path>
-				<S.Title>랭킹</S.Title>
 				<S.Category>
 					<S.Options>
 						{options.map((text, i) => (
