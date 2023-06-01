@@ -47,27 +47,6 @@ export const MainContainer = styled.div`
 	 }
 `;
 
-export const Path = styled(Body2)`
-	font-family: 'Pretendard';
-	font-style: normal;
-	line-height: 17px;
-
-	width: 76px;
-	height: 17px;
-	color:${color.primaryBase};
-`;
-
-export const Title = styled(TitleLarge)`
-	font-family: 'Pretendard';
-	font-style: normal;
-	line-height: 52px;
-
-	margin-top: -12px;
-	width: 70px;
-	height: 52px;
-	color: ${color.black};
-`;
-
 export const Github = styled.div`
 	display: flex;
 	flex-direction: row;
