@@ -4,13 +4,22 @@ import { ReactNode } from "react";
 
 interface AppLayoutPropTypes {
   children: ReactNode;
+  path?: string;
+  title?: string;
+  primaryBase?: boolean;
 }
 
-const AppLayout = ({ children }: AppLayoutPropTypes) => {
+const AppLayout = ({ children, path, title, primaryBase }: AppLayoutPropTypes) => {
   return (
     <S.Container>
       <Sidebar />
-      <S.Content>{children}</S.Content>
+      <S.Content>
+        {title && <S.TitleContainer>
+          <S.Path primaryBase={primaryBase}>{path}</S.Path>
+          <S.Title>{title}</S.Title>
+        </S.TitleContainer>}
+        {children}
+      </S.Content>
     </S.Container>
   );
 };
