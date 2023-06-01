@@ -12,10 +12,8 @@ import * as S from './style';
 
 const Main = () => {
 	return (
-		<AppLayout>
+		<AppLayout title='메인' path="Menu > 메인" primaryBase>
 			<S.MainContainer>
-				<S.Path>Menu {'>'} 메인</S.Path>
-				<S.Title>메인</S.Title>
 				<S.Github>
 					<S.Score>
 						<CircularProgressbarWithChildren
