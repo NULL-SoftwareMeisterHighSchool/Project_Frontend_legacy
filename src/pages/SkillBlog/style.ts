@@ -3,28 +3,10 @@ import { color } from "@styles/theme.style";
 import styled from "styled-components";
 
 export const MainContainer = styled.div`
-  width: calc(100vw - 660px);
   display: flex;
   flex-direction: column;
   gap: 40px;
-`;
-
-export const TitleContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 22.51px;
-`;
-
-export const Path = styled(Body2)`
-  font-family: "Pretendard";
-  font-style: normal;
-  color: ${color.black};
-`;
-
-export const Title = styled(TitleLarge)`
-  font-family: "Pretendard";
-  font-style: normal;
-  color: ${color.black};
+  width: 1280px;
 `;
 
 export const BlogContainer = styled.div`
