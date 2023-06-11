@@ -1,5 +1,4 @@
 import * as S from './style';
-import * as I from '@assets/images/allfiles';
 
 interface OptionPropsType {
 	to : string;
