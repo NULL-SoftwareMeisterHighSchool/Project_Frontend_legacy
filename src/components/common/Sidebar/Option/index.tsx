@@ -1,19 +1,20 @@
 import * as S from './style';
+import { ReactNode } from "react";
 
 interface OptionPropsType {
 	to : string;
-	src : string;
 	pagename : string;
+	children: ReactNode;
 }
 
 export const Option = ({
-	to,
-	src, 
-	pagename
+	to, 
+	pagename,
+	children
 }:OptionPropsType) => {
 	return (
 		<S.Option to={to}>
-			<S.Icon src={src} alt='아이콘'/>
+			{children}
 			<S.PageName>{pagename}</S.PageName>
 		</S.Option>
 	);
