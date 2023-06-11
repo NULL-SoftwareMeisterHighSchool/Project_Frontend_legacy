@@ -19,10 +19,6 @@ export const Option = styled(Link)`
 	text-decoration: none;
 `;
 
-export const Icon = styled.img`
-	width: 24px;
-	height: 24px;
-`;
 
 export const PageName = styled(Body2)`
 	font-style: normal;
