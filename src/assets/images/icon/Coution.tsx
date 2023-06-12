@@ -5,7 +5,7 @@ export const Coution: React.FC<React.SVGProps<SVGSVGElement>> = props => {
       width="16"
       height="16"
       viewBox="0 0 16 16"
-      fill="white"
+      fill="current"
       {...props}
     >
       <rect x="0.5" y="0.5" width="15" height="15" rx="7.5" fill="#B75F00" stroke="#B75F00" />
