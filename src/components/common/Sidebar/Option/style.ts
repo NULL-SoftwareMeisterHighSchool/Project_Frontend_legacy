@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import styled, {css} from 'styled-components';
+import styled from 'styled-components';
 
 import { Body2 } from '@styles/text.style';
 import { color } from '@styles/theme.style';
