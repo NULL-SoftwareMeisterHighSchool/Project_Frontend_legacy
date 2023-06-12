@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
 import { Body2 } from '@styles/text.style';
 import { color } from '@styles/theme.style';
-
 
 export const Option = styled(Link)`
 	display: flex;
@@ -14,9 +13,9 @@ export const Option = styled(Link)`
 
 	width: 200px;
 	height: 44px;
+	text-decoration: none;
 
 	border-radius: 8px;
-	text-decoration: none;
 `;
 
 
