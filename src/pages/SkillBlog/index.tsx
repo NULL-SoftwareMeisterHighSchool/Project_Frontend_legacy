@@ -7,12 +7,8 @@ import BlogPost from "@components/pages/SkillBlog/BlogPost";
 const SkillBlog = () => {
   const blogData = skilldata.post;
   return (
-    <AppLayout>
+    <AppLayout title="기술 블로그" path="Menu > 기술블로그">
       <S.MainContainer>
-        <S.TitleContainer>
-          <S.Path>Menu {`>`} 기술 블로그</S.Path>
-          <S.Title>기술 블로그</S.Title>
-        </S.TitleContainer>
         <SearchFilter />
         <S.BlogContainer>
           {
