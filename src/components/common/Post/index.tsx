@@ -1,4 +1,3 @@
-import Button from '@components/common/Button';
 import * as S from './style';
 
 export interface PostPropTypes {
@@ -7,12 +6,13 @@ export interface PostPropTypes {
     title : string;
     name : string;
     date : string;
+    width? : string;
     padding? : string|undefined;
 }
 
-const Post = ({ id, to, title, name, date, padding = '20px' }: PostPropTypes) => {
+const Post = ({ id, to, title, name, date, width = '620px', padding = '20px' }: PostPropTypes) => {
  return(
-    <S.Post key={id} to={to} padding={padding} >
+    <S.Post key={id} to={to} width = {width} padding={padding} >
         <S.PostTitle>{title}</S.PostTitle>
         <S.PostInfo>
             <S.PostName>{name}</S.PostName>

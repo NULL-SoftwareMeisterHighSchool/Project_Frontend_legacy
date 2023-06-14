@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { PostPropTypes } from "./index";
 import { color } from "@styles/theme.style";
-import { SubTitle, BodyLarge, Body2 } from "@styles/text.style";
+import { Body2 } from "@styles/text.style";
 
 
 export const Post = styled(Link)<PostPropTypes>`
@@ -15,7 +15,7 @@ export const Post = styled(Link)<PostPropTypes>`
 	gap: 10px;
 	text-decoration: none;
 
-	width: 620px;
+	width: ${(props) => props.width};
 	height: 53px;
 `;
 
