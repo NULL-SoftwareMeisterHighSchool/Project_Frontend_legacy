@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AppLayout from "@layouts/AppLayout";
 import Dummy from "@fixtures/alarm.json";
 import * as S from "./style";
-import Notify from "./Notify";
+import Notify from "../../components/pages/Alarm/Notify";
 
 const Board = () => {
 	return (
@@ -15,7 +15,7 @@ const Board = () => {
 								<Notify id={post.id} title={post.title} date={post.date} time={post.time} width="1280px" to='' />
 							)
 						)
-					}
+					} 
 				</S.Content>
 			</S.AlarmContainer>
 		</AppLayout>
