@@ -7,7 +7,7 @@ import SignupLayout from "@layouts/SignupLayout";
 
 import { Body2, BodyLarge, BodyStrong, TitleLarge } from "@styles/text.style";
 import LeftArrow from "@assets/images/pages/LeftArrow.svg";
-import { PlusIcon } from "@assets/images/allfiles";
+import { Plus } from "@assets/images/icon/Plus";
 
 type ArrayType = {
   name: string, title: string, value: string, placeholder: string
@@ -59,7 +59,7 @@ const GraduateSignup = () => {
               <BodyLarge>졸업장 사진</BodyLarge>
               <S.SelectFile >
                 <input type="file" accept="image/*"/>
-                <div> <img src={PlusIcon} /> </div>
+                <div> <Plus/> </div>
               </S.SelectFile>
             </S.SelectFileContainer>
           }
