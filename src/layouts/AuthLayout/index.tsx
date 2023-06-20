@@ -9,7 +9,7 @@ interface SignupLayoutTypes {
   position: string;
 };
 
-const SignupLayout = ({ children, position }: SignupLayoutTypes) => {
+const AuthLayout = ({ children, position }: SignupLayoutTypes) => {
   return (
     <S.Container>
       {position === "right" && <S.LoginImage src={LoginImg}>
@@ -25,4 +25,4 @@ const SignupLayout = ({ children, position }: SignupLayoutTypes) => {
   )
 }
 
-export default SignupLayout;
+export default AuthLayout;
