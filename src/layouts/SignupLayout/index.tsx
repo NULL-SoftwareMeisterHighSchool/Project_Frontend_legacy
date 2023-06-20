@@ -6,18 +6,22 @@ import LoginImg from "@assets/images/pages/LoginImg.jpg";
 
 interface SignupLayoutTypes {
   children?: ReactNode;
+  position: string;
 };
 
-const SignupLayout = ({ children }: SignupLayoutTypes) => {
+const SignupLayout = ({ children, position }: SignupLayoutTypes) => {
   return (
     <S.Container>
-      <S.LoginImage src={LoginImg}>
-        <img src={LoginIcon} alt="Somei 로고"/>
-      </S.LoginImage>
+      {position === "right" && <S.LoginImage src={LoginImg}>
+        <img src={LoginIcon} alt="Somei 로고" />
+      </S.LoginImage>}
       <S.LoginForm>
         {children}
       </S.LoginForm>
-    </S.Container>
+      {position === "left" && <S.LoginImage src={LoginImg}>
+        <img src={LoginIcon} alt="Somei 로고" />
+      </S.LoginImage>}
+    </S.Container >
   )
 }
 
