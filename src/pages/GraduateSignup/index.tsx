@@ -3,7 +3,7 @@ import * as S from "./style";
 
 import Button from "@components/common/Button";
 import Input from "@components/common/Input";
-import SignupLayout from "@layouts/SignupLayout";
+import AuthLayout from "@layouts/AuthLayout";
 
 import { Body2, BodyLarge, BodyStrong, TitleLarge } from "@styles/text.style";
 import LeftArrow from "@assets/images/pages/LeftArrow.svg";
@@ -43,7 +43,7 @@ const GraduateSignup = () => {
   }
 
   return (
-    <SignupLayout>
+    <AuthLayout position="right" >
       <div>
         <S.Title>
           <BodyLarge>Sign In</BodyLarge>
@@ -75,7 +75,7 @@ const GraduateSignup = () => {
           <Button height="48px" value={pageNum === 1 ? "다음" : "회원가입"} />
         </S.SubmitContainer>
       </div>
-    </SignupLayout>
+    </AuthLayout>
   )
 }
 
