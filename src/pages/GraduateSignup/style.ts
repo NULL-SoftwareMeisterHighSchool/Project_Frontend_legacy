@@ -54,10 +54,6 @@ export const SelectFile = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    > img {
-      width: 24px;
-      height: 24px;
-    }
   }
   > input {
     width: 100%;
