@@ -9,10 +9,8 @@ import RightArrow from "@assets/images/icon/RightArrow.svg";
 
 const Board = () => {
 	return (
-		<AppLayout>
+		<AppLayout title="게시판" path="Menu > 게시판">
 			<S.BoardContainer>
-				<S.Path>Menu {">"} 게시판</S.Path>
-				<S.Title>게시판</S.Title>
 				<SearchFilter />
 				<S.Content>
 					{
