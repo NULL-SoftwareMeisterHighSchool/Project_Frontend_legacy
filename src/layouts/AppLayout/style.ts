@@ -22,8 +22,8 @@ export const Content = styled.div`
 export const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 1280px;
-  /* padding: 0px calc(0%); */
+  width: 100%;
+  min-width: max-content ;
   gap: 22px;
 `;
 export const Path = styled(Body2)<{ primaryBase?: boolean }>`
