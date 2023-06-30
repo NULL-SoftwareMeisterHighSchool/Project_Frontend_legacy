@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { ItemType } from "./dropdown.type";
 import * as S from "./style";
-import { DownArrow } from "@assets/images/allfiles";
+import { DownArrow } from "@assets/images/icon/DownArrow";
+import { UpArrow } from "@assets/images/icon/UpArrow";
 
 interface PropTypes {
   describe: string;
@@ -26,7 +27,9 @@ const Dropdown = ({ describe, items, width = "220px" }: PropTypes) => {
     <S.Dropdown width={width}>
       <S.DropdownBox onClick={toggleOpen}>
         <S.Describe>{selectedItem?.text ? selectedItem.text : describe}</S.Describe>
-        <S.Img src={DownArrow} />
+        {
+          isOpen ? <UpArrow fill="#7A8184" width="24px" /> : <DownArrow fill="#7A8184" width="24px" />
+        }
       </S.DropdownBox>
       <S.DropdownListBox isOpen={isOpen}>
         <S.DropdownList>

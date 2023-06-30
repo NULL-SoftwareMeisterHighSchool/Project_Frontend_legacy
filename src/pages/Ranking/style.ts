@@ -3,26 +3,9 @@ import { color } from "@styles/theme.style";
 import { Body2, TitleLarge } from "@styles/text.style";
 
 export const RankingContainer = styled.div`
-	padding: 60px 200px;
-	margin-left: 240px;
 	display: flex;
 	flex-direction: column;
 	gap: 40px;
-`;
-
-export const Breadcrumb = styled(Body2)`
-	line-height: 17px;
-`;
-
-export const Title = styled(TitleLarge)`
-	line-height: 52px;
-`;
-
-export const PageInfo = styled.div`
-	height: 91px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
 `;
 
 export const Category = styled.div`
