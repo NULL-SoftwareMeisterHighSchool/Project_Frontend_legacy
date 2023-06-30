@@ -15,9 +15,9 @@ const AuthLayout = ({ children, position }: SignupLayoutTypes) => {
       {position === "right" && <S.LoginImage src={LoginImg}>
         <img src={LoginIcon} alt="Somei 로고" />
       </S.LoginImage>}
-      <S.LoginForm>
+      <S.AuthForm>
         {children}
-      </S.LoginForm>
+      </S.AuthForm>
       {position === "left" && <S.LoginImage src={LoginImg}>
         <img src={LoginIcon} alt="Somei 로고" />
       </S.LoginImage>}
