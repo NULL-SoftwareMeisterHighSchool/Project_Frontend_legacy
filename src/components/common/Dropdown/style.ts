@@ -2,14 +2,14 @@ import { Body2 } from "@styles/text.style";
 import { color } from "@styles/theme.style";
 import styled from "styled-components";
 
-export const Dropdown = styled.div`
+export const Dropdown = styled.div<{ width: string }>`
     position: relative;
 
     display: flex;
     flex-direction: column;
     gap: 8px;
 
-    width: 300px;
+    width: ${(props) => props.width};
 `;
 
 export const DropdownBox = styled.div`
@@ -39,6 +39,9 @@ export const DropdownListBox = styled.div<{ isOpen: boolean }>`
     border-radius: 8px;
     overflow: hidden;
     cursor: pointer;
+    position: absolute;
+    width: 100%;
+    top: 56px;
 `;
 
 export const DropdownList = styled.div`

@@ -1,8 +1,8 @@
 import { InputHTMLAttributes } from "react";
 import { InputStateType } from "./input.type";
-import Critical from "@assets/images/Critical.svg";
-import Sucess from "@assets/images/Success.svg";
 import * as S from "./style";
+import { CriticalSmall } from "@assets/images/icon/CriticalSmall";
+import { SuccessSmall } from "@assets/images/icon/SuccessSmall";
 
 export interface InputPropTypes extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;
@@ -21,11 +21,12 @@ const Input = ({
   onChange,
 }: InputPropTypes) => {
   return (
-    <>
+    <div>
       <S.Titlebox>
-        {state != "DEFAULT" && (
-          <S.Icon src={state == "SUCCESS" ? Sucess : Critical} />
-        )}
+        {
+          state != "DEFAULT" &&
+          (state == "SUCCESS" ? <SuccessSmall fill="#2C8C1C" /> : <CriticalSmall fill="#DB2C36" />)
+        }
         {title && <S.Title>{title}</S.Title>}
       </S.Titlebox>
       <S.Input
@@ -37,7 +38,7 @@ const Input = ({
         name={name}
         value={value}
       />
-    </>
+    </div>
   );
 };
 

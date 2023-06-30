@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { color } from "@styles/theme.style";
+import { Body2, TitleLarge } from "@styles/text.style";
 
 export const Container = styled.div`
   height: 100vh;
@@ -9,25 +10,23 @@ export const Container = styled.div`
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  width: 100%;
   padding: 60px 200px;
+  margin-left: 240px;
   gap: 40px;
 
-  margin-left: 240px;
-
   overflow-y: scroll;
-
-  .CircularProgressbar {
-		width: 120px;
-		height: 120px;
-	}
-
-	.CircularProgressbar-text {
-		font-family: 'Pretendard';
-		font-style: normal;
-		font-weight: 600;
-		font-size: 24px;
-		line-height: 36px;
-		color: ${color.primaryBase};
-	 }
 `;
+
+export const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 1280px;
+  /* padding: 0px calc(0%); */
+  gap: 22px;
+`;
+export const Path = styled(Body2)<{ primaryBase?: boolean }>`
+  color: ${(props) => props.primaryBase && color.primaryBase};
+`;
+export const Title = styled(TitleLarge)``;
