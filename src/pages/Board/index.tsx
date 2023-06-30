@@ -4,8 +4,9 @@ import Dummy from "@fixtures/board.json";
 import * as S from "./style";
 import Post from "@components/common/Post";
 import SearchFilter from "@components/pages/Board/SearchFilter";
-import LeftArrow from "@assets/images/icon/LeftArrow.svg";
-import RightArrow from "@assets/images/icon/RightArrow.svg";
+import { LeftArrow } from "@assets/images/icon/LeftArrow";
+import { RightArrow } from "@assets/images/icon/RightArrow";
+import { color } from "@styles/theme.style";
 
 const Board = () => {
 	return (
@@ -16,19 +17,19 @@ const Board = () => {
 					{
 						Dummy.post.map(
 							post => (
-								<Post id={post.id} title={post.title} name={post.name} date={post.date} width="1280px" to='' />
+								<Post id={post.id} title={post.title} name={post.name} date={post.date} to='' />
 							)
 						)
 					}
 				</S.Content>
 				<S.Pagination>
-					<S.LeftArrow src={LeftArrow}/>
+					<LeftArrow width='16' fill={color.black} />
 					<S.Number color="#0084DB">1</S.Number>
 					<S.Number>2</S.Number>
 					<S.Number>3</S.Number>
 					<S.Number>4</S.Number>
 					<S.Number>5</S.Number>
-					<S.RightArrow src={RightArrow} />
+					<RightArrow width='16' fill={color.black} />
 				</S.Pagination>
 			</S.BoardContainer>
 		</AppLayout>
