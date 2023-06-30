@@ -1,18 +1,17 @@
 import styled from "styled-components";
-import { color } from "@styles/theme.style";
-import { Body2, TitleLarge, BodyStrong } from "@styles/text.style";
+import { BodyStrong } from "@styles/text.style";
 
 export const BoardContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
+  width: 100%;
 `;
 
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  width: 1280px;
-  height: 530px;
+  //height: 530px;
 `;
 
 export const Pagination = styled.div`
@@ -23,20 +22,8 @@ export const Pagination = styled.div`
   padding: 0px;
   gap: 12px;
 
-  width: 1280px;
+  width: min-content;
   height: 48px;
-`;
-
-export const RightArrow = styled.img`
-  width: 48px;
-  height: 48px;
-  padding: 16px;
-`;
-
-export const LeftArrow = styled.img`
-  width: 48px;
-  height: 48px;
-  padding: 16px;
 `;
 
 export const Number = styled(BodyStrong)`
