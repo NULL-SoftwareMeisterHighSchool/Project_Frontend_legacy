@@ -23,13 +23,19 @@ const Board = () => {
 					}
 				</S.Content>
 				<S.Pagination>
-					<LeftArrow width='16' fill={color.black} />
-					<S.Number color="#0084DB">1</S.Number>
-					<S.Number>2</S.Number>
-					<S.Number>3</S.Number>
-					<S.Number>4</S.Number>
-					<S.Number>5</S.Number>
-					<RightArrow width='16' fill={color.black} />
+					<S.PaginationInfo>
+						<S.ArrowButton>
+							<LeftArrow width='16' fill={color.black} />
+						</S.ArrowButton>
+						<S.Number color="#0084DB">1</S.Number>
+						<S.Number>2</S.Number>
+						<S.Number>3</S.Number>
+						<S.Number>4</S.Number>
+						<S.Number>5</S.Number>
+						<S.ArrowButton>
+							<RightArrow width='16' fill={color.black} />
+						</S.ArrowButton>
+					</S.PaginationInfo>
 				</S.Pagination>
 			</S.BoardContainer>
 		</AppLayout>

@@ -22,8 +22,25 @@ export const Pagination = styled.div`
   padding: 0px;
   gap: 12px;
 
-  width: min-content;
+  width: 100%;
   height: 48px;
+`;
+
+export const PaginationInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: max-content;
+`;
+
+export const ArrowButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  width: 48px;
+  height: 48px;
+
+  background: white;
 `;
 
 export const Number = styled(BodyStrong)`
