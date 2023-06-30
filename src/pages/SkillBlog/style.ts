@@ -10,8 +10,6 @@ export const MainContainer = styled.div`
 `;
 
 export const BlogContainer = styled.div`
-  /* display: flex;
-  flex-wrap: wrap; */
   gap: 40px 14px;
   width: 100%;
   display: grid;
