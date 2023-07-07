@@ -12,7 +12,7 @@ const Board = () => {
 					{
 						Dummy.post.map(
 							post => (
-								<Notify id={post.id} title={post.title} date={post.date} time={post.time} width="1280px" to='' />
+								<Notify id={post.id} title={post.title} date={post.date} time={post.time} to='' />
 							)
 						)
 					} 

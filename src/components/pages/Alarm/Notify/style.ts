@@ -14,7 +14,8 @@ export const Notify = styled(Link)<NotifyPropTypes>`
 	padding: 12px 24px;
 	gap: 10px;
 
-	width: ${(props) => props.width};
+	width: 100%;
+	min-width: fit-content;
 	height: 64px;
 
 	background: ${color.white};
