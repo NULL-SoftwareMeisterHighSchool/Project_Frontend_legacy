@@ -3,7 +3,7 @@ import * as S from "./style";
 import { color } from "@styles/theme.style";
 
 type props = {
-    title: string, path: string, icon: JSX.Element, colorType: string
+    title: string, path: string, icon: JSX.Element, colorType?: boolean
 }
 
 const UserSetting = ({ title, path, icon, colorType }: props) => {
@@ -11,7 +11,7 @@ const UserSetting = ({ title, path, icon, colorType }: props) => {
         <S.SettingContainer>
             <div>
                 <S.Icon>{icon}</S.Icon>
-                <S.Title gray={colorType === "gray"}>{title}</S.Title>
+                <S.Title gray={colorType}>{title}</S.Title>
             </div>
             <RightArrow fill={color.grayBase} width={24} height={24} />
         </S.SettingContainer>
