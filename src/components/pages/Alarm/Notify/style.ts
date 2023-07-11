@@ -20,6 +20,10 @@ export const Notify = styled(Link)<NotifyPropTypes>`
 
 	background: ${color.white};
 	border-radius: 8px;
+
+	&:hover{
+		background-color: ${color.grayLight2};
+	}
 `;
 
 export const Profile = styled.img`
