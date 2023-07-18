@@ -21,7 +21,7 @@ export const ArrowContainer = styled.div`
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 32px;
 `;
 export const SubmitContainer = styled.div`
   display: flex;
