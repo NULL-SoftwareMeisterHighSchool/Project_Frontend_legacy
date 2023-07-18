@@ -56,3 +56,28 @@ export const UserContectTitle = styled(Body2)`
 export const UserContect = styled(Body2)`
     color: ${color.grayDark1};
 `;
+
+export const Stack = styled.div`
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+`;
+
+export const Blog = styled.div`
+    display: flex;
+    padding: 40px 0px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+`;
+
+export const SubTitle = styled(Title)`
+`;
+
+export const BlogContainer = styled.div`
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+    overflow-x: scroll;
+`;

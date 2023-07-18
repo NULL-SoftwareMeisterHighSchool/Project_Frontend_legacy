@@ -27,6 +27,29 @@ const Mypage = () => {
                         </S.UserContectInfo>
                     </S.UserContectSection>
                 </S.User>
+                <S.Stack>
+                    <StackName>React</StackName>
+                    <StackName>Djanggo</StackName>
+                    <StackName>Spring</StackName>
+                    <StackName>Nest.js</StackName>
+                </S.Stack>
+                <S.Blog>
+                    <S.SubTitle>내가 작성한 블로그</S.SubTitle>
+                    <S.BlogContainer>
+                        {
+                            skillBlog.map(
+                            data =>
+                                <BlogPost
+                                key={data.id}
+                                id={data.id}
+                                name={data.name}
+                                summary={data.summary}
+                                titleImg={data.titleImg}
+                                date={data.date}
+                                />)
+                        }
+                    </S.BlogContainer>
+                </S.Blog>
             </S.MypageContainer>
         </AppLayout>
     );
