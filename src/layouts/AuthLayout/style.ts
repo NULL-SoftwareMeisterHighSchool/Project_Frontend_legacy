@@ -9,7 +9,7 @@ export const Container = styled.div`
 
 export const LoginImage = styled.div<{ src: string }>`
   height: 100%;
-  width: 1120px;
+  width: 60%;
   display: flex;
   align-items: center;
   justify-content: center;
