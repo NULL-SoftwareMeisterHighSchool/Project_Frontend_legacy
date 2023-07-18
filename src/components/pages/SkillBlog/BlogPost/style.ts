@@ -6,8 +6,7 @@ export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
-
-  width: 305px;
+  min-width: 205px;
   height: 260px;
   cursor: pointer;
 

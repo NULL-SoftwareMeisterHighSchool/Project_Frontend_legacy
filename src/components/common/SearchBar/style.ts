@@ -11,11 +11,8 @@ export const Container = styled.div<{ width: string }>`
   border-radius: 8px;
   
   height: 48px;
-  width: ${(props) => props.width};
-`;
-
-export const SearchIcon = styled.img`
-  width: 24px;
+  width: 100%;
+  min-width: max-content;
 `;
 
 export const InputBox = styled.input`
