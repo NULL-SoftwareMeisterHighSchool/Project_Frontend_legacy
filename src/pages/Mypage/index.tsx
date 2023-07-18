@@ -3,7 +3,8 @@ import * as S from "./style";
 import skilldata from "@fixtures/skillBoard.json";
 import BlogPost from "@components/pages/SkillBlog/BlogPost";
 import StackName from "@components/pages/Mypage/Stack";
-
+import Post from "@components/common/Post";
+import Dummy from "@fixtures/board.json";
 
 const Mypage = () => {
     const skillBlog = skilldata.post;
@@ -50,6 +51,18 @@ const Mypage = () => {
                         }
                     </S.BlogContainer>
                 </S.Blog>
+                <S.Post>
+                    <S.SubTitle>내가 작성한 게시물</S.SubTitle>
+                    <S.PostContainer>
+                        {
+                            Dummy.post.map(
+                                post => (
+                                    <Post id={post.id} title={post.title} name={post.name} date={post.date} to='' />
+                                )
+                            )
+                        }
+                    </S.PostContainer>
+                </S.Post>
             </S.MypageContainer>
         </AppLayout>
     );

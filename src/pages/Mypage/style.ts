@@ -81,3 +81,15 @@ export const BlogContainer = styled.div`
     width: 100%;
     overflow-x: scroll;
 `;
+
+export const Post = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+`;
+
+export const PostContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
