@@ -10,5 +10,5 @@ export const Container = styled.div`
 
 export const StackName = styled(BodyLarge2)`
     color: ${color.grayDark1};
-    line-height: 24px; /* 150% */
+    line-height: 24px;
 ` ;
