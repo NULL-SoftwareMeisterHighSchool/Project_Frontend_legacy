@@ -14,7 +14,11 @@ interface postGraduatedSignnupProps extends postStudentSignupProps {
     image: string;
 }
 
+interface postEmail {
+    email: string;
+}
 
+/** 재학생 회원가입 */
 export const postStudentSignup = async ({
     school,
     email,
@@ -39,6 +43,7 @@ export const postStudentSignup = async ({
     return outingStudentSignup;
 };
 
+/** 졸업생 회원가입 */
 export const postGraduatedSignup = async ({
     school,
     email,
@@ -47,7 +52,7 @@ export const postGraduatedSignup = async ({
     id,
     password,
     github,
-    image
+    image,
 }: postGraduatedSignnupProps) => {
     const outingGraduatedSignup = await axios.post(
         `${process.env.NEXT_PUBLIC_BASEURL}/user/signup/graduated`,
@@ -59,8 +64,20 @@ export const postGraduatedSignup = async ({
             id,
             password,
             github,
-            image
+            image,
         }
     );
     return outingGraduatedSignup;
+};
+
+/** 이메일 인증 */
+export const postEmail = async ({ email }: postEmail) => {
+    const outingEmail = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASEURL}/emailsend`,
+        {
+            email,
+        }
+    );
+
+    return outingEmail;
 };
