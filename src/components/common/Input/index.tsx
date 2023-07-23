@@ -8,6 +8,7 @@ export interface InputPropTypes extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;
   state?: InputStateType;
   width?: string;
+  txtBtn?: string;
 }
 
 const Input = ({
@@ -18,16 +19,21 @@ const Input = ({
   type = "text",
   name,
   value,
+  txtBtn,
+  onClick,
   onChange,
 }: InputPropTypes) => {
   return (
     <div>
       <S.Titlebox>
-        {
-          state != "DEFAULT" &&
-          (state == "SUCCESS" ? <SuccessSmall fill="#2C8C1C" /> : <CriticalSmall fill="#DB2C36" />)
-        }
-        {title && <S.Title>{title}</S.Title>}
+        <S.TitleInfo>
+          {
+            state != "DEFAULT" &&
+            (state == "SUCCESS" ? <SuccessSmall fill="#2C8C1C" /> : <CriticalSmall fill="#DB2C36" />)
+          }
+          {title && <S.Title>{title}</S.Title>}
+        </S.TitleInfo>
+        {txtBtn && <S.TxtBtn onClick={onClick}>{txtBtn}</S.TxtBtn>}
       </S.Titlebox>
       <S.Input
         state={state}
