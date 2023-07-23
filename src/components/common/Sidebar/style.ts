@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import {Body, Body2} from '@styles/text.style';
+import {Body, Body2, BodyLarge, BodyStrong} from '@styles/text.style';
 import { color } from '@styles/theme.style';
 
 export const Bar = styled.nav`
@@ -45,6 +45,25 @@ export const Line = styled.hr`
 	height: 0px;
 
 	border: 1px solid ${color.grayLight1};
+`;
+
+export const Write = styled.button`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 10px;
+	gap: 10px;
+
+	width: 200px;
+	height: 44px;
+	text-decoration: none;
+
+	border-radius: 8px;
+	background-color: ${color.white};
+`;
+
+export const WriteText = styled(BodyStrong)`
+	color: ${color.grayDark1};
 `;
 
 export const Menu = styled.div`
