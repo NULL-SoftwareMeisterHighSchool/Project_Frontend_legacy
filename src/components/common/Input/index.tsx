@@ -20,6 +20,7 @@ const Input = ({
   name,
   value,
   txtBtn,
+  onClick,
   onChange,
 }: InputPropTypes) => {
   return (
@@ -32,7 +33,7 @@ const Input = ({
           }
           {title && <S.Title>{title}</S.Title>}
         </S.TitleInfo>
-        {txtBtn && <S.TxtBtn>{txtBtn}</S.TxtBtn>}
+        {txtBtn && <S.TxtBtn onClick={onClick}>{txtBtn}</S.TxtBtn>}
       </S.Titlebox>
       <S.Input
         state={state}
