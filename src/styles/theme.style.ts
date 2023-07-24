@@ -13,4 +13,5 @@ export const color = {
   grayDark1: "#7A8184",
   grayDark2: "#2E3133",
   black: "#000000",
+  critical:"#DB2C36"
 };
