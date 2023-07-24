@@ -5,14 +5,14 @@ import React from "react";
 
 type props = {
     title: string;
-    onClick: React.MouseEventHandler<HTMLButtonElement>;
+    onClick: ()=>void;
     icon: JSX.Element;
     colorType: string;
 };
 
 const UserSetting = ({ title, onClick, icon, colorType }: props) => {
     return (
-        <S.SettingContainer onClick={(e:any)=>onClick(e)}>
+        <S.SettingContainer onClick={onClick}>
             <div>
                 <S.Icon>{icon}</S.Icon>
                 <S.Title color={colorType}>{title}</S.Title>
