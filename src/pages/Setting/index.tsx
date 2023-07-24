@@ -14,18 +14,20 @@ const Setting = () => {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     return (
         <AppLayout title="설정" path="User > 설정">
-            <Modal val={modalOpen} setVal={setModalOpen}>
-                <S.UseTitleContainer>
-                    <S.UserTitle>정말로 탈퇴하실건가요?</S.UserTitle>
-                    <S.UserSubTitle>
-                        탈퇴하면 지금까지 활동한 기록들을 복구할 수 없어요.
-                    </S.UserSubTitle>
-                </S.UseTitleContainer>
-                <S.UserBtnContainer>
-                    <button>취소</button>
-                    <button>회원 탈퇴 하기</button>
-                </S.UserBtnContainer>
-            </Modal>
+            {modalOpen && (
+                <Modal setVal={setModalOpen}>
+                    <S.UseTitleContainer>
+                        <S.UserTitle>정말로 탈퇴하실건가요?</S.UserTitle>
+                        <S.UserSubTitle>
+                            탈퇴하면 지금까지 활동한 기록들을 복구할 수 없어요.
+                        </S.UserSubTitle>
+                    </S.UseTitleContainer>
+                    <S.UserBtnContainer>
+                        <button>취소</button>
+                        <button>회원 탈퇴 하기</button>
+                    </S.UserBtnContainer>
+                </Modal>
+            )}
             <S.Container>
                 <UserSetting
                     title="비밀번호 변경"
