@@ -131,6 +131,17 @@ export const IconText = styled(Body2)`
     color: ${color.grayDark1};
 `;
 
+export const UpdateIcon = styled(Link)`
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+`;
+
+export const UpdateText = styled(Body2)`
+    color: ${color.primaryBase};
+`;
+
 export const Comment = styled.div`
     display: flex;
     flex-direction: column;

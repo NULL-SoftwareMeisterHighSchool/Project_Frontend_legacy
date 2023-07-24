@@ -8,6 +8,7 @@ import { Favorite } from '@assets/images/icon/Favorite';
 import { ChatBubble } from '@assets/images/icon/ChatBubble';
 import { Share } from '@assets/images/icon/Share';
 import { Eye } from '@assets/images/icon/Eye';
+import { Edit } from '@assets/images/icon/Edit';
 import Comment from '@components/common/Comment';
 import SharePopUp from '@components/pages/SharePopUp';
 import * as S from './style';
@@ -63,6 +64,10 @@ const BoardDetail = () => {
               >
                 <Share fill={color.grayDark1} width="24px" />
               </S.IconInfo>
+              <S.UpdateIcon to="/">
+                <Edit fill={color.primaryBase} width="24px" />
+                <S.UpdateText>게시글 수정하기</S.UpdateText>
+              </S.UpdateIcon>
             </S.Icons>
           </S.IconSection>
           <S.Comment>
