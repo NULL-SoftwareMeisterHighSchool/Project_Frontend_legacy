@@ -24,7 +24,7 @@ const BoardDetail = () => {
   return (
     <>
       {
-        showPopUp ? <SharePopUp setShowPopUp={setShowPopUp} /> : null
+        showPopUp && <SharePopUp setShowPopUp={setShowPopUp} />
       }
       <AppLayout>
         <S.Post>
