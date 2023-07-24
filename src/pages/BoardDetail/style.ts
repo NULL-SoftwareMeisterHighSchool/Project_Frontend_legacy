@@ -108,6 +108,29 @@ export const Line = styled.hr`
 	border: 1px solid ${color.grayLight1};
 `;
 
+export const IconSection = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+`;
+
+export const Icons = styled.div`
+	display: flex;
+    align-items: center;
+    gap: 24px;
+`;
+
+export const IconInfo = styled(Body2)`
+    display: flex;
+    align-items: center;
+    gap: 4px;
+`;
+
+export const IconText = styled(Body2)`
+    color: ${color.grayDark1};
+`;
+
 export const Comment = styled.div`
     display: flex;
     flex-direction: column;
