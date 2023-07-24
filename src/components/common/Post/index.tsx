@@ -1,4 +1,3 @@
-import Button from '@components/common/Button';
 import * as S from './style';
 
 export interface PostPropTypes {
@@ -7,6 +6,7 @@ export interface PostPropTypes {
     title : string;
     name : string;
     date : string;
+    width? : string;
     padding? : string|undefined;
 }
 

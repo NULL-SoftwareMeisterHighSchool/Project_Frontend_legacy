@@ -3,11 +3,33 @@ import { Link } from 'react-router-dom';
 import { TitleLarge, BodyLarge, BodyStrong, Body2, SubTitle } from '@styles/text.style'
 import { color } from '@styles/theme.style';
 
+// export const MainContainer = styled.div`
+// 	display: flex;
+// 	flex-direction: column;
+// 	align-items: flex-start;
+// 	padding: 60px 200px;
+// 	gap: 40px;
+
+// 	.CircularProgressbar {
+// 		width: 120px;
+// 		height: 120px;
+// 	}
+
+// 	.CircularProgressbar-text {
+// 		font-family: 'Pretendard';
+// 		font-style: normal;
+// 		font-weight: 600;
+// 		font-size: 24px;
+// 		line-height: 36px;
+// 		color: ${color.primaryBase};
+// 	 }
+// `;
+
 export const MainContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	padding: 60px 200px;
+
 	gap: 40px;
 
 	.CircularProgressbar {
@@ -23,27 +45,6 @@ export const MainContainer = styled.div`
 		line-height: 36px;
 		color: ${color.primaryBase};
 	 }
-`;
-
-export const Path = styled(Body2)`
-	font-family: 'Pretendard';
-	font-style: normal;
-	line-height: 17px;
-
-	width: 76px;
-	height: 17px;
-	color:${color.primaryBase};
-`;
-
-export const Title = styled(TitleLarge)`
-	font-family: 'Pretendard';
-	font-style: normal;
-	line-height: 52px;
-
-	margin-top: -12px;
-	width: 70px;
-	height: 52px;
-	color: ${color.black};
 `;
 
 export const Github = styled.div`

@@ -2,14 +2,14 @@ import { Body2 } from "@styles/text.style";
 import { color } from "@styles/theme.style";
 import styled from "styled-components";
 
-export const Dropdown = styled.div`
+export const Dropdown = styled.div<{ width: string }>`
     position: relative;
 
     display: flex;
     flex-direction: column;
     gap: 8px;
 
-    width: 300px;
+    width: ${(props) => props.width};
 `;
 
 export const DropdownBox = styled.div`
@@ -18,6 +18,7 @@ export const DropdownBox = styled.div`
     align-items: center;
 
     width: 100%;
+    min-width: max-content;
     height: 48px;
     padding: 14px;
     
@@ -27,11 +28,8 @@ export const DropdownBox = styled.div`
     cursor: pointer;
 `;
 
-export const Describe = styled(Body2)``;
-
-export const Img = styled.img`
-    width: 24px;
-    height: 24px;
+export const Describe = styled(Body2)`
+    margin-right: 5px;
 `;
 
 export const DropdownListBox = styled.div<{ isOpen: boolean }>`
@@ -39,6 +37,9 @@ export const DropdownListBox = styled.div<{ isOpen: boolean }>`
     border-radius: 8px;
     overflow: hidden;
     cursor: pointer;
+    position: absolute;
+    width: 100%;
+    top: 56px;
 `;
 
 export const DropdownList = styled.div`

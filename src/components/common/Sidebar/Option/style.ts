@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { Body2 } from '@styles/text.style';
 import { color } from '@styles/theme.style';
 
-
 export const Option = styled(Link)`
 	display: flex;
 	flex-direction: row;
@@ -14,15 +13,11 @@ export const Option = styled(Link)`
 
 	width: 200px;
 	height: 44px;
+	text-decoration: none;
 
 	border-radius: 8px;
-	text-decoration: none;
 `;
 
-export const Icon = styled.img`
-	width: 24px;
-	height: 24px;
-`;
 
 export const PageName = styled(Body2)`
 	font-style: normal;
