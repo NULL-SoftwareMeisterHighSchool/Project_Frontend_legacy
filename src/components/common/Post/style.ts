@@ -15,12 +15,13 @@ export const Post = styled(Link)<PostPropTypes>`
 	gap: 10px;
 	text-decoration: none;
 
-	width: ${(props) => props.width};
+	width: 100%;
+	min-width: max-content;
 	height: 53px;
 `;
 
 export const PostTitle = styled(Body2)`
-	width: fit-content;
+	width: 240px;
 	height: 17px;
 
 	line-height: 17px;

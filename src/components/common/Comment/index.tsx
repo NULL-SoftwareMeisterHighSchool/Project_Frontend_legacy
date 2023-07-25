@@ -1,5 +1,5 @@
 import React from "react";
-
+import UserIcon from "@components/common/UserIcon";
 import { CommentStateType } from './comment.type'
 import * as S from './style'
 
@@ -19,7 +19,7 @@ ComentType) => {
     return(
         <S.Comment state={state}>
             <S.CommentContents>
-            <S.CommentImg />
+            <UserIcon backWidth="40px" iconWidth={22}/>
             <S.Column>
                 <S.CommentName>{username}</S.CommentName>
                 <S.CommentContent>{content}</S.CommentContent>

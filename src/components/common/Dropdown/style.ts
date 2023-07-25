@@ -18,6 +18,7 @@ export const DropdownBox = styled.div`
     align-items: center;
 
     width: 100%;
+    min-width: max-content;
     height: 48px;
     padding: 14px;
     
@@ -27,11 +28,8 @@ export const DropdownBox = styled.div`
     cursor: pointer;
 `;
 
-export const Describe = styled(Body2)``;
-
-export const Img = styled.img`
-    width: 24px;
-    height: 24px;
+export const Describe = styled(Body2)`
+    margin-right: 5px;
 `;
 
 export const DropdownListBox = styled.div<{ isOpen: boolean }>`

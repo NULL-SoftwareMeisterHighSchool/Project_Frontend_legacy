@@ -4,7 +4,7 @@ import Dummy from "@fixtures/alarm.json";
 import * as S from "./style";
 import Notify from "../../components/pages/Alarm/Notify";
 
-const Board = () => {
+const Alarm = () => {
 	return (
 		<AppLayout title="알림" path="User > 알림">
 			<S.AlarmContainer>
@@ -12,7 +12,7 @@ const Board = () => {
 					{
 						Dummy.post.map(
 							post => (
-								<Notify id={post.id} title={post.title} date={post.date} time={post.time} width="1280px" to='' />
+								<Notify id={post.id} title={post.title} date={post.date} time={post.time} to='' />
 							)
 						)
 					} 
@@ -22,4 +22,4 @@ const Board = () => {
 	);
 };
 
-export default Board;
+export default Alarm;
