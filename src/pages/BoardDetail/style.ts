@@ -50,14 +50,6 @@ export const Profile = styled.article`
     height: 48px;
 `;
 
-export const ProfileImg = styled.img`
-    width: 48px;
-    height: 48px;
-    border-radius: 100%;
-
-    background: #D9D9D9;
-`;
-
 export const ProfileInfo = styled.div`
     display: flex;
     flex-direction: column;
@@ -106,6 +98,40 @@ export const Line = styled.hr`
 	height: 0px;
 
 	border: 1px solid ${color.grayLight1};
+`;
+
+export const IconSection = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+`;
+
+export const Icons = styled.div`
+	display: flex;
+    align-items: center;
+    gap: 24px;
+`;
+
+export const IconInfo = styled(Body2)`
+    display: flex;
+    align-items: center;
+    gap: 4px;
+`;
+
+export const IconText = styled(Body2)`
+    color: ${color.grayDark1};
+`;
+
+export const UpdateIcon = styled(Link)`
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+`;
+
+export const UpdateText = styled(Body2)`
+    color: ${color.primaryBase};
 `;
 
 export const Comment = styled.div`
