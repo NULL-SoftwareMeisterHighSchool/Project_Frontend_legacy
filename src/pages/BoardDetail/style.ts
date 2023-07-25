@@ -108,6 +108,40 @@ export const Line = styled.hr`
 	border: 1px solid ${color.grayLight1};
 `;
 
+export const IconSection = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+`;
+
+export const Icons = styled.div`
+	display: flex;
+    align-items: center;
+    gap: 24px;
+`;
+
+export const IconInfo = styled(Body2)`
+    display: flex;
+    align-items: center;
+    gap: 4px;
+`;
+
+export const IconText = styled(Body2)`
+    color: ${color.grayDark1};
+`;
+
+export const UpdateIcon = styled(Link)`
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+`;
+
+export const UpdateText = styled(Body2)`
+    color: ${color.primaryBase};
+`;
+
 export const Comment = styled.div`
     display: flex;
     flex-direction: column;
