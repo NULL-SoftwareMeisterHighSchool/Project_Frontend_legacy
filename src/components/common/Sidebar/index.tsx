@@ -15,6 +15,7 @@ import { Setting } from '@assets/images/icon/Setting';
 import { Infomation } from '@assets/images/icon/Infomation';
 import { Edit } from '@assets/images/icon/Edit';
 import WritePopUp from '@components/common/WritePopUp';
+import UserIcon from "@components/common/UserIcon";
 
 import { SetStateAction, useCallback, useState } from 'react';
 
@@ -27,7 +28,7 @@ export const Sidebar = () => {
 		<>
 			<S.Bar>
 				<S.User>
-					<img src={I.UserImg} alt="유저사진" />
+					<UserIcon backWidth='36px' iconWidth={20} />
 					<span>UserName</span>
 				</S.User>
 				<S.Line />
