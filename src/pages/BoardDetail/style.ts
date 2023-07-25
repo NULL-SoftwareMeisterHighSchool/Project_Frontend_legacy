@@ -50,14 +50,6 @@ export const Profile = styled.article`
     height: 48px;
 `;
 
-export const ProfileImg = styled.img`
-    width: 48px;
-    height: 48px;
-    border-radius: 100%;
-
-    background: #D9D9D9;
-`;
-
 export const ProfileInfo = styled.div`
     display: flex;
     flex-direction: column;

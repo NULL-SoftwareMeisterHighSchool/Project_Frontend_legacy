@@ -11,6 +11,7 @@ import { Eye } from '@assets/images/icon/Eye';
 import { Edit } from '@assets/images/icon/Edit';
 import Comment from '@components/common/Comment';
 import SharePopUp from '@components/pages/SharePopUp';
+import UserIcon from '@components/common/UserIcon';
 import * as S from './style';
 
 const MarkDown = `
@@ -32,7 +33,7 @@ const BoardDetail = () => {
             <S.Img />
             <S.Title>Awesome 한 이것 사용 후기</S.Title>
             <S.Profile>
-              <S.ProfileImg />
+              <UserIcon backWidth="48px" iconWidth={26}/>
               <S.ProfileInfo>
                 <S.Name>홍길동 · Frontend Developer</S.Name>
                 <S.Date>2022.03.16</S.Date>
