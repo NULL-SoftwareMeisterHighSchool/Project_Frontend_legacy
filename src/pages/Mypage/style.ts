@@ -12,8 +12,26 @@ export const MypageContainer = styled.div`
 export const User = styled.div`
     display: flex;
     align-items: center;
-    gap: 20px;
+    justify-content: space-between;
+    >div{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
 `;
+
+export const ProfileUpdateBtn = styled.div`
+    padding: 14px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ${color.grayLight2};
+    border-radius: 8px;
+    cursor: pointer;
+    >p{
+        color: ${color.grayDark2};
+    }
+`
 
 export const UserImg = styled.div`
     width: 80px;
