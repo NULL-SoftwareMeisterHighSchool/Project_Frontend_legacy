@@ -3,6 +3,7 @@ import * as S from "./style";
 import SearchFilter from "@components/pages/SkillBlog/SearchFilter";
 import skilldata from "@fixtures/skillBoard.json";
 import BlogPost from "@components/pages/SkillBlog/BlogPost";
+import { SkillBlogDefaultImg } from "@assets/images/allfiles";
 
 const SkillBlog = () => {
   const blogData = skilldata.post;
@@ -19,7 +20,7 @@ const SkillBlog = () => {
                   id={data.id}
                   name={data.name}
                   summary={data.summary}
-                  titleImg={data.titleImg}
+                  titleImg={data.titleImg ?? SkillBlogDefaultImg}
                   date={data.date}
                 />)
           }
