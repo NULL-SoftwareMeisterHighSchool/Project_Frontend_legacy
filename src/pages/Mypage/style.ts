@@ -31,13 +31,6 @@ export const ProfileUpdateBtn = styled.div`
     >p{
         color: ${color.grayDark2};
     }
-`
-
-export const UserImg = styled.div`
-    width: 80px;
-    height: 80px;
-    border-radius: 80px;
-    background-color: ${color.grayDark2};
 `;
 
 export const UserIntro = styled.div`
@@ -47,7 +40,17 @@ export const UserIntro = styled.div`
     gap: 4px;
 `;
 
+export const UserInformation = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 12px;
+`;
+
 export const UserName = styled(Title)`
+`;
+
+export const Email = styled(Body2)`
+    color: ${color.grayDark1};
 `;
 
 export const UserDescript = styled(BodyLarge)`
@@ -110,4 +113,5 @@ export const Post = styled.div`
 export const PostContainer = styled.div`
     display: flex;
     flex-direction: column;
+    width: 100%;
 `;
