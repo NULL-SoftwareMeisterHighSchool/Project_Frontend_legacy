@@ -1,12 +1,7 @@
 import * as S from './style';
-import { Editor } from '@toast-ui/react-editor';
-import '@toast-ui/editor/dist/toastui-editor.css';
+import Toast from '@components/pages/Toast';
 
-type Props = {
-  content?: string;
-};
-
-const WriteBoard = ({ content }:Props) => {
+const WriteBoard = () => {
   return (
     <>
       <S.Header>
@@ -14,14 +9,7 @@ const WriteBoard = ({ content }:Props) => {
         <div />
         <S.Post>글 게시하기</S.Post>
       </S.Header>
-      <Editor 
-        initialValue={content ?? '# 제목\n 내용을 입력해주세요.'}
-        previewStyle="vertical"
-        initialEditType='markdown'
-        autofocus={true}
-        hideModeSwitch
-        height='90vh'
-      />
+      <Toast />
     </>
   );
 };
