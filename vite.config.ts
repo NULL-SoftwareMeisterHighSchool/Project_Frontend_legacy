@@ -22,10 +22,10 @@ export default defineConfig({
     },
   },
   build: {
-		rollupOptions: {
-			external: ['@toast-ui/editor', '@toast-ui/editor/dist/toastui-editor.css'],
-		},
-	},
+    rollupOptions: {
+      external: ['@toast-ui/editor', '@toast-ui/editor/dist/toastui-editor.css'],
+    },
+  },
   optimizeDeps: {
     include: ['@toast-ui/react-editor'],
   },

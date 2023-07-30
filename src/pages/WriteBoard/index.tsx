@@ -1,16 +1,28 @@
-import React from 'react';
+import * as S from './style';
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 
+type Props = {
+  content?: string;
+};
 
-const WriteBoard = () => {
+const WriteBoard = ({ content }:Props) => {
   return (
-    <div>
-      <h1>My Toast UI Editor</h1>
+    <>
+      <S.Header>
+        <S.STitle>기술 블로그 글쓰기</S.STitle>
+        <div />
+        <S.Post>글 게시하기</S.Post>
+      </S.Header>
       <Editor 
-        placeholder="내용을 입력해주세요."
+        initialValue={content ?? '# 제목\n 내용을 입력해주세요.'}
+        previewStyle="vertical"
+        initialEditType='markdown'
+        autofocus={true}
+        hideModeSwitch
+        height='90vh'
       />
-    </div>
+    </>
   );
 };
 
