@@ -2,6 +2,7 @@ import Alarm from "@pages/Alarm";
 import Board from "@pages/Board";
 import BoardDetail from "@pages/BoardDetail";
 import EnRolledSignup from "@pages/EnRolledSignup";
+import Error from "@pages/Error";
 import GraduateSignup from "@pages/GraduateSignup";
 import Login from "@pages/Login";
 import Main from "@pages/Main";
@@ -59,7 +60,7 @@ const app = createBrowserRouter([
     },
     {
         path: "/*",
-        element: <p>404</p>,
+        element: <Error/>,
     },
 ]);
 export default app;
