@@ -18,6 +18,15 @@ export default defineConfig({
       "@styles": resolve(__dirname, "src/styles"),
       "@types": resolve(__dirname, "src/types"),
       "@utils": resolve(__dirname, "src/utils"),
+      "@layouts": resolve(__dirname, "src/layouts"),
     },
+  },
+  build: {
+    rollupOptions: {
+      external: ['@toast-ui/editor', '@toast-ui/editor/dist/toastui-editor.css'],
+    },
+  },
+  optimizeDeps: {
+    include: ['@toast-ui/react-editor'],
   },
 });

@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { color } from "@styles/theme.style";
+import { BodyLarge, TitleLarge } from "@styles/text.style";
 
 export const Container = styled.div`
 	height: 100vh;
@@ -26,22 +28,13 @@ export const Title = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	span {
-		font-size: 16px;
-		line-height: 24px;
-	}
-	> div {
-		font-weight: 600;
-		font-size: 40px;
-		line-height: 52px;
-	}
 `;
 
-export const Auth = styled(Title)`
-	span {
-		font-size: 14px;
-	}
-`;
+export const Subtitle = styled(BodyLarge)``;
+
+export const LoginTitle = styled(TitleLarge)``;
+
+export const Auth = styled(Title)``;
 
 export const Inputs = styled.div`
 	display: flex;
@@ -96,3 +89,29 @@ export const Id = styled(Title)`
 `;
 
 export const Password = styled(Id)``;
+
+export const LoginImage = styled.div<{ src: string }>`
+	height: 100%;
+	width: 1120px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	overflow: hidden;
+	background-image: url(${({ src }) => src});
+	background-size: cover;
+	background-position: center center;
+	::before {
+		content: "";
+		opacity: 0.4;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		right: 0px;
+		bottom: 0px;
+		background-color: ${color.black};
+	}
+	img {
+		position: relative;
+	}
+`;

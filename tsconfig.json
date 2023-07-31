@@ -17,6 +17,9 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "baseUrl": ".",
+    "typeRoots": [
+      "./markdown.d.ts"
+    ],
     "paths": {
       "@apis/*": ["src/apis/*"],
       "@assets/*": ["src/assets/*"],
@@ -28,9 +31,10 @@
       "@pages/*": ["src/pages/*"],
       "@styles/*": ["src/styles/*"],
       "@types/*": ["src/types/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@layouts/*": ["src/layouts/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "globals.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

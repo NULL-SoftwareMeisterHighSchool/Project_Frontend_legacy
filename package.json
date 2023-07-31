@@ -9,18 +9,27 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@toast-ui/editor": "^3.2.2",
+    "@toast-ui/editor-plugin-code-syntax-highlight": "^3.1.0",
+    "@toast-ui/editor-plugin-color-syntax": "^3.1.0",
+    "@toast-ui/react-editor": "^3.2.3",
     "@types/node": "^18.15.11",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "axios": "^1.4.0",
+    "react": "latest",
+    "react-circular-progressbar": "^2.1.0",
+    "react-dom": "latest",
+    "react-hook-form": "^7.45.2",
     "react-is": "^18.2.0",
+    "react-markdown": "^8.0.7",
     "react-router-dom": "^6.10.0",
+    "remark-gfm": "^3.0.1",
     "styled-components": "^5.3.9",
     "styled-reset": "^4.4.6"
   },
   "devDependencies": {
     "@types/eslint": "^8",
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
     "@types/styled-components": "^5.1.26",
     "@typescript-eslint/eslint-plugin": "^5.43.0",
     "@vitejs/plugin-react": "^3.1.0",
@@ -31,6 +40,7 @@
     "eslint-plugin-n": "^15.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "latest",
+    "msw": "^1.2.2",
     "typescript": "*",
     "vite": "^4.2.0"
   },
@@ -45,5 +55,8 @@
   "include": [
     "**/*.ts",
     "**/*.tsx"
-  ]
+  ],
+  "msw": {
+    "workerDirectory": "public"
+  }
 }
