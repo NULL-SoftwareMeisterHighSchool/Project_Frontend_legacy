@@ -2,7 +2,7 @@
 import styled, { css, FlattenSimpleInterpolation } from "styled-components";
 
 import { CommentStateType } from "./comment.type";
-import { BodyStrong, Body2 } from "@styles/text.style";
+import { BodyStrong, Body2, Body } from "@styles/text.style";
 import { color } from "@styles/theme.style";
 
 export const Comment = styled.div<{ state : CommentStateType }>`
@@ -66,4 +66,16 @@ export const CommentContent = styled(Body2)`
     line-height: 17px;
 
     color: ${color.black};
+`;
+
+export const CommentInfo = styled.div`
+    display: flex;
+    padding-left: 0px;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 6px;
+`;
+
+export const CommentInfoText = styled(Body)`
+    color: ${color.grayDark1};
 `;
