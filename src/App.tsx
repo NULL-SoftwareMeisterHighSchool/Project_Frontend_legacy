@@ -35,6 +35,10 @@ const app = createBrowserRouter([
         element: <Mypage />,
     },
     {
+        path:"/pwchange",
+        element:<Password/>
+    },
+    {
         path: "/ranking",
         element: <Ranking />,
     },
