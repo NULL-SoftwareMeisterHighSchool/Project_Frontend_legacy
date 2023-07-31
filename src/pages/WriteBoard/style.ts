@@ -8,7 +8,7 @@ export const Header = styled.div`
     padding: 24px 60px;
     align-items: center;
     justify-content: space-between;
-`; 
+`;
 
 export const Post = styled.button`
     display: flex;
@@ -21,8 +21,14 @@ export const Post = styled.button`
     border-radius: 8px;
     background-color: ${color.primaryBase};
     color: ${color.white};
-`; 
-
-
-export const STitle = styled(Title)`
 `;
+
+export const STitle = styled(Title)``;
+
+export const TitleInput = styled.input`
+    height: 100px;
+    font-size: 40px;
+    width: 100vw;
+    padding: 24px 60px;
+    border-top: 1px solid ${color.grayBase};
+`; 
