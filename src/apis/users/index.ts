@@ -1,9 +1,5 @@
 import axios from "axios";
-
-interface patchPasswordProps {
-    password: string;
-    new_password: string;
-}
+import { patchPasswordProps, userDataProps } from "./users.type";
 
 /** 비밀번호 수정 */
 export const patchPassword = async ({
@@ -24,7 +20,6 @@ export const patchPassword = async ({
             },
         }
     );
-
     return outingPatchPassword;
 };
 
@@ -42,4 +37,19 @@ export const deleteUser = async ({}) => {
     );
 
     return outingUser;
+};
+
+export const getUserData = async ({ id }: userDataProps) => {
+    const access_token = localStorage.getItem("access_token");
+
+    const outingGetUserData = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASEURL}/userDelete/${id}`,
+        {
+            headers: {
+                Authorization: `Bearer ${access_token}`,
+            },
+        }
+    );
+
+    return outingGetUserData;
 };
