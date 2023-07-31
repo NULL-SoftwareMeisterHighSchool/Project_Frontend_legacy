@@ -11,7 +11,6 @@ export const Bar = styled.nav`
 	padding: 20px;
 	gap: 20px;
 
-	position: absolute;
 	width: 240px;
 	height: 100vh;
 	left: 0px;
