@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 import { color } from "@styles/theme.style";
 import { TitleLarge2, Body2, BodyLarge2, BodyStrong, SubTitle } from "@styles/text.style";
-import exp from "constants";
 
 
 export const Post = styled.main`
@@ -21,14 +20,6 @@ export const Thumbnail = styled.div`
     align-items: flex-start;
     gap: 40px;
 `; 
-
-export const Img = styled.img`
-    width: 640px;
-    height: 360px;
-
-    background: #D9D9D9;
-    border-radius: 8px;
-`;
 
 export const Title = styled(TitleLarge2)`
     width: fit-content;
@@ -141,8 +132,7 @@ export const Comment = styled.div`
     padding: 0px 0px 40px;
     gap: 10px;
 
-    width: 640px;
-    height: 360px;
+    width: 100%;
 `;
 
 

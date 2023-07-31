@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import remarkGfm from 'remark-gfm'
 import { color } from '@styles/theme.style';
-import AppLayout from '@layouts/AppLayout';
 import Post from '@components/common/Post';
 import Dummy from "@fixtures/board.json";
+import Dummy2 from "@fixtures/comment.json";
 import { Favorite } from '@assets/images/icon/Favorite';
 import { ChatBubble } from '@assets/images/icon/ChatBubble';
 import { Share } from '@assets/images/icon/Share';
@@ -22,6 +22,13 @@ const MarkDown = `
 
 const BoardDetail = () => {
   const [showPopUp, setShowPopUp] = useState<boolean>(false);
+  const [data, setdata] = useState({
+    username: "권강빈",
+    title: "Awesome 한 이것 사용 후기",
+    date: "2002.12.12",
+    heart: 22,
+    views: 14
+  });
   return (
     <>
       {
@@ -30,13 +37,12 @@ const BoardDetail = () => {
       <>
         <S.Post>
           <S.Thumbnail>
-            <S.Img />
-            <S.Title>Awesome 한 이것 사용 후기</S.Title>
+            <S.Title>{data.title}</S.Title>
             <S.Profile>
               <UserIcon backWidth="48px" iconWidth={26}/>
               <S.ProfileInfo>
-                <S.Name>홍길동 · Frontend Developer</S.Name>
-                <S.Date>2022.03.16</S.Date>
+                <S.Name>{data.username}</S.Name>
+                <S.Date>{data.date}</S.Date>
               </S.ProfileInfo>
             </S.Profile>
           </S.Thumbnail>
@@ -48,11 +54,11 @@ const BoardDetail = () => {
             <S.Icons>
               <S.IconInfo>
                 <Favorite fill={color.grayBase} width="24px"/>
-                24
+                {data.heart}
               </S.IconInfo>
               <S.IconInfo>
                 <ChatBubble fill={color.grayBase} width="24px"/>
-                3
+                {data.views}
               </S.IconInfo>
             </S.Icons>
             <S.Icons>
@@ -72,9 +78,13 @@ const BoardDetail = () => {
             </S.Icons>
           </S.IconSection>
           <S.Comment>
-            <Comment username = "홍길동" content="바보들" state='COMMENT' />
-            <Comment username = "김현진" content="왜 그러세요..." state='REPLY' />
-            <Comment username = "박신" content="ㅋㅋㅋ" state='REPLY' />
+            {
+              Dummy2.post.map(
+                post => (
+                  <Comment username={post.name} content={post.content} to={post.to} date={post.date} time={post.time}/>
+                )
+              )
+            }
           </S.Comment>
           <S.Line />
           <S.WhatFollows>이어지는 글</S.WhatFollows>
