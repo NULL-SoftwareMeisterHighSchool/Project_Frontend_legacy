@@ -1,6 +1,7 @@
 import { InputHTMLAttributes } from "react";
-import Search from "@assets/images/Search.svg";
 import * as S from "./style";
+import { Search } from "@assets/images/icon/Search";
+import { color } from "@styles/theme.style";
 
 interface SearchPropTypes extends InputHTMLAttributes<HTMLInputElement> {
   width?: string,
@@ -17,7 +18,7 @@ const SearchBar = ({
 }: SearchPropTypes) => {
   return (
     <S.Container width={width}>
-      <S.SearchIcon src={Search} />
+      <Search fill={color.grayBase} width={24} height={24}/>
       <S.InputBox
         onChange={onChange}
         placeholder={placeholder}

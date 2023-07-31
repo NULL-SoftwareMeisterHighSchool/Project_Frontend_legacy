@@ -3,32 +3,27 @@ import { color } from "@styles/theme.style";
 import styled from "styled-components";
 
 export const MainContainer = styled.div`
-  width: calc(100vw - 660px);
   display: flex;
   flex-direction: column;
   gap: 40px;
-`;
-
-export const TitleContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 22.51px;
-`;
-
-export const Path = styled(Body2)`
-  font-family: "Pretendard";
-  font-style: normal;
-  color: ${color.black};
-`;
-
-export const Title = styled(TitleLarge)`
-  font-family: "Pretendard";
-  font-style: normal;
-  color: ${color.black};
+  width: 100%;
 `;
 
 export const BlogContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px 20px;
+  gap: 40px 14px;
+  width: 100%;
+  display: grid;
+  grid-template-columns:1fr;
+  grid-template-rows:auto;
+
+  @media screen and (min-width: 1100px){
+    grid-template-columns:repeat(2, 1fr);
+  }
+  @media screen and (min-width: 1400px){
+    grid-template-columns:repeat(3, 1fr);
+  }
+  
+  @media screen and (min-width: 1650px){
+    grid-template-columns:repeat(4, 1fr);
+  }
 `;

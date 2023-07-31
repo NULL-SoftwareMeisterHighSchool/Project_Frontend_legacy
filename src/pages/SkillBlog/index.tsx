@@ -3,16 +3,13 @@ import * as S from "./style";
 import SearchFilter from "@components/pages/SkillBlog/SearchFilter";
 import skilldata from "@fixtures/skillBoard.json";
 import BlogPost from "@components/pages/SkillBlog/BlogPost";
+import { SkillBlogDefaultImg } from "@assets/images/allfiles";
 
 const SkillBlog = () => {
   const blogData = skilldata.post;
   return (
-    <AppLayout>
+    <AppLayout title="기술 블로그" path="Menu > 기술블로그">
       <S.MainContainer>
-        <S.TitleContainer>
-          <S.Path>Menu {`>`} 기술 블로그</S.Path>
-          <S.Title>기술 블로그</S.Title>
-        </S.TitleContainer>
         <SearchFilter />
         <S.BlogContainer>
           {
@@ -23,7 +20,7 @@ const SkillBlog = () => {
                   id={data.id}
                   name={data.name}
                   summary={data.summary}
-                  titleImg={data.titleImg}
+                  titleImg={data.titleImg ?? SkillBlogDefaultImg}
                   date={data.date}
                 />)
           }
