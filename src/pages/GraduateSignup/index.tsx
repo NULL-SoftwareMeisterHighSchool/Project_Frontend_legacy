@@ -48,7 +48,7 @@ const GraduateSignup = () => {
         <S.Title>
           <BodyLarge>Sign In</BodyLarge>
           <S.ArrowContainer>
-            {pageNum !== 1 && <S.BackArrow src={LeftArrow} />}
+            {pageNum !== 1 && <S.BackArrow src={LeftArrow} onClick={()=>setPageNum(pageNum-1)}/>}
             <TitleLarge>회원가입</TitleLarge>
           </S.ArrowContainer>
         </S.Title>

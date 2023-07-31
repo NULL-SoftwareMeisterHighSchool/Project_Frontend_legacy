@@ -6,11 +6,24 @@ export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
-  width: 1280px;
+  width: 100%;
 `;
 
 export const BlogContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px 20px;
+  gap: 40px 14px;
+  width: 100%;
+  display: grid;
+  grid-template-columns:1fr;
+  grid-template-rows:auto;
+
+  @media screen and (min-width: 1100px){
+    grid-template-columns:repeat(2, 1fr);
+  }
+  @media screen and (min-width: 1400px){
+    grid-template-columns:repeat(3, 1fr);
+  }
+  
+  @media screen and (min-width: 1650px){
+    grid-template-columns:repeat(4, 1fr);
+  }
 `;

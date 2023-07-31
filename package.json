@@ -9,10 +9,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@toast-ui/editor": "^3.2.2",
+    "@toast-ui/editor-plugin-code-syntax-highlight": "^3.1.0",
+    "@toast-ui/editor-plugin-color-syntax": "^3.1.0",
+    "@toast-ui/react-editor": "^3.2.3",
     "@types/node": "^18.15.11",
+    "axios": "^1.4.0",
     "react": "latest",
     "react-circular-progressbar": "^2.1.0",
     "react-dom": "latest",
+    "react-hook-form": "^7.45.2",
     "react-is": "^18.2.0",
     "react-markdown": "^8.0.7",
     "react-router-dom": "^6.10.0",
@@ -34,6 +40,7 @@
     "eslint-plugin-n": "^15.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "latest",
+    "msw": "^1.2.2",
     "typescript": "*",
     "vite": "^4.2.0"
   },
@@ -48,5 +55,8 @@
   "include": [
     "**/*.ts",
     "**/*.tsx"
-  ]
+  ],
+  "msw": {
+    "workerDirectory": "public"
+  }
 }
