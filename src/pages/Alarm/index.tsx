@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AppLayout from "@layouts/AppLayout";
 import Dummy from "@fixtures/alarm.json";
 import * as S from "./style";
-import Notify from "../../components/pages/Alarm/Notify";
+import Notify from "@components/pages/Alarm/Notify";
 
 const Alarm = () => {
 	return (
