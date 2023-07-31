@@ -1,24 +1,32 @@
 import React from "react";
-import { ButtonStateType } from "../../../types/common/button.type";
+import { ButtonStateType } from "./button.type";
 import * as S from "./style";
 
-interface ButtonPropsType extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonPropTypes extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	width?: string;
 	height?: string;
 	state?: ButtonStateType;
-	fontSize?: string;
-	value?: string | number;
+	value?: string;
+	onClick?: ()=>void;
 }
 
 const Button = ({
+	width,
+	onClick,
 	state = "DEFAULT",
-	fontSize = "14px",
 	value,
 	disabled,
-}: ButtonPropsType) => {
+}: ButtonPropTypes) => {
 	return (
-		<S.Button state={state} disabled={disabled} fontSize={fontSize}>
-			{value}
+		<S.Button 
+		state={state} 
+		disabled={disabled} 
+		onClick={onClick}
+		style={{width}}
+		>
+			<S.Value>
+				{value}
+			</S.Value>
 		</S.Button>
 	);
 };
