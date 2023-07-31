@@ -18,7 +18,11 @@ const Mypage = () => {
         portfolio: "https://hahahoho.com/pofol",
         skill: ["React","Djanggo","Spring","Nest.js"]
     });
-    
+    const [userData2, setUserData2] = useState({
+        name: "김규하",
+        email: "kwon@akdjf.kro.kr"
+
+    });
     const skillBlog = skilldata.post;
     return (
         <AppLayout title="마이페이지" path="Menu > 마이페이지">
