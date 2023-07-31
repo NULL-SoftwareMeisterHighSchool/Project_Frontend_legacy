@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import AppLayout from "@layouts/AppLayout";
 import Dummy from "@fixtures/alarm.json";
 import * as S from "./style";
