@@ -9,10 +9,10 @@ type Props = {
 };
 
 const Toast = ({ content, setContent }: Props) => {
-    const editorRef = useRef(null);
+    const editorRef = useRef<any>(null); //error해결을 위해 any 사용
 
     const onChange = () => {
-        /** error : 'editorRef.current'은(는) 'null'일 수 있습니다. 발샹 */
+        /** error : 'editorRef.current'은(는) 'null'일 수 있습니다. 발생 - 일단 해결*/
         setContent(editorRef.current.getInstance().getMarkdown())
     };
     return (
