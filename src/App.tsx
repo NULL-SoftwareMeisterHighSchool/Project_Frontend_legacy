@@ -20,7 +20,7 @@ const app = createBrowserRouter([
         element: <AppLayout />,
         children: [
             {
-                path: "main",
+                path: "",
                 element: <Main />,
             },
             {
