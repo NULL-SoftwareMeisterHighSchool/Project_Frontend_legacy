@@ -12,6 +12,7 @@ import Password from "@pages/Password";
 import Ranking from "@pages/Ranking";
 import Setting from "@pages/Setting";
 import SkillBlog from "@pages/SkillBlog";
+import WriteBoard from "@pages/WriteBoard";
 import { createBrowserRouter } from "react-router-dom";
 
 const app = createBrowserRouter([
@@ -53,6 +54,10 @@ const app = createBrowserRouter([
                 element: <Setting />,
             },
         ],
+    },
+    {
+      path:"/write",
+      element:<WriteBoard/>
     },
     {
         path: "/graduatesign",
