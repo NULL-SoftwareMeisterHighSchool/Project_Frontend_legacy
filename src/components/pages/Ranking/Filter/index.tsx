@@ -1,6 +1,6 @@
 import Dropdown from "@components/common/Dropdown";
 import * as S from "./style";
-import { useState } from "react";
+import React, { useState } from "react";
 
 type ItemType = {
     text: string;
@@ -33,7 +33,7 @@ const Filter = () => {
                 {userFilter.map((v, i) => {
                     return (
                         <S.Filter
-                            onClick={(e: any) => userFilterClick(e)}
+                            onClick={(e:React.MouseEvent) => userFilterClick(e)}
                             select={userFilterValue?.text === v.text}
                         >
                             {v.text}
