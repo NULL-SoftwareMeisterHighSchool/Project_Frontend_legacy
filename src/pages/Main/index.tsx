@@ -4,7 +4,6 @@ import {
 } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-import AppLayout from "@layouts/AppLayout";
 import Post from "@components/common/Post";
 import Banner from "@components/pages/Main/Banner";
 import Record from "@components/pages/Main/Record";
@@ -64,7 +63,7 @@ const Main = () => {
                 <Banner
                     title="인기 게시글"
                     subtitle="인기 게시글을 만나보세요"
-                    buttonValue="인기 더보기"
+                    buttonValue="게시글 더보기"
                     to="/blog"
                 />
                 <Banner

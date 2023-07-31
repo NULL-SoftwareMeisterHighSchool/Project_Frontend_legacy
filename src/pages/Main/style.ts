@@ -5,6 +5,7 @@ import { color } from '@styles/theme.style';
 
 export const Github = styled.div`
 	display: flex;
+	flex-wrap: wrap;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
@@ -14,7 +15,6 @@ export const Github = styled.div`
 	width: 100%;
 	height: 160px;
 `;
-
 
 export const Score = styled.div`
 	display: flex;
@@ -75,6 +75,12 @@ export const BannerArea = styled.div`
 	gap: 40px;
 
 	width: 100%;
+
+	@media (max-width: 700px) {
+		&{
+			flex-direction: column;
+		}
+	}
 `;
 
 export const BoardArea = styled.div`
