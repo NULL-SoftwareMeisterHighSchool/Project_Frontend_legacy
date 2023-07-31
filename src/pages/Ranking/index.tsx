@@ -4,12 +4,14 @@ import * as S from "./style";
 import Ranks from "@components/pages/Ranking/Ranks";
 import rankingData from "@fixtures/rank.json";
 import { Body2 } from "@styles/text.style";
+import TitlePath from "@components/common/TitlePath";
 
 const Ranking = () => {
     const rankData = rankingData.list;
 
     return (
-        <AppLayout title="랭킹" path="Menu > 랭킹">
+        <>
+            <TitlePath title="랭킹" path="Menu > 랭킹" />
             <Filter />
 
             <S.RanksContainer>
@@ -36,7 +38,7 @@ const Ranking = () => {
                         <Body2>점수</Body2>
                     </div>
                 </S.RankHeader>
-				<S.Line/>
+                <S.Line />
                 <S.RankContianer>
                     {rankData.map((v) => {
                         return (
@@ -48,7 +50,7 @@ const Ranking = () => {
                     })}
                 </S.RankContianer>
             </S.RanksContainer>
-        </AppLayout>
+        </>
     );
 };
 
