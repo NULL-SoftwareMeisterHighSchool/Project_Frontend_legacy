@@ -27,7 +27,7 @@ const BoardDetail = () => {
       {
         showPopUp && <SharePopUp setShowPopUp={setShowPopUp} />
       }
-      <AppLayout>
+      <>
         <S.Post>
           <S.Thumbnail>
             <S.Img />
@@ -88,7 +88,7 @@ const BoardDetail = () => {
             }
             </S.Board>
         </S.Post>
-      </AppLayout>
+      </>
     </>
   );
 }
