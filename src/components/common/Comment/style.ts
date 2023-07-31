@@ -41,14 +41,6 @@ export const CommentContents = styled.div`
     height: 40px;
 `;
 
-export const CommentImg = styled.img`
-    width: 40px;
-    height: 40px;
-
-    border-radius: 100%;
-    background: #D9D9D9;
-`;
-
 export const Column = styled.div`
     display: flex;
     flex-direction: column;
