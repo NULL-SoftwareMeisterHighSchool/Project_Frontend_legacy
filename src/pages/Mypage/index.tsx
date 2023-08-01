@@ -1,4 +1,4 @@
-import AppLayout from "@layouts/AppLayout";
+import TitlePath from "@components/common/TitlePath";
 import * as S from "./style";
 import skilldata from "@fixtures/skillBoard.json";
 import BlogPost from "@components/pages/SkillBlog/BlogPost";
@@ -25,7 +25,8 @@ const Mypage = () => {
     });
     const skillBlog = skilldata.post;
     return (
-        <AppLayout title="마이페이지" path="Menu > 마이페이지">
+        <>
+            <TitlePath title="마이페이지" path="Menu > 마이페이지" />
             <UpdateProfile
                 val={updateProfileOpen}
                 setVal={setUpdateProfileOpen}
@@ -35,7 +36,7 @@ const Mypage = () => {
             <S.MypageContainer>
                 <S.User>
                     <div>
-                        <UserIcon backWidth="80px" iconWidth={48}/>
+                        <UserIcon backWidth="80px" iconWidth={44}/>
                         <S.UserIntro>
                             <S.UserName>{userData2.name}</S.UserName>
                             <S.UserDescript>
@@ -96,7 +97,7 @@ const Mypage = () => {
                     </S.PostContainer>
                 </S.Post>
             </S.MypageContainer>
-        </AppLayout>
+        </>
     );
 };
 

@@ -1,15 +1,17 @@
 import {
+    AuthorizationResponse,
     postSendEmailProps,
     postSignupStudentProps,
     postVerifyProps,
 } from "./auth.type";
-import axios from "axios";
-import { postLoginProps } from "./auth.type";
 
-const BASE_URL = `${import.meta.env.VITE_BASEURL}/auth`;
+import { postLoginProps } from "./auth.type";
+import { instance } from "..";
+
+const router = `/auth`;
 
 export const postLogin = async ({ id, password }: postLoginProps) => {
-    const resPostLogin = await axios.post(`${BASE_URL}/login`, {
+    const resPostLogin = await instance.post(`${router}/login`, {
         id,
         password,
     });
@@ -18,7 +20,7 @@ export const postLogin = async ({ id, password }: postLoginProps) => {
 };
 
 export const postSendEmail = async ({ email }: postSendEmailProps) => {
-    const resPostSendEmail = await axios.post(`${BASE_URL}/send-mail`, {
+    const resPostSendEmail = await instance.post(`${router}/send-mail`, {
         email,
     });
 
@@ -26,7 +28,7 @@ export const postSendEmail = async ({ email }: postSendEmailProps) => {
 };
 
 export const postVerify = async ({ email, code }: postVerifyProps) => {
-    const resPostVerify = await axios.post(`${BASE_URL}/verify`, {
+    const resPostVerify = await instance.post(`${router}/verify`, {
         email,
         code,
     });
@@ -42,10 +44,20 @@ export const postSignupStudent = async ({
     password,
     githubID,
 }: postSignupStudentProps) => {
-    const resPostSignupStudent = await axios.post(
-        `${BASE_URL}/signup/student`,
+    const resPostSignupStudent = await instance.post(
+        `${router}/signup/student`,
         { school, email, admissionYear, name, userID, password, githubID }
     );
 
     return resPostSignupStudent;
+};
+
+export const postRefresh = async () => {
+    const response = await instance.post<AuthorizationResponse>(
+        `${router}/refresh`,
+        {
+            refreshToken: localStorage.getItem("refresh"),
+        }
+    );
+    return response.data;
 };
