@@ -26,3 +26,8 @@ type CommentType = {
     content: string;
     createdAt: string;
 }
+
+export type postCommentType = {
+    id: string | undefined;
+    body: string;
+}
