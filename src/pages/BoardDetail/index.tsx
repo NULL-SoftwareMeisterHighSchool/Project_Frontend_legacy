@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { color } from '@styles/theme.style';
-import Post from '@components/common/Post';
-import Dummy2 from "@fixtures/comment.json";
+import { useParams } from 'react-router-dom';
 import { Favorite } from '@assets/images/icon/Favorite';
 import { ChatBubble } from '@assets/images/icon/ChatBubble';
 import { Share } from '@assets/images/icon/Share';
@@ -15,23 +14,38 @@ import CommentWrite from "@components/pages/BoardDetail/Comment"
 import * as S from './style';
 import { useQuery } from 'react-query';
 import { getBlogDetail } from '@apis/article';
+import { postLike } from "@apis/article"
+import useDate from '@hooks/useDate';
 
 const BoardDetail = () => {
   const [showPopUp, setShowPopUp] = useState<boolean>(false);
+  const {id} = useParams();
   const [data, setdata] = useState({
     title: "Awesome 한 이것 사용 후기",
     views: 12,
     body: "qkqhsaldkfjls",
     createdAt: "2016-10-27T17:13:40",
     author : {
+        id: 2,
         name : "권강빈",
     },
     isLiked:true,
     isAuthor:false,
     likes: 12,
-    comments: 3
+    commentCount: 11,
+    comments : [
+        {
+            commentID: 1,
+            author: {
+                id: 1,
+                name: "김강빈",
+            },
+            content: "나는야 바보",
+            createdAt: "2016-10-27T17:13:40",
+        },
+    ],
   });
-  const { } = useQuery("getBlogDetail", () => getBlogDetail({ setdata }));
+  const { } = useQuery("getBlogDetail", () => getBlogDetail({ setdata, id }));
   return (
     <>
       {
@@ -45,7 +59,7 @@ const BoardDetail = () => {
               <UserIcon backWidth="48px" iconWidth={26}/>
               <S.ProfileInfo>
                 <S.Name>{data.author.name}</S.Name>
-                <S.Date>{data.createdAt}</S.Date>
+                <S.Date>{useDate(data.createdAt).date}</S.Date>
               </S.ProfileInfo>
             </S.Profile>
           </S.Thumbnail>
@@ -56,13 +70,13 @@ const BoardDetail = () => {
               <S.IconInfo>
                 {
                   data.isLiked ?
-                  <Favorite fill={color.critical} width="24px"/> : <Favorite fill={color.grayBase} width="24px"/>
+                  <Favorite fill={color.critical} width="24px" onClick={()=>postLike}/> : <Favorite fill={color.grayBase} width="24px" onClick={()=>postLike}/>
                 }
                 {data.isLiked}
               </S.IconInfo>
               <S.IconInfo>
                 <ChatBubble fill={color.grayBase} width="24px"/>
-                {data.comments}
+                {data.commentCount}
               </S.IconInfo>
             </S.Icons>
             <S.Icons>
@@ -89,9 +103,14 @@ const BoardDetail = () => {
           <CommentWrite />
           <S.Comment>
             {
-              Dummy2.post.map(
+              data.comments.map(
                 post => (
-                  <Comment username={post.name} content={post.content} to={post.to} date={post.date} time={post.time}/>
+                  <Comment 
+                  username={data.comments[0].author.name} 
+                  content={data.comments[0].content} 
+                  to={"/profile/"+data.comments[0].author.id} 
+                  date={useDate(data.comments[0].createdAt).date} 
+                  time={useDate(data.comments[0].createdAt).time}/>
                 )
               )
             }
