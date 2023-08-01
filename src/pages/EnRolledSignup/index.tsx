@@ -170,7 +170,11 @@ const EnRolledSignup = () => {
             alert("Github를 입력해주세요.");
         } else if(!urlRex.test(userData.githubID)){
 			alert("Github 형식이 올바르지 않습니다.")
-		}else {
+		}else if(userData.password.length < 8){
+            alert("비밀번호 길이가 8자 이상이어야 합니다.")
+        }else if(userData.password.length > 16){
+            alert("비밀번호 길이가 16자 이하이어야 합니다.")
+        }else {
             signupStudent(sendData);
         }
     };
