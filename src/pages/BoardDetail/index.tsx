@@ -12,6 +12,7 @@ import { Edit } from '@assets/images/icon/Edit';
 import Comment from '@components/common/Comment';
 import SharePopUp from '@components/pages/SharePopUp';
 import UserIcon from '@components/common/UserIcon';
+import CommentWrite from "@components/pages/BoardDetail/Comment"
 import * as S from './style';
 
 const MarkDown = `
@@ -77,6 +78,7 @@ const BoardDetail = () => {
               </S.UpdateIcon>
             </S.Icons>
           </S.IconSection>
+          <CommentWrite />
           <S.Comment>
             {
               Dummy2.post.map(
