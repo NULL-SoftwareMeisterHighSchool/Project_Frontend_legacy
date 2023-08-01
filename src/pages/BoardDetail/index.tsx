@@ -108,7 +108,7 @@ const BoardDetail = () => {
                   <Comment 
                   username={data.comments[0].author.name} 
                   content={data.comments[0].content} 
-                  to={"/mypage/"+data.comments[0].author.id} 
+                  to={"/profile/"+data.comments[0].author.id} 
                   date={useDate(data.comments[0].createdAt).date} 
                   time={useDate(data.comments[0].createdAt).time}/>
                 )

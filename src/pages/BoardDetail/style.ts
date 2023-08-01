@@ -25,7 +25,7 @@ export const Title = styled(TitleLarge2)`
     width: fit-content;
     height: 57px;
 
-    line-height: 57px;
+    line-height: ;
 
     color: ${color.black};
 `;
