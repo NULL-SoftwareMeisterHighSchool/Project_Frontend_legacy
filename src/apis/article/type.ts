@@ -5,12 +5,24 @@ export type getBlogDetailProps = {
         body: string;
         createdAt: string;
         author : {
-            name : string
+            id: number;
+            name : string;
         };
         isLiked: boolean;
         isAuthor:boolean;
         likes: number;
-        comments: number;
+        commentCount: number;
+        comments : CommentType[],
     }>>;
     id: string | undefined;
 };
+
+type CommentType = {
+    commentID: number;
+    author: {
+        id: number;
+        name: string;
+    }
+    content: string;
+    createdAt: string;
+}

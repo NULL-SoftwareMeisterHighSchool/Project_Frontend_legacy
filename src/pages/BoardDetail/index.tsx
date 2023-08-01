@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { color } from '@styles/theme.style';
 import { useParams } from 'react-router-dom';
-import Dummy2 from "@fixtures/comment.json";
 import { Favorite } from '@assets/images/icon/Favorite';
 import { ChatBubble } from '@assets/images/icon/ChatBubble';
 import { Share } from '@assets/images/icon/Share';
@@ -26,12 +25,24 @@ const BoardDetail = () => {
     body: "qkqhsaldkfjls",
     createdAt: "2016-10-27T17:13:40",
     author : {
+        id: 2,
         name : "권강빈",
     },
     isLiked:true,
     isAuthor:false,
     likes: 12,
-    comments: 3
+    commentCount: 11,
+    comments : [
+        {
+            commentID: 1,
+            author: {
+                id: 1,
+                name: "김강빈",
+            },
+            content: "나는야 바보",
+            createdAt: "2016-10-27T17:13:40",
+        },
+    ],
   });
   const { } = useQuery("getBlogDetail", () => getBlogDetail({ setdata, id }));
   return (
@@ -64,7 +75,7 @@ const BoardDetail = () => {
               </S.IconInfo>
               <S.IconInfo>
                 <ChatBubble fill={color.grayBase} width="24px"/>
-                {data.comments}
+                {data.commentCount}
               </S.IconInfo>
             </S.Icons>
             <S.Icons>
@@ -91,9 +102,14 @@ const BoardDetail = () => {
           <CommentWrite />
           <S.Comment>
             {
-              Dummy2.post.map(
+              data.comments.map(
                 post => (
-                  <Comment username={post.name} content={post.content} to={post.to} date={post.date} time={post.time}/>
+                  <Comment 
+                  username={data.comments[0].author.name} 
+                  content={data.comments[0].content} 
+                  to={"/mypage/"+data.comments[0].author.id} 
+                  date={data.comments[0].createdAt} 
+                  time={data.comments[0].createdAt}/>
                 )
               )
             }
