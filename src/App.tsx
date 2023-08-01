@@ -28,7 +28,10 @@ const app = createBrowserRouter([
                 path: "mypage",
                 element: <Mypage />,
             },
-
+            {
+                path: "profile/:id",
+                element: <Mypage />,
+            },
             {
                 path: "ranking",
                 element: <Ranking />,
