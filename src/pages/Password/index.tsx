@@ -1,50 +1,54 @@
-import React, { useState } from "react";
-import Eye from "@assets/images/pages/Eye.svg";
-import EyeClose from "@assets/images/pages/EyeClose.svg";
-import LoginImage from "@components/pages/LoginImage";
+import { useState } from "react";
 import * as S from "./style";
+import AuthLayout from "@layouts/AuthLayout";
+
+import { Body2, BodyLarge, BodyStrong, TitleLarge } from "@styles/text.style";
+import Input from "@components/common/Input";
+import Button from "@components/common/Button";
 
 const Password = () => {
-	const [isClicked, setIsClicked] = useState<boolean>(false);
+    const [userData, setUserData] = useState({
+        originPw: "",
+        updagePw: "",
+    });
 
-	const handleClick = () => {
-		setIsClicked(!isClicked);
-	};
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setUserData({
+            ...userData,
+            [name]: value,
+        });
+    };
 
-	return (
-		<S.Container>
-			<S.PasswordForm>
-				<S.Wrapper>
-					<S.Title>
-						<span>Change Password</span>
-						<div>비밀번호 변경</div>
-					</S.Title>
-					<S.Inputs>
-						<S.PrevPassword>
-							<span>기존 비밀번호</span>
-							<S.InputBox>
-								<S.Input placeholder="기존에 사용하던 비밀번호를 입력해 주세요" />
-							</S.InputBox>
-						</S.PrevPassword>
-						<S.NewPassword>
-							<span>새 비밀번호</span>
-							<S.InputBox>
-								<S.Input
-									type={isClicked ? "text" : "password"}
-									placeholder="영·숫자·기호 포함 8자 이상"
-								/>
-								<img onClick={handleClick} src={isClicked ? EyeClose : Eye} />
-							</S.InputBox>
-						</S.NewPassword>
-					</S.Inputs>
-					<S.Change>
-						<S.PasswordBtn>비밀번호 변경</S.PasswordBtn>
-					</S.Change>
-				</S.Wrapper>
-			</S.PasswordForm>
-			<LoginImage />
-		</S.Container>
-	);
+    return (
+        <AuthLayout position="right">
+            <div>
+                <S.Title>
+                    <BodyLarge>Change Password</BodyLarge>
+                    <TitleLarge>비밀번호 변경</TitleLarge>
+                </S.Title>
+                <S.InputContainer>
+                    <Input
+                        title="기존 비밀번호"
+                        width="100%"
+                        placeholder="기존에 사용하던 비밀번호를 입력해 주세요"
+                        name="originPw"
+                        onChange={onChange}
+                        type="password"
+                    />
+                    <Input
+                        title="새 비밀번호"
+                        width="100%"
+                        placeholder="영·숫자·기호 포함 8자 이상요"
+                        name="updagePw"
+                        onChange={onChange}
+                        type="password"
+                    />
+                </S.InputContainer>
+                <Button height="48px" value="비밀번호 변경" />
+            </div>
+        </AuthLayout>
+    );
 };
 
 export default Password;
