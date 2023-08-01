@@ -1,18 +1,60 @@
-import AppLayout from "@layouts/AppLayout";
 import Filter from "@components/pages/Ranking/Filter";
 import * as S from "./style";
 import Ranks from "@components/pages/Ranking/Ranks";
-import rankingData from "@fixtures/rank.json";
 import { Body2 } from "@styles/text.style";
 import TitlePath from "@components/common/TitlePath";
+import { useEffect, useState } from "react";
+
+type rankingDataType = {
+    name: string;
+    school: string;
+    admissionYear: number;
+    commitCount: number;
+    score: number;
+};
 
 const Ranking = () => {
-    const rankData = rankingData.list;
+    const [rankData, setRankData] = useState<rankingDataType[]>([
+        {
+            name: "aefaf",
+            school: "DSM",
+            admissionYear: 2022,
+            commitCount: 2134,
+            score: 12452,
+        },
+        {
+            name: "aefaf",
+            school: "GSM",
+            admissionYear: 2022,
+            commitCount: 2134,
+            score: 12452,
+        },
+        {
+            name: "aefaf",
+            school: "BSM",
+            admissionYear: 2022,
+            commitCount: 2134,
+            score: 12452,
+        },
+        {
+            name: "aefaf",
+            school: "DGSM",
+            admissionYear: 2022,
+            commitCount: 2134,
+            score: 12452,
+        },
+    ]);
+
+    const [filterData, setFilterData] = useState({
+        user: "전체",
+        school: "전체 학교",
+    });
+
 
     return (
         <>
             <TitlePath title="랭킹" path="Menu > 랭킹" />
-            <Filter />
+            <Filter setFilterData={setFilterData}/>
 
             <S.RanksContainer>
                 <S.RankHeader>
@@ -23,16 +65,13 @@ const Ranking = () => {
                         <Body2>이름</Body2>
                     </div>
                     <div>
-                        <Body2>학번</Body2>
-                    </div>
-                    <div>
-                        <Body2>전공</Body2>
-                    </div>
-                    <div>
                         <Body2>학교</Body2>
                     </div>
                     <div>
-                        <Body2>기수</Body2>
+                        <Body2>입학년도</Body2>
+                    </div>
+                    <div>
+                        <Body2>총커밋</Body2>
                     </div>
                     <div>
                         <Body2>점수</Body2>
@@ -40,10 +79,10 @@ const Ranking = () => {
                 </S.RankHeader>
                 <S.Line />
                 <S.RankContianer>
-                    {rankData.map((v) => {
+                    {rankData.map((v, i) => {
                         return (
                             <>
-                                <Ranks {...v} />
+                                <Ranks {...v} rank={i + 1} />
                                 <S.Line />
                             </>
                         );
