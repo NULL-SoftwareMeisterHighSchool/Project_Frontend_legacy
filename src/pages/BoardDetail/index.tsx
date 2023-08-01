@@ -14,16 +14,25 @@ import UserIcon from '@components/common/UserIcon';
 import View from '@components/pages/BoardDetail/Viewer';
 import CommentWrite from "@components/pages/BoardDetail/Comment"
 import * as S from './style';
+import { useQuery } from 'react-query';
+import { getBlogDetail } from '@apis/article';
 
 const BoardDetail = () => {
   const [showPopUp, setShowPopUp] = useState<boolean>(false);
   const [data, setdata] = useState({
-    username: "권강빈",
     title: "Awesome 한 이것 사용 후기",
-    date: "2002.12.12",
-    heart: 22,
-    views: 14
+    views: 12,
+    body: "qkqhsaldkfjls",
+    createdAt: "2016-10-27T17:13:40",
+    author : {
+        name : "권강빈",
+    },
+    isLiked:true,
+    isAuthor:false,
+    likes: 12,
+    comments: 3
   });
+  const { } = useQuery("getBlogDetail", () => getBlogDetail({ setdata }));
   return (
     <>
       {
@@ -36,38 +45,46 @@ const BoardDetail = () => {
             <S.Profile>
               <UserIcon backWidth="48px" iconWidth={26}/>
               <S.ProfileInfo>
-                <S.Name>{data.username}</S.Name>
-                <S.Date>{data.date}</S.Date>
+                <S.Name>{data.author.name}</S.Name>
+                <S.Date>{data.createdAt}</S.Date>
               </S.ProfileInfo>
             </S.Profile>
           </S.Thumbnail>
-          <View />
+          <View content={data.body}/>
           <S.Line />
           <S.IconSection>
             <S.Icons>
               <S.IconInfo>
-                <Favorite fill={color.grayBase} width="24px"/>
-                {data.heart}
+                {
+                  data.isLiked ?
+                  <Favorite fill={color.critical} width="24px"/> : <Favorite fill={color.grayBase} width="24px"/>
+                }
+                {data.isLiked}
               </S.IconInfo>
               <S.IconInfo>
                 <ChatBubble fill={color.grayBase} width="24px"/>
-                {data.views}
+                {data.comments}
               </S.IconInfo>
             </S.Icons>
             <S.Icons>
               <S.IconInfo>
                 <Eye fill={color.grayDark1} width="24px"/>
-                <S.IconText>12</S.IconText>
+                <S.IconText>{data.views}</S.IconText>
               </S.IconInfo>
               <S.IconInfo 
                 onClick={() => setShowPopUp(true)}
               >
                 <Share fill={color.grayDark1} width="24px" />
               </S.IconInfo>
-              <S.UpdateIcon to="/">
-                <Edit fill={color.primaryBase} width="24px" />
-                <S.UpdateText>게시글 수정하기</S.UpdateText>
-              </S.UpdateIcon>
+              {
+                data.isAuthor ? 
+                <S.UpdateIcon to="/">
+                  <Edit fill={color.primaryBase} width="24px" />
+                  <S.UpdateText>게시글 수정하기</S.UpdateText>
+                </S.UpdateIcon>
+                :
+                ""
+              }
             </S.Icons>
           </S.IconSection>
           <CommentWrite />
@@ -80,7 +97,7 @@ const BoardDetail = () => {
               )
             }
           </S.Comment>
-          <S.Line />
+          {/* <S.Line />
           <S.WhatFollows>이어지는 글</S.WhatFollows>
           <S.Board>
             {
@@ -90,7 +107,7 @@ const BoardDetail = () => {
                   )
                 )
             }
-            </S.Board>
+            </S.Board> */}
         </S.Post>
       </>
     </>
