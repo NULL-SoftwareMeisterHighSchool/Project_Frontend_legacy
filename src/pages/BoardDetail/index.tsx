@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import remarkGfm from 'remark-gfm'
+import { useState } from 'react';
 import { color } from '@styles/theme.style';
 import Post from '@components/common/Post';
 import Dummy from "@fixtures/board.json";
@@ -12,14 +11,9 @@ import { Edit } from '@assets/images/icon/Edit';
 import Comment from '@components/common/Comment';
 import SharePopUp from '@components/pages/SharePopUp';
 import UserIcon from '@components/common/UserIcon';
+import View from '@components/pages/BoardDetail/Viewer';
 import CommentWrite from "@components/pages/BoardDetail/Comment"
 import * as S from './style';
-
-const MarkDown = `
-  # 바보
-  ## 바보
-  #### 바보
-`;
 
 const BoardDetail = () => {
   const [showPopUp, setShowPopUp] = useState<boolean>(false);
@@ -47,9 +41,7 @@ const BoardDetail = () => {
               </S.ProfileInfo>
             </S.Profile>
           </S.Thumbnail>
-          <S.Markdown remarkPlugins={[[remarkGfm, {singleTilde: false}]]}>
-            {MarkDown}
-          </S.Markdown>
+          <View />
           <S.Line />
           <S.IconSection>
             <S.Icons>
