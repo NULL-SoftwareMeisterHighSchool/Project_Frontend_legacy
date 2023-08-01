@@ -23,7 +23,7 @@ export const Comment = styled.div<{ state : CommentStateType }>`
 
 const getCommentStyle: Record<CommentStateType, FlattenSimpleInterpolation> = {
     COMMENT: css`
-        width: 640px;
+        width: 100%;
     `,
     REPLY: css`
         width: 570px;
