@@ -31,25 +31,7 @@ const SkillBlog = () => {
         total: 0,
     });
     const [searchInput, setSearchInput] = useState<string>("");
-
-    const {} = useQuery("users", () =>
-        getBlog({
-            type: "TECH",
-            offset: 0,
-            limit: 0,
-            order:
-                filterData === "최신순"
-                    ? "TIME"
-                    : filterData === "최신순"
-                    ? "VIEWS"
-                    : "LIKES",
-            setData: setSkillData,
-            query: searchInput,
-        })
-    );
-
-    const [filterData, setFilterData] = useState("최신순");
-    useEffect(() => {
+    const getData = () => {
         getBlog({
             type: "TECH",
             offset: 0,
@@ -63,6 +45,12 @@ const SkillBlog = () => {
             setData: setSkillData,
             query: searchInput,
         });
+    };
+    const {} = useQuery("users", () => getData());
+
+    const [filterData, setFilterData] = useState("최신순");
+    useEffect(() => {
+        getData();
     }, [filterData]);
 
     return (
@@ -72,19 +60,7 @@ const SkillBlog = () => {
                 <SearchFilter
                     onKeyDown={(e: React.KeyboardEvent) => {
                         if (e.keyCode === 13) {
-                            getBlog({
-                                type: "TECH",
-                                offset: 0,
-                                limit: 0,
-                                order:
-                                    filterData === "최신순"
-                                        ? "TIME"
-                                        : filterData === "최신순"
-                                        ? "VIEWS"
-                                        : "LIKES",
-                                setData: setSkillData,
-                                query: searchInput,
-                            });
+                            getData();
                         }
                     }}
                     searchVal={searchInput}
