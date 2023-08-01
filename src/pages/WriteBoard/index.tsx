@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as S from "./style";
-import axios from "axios";
 import Toast from "@components/pages/WriteBoard/Toast";
-
-const BASE_URL = `${import.meta.env.VITE_BASEURL}/articles`;
 
 const WriteBoard = () => {
     const [title, setTitle] = useState("");
@@ -13,19 +10,6 @@ const WriteBoard = () => {
     const [blogContent, setBlogContent] = useState(
         "## 내용을 입력해주세요.\n이것은 내용입니다. 호호호"
     );
-
-    useEffect(() => {
-        axios.get(`${BASE_URL}/id`)
-            .then(function(response) {
-                setdata(response.data);
-                setTitle(response.data.title);
-                setBlogContent(response.data.body);
-                console.log("성공");
-            })
-            .catch(function(error) {
-                console.log("실패");
-            });
-    }, []);
     
     return (
         <>
