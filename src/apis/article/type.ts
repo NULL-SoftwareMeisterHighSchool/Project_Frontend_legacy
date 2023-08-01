@@ -12,4 +12,5 @@ export type getBlogDetailProps = {
         likes: number;
         comments: number;
     }>>;
+    id: string | undefined;
 };

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { color } from '@styles/theme.style';
-import Post from '@components/common/Post';
+import { useParams } from 'react-router-dom';
 import Dummy2 from "@fixtures/comment.json";
 import { Favorite } from '@assets/images/icon/Favorite';
 import { ChatBubble } from '@assets/images/icon/ChatBubble';
@@ -18,6 +18,7 @@ import { getBlogDetail } from '@apis/article';
 
 const BoardDetail = () => {
   const [showPopUp, setShowPopUp] = useState<boolean>(false);
+  const {id} = useParams();
   const [data, setdata] = useState({
     title: "Awesome 한 이것 사용 후기",
     views: 12,
@@ -31,7 +32,7 @@ const BoardDetail = () => {
     likes: 12,
     comments: 3
   });
-  const { } = useQuery("getBlogDetail", () => getBlogDetail({ setdata }));
+  const { } = useQuery("getBlogDetail", () => getBlogDetail({ setdata, id }));
   return (
     <>
       {
