@@ -4,6 +4,8 @@ import Ranks from "@components/pages/Ranking/Ranks";
 import { Body2 } from "@styles/text.style";
 import TitlePath from "@components/common/TitlePath";
 import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import { getRank } from "@apis/rank";
 
 type rankingDataType = {
     name: string;
@@ -14,47 +16,21 @@ type rankingDataType = {
 };
 
 const Ranking = () => {
-    const [rankData, setRankData] = useState<rankingDataType[]>([
-        {
-            name: "aefaf",
-            school: "DSM",
-            admissionYear: 2022,
-            commitCount: 2134,
-            score: 12452,
-        },
-        {
-            name: "aefaf",
-            school: "GSM",
-            admissionYear: 2022,
-            commitCount: 2134,
-            score: 12452,
-        },
-        {
-            name: "aefaf",
-            school: "BSM",
-            admissionYear: 2022,
-            commitCount: 2134,
-            score: 12452,
-        },
-        {
-            name: "aefaf",
-            school: "DGSM",
-            admissionYear: 2022,
-            commitCount: 2134,
-            score: 12452,
-        },
-    ]);
+    const {} = useQuery("users", () => getRank({ setRankData, filterData }));
+    const [rankData, setRankData] = useState<rankingDataType[]>([]);
 
     const [filterData, setFilterData] = useState({
         user: "전체",
         school: "전체 학교",
     });
-
+    useEffect(() => {
+        getRank({ setRankData, filterData });
+    }, [filterData]);
 
     return (
         <>
             <TitlePath title="랭킹" path="Menu > 랭킹" />
-            <Filter setFilterData={setFilterData}/>
+            <Filter setFilterData={setFilterData} />
 
             <S.RanksContainer>
                 <S.RankHeader>
