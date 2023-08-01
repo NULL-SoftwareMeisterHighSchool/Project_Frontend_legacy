@@ -5,7 +5,7 @@ import * as S from "./style";
 interface PropTypes {
     backWidth?: string,
     iconWidth?: number,
-    onClick?: any; 
+    onClick?: ()=>void; 
 }
 
 const UserIcon = (
