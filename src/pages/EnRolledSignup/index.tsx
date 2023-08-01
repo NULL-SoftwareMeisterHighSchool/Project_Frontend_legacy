@@ -8,13 +8,9 @@ import { useMutation } from "react-query";
 
 import { Body2, BodyLarge, BodyStrong, TitleLarge } from "@styles/text.style";
 import LeftArrow from "@assets/images/pages/LeftArrow.svg";
-import {
-    postSendEmail,
-    postSignupStudent,
-    postVerify,
-} from "@apis/auth/auth.type";
 import { useNavigate } from "react-router-dom";
 import Dropdown from "@components/common/Dropdown";
+import { postSendEmail, postSignupStudent, postVerify } from "@apis/auth";
 type ArrayType = {
     name: string;
     title: string;
