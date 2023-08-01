@@ -13,7 +13,8 @@ export const Comment = styled.div<{ state : CommentStateType }>`
     gap: 6px;
 
     height: 100px;
-
+    width: 100%;
+    
     background: #F3F3F3;
     border-radius: 8px;
 
