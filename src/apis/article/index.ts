@@ -8,3 +8,7 @@ export const getBlogDetail = async ({ setdata, id }: getBlogDetailProps) => {
     setdata(response.data);
     return response;
 };
+
+export const postLike = async ({ id }: getBlogDetailProps) => {
+    await instance.post(`${router}/${id}/like`, {});
+};

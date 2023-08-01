@@ -15,6 +15,7 @@ import CommentWrite from "@components/pages/BoardDetail/Comment"
 import * as S from './style';
 import { useQuery } from 'react-query';
 import { getBlogDetail } from '@apis/article';
+import { postLike } from "@apis/article"
 
 const BoardDetail = () => {
   const [showPopUp, setShowPopUp] = useState<boolean>(false);
@@ -57,7 +58,7 @@ const BoardDetail = () => {
               <S.IconInfo>
                 {
                   data.isLiked ?
-                  <Favorite fill={color.critical} width="24px"/> : <Favorite fill={color.grayBase} width="24px"/>
+                  <Favorite fill={color.critical} width="24px" onClick={()=>postLike}/> : <Favorite fill={color.grayBase} width="24px" onClick={()=>postLike}/>
                 }
                 {data.isLiked}
               </S.IconInfo>
