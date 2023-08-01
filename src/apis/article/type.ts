@@ -54,3 +54,8 @@ export type getBlogProps = {
     order: string;
     setData: React.Dispatch<React.SetStateAction<skillDataProps>>;
 };
+
+export type postCommentType = {
+    id: string | undefined;
+    body: string;
+}
