@@ -1,53 +1,96 @@
-import React, { useState } from "react";
-import AppLayout from "@layouts/AppLayout";
-import Option from "@components/pages/Ranking/Option";
-import Dummy from "@fixtures/rank.json";
+import Filter from "@components/pages/Ranking/Filter";
 import * as S from "./style";
-import Rank from "@components/pages/Ranking/Rank";
+import Ranks from "@components/pages/Ranking/Ranks";
+import { Body2 } from "@styles/text.style";
+import TitlePath from "@components/common/TitlePath";
+import { useEffect, useState } from "react";
+
+type rankingDataType = {
+    name: string;
+    school: string;
+    admissionYear: number;
+    commitCount: number;
+    score: number;
+};
 
 const Ranking = () => {
-	const [isOptionSelected, setIsOptionSelected] = useState<boolean[]>([false]);
-	const options = ["전체", "1학년", "2학년", "3학년", "재학생", "졸업생"];
+    const [rankData, setRankData] = useState<rankingDataType[]>([
+        {
+            name: "aefaf",
+            school: "DSM",
+            admissionYear: 2022,
+            commitCount: 2134,
+            score: 12452,
+        },
+        {
+            name: "aefaf",
+            school: "GSM",
+            admissionYear: 2022,
+            commitCount: 2134,
+            score: 12452,
+        },
+        {
+            name: "aefaf",
+            school: "BSM",
+            admissionYear: 2022,
+            commitCount: 2134,
+            score: 12452,
+        },
+        {
+            name: "aefaf",
+            school: "DGSM",
+            admissionYear: 2022,
+            commitCount: 2134,
+            score: 12452,
+        },
+    ]);
 
-	const handleOptions = (idx: number) => {
-		const selectedOptions: boolean[] = options.map((_, i) => i === idx);
-		setIsOptionSelected(selectedOptions);
-	};
+    const [filterData, setFilterData] = useState({
+        user: "전체",
+        school: "전체 학교",
+    });
 
-	return (
-		<AppLayout title="랭킹" path="Menu > 랭킹">
-			<S.RankingContainer>
-				<S.Category>
-					<S.Options>
-						{options.map((text, i) => (
-							<Option
-								key={i}
-								idx={i}
-								text={text}
-								isOptionSelected={isOptionSelected[i]}
-								handleOptions={handleOptions}
-							/>
-						))}
-					</S.Options>
-					{/* <S.Sorting /> */}
-				</S.Category>
-				<S.Content>
-					<S.Info>
-						<S.Place>순위</S.Place>
-						<S.Name>이름</S.Name>
-						<S.StudentNumber>학번</S.StudentNumber>
-						<S.Major>전공</S.Major>
-						<S.School>학교</S.School>
-						<S.Class>기수</S.Class>
-						<S.Score>점수</S.Score>
-					</S.Info>
-					{Dummy.list.map((o) => (
-						<Rank key={o.id} {...o} />
-					))}
-				</S.Content>
-			</S.RankingContainer>
-		</AppLayout>
-	);
+
+    return (
+        <>
+            <TitlePath title="랭킹" path="Menu > 랭킹" />
+            <Filter setFilterData={setFilterData}/>
+
+            <S.RanksContainer>
+                <S.RankHeader>
+                    <div>
+                        <Body2>순위</Body2>
+                    </div>
+                    <div>
+                        <Body2>이름</Body2>
+                    </div>
+                    <div>
+                        <Body2>학교</Body2>
+                    </div>
+                    <div>
+                        <Body2>입학년도</Body2>
+                    </div>
+                    <div>
+                        <Body2>총커밋</Body2>
+                    </div>
+                    <div>
+                        <Body2>점수</Body2>
+                    </div>
+                </S.RankHeader>
+                <S.Line />
+                <S.RankContianer>
+                    {rankData.map((v, i) => {
+                        return (
+                            <>
+                                <Ranks {...v} rank={i + 1} />
+                                <S.Line />
+                            </>
+                        );
+                    })}
+                </S.RankContianer>
+            </S.RanksContainer>
+        </>
+    );
 };
 
 export default Ranking;

@@ -9,11 +9,13 @@ import { Mail } from "@assets/images/icon/Mail";
 import { RemoveCircle } from "@assets/images/icon/RemoveCircle";
 import { useState } from "react";
 import Modal from "@components/common/modal";
+import TitlePath from "@components/common/TitlePath";
 
 const Setting = () => {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     return (
-        <AppLayout title="설정" path="User > 설정">
+        <>
+            <TitlePath title="설정" path="User > 설정" />
             {modalOpen && (
                 <Modal setVal={setModalOpen}>
                     <S.UseTitleContainer>
@@ -70,7 +72,7 @@ const Setting = () => {
                     onClick={() => setModalOpen(true)}
                 />
             </S.Container>
-        </AppLayout>
+        </>
     );
 };
 

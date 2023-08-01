@@ -12,14 +12,25 @@ export const MypageContainer = styled.div`
 export const User = styled.div`
     display: flex;
     align-items: center;
-    gap: 20px;
+    justify-content: space-between;
+    >div{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
 `;
 
-export const UserImg = styled.div`
-    width: 80px;
-    height: 80px;
-    border-radius: 80px;
-    background-color: ${color.grayDark2};
+export const ProfileUpdateBtn = styled.div`
+    padding: 14px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ${color.grayLight2};
+    border-radius: 8px;
+    cursor: pointer;
+    >p{
+        color: ${color.grayDark2};
+    }
 `;
 
 export const UserIntro = styled.div`
@@ -29,7 +40,17 @@ export const UserIntro = styled.div`
     gap: 4px;
 `;
 
+export const UserInformation = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 12px;
+`;
+
 export const UserName = styled(Title)`
+`;
+
+export const Email = styled(Body2)`
+    color: ${color.grayDark1};
 `;
 
 export const UserDescript = styled(BodyLarge)`
@@ -92,4 +113,5 @@ export const Post = styled.div`
 export const PostContainer = styled.div`
     display: flex;
     flex-direction: column;
+    width: 100%;
 `;

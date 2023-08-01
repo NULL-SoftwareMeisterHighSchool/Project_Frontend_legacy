@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
-import remarkGfm from 'remark-gfm'
+import { useState } from 'react';
 import { color } from '@styles/theme.style';
-import AppLayout from '@layouts/AppLayout';
 import Post from '@components/common/Post';
-import Dummy from "@fixtures/board.json";
+import Dummy2 from "@fixtures/comment.json";
 import { Favorite } from '@assets/images/icon/Favorite';
 import { ChatBubble } from '@assets/images/icon/ChatBubble';
 import { Share } from '@assets/images/icon/Share';
@@ -12,71 +10,93 @@ import { Edit } from '@assets/images/icon/Edit';
 import Comment from '@components/common/Comment';
 import SharePopUp from '@components/pages/SharePopUp';
 import UserIcon from '@components/common/UserIcon';
+import View from '@components/pages/BoardDetail/Viewer';
+import CommentWrite from "@components/pages/BoardDetail/Comment"
 import * as S from './style';
-
-const MarkDown = `
-  # 바보
-  ## 바보
-  #### 바보
-`;
+import { useQuery } from 'react-query';
+import { getBlogDetail } from '@apis/article';
 
 const BoardDetail = () => {
   const [showPopUp, setShowPopUp] = useState<boolean>(false);
+  const [data, setdata] = useState({
+    title: "Awesome 한 이것 사용 후기",
+    views: 12,
+    body: "qkqhsaldkfjls",
+    createdAt: "2016-10-27T17:13:40",
+    author : {
+        name : "권강빈",
+    },
+    isLiked:true,
+    isAuthor:false,
+    likes: 12,
+    comments: 3
+  });
+  const { } = useQuery("getBlogDetail", () => getBlogDetail({ setdata }));
   return (
     <>
       {
         showPopUp && <SharePopUp setShowPopUp={setShowPopUp} />
       }
-      <AppLayout>
+      <>
         <S.Post>
           <S.Thumbnail>
-            <S.Img />
-            <S.Title>Awesome 한 이것 사용 후기</S.Title>
+            <S.Title>{data.title}</S.Title>
             <S.Profile>
               <UserIcon backWidth="48px" iconWidth={26}/>
               <S.ProfileInfo>
-                <S.Name>홍길동 · Frontend Developer</S.Name>
-                <S.Date>2022.03.16</S.Date>
+                <S.Name>{data.author.name}</S.Name>
+                <S.Date>{data.createdAt}</S.Date>
               </S.ProfileInfo>
             </S.Profile>
           </S.Thumbnail>
-          <S.Markdown remarkPlugins={[[remarkGfm, {singleTilde: false}]]}>
-            {MarkDown}
-          </S.Markdown>
+          <View content={data.body}/>
           <S.Line />
           <S.IconSection>
             <S.Icons>
               <S.IconInfo>
-                <Favorite fill={color.grayBase} width="24px"/>
-                24
+                {
+                  data.isLiked ?
+                  <Favorite fill={color.critical} width="24px"/> : <Favorite fill={color.grayBase} width="24px"/>
+                }
+                {data.isLiked}
               </S.IconInfo>
               <S.IconInfo>
                 <ChatBubble fill={color.grayBase} width="24px"/>
-                3
+                {data.comments}
               </S.IconInfo>
             </S.Icons>
             <S.Icons>
               <S.IconInfo>
                 <Eye fill={color.grayDark1} width="24px"/>
-                <S.IconText>12</S.IconText>
+                <S.IconText>{data.views}</S.IconText>
               </S.IconInfo>
               <S.IconInfo 
                 onClick={() => setShowPopUp(true)}
               >
                 <Share fill={color.grayDark1} width="24px" />
               </S.IconInfo>
-              <S.UpdateIcon to="/">
-                <Edit fill={color.primaryBase} width="24px" />
-                <S.UpdateText>게시글 수정하기</S.UpdateText>
-              </S.UpdateIcon>
+              {
+                data.isAuthor ? 
+                <S.UpdateIcon to="/">
+                  <Edit fill={color.primaryBase} width="24px" />
+                  <S.UpdateText>게시글 수정하기</S.UpdateText>
+                </S.UpdateIcon>
+                :
+                ""
+              }
             </S.Icons>
           </S.IconSection>
+          <CommentWrite />
           <S.Comment>
-            <Comment username = "홍길동" content="바보들" state='COMMENT' />
-            <Comment username = "김현진" content="왜 그러세요..." state='REPLY' />
-            <Comment username = "박신" content="ㅋㅋㅋ" state='REPLY' />
+            {
+              Dummy2.post.map(
+                post => (
+                  <Comment username={post.name} content={post.content} to={post.to} date={post.date} time={post.time}/>
+                )
+              )
+            }
           </S.Comment>
-          <S.Line />
+          {/* <S.Line />
           <S.WhatFollows>이어지는 글</S.WhatFollows>
           <S.Board>
             {
@@ -86,9 +106,9 @@ const BoardDetail = () => {
                   )
                 )
             }
-            </S.Board>
+            </S.Board> */}
         </S.Post>
-      </AppLayout>
+      </>
     </>
   );
 }

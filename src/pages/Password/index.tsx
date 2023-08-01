@@ -1,50 +1,88 @@
-import React, { useState } from "react";
-import Eye from "@assets/images/pages/Eye.svg";
-import EyeClose from "@assets/images/pages/EyeClose.svg";
-import LoginImage from "@components/pages/LoginImage";
+import { useState } from "react";
 import * as S from "./style";
+import AuthLayout from "@layouts/AuthLayout";
+
+import { Body2, BodyLarge, BodyStrong, TitleLarge } from "@styles/text.style";
+import Input from "@components/common/Input";
+import Button from "@components/common/Button";
+import { useMutation } from "react-query";
+import { patchEditPassword } from "@apis/users";
+import { useNavigate } from "react-router-dom";
 
 const Password = () => {
-	const [isClicked, setIsClicked] = useState<boolean>(false);
+    const router = useNavigate();
+    const [userData, setUserData] = useState({
+        currentPassword: "",
+        newPassword: "",
+    });
 
-	const handleClick = () => {
-		setIsClicked(!isClicked);
-	};
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setUserData({
+            ...userData,
+            [name]: value,
+        });
+    };
 
-	return (
-		<S.Container>
-			<S.PasswordForm>
-				<S.Wrapper>
-					<S.Title>
-						<span>Change Password</span>
-						<div>비밀번호 변경</div>
-					</S.Title>
-					<S.Inputs>
-						<S.PrevPassword>
-							<span>기존 비밀번호</span>
-							<S.InputBox>
-								<S.Input placeholder="기존에 사용하던 비밀번호를 입력해 주세요" />
-							</S.InputBox>
-						</S.PrevPassword>
-						<S.NewPassword>
-							<span>새 비밀번호</span>
-							<S.InputBox>
-								<S.Input
-									type={isClicked ? "text" : "password"}
-									placeholder="영·숫자·기호 포함 8자 이상"
-								/>
-								<img onClick={handleClick} src={isClicked ? EyeClose : Eye} />
-							</S.InputBox>
-						</S.NewPassword>
-					</S.Inputs>
-					<S.Change>
-						<S.PasswordBtn>비밀번호 변경</S.PasswordBtn>
-					</S.Change>
-				</S.Wrapper>
-			</S.PasswordForm>
-			<LoginImage />
-		</S.Container>
-	);
+    const { mutate: editPasswordMutate } = useMutation(patchEditPassword, {
+        onSuccess: () => {
+            alert("비밀번호 변경이 완료되었습니다.");
+            router("/setting");
+        },
+        onError: () => {
+            alert("비밀번호 변경 실패했습니다.");
+        },
+    });
+
+    const onClickPwChange = () => {
+        if (userData.currentPassword === "") {
+            alert("기존 비밀번호를 입력해주세요.");
+        } else if (userData.newPassword === "새로운 비밀번호를 입력해주세요.") {
+            alert("새로운 비밀번호를 입력해주세요.");
+        } else if (userData.currentPassword === userData.newPassword) {
+            alert("기존 비밀번호와 다르게 설정해주세요.");
+        } else if (userData.currentPassword.length < 8) {
+            alert("비밀번호 길이가 8자 이상이어야 합니다.");
+        } else if (userData.currentPassword.length > 16) {
+            alert("비밀번호 길이가 16자 이하이어야 합니다.");
+        } else {
+            editPasswordMutate(userData);
+        }
+    };
+
+    return (
+        <AuthLayout position="right">
+            <div>
+                <S.Title>
+                    <BodyLarge>Change Password</BodyLarge>
+                    <TitleLarge>비밀번호 변경</TitleLarge>
+                </S.Title>
+                <S.InputContainer>
+                    <Input
+                        title="기존 비밀번호"
+                        width="100%"
+                        placeholder="기존에 사용하던 비밀번호를 입력해 주세요"
+                        name="currentPassword"
+                        onChange={onChange}
+                        type="password"
+                    />
+                    <Input
+                        title="새 비밀번호"
+                        width="100%"
+                        placeholder="영·숫자·기호 포함 8자 이상요"
+                        name="newPassword"
+                        onChange={onChange}
+                        type="password"
+                    />
+                </S.InputContainer>
+                <Button
+                    onClick={onClickPwChange}
+                    height="48px"
+                    value="비밀번호 변경"
+                />
+            </div>
+        </AuthLayout>
+    );
 };
 
 export default Password;
