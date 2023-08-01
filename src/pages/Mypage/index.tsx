@@ -26,7 +26,7 @@ const Mypage = () => {
     const skillBlog = skilldata.post;
     return (
         <>
-            <TitlePath title="마이페이지" path="Menu > 마이페이지" primaryBase />
+            <TitlePath title="마이페이지" path="Menu > 마이페이지" />
             <UpdateProfile
                 val={updateProfileOpen}
                 setVal={setUpdateProfileOpen}
