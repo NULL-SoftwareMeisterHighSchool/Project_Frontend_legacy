@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { color } from '@styles/theme.style';
 import Post from '@components/common/Post';
-import Dummy from "@fixtures/board.json";
 import Dummy2 from "@fixtures/comment.json";
 import { Favorite } from '@assets/images/icon/Favorite';
 import { ChatBubble } from '@assets/images/icon/ChatBubble';
