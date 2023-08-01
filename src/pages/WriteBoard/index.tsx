@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as S from "./style";
-import Toast from "@components/pages/Toast";
+import Toast from "@components/pages/WriteBoard/Toast";
 
 const WriteBoard = () => {
     const [title, setTitle] = useState("");
