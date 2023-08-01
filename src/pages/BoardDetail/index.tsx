@@ -15,6 +15,7 @@ import * as S from './style';
 import { useQuery } from 'react-query';
 import { getBlogDetail } from '@apis/article';
 import { postLike } from "@apis/article"
+import useDate from '@hooks/useDate';
 
 const BoardDetail = () => {
   const [showPopUp, setShowPopUp] = useState<boolean>(false);
@@ -58,7 +59,7 @@ const BoardDetail = () => {
               <UserIcon backWidth="48px" iconWidth={26}/>
               <S.ProfileInfo>
                 <S.Name>{data.author.name}</S.Name>
-                <S.Date>{data.createdAt}</S.Date>
+                <S.Date>{useDate(data.createdAt).date}</S.Date>
               </S.ProfileInfo>
             </S.Profile>
           </S.Thumbnail>
@@ -108,8 +109,8 @@ const BoardDetail = () => {
                   username={data.comments[0].author.name} 
                   content={data.comments[0].content} 
                   to={"/mypage/"+data.comments[0].author.id} 
-                  date={data.comments[0].createdAt} 
-                  time={data.comments[0].createdAt}/>
+                  date={useDate(data.comments[0].createdAt).date} 
+                  time={useDate(data.comments[0].createdAt).time}/>
                 )
               )
             }
