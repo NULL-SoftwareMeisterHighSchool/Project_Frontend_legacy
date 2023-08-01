@@ -1,14 +1,23 @@
-import axios from "axios";
-import { postLoginProps } from ".";
+export interface postLoginProps {
+    id: string;
+    password: string;
+}
 
-const BASE_URL = `${import.meta.env.VITE_BASEURL}/auth`;
+export interface postSendEmailProps {
+    email: string;
+}
 
-export const postLogin = async ({ id, password }: postLoginProps) => {
+export interface postVerifyProps {
+    email: string;
+    code: string;
+}
 
-    const resPostLogin = await axios.post(`${BASE_URL}/login`, {
-        id,
-        password,
-    });
-
-    return resPostLogin;
-};
+export interface postSignupStudentProps {
+    school: string;
+    email: string;
+    admissionYear: number;
+    name: string;
+    userID: string;
+    password: string;
+    githubID: string;
+}

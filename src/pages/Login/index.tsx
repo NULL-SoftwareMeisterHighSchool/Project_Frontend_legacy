@@ -7,8 +7,8 @@ import AuthLayout from "@layouts/AuthLayout";
 import { Body2, BodyLarge, BodyStrong, TitleLarge } from "@styles/text.style";
 import Input from "@components/common/Input";
 import Button from "@components/common/Button";
-import { postLogin } from "@apis/auth/auth.type";
 import { useNavigate } from "react-router-dom";
+import { postLogin } from "@apis/auth";
 
 const Login = () => {
     const router = useNavigate();
