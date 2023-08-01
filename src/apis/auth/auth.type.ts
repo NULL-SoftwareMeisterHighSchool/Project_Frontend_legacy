@@ -1,51 +1,23 @@
-import {
-    postSendEmailProps,
-    postSignupStudentProps,
-    postVerifyProps,
-} from "./index";
-import axios from "axios";
-import { postLoginProps } from ".";
+export interface postLoginProps {
+    id: string;
+    password: string;
+}
 
-const BASE_URL = `${import.meta.env.VITE_BASEURL}/auth`;
+export interface postSendEmailProps {
+    email: string;
+}
 
-export const postLogin = async ({ id, password }: postLoginProps) => {
-    const resPostLogin = await axios.post(`${BASE_URL}/login`, {
-        id,
-        password,
-    });
+export interface postVerifyProps {
+    email: string;
+    code: string;
+}
 
-    return resPostLogin;
-};
-
-export const postSendEmail = async ({ email }: postSendEmailProps) => {
-    const resPostSendEmail = await axios.post(`${BASE_URL}/send-mail`, {
-        email,
-    });
-
-    return resPostSendEmail;
-};
-
-export const postVerify = async ({ email, code }: postVerifyProps) => {
-    const resPostVerify = await axios.post(`${BASE_URL}/verify`, {
-        email,
-        code,
-    });
-    return resPostVerify;
-};
-
-export const postSignupStudent = async ({
-    school,
-    email,
-    admissionYear,
-    name,
-    userID,
-    password,
-    githubID,
-}: postSignupStudentProps) => {
-    const resPostSignupStudent = await axios.post(
-        `${BASE_URL}/signup/student`,
-        { school, email, admissionYear, name, userID, password, githubID }
-    );
-
-    return resPostSignupStudent;
-};
+export interface postSignupStudentProps {
+    school: string;
+    email: string;
+    admissionYear: number;
+    name: string;
+    userID: string;
+    password: string;
+    githubID: string;
+}
