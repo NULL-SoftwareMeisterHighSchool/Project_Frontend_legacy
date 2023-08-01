@@ -1,4 +1,4 @@
-export interface patchEditPasswordProps {
+export type patchEditPasswordProps = {
     currentPassword: string;
     newPassword: string;
-}
+};

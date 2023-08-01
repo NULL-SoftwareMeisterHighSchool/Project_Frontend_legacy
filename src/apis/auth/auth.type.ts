@@ -1,18 +1,18 @@
-export interface postLoginProps {
+export type postLoginProps = {
     id: string;
     password: string;
 }
 
-export interface postSendEmailProps {
+export type postSendEmailProps = {
     email: string;
 }
 
-export interface postVerifyProps {
+export type postVerifyProps = {
     email: string;
     code: string;
 }
 
-export interface postSignupStudentProps {
+export type postSignupStudentProps = {
     school: string;
     email: string;
     admissionYear: number;
@@ -20,4 +20,15 @@ export interface postSignupStudentProps {
     userID: string;
     password: string;
     githubID: string;
+}
+
+export type AuthorizationResponse = {
+    access: {
+        expiresAt: Date;
+        token: string;
+    };
+    refresh: {
+        expiresAt: Date;
+        token: string;
+    };
 }
