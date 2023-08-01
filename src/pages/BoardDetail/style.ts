@@ -70,22 +70,8 @@ export const Date = styled(Body2)`
     color: #757575;
 `;
 
-export const Markdown = styled(ReactMarkdown)`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 40px 0px;
-    gap: 30px;
-
-    background-color: ${color.white};
-    color: ${color.black};
-
-    width: 640px;
-    height: fit-content;
-`;
-
 export const Line = styled.hr`
-	width: 640px;
+	width: 100%;
 	height: 0px;
 
 	border: 1px solid ${color.grayLight1};
@@ -143,7 +129,7 @@ export const Reply = styled.div`
     padding: 20px;
     gap: 6px;
 
-    width: 570px;
+    width: 100%;
     height: 100px;
 
     background: #F3F3F3;
@@ -165,6 +151,6 @@ export const Board = styled.div`
 	align-items: flex-start;
 	padding: 0px;
 
-	width: 620px;
+	width: 100%;
 	height: 424px;
 `;
