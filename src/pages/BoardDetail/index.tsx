@@ -12,14 +12,14 @@ import UserIcon from '@components/common/UserIcon';
 import View from '@components/pages/BoardDetail/Viewer';
 import CommentWrite from "@components/pages/BoardDetail/Comment"
 import * as S from './style';
-import { useQuery } from 'react-query';
-import { getBlogDetail } from '@apis/article';
+import { useMutation, useQuery } from 'react-query';
+import { getBlogDetail, postComment } from '@apis/article';
 import { postLike } from "@apis/article"
 import useDate from '@hooks/useDate';
 
 const BoardDetail = () => {
-  const [showPopUp, setShowPopUp] = useState<boolean>(false);
   const {id} = useParams();
+  const [showPopUp, setShowPopUp] = useState<boolean>(false);
   const [data, setdata] = useState({
     title: "Awesome 한 이것 사용 후기",
     views: 12,
@@ -100,7 +100,9 @@ const BoardDetail = () => {
               }
             </S.Icons>
           </S.IconSection>
-          <CommentWrite />
+          <CommentWrite 
+          id={id}
+          />
           <S.Comment>
             {
               data.comments.map(

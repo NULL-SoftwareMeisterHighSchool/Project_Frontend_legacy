@@ -58,3 +58,8 @@ export type getBlogProps = {
     data: skillDataProps;
     newData?: boolean;
 };
+
+export type postCommentType = {
+    id: string | undefined;
+    body: string;
+}
