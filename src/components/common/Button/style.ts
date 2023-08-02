@@ -71,7 +71,7 @@ const getButtonStyle: Record<ButtonStateType, FlattenSimpleInterpolation> = {
 		background-color: ${color.grayLight2};
 		color: ${color.grayDark2};
 		:hover {
-			background-color: ${color.grayLight1};
+			background-color: ${color.grayBase};
 			color: ${color.white};
 		}
 		:active {
