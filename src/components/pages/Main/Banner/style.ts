@@ -9,6 +9,7 @@ export const Banner = styled.div`
 	align-items: center;
 	padding: 40px;
 	gap: 20px;
+
 	width: 100%;
 	min-width: max-content;
 	height: 136px;

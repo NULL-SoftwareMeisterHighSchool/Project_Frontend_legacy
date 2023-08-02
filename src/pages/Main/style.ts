@@ -5,6 +5,7 @@ import { color } from '@styles/theme.style';
 
 export const Github = styled.div`
 	display: flex;
+	flex-wrap: wrap;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
@@ -20,7 +21,6 @@ export const Github = styled.div`
 		align-items: flex-start;
 	}
 `;
-
 
 export const Score = styled.div`
 	display: flex;
@@ -68,13 +68,13 @@ export const Comprehensive = styled.div`
 	padding: 0px;
 	gap: 80px;
 
-	@media screen and (max-width: 1250px) {
+	@media screen and (max-width: 1266px) {
         display: grid;
 		grid-template-columns: 1fr 1fr 1fr 1fr;
 		gap: 40px 80px;
     }
 
-	@media screen and (max-width: 1250px) {
+	@media screen and (max-width: 1154px) {
         display: grid;
 		grid-template-columns: 1fr 1fr 1fr;
 		gap: 40px 80px;
