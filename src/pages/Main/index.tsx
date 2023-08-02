@@ -4,7 +4,6 @@ import {
 } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-import AppLayout from "@layouts/AppLayout";
 import Post from "@components/common/Post";
 import Banner from "@components/pages/Main/Banner";
 import Record from "@components/pages/Main/Record";
@@ -60,43 +59,45 @@ const Main = () => {
                     />
                 </S.Comprehensive>
             </S.Github>
-            <S.BannerArea>
-                <Banner
-                    title="인기 게시글"
-                    subtitle="인기 게시글을 만나보세요"
-                    buttonValue="인기 더보기"
-                    to="/blog"
-                />
-                <Banner
-                    title="기술 블로그"
-                    subtitle="전공 지식을 습득해 보세요"
-                    buttonValue="기술 더보기"
-                    to="/skill"
-                />
-            </S.BannerArea>
             <S.BoardArea>
-                <S.Board>
-                    {Dummy.post.map((post) => (
-                        <Post
-                            id={post.id}
-                            title={post.title}
-                            name={post.name}
-                            date={post.date}
-                            to=""
-                        />
-                    ))}
-                </S.Board>
-                <S.Board>
-                    {Dummy.post.map((post) => (
-                        <Post
-                            id={post.id}
-                            title={post.title}
-                            name={post.name}
-                            date={post.date}
-                            to=""
-                        />
-                    ))}
-                </S.Board>
+                <S.BlogContainer>
+                    <Banner
+                        title="인기 게시글"
+                        subtitle="인기 게시글을 만나보세요"
+                        buttonValue="게시글 더보기"
+                        to="/blog"
+                    />
+                    <S.Board>
+                        {Dummy.post.map((post) => (
+                            <Post
+                                id={post.id}
+                                title={post.title}
+                                name={post.name}
+                                date={post.date}
+                                to=""
+                            />
+                        ))}
+                    </S.Board>
+                </S.BlogContainer>
+                <S.BlogContainer>
+                    <Banner
+                        title="기술 블로그"
+                        subtitle="전공 지식을 습득해 보세요"
+                        buttonValue="기술 더보기"
+                        to="/skill"
+                    />
+                    <S.Board>
+                        {Dummy.post.map((post) => (
+                            <Post
+                                id={post.id}
+                                title={post.title}
+                                name={post.name}
+                                date={post.date}
+                                to=""
+                            />
+                        ))}
+                    </S.Board>
+                </S.BlogContainer>
             </S.BoardArea>
         </>
     );
