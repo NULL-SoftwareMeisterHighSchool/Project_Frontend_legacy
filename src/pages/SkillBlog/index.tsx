@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getBlog } from "@apis/article";
 import useDate from "@hooks/useDate";
-
+import Button from "@components/common/Button";
 type skillDataProps = {
     article: blogType[];
     total: number;
@@ -26,44 +26,71 @@ type blogType = {
 };
 
 const SkillBlog = () => {
+    /** axios 연동 함수 */
+    const getConcatSkillData = ({
+        limit,
+    }: {
+        offset: number;
+        limit: number;
+    }) => {
+        getBlog({
+            type: "TECH",
+            offset: skillData.article.length,
+            limit: limit,
+            order:
+                filterData === "최신순"
+                    ? "TIME"
+                    : filterData === "최신순"
+                    ? "VIEWS"
+                    : "LIKES",
+            setData: setSkillData,
+            query: searchInput,
+            data: skillData,
+            newData: true,
+        });
+    };
+
+    const getSkillData = (limit: number) => {
+        getBlog({
+            type: "TECH",
+            offset: 0,
+            limit: limit,
+            order:
+                filterData === "최신순"
+                    ? "TIME"
+                    : filterData === "최신순"
+                    ? "VIEWS"
+                    : "LIKES",
+            setData: setSkillData,
+            data: skillData,
+            query: searchInput,
+        });
+    };
+
+    /** skill blog 데이터 */
     const [skillData, setSkillData] = useState<skillDataProps>({
         article: [],
         total: 0,
     });
+    /** 검색어 */
     const [searchInput, setSearchInput] = useState<string>("");
-
-    const {} = useQuery("users", () =>
-        getBlog({
-            type: "TECH",
-            offset: 0,
-            limit: 0,
-            order:
-                filterData === "최신순"
-                    ? "TIME"
-                    : filterData === "최신순"
-                    ? "VIEWS"
-                    : "LIKES",
-            setData: setSkillData,
-            query: searchInput,
-        })
-    );
-
+    /** 필터 */
     const [filterData, setFilterData] = useState("최신순");
+
+    /** 필터 변경시 데이터 받아오기 */
     useEffect(() => {
-        getBlog({
-            type: "TECH",
-            offset: 0,
-            limit: 0,
-            order:
-                filterData === "최신순"
-                    ? "TIME"
-                    : filterData === "최신순"
-                    ? "VIEWS"
-                    : "LIKES",
-            setData: setSkillData,
-            query: searchInput,
-        });
+        getSkillData(30);
     }, [filterData]);
+
+    /** 맨 처음 데이터 받아오기 */
+    const {} = useQuery("users", () => getSkillData(30));
+
+    // const { status } = useInfiniteQuery(
+    //     "getAllAlbumList",
+    //     ({ pageParam = 0 }) => {
+    //         getConcatSkillData({ offset: pageParam, limit: 16 });
+    //     }
+    // );
 
     return (
         <>
@@ -72,19 +99,7 @@ const SkillBlog = () => {
                 <SearchFilter
                     onKeyDown={(e: React.KeyboardEvent) => {
                         if (e.keyCode === 13) {
-                            getBlog({
-                                type: "TECH",
-                                offset: 0,
-                                limit: 0,
-                                order:
-                                    filterData === "최신순"
-                                        ? "TIME"
-                                        : filterData === "최신순"
-                                        ? "VIEWS"
-                                        : "LIKES",
-                                setData: setSkillData,
-                                query: searchInput,
-                            });
+                            getSkillData(0);
                         }
                     }}
                     searchVal={searchInput}
@@ -103,6 +118,13 @@ const SkillBlog = () => {
                         />
                     ))}
                 </S.BlogContainer>
+                {/* {status === "error" && <div>error</div>}
+                {status === "loading" && <p>loading...</p>} */}
+                <Button
+                    value="더보기"
+                    state="GRAY"
+                    onClick={() => getConcatSkillData({ offset: 0, limit: 12 })}
+                />
             </S.MainContainer>
         </>
     );
