@@ -4,6 +4,7 @@ import App from "./App";
 import GlobalStyle from "@styles/global.style";
 import { BrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { CookiesProvider } from "react-cookie";
 
 const queryClient = new QueryClient();
 
@@ -13,8 +14,10 @@ const queryClient = new QueryClient();
 // }
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-    <QueryClientProvider client={queryClient}>
-        <GlobalStyle />
-        <RouterProvider router={App} />
-    </QueryClientProvider>
+    <CookiesProvider>
+        <QueryClientProvider client={queryClient}>
+            <GlobalStyle />
+            <RouterProvider router={App} />
+        </QueryClientProvider>
+    </CookiesProvider>
 );
