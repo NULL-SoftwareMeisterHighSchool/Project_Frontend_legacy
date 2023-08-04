@@ -1,3 +1,4 @@
+import { getCookie } from '@utils/cookies';
 import axios, { AxiosError } from 'axios';
 
 export const instance = axios.create({
@@ -7,7 +8,7 @@ export const instance = axios.create({
 
 instance.interceptors.request.use(
     (config) => {
-        const accessToken = localStorage.getItem("access");
+        const accessToken = getCookie("accessToken");
         const returnConfig = {
             ...config,
         };

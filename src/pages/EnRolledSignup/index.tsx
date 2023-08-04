@@ -56,7 +56,7 @@ const EnRolledSignup = () => {
         },
     });
 
-    const [pageNum, setPageNum] = useState(2);
+    const [pageNum, setPageNum] = useState(1);
 
     const [userData, setUserData] = useState({
         school: "",
