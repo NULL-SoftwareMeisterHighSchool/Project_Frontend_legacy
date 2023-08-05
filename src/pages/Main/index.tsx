@@ -11,7 +11,7 @@ import Dummy from "@fixtures/board.json";
 import { useQuery } from "react-query";
 import { getGit } from "@apis/users";
 import { getBlog } from "@apis/article";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as S from "./style";
 import TitlePath from "@components/common/TitlePath";
 import useDate from "@hooks/useDate";
@@ -75,21 +75,23 @@ const Main = () => {
             setData: setSkillData
         })
     );
-
-    if(gitData.score >= 10000){
-        setGitGrade('S');
-    }else if(gitData.score >= 5000) {
-        setGitGrade('A');
-    }else if(gitData.score >= 2000) {
-        setGitGrade('B');
-    }else if(gitData.score >= 800) {
-        setGitGrade('C');
-    }else if(gitData.score >= 200) {
-        setGitGrade('D');
-    }else if(gitData.score >= 50) {
-        setGitGrade('E');
-    }else{
-        setGitGrade('F');
+    
+    const setGrade = (score:number):string => {
+        if(score >= 10000){
+            return 'S';
+        }else if(score >= 5000) {
+            return 'A';
+        }else if(score >= 2000) {
+            return 'B';
+        }else if(score >= 800) {
+            return 'C';
+        }else if(score >= 200) {
+            return 'D';
+        }else if(score >= 50) {
+            return 'E';
+        }else{
+            return 'F';
+        } 
     }
 
     return (
@@ -99,7 +101,7 @@ const Main = () => {
                 <S.Score>
                     <CircularProgressbarWithChildren
                         value={gitData.score/100}
-                        text={gitGrade}
+                        text={setGrade(gitData.score)}
                         styles={buildStyles({
                             // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
                             strokeLinecap: "butt",
