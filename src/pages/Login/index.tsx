@@ -9,6 +9,8 @@ import Input from "@components/common/Input";
 import Button from "@components/common/Button";
 import { useNavigate } from "react-router-dom";
 import { postLogin } from "@apis/auth";
+import { setCookie } from "@utils/cookies";
+import { getExpiredCookieHours } from "@utils/expires";
 
 const Login = () => {
     const router = useNavigate();
@@ -26,7 +28,15 @@ const Login = () => {
     };
 
     const { mutate: loginMutate } = useMutation(postLogin, {
-        onSuccess: () => {
+        onSuccess: (res) => {
+            setCookie("accessToken", res.data.accessToken.token, {
+                path: "/",
+                expires: getExpiredCookieHours(res.data.accessToken.expiresAt),
+            });
+            setCookie("refreshToken", res.data.refresh.token, {
+                path: "/",
+                expires: getExpiredCookieHours(res.data.refresh.expiresAt),
+            });
             router("/login");
         },
         onError: () => {
