@@ -1,4 +1,4 @@
-import { patchEditPasswordProps } from "./users.type";
+import { patchEditPasswordProps, getGitProps } from "./users.type";
 import { instance } from "..";
 
 const router = `/users`;
@@ -13,4 +13,10 @@ export const patchEditPassword = async ({
     );
 
     return resPatchEditPassword;
+};
+
+export const getGit = async ({ setGitData }: getGitProps) => {
+    const resGetGit = await instance.get(`${router}/me/stat`,);
+    setGitData(resGetGit.data);
+    return resGetGit;
 };
