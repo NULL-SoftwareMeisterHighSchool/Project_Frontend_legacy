@@ -1,5 +1,8 @@
-import { getCookie } from '@utils/cookies';
-import axios, { AxiosError } from 'axios';
+import { getCookie, setCookie } from "@utils/cookies";
+import axios, { AxiosError } from "axios";
+import { useMutation } from "react-query";
+import { postRefresh } from "./auth";
+import { getExpiredCookieHours } from "@utils/expires";
 
 export const instance = axios.create({
     baseURL: `${import.meta.env.VITE_BASEURL}`,
@@ -23,23 +26,30 @@ instance.interceptors.request.use(
     (error: AxiosError) => Promise.reject(error)
 );
 
-// 리프레시 수정중
-// instance.interceptors.response.use(
-//     (response) => response,
-//     (error: AxiosError<AxiosError>) => {
-//         if (axios.isAxiosError(error) && error.response) {
-//             const { config } = error;
-//             const refreshToken = localStorage.getItem("refresh");
-//             if (
-//                 error.response.data.message === "Expired Token" ||
-//                 error.response.data.message === "Can Not Access"
-//             ) {
-//                 if (refreshToken) {
-                    
-//                 } else {
-//                     window.location.href = "/login";
-//                 }
-//             } else return Promise.reject(error);
-//         }
-//     }
-// );
+instance.interceptors.response.use(
+    (response) => response,
+    (error: AxiosError<AxiosError>) => {
+        if (axios.isAxiosError(error) && error.response) {
+            const {message } = error.response.data;
+            const refreshToken = getCookie("refreshToken");
+
+            if (message === "Expired Token" || message === "Can Not Access") {
+                if (refreshToken) {
+                    refreshMutate();
+                } else {
+                    window.location.href = "/login";
+                }
+            } else return Promise.reject(error);
+        }
+    }
+);
+
+const { mutate: refreshMutate } = useMutation(postRefresh, {
+    onSuccess: (data) => {
+        setCookie("accessToken", data.accessToken,{
+            path:"/",
+            expires:getExpiredCookieHours(data.expiresAt)
+        })
+    },
+    onError: () => {},
+});

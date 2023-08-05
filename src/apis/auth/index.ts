@@ -7,6 +7,7 @@ import {
 
 import { postLoginProps } from "./auth.type";
 import { instance } from "..";
+import { getCookie } from "@utils/cookies";
 
 const router = `/auth`;
 
@@ -53,10 +54,10 @@ export const postSignupStudent = async ({
 };
 
 export const postRefresh = async () => {
-    const response = await instance.post<AuthorizationResponse>(
+    const response = await instance.post(
         `${router}/refresh`,
         {
-            refreshToken: localStorage.getItem("refresh"),
+            refreshToken: getCookie("refreshToken"),
         }
     );
     return response.data;
