@@ -1,12 +1,11 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import { PostPropTypes } from "./index";
 import { color } from "@styles/theme.style";
 import { Body2 } from "@styles/text.style";
 
 
-export const Post = styled(Link)<PostPropTypes>`
+export const Post = styled(Link)<{padding?:string}>`
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;

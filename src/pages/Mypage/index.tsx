@@ -1,4 +1,4 @@
-import AppLayout from "@layouts/AppLayout";
+import TitlePath from "@components/common/TitlePath";
 import * as S from "./style";
 import skilldata from "@fixtures/skillBoard.json";
 import BlogPost from "@components/pages/SkillBlog/BlogPost";
@@ -8,6 +8,7 @@ import Dummy from "@fixtures/board.json";
 import { BodyStrong } from "@styles/text.style";
 import UpdateProfile from "@components/pages/Mypage/UpdateProfile";
 import { useState } from "react";
+import UserIcon from "@components/common/UserIcon";
 
 const Mypage = () => {
     const [updateProfileOpen, setUpdateProfileOpen] = useState(false);
@@ -15,11 +16,17 @@ const Mypage = () => {
         introduction: "대덕소마고 재학중인 디자이너입니다.",
         github: "https://github.com/asdf1234",
         portfolio: "https://hahahoho.com/pofol",
-        skill: ["React","Djanggo","Spring","Nest.js"],
+        skill: ["React","Djanggo","Spring","Nest.js"]
+    });
+    const [userData2, setUserData2] = useState({
+        name: "김규하",
+        email: "kwon@akdjf.kro.kr"
+
     });
     const skillBlog = skilldata.post;
     return (
-        <AppLayout title="마이페이지" path="Menu > 마이페이지">
+        <>
+            <TitlePath title="마이페이지" path="Menu > 마이페이지" />
             <UpdateProfile
                 val={updateProfileOpen}
                 setVal={setUpdateProfileOpen}
@@ -29,9 +36,9 @@ const Mypage = () => {
             <S.MypageContainer>
                 <S.User>
                     <div>
-                        <S.UserImg />
+                        <UserIcon backWidth="80px" iconWidth={44}/>
                         <S.UserIntro>
-                            <S.UserName>최승우</S.UserName>
+                            <S.UserName>{userData2.name}</S.UserName>
                             <S.UserDescript>
                                 {userData.introduction}
                             </S.UserDescript>
@@ -40,7 +47,7 @@ const Mypage = () => {
                             <S.UserContectInfo>
                                 <S.UserContectTitle>Email</S.UserContectTitle>
                                 <S.UserContect>
-                                    kwon282800@somein.kr
+                                    {userData2.email}
                                 </S.UserContect>
                             </S.UserContectInfo>
                             <S.UserContectInfo>
@@ -90,7 +97,7 @@ const Mypage = () => {
                     </S.PostContainer>
                 </S.Post>
             </S.MypageContainer>
-        </AppLayout>
+        </>
     );
 };
 

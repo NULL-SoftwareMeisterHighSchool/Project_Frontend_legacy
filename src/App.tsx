@@ -1,3 +1,4 @@
+import AppLayout from "@layouts/AppLayout";
 import Alarm from "@pages/Alarm";
 import Board from "@pages/Board";
 import BoardDetail from "@pages/BoardDetail";
@@ -11,12 +12,55 @@ import Password from "@pages/Password";
 import Ranking from "@pages/Ranking";
 import Setting from "@pages/Setting";
 import SkillBlog from "@pages/SkillBlog";
+import WriteBoard from "@pages/WriteBoard";
 import { createBrowserRouter } from "react-router-dom";
 
 const app = createBrowserRouter([
     {
         path: "/",
-        element: <Main />,
+        element: <AppLayout />,
+        children: [
+            {
+                path: "",
+                element: <Main />,
+            },
+            {
+                path: "mypage",
+                element: <Mypage />,
+            },
+            {
+                path: "profile/:id",
+                element: <Mypage />,
+            },
+            {
+                path: "ranking",
+                element: <Ranking />,
+            },
+            {
+                path: "alarm",
+                element: <Alarm />,
+            },
+            {
+                path: "blog",
+                element: <Board />,
+            },
+            {
+                path: "skill",
+                element: <SkillBlog />,
+            },
+            {
+                path: "blogdetail/:id",
+                element: <BoardDetail />,
+            },
+            {
+                path: "setting",
+                element: <Setting />,
+            },
+        ],
+    },
+    {
+      path:"/write",
+      element:<WriteBoard/>
     },
     {
         path: "/graduatesign",
@@ -31,40 +75,12 @@ const app = createBrowserRouter([
         element: <Login />,
     },
     {
-        path: "/mypage",
-        element: <Mypage />,
-    },
-    {
-        path:"/pwchange",
-        element:<Password/>
-    },
-    {
-        path: "/ranking",
-        element: <Ranking />,
-    },
-    {
-        path: "/alarm",
-        element: <Alarm />,
-    },
-    {
-        path: "/blog",
-        element: <Board />,
-    },
-    {
-        path: "/skill",
-        element: <SkillBlog />,
-    },
-    {
-        path: "/blogdetail",
-        element: <BoardDetail />,
-    },
-    {
-        path: "/setting",
-        element: <Setting />,
+        path: "/pwchange",
+        element: <Password />,
     },
     {
         path: "/*",
-        element: <Error/>,
+        element: <Error />,
     },
 ]);
 export default app;
