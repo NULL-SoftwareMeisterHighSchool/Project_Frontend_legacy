@@ -20,6 +20,8 @@ export const getBlog = async ({
     limit,
     order,
     setData,
+    data,
+    newData,
 }: getBlogProps) => {
     const response = await instance.get(
         `${router}?offfset=${offset}&limit=${limit}&type=${type}&authorID=${
@@ -28,7 +30,15 @@ export const getBlog = async ({
             duration_end ?? ""
         }&query=${query ?? ""}&order=${order}`
     );
-    setData(response.data);
+    const resData = response.data;
+    if (newData) {
+        setData(resData);
+    } else {
+        setData({
+            total: resData.total,
+            article: data.article.concat(resData.artocle),
+        });
+    }
 };
 
 export const postLike = async ({ id }: getBlogDetailProps) => {
