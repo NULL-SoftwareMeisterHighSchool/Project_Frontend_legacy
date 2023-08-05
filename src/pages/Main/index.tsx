@@ -10,43 +10,95 @@ import Record from "@components/pages/Main/Record";
 import Dummy from "@fixtures/board.json";
 import { useQuery } from "react-query";
 import { getGit } from "@apis/users";
+import { getBlog } from "@apis/article";
 import { useState } from "react";
 import * as S from "./style";
 import TitlePath from "@components/common/TitlePath";
+import useDate from "@hooks/useDate";
+
+type boardDataProps = {
+    article: blogType[];
+    total: number;
+};
+
+type blogType = {
+    id: number;
+    type: string;
+    title: string;
+    thumbnail: string;
+    summary: string;
+    author: {
+        id: number;
+        name: string;
+    };
+    createdAt: string;
+};
 
 const Main = () => {
-    let gitGrade = '';
+    const [gitGrade, setGitGrade] = useState('');
+    const [skillData, setSkillData] = useState<boardDataProps>({
+        article: [],
+        total: 0,
+    });
+
+    const [blogData, setBlogData] = useState<boardDataProps>({
+        article: [],
+        total: 0,
+    });
+
     const [gitData, setGitData] = useState({
         contributionCount: 100,
         starCount: 12,
         issueCount: 13,
         pullRequestCount: 14,
         contributedRepositoryCount: 15,
-        score: 110
+        score: 1000
     });
-    const { } = useQuery("userGit", () => getGit({ setGitData }));    
+    const { } = useQuery("userGit", () => getGit({ setGitData }));
+    
+    const {} = useQuery("GENERAL", () =>
+        getBlog({
+            type: "GENERAL",
+            offset: 0,
+            limit: 8,
+            order: "LIKES",
+            setData: setBlogData
+        })
+    );
+
+    const {} = useQuery("TECH", () =>
+        getBlog({
+            type: "TECH",
+            offset: 0,
+            limit: 8,
+            order: "LIKES",
+            setData: setSkillData
+        })
+    );
+
     if(gitData.score >= 10000){
-        gitGrade = 'S';
+        setGitGrade('S');
     }else if(gitData.score >= 5000) {
-        gitGrade = 'A';
+        setGitGrade('A');
     }else if(gitData.score >= 2000) {
-        gitGrade = 'B';
+        setGitGrade('B');
     }else if(gitData.score >= 800) {
-        gitGrade = 'C';
+        setGitGrade('C');
     }else if(gitData.score >= 200) {
-        gitGrade = 'D';
+        setGitGrade('D');
     }else if(gitData.score >= 50) {
-        gitGrade = 'E';
+        setGitGrade('E');
     }else{
-        gitGrade = 'F';
+        setGitGrade('F');
     }
+
     return (
         <>
             <TitlePath title="메인" path="Menu > 메인" primaryBase />
             <S.Github>
                 <S.Score>
                     <CircularProgressbarWithChildren
-                        value={gitData.score}
+                        value={gitData.score/100}
                         text={gitGrade}
                         styles={buildStyles({
                             // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
@@ -54,7 +106,7 @@ const Main = () => {
 
                             // How long animation takes to go from one percentage to another, in seconds
                             pathTransitionDuration: 0.5,
-
+                            textSize: '30px',
                             // Colors
                             pathColor: `rgba(0, 132, 219)`,
                             trailColor: "#EFF4F4",
@@ -86,12 +138,12 @@ const Main = () => {
                         to="/blog"
                     />
                     <S.Board>
-                        {Dummy.post.map((post) => (
+                        {blogData.article.map((post) => (
                             <Post
                                 id={post.id}
                                 title={post.title}
-                                name={post.name}
-                                date={post.date}
+                                name={post.author.name}
+                                date={useDate(post.createdAt).date}
                                 to=""
                             />
                         ))}
@@ -105,12 +157,12 @@ const Main = () => {
                         to="/skill"
                     />
                     <S.Board>
-                        {Dummy.post.map((post) => (
+                        {skillData.article.map((post) => (
                             <Post
                                 id={post.id}
                                 title={post.title}
-                                name={post.name}
-                                date={post.date}
+                                name={post.author.name}
+                                date={useDate(post.createdAt).date}
                                 to=""
                             />
                         ))}
