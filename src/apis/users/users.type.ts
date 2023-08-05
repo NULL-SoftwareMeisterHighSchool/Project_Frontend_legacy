@@ -3,6 +3,17 @@ export type patchEditPasswordProps = {
     newPassword: string;
 };
 
+export type getGitProps = {
+    setGitData: React.Dispatch<React.SetStateAction<{
+        contributionCount: number;
+        starCount: number;
+        issueCount: number;
+        pullRequestCount: number;
+        contributedRepositoryCount: number;
+        score: number;
+    }>
+    >;
+  
 export type putEditMeProps = {
     bio: string;
     stacks: string[];
