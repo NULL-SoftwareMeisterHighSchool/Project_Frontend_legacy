@@ -35,7 +35,7 @@ instance.interceptors.response.use(
 
             if (message === "Expired Token" || message === "Can Not Access") {
                 if (refreshToken) {
-                    refreshMutate();
+                    // refreshMutate();
                 } else {
                     window.location.href = "/login";
                 }
@@ -44,12 +44,12 @@ instance.interceptors.response.use(
     }
 );
 
-const { mutate: refreshMutate } = useMutation(postRefresh, {
-    onSuccess: (data) => {
-        setCookie("accessToken", data.accessToken,{
-            path:"/",
-            expires:getExpiredCookieHours(data.expiresAt)
-        })
-    },
-    onError: () => {},
-});
+// const { mutate: refreshMutate } = useMutation(postRefresh, {
+//     onSuccess: (data) => {
+//         setCookie("accessToken", data.accessToken,{
+//             path:"/",
+//             expires:getExpiredCookieHours(data.expiresAt)
+//         })
+//     },
+//     onError: () => {},
+// });
