@@ -1,46 +1,91 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AppLayout from "@layouts/AppLayout";
-import Dummy from "@fixtures/board.json";
 import * as S from "./style";
 import Post from "@components/common/Post";
-import SearchFilter from "@components/pages/Board/SearchFilter";
+import SearchFilter from "@components/pages/SkillBlog/SearchFilter";
 import { LeftArrow } from "@assets/images/icon/LeftArrow";
 import { RightArrow } from "@assets/images/icon/RightArrow";
 import { color } from "@styles/theme.style";
+import { getBlog } from "@apis/article";
+import useDate from "@hooks/useDate";
 import TitlePath from "@components/common/TitlePath";
 
+type blogDataProps = {
+    article: blogType[];
+    total: number;
+};
+type blogType = {
+    id: number;
+    type: string;
+    title: string;
+    thumbnail: string;
+    summary: string;
+    author: {
+        id: number;
+        name: string;
+    };
+    createdAt: string;
+};
+
 const Board = () => {
+    const getBlogData = (limit: number) => {
+        getBlog({
+            type: "GENERAL",
+            offset: 0,
+            limit: limit,
+            order:
+                filterData === "최신순"
+                    ? "TIME"
+                    : filterData === "최신순"
+                    ? "VIEWS"
+                    : "LIKES",
+            setData: setBlogData,
+            data: blogData,
+            query: searchInput,
+        });
+    };
+    
+    /** blog 데이터 */
+    const [blogData, setBlogData] = useState<blogDataProps>({
+        article: [],
+        total: 0,
+    });
+    /** 검색어 */
+    const [searchInput, setSearchInput] = useState<string>("");
+    /** 필터 */
+    const [filterData, setFilterData] = useState("최신순");
+    
+    /** 필터 변경시 데이터 받아오기 */
+    useEffect(() => {
+        getBlogData(30);
+    }, [filterData]);
+    
     return (
         <>
             <TitlePath title="게시판" path="Menu > 게시판" />
             <S.BoardContainer>
-                <SearchFilter />
+                <SearchFilter
+                    onKeyDown={(e: React.KeyboardEvent) => {
+                        if (e.keyCode === 13) {
+                            getBlogData(0);
+                        }
+                    }}
+                    searchVal={searchInput}
+                    searchSetVal={setSearchInput}
+                    setFilterData={setFilterData}
+                />
                 <S.Content>
-                    {Dummy.post.map((post) => (
+                    {blogData.article.map((post) => (
                         <Post
+                            key={post.id}
                             id={post.id}
-                            title={post.title}
-                            name={post.name}
-                            date={post.date}
-                            to=""
+                            name={post.author.name}
+                            title={post.summary}
+                            date={useDate(post.createdAt).date}
+                            to="/"
                         />
                     ))}
                 </S.Content>
-                <S.Pagination>
-                    <S.PaginationInfo>
-                        <S.ArrowButton>
-                            <LeftArrow width="16" fill={color.black} />
-                        </S.ArrowButton>
-                        <S.Number color="#0084DB">1</S.Number>
-                        <S.Number>2</S.Number>
-                        <S.Number>3</S.Number>
-                        <S.Number>4</S.Number>
-                        <S.Number>5</S.Number>
-                        <S.ArrowButton>
-                            <RightArrow width="16" fill={color.black} />
-                        </S.ArrowButton>
-                    </S.PaginationInfo>
-                </S.Pagination>
             </S.BoardContainer>
         </>
     );
