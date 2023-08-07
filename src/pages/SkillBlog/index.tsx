@@ -8,6 +8,8 @@ import { useQuery } from "react-query";
 import { getBlog } from "@apis/article";
 import useDate from "@hooks/useDate";
 import Button from "@components/common/Button";
+import { useInView } from "react-intersection-observer";
+
 type skillDataProps = {
     article: blogType[];
     total: number;
@@ -97,7 +99,7 @@ const SkillBlog = () => {
                 <SearchFilter
                     onKeyDown={(e: React.KeyboardEvent) => {
                         if (e.keyCode === 13) {
-                            getSkillData(0);
+                            getSkillData();
                         }
                     }}
                     searchVal={searchInput}
@@ -116,13 +118,7 @@ const SkillBlog = () => {
                         />
                     ))}
                 </S.BlogContainer>
-                {/* {status === "error" && <div>error</div>}
-                {status === "loading" && <p>loading...</p>} */}
-                <Button
-                    value="더보기"
-                    state="GRAY"
-                    onClick={() => getConcatSkillData({ offset: 0, limit: 12 })}
-                />
+                <div ref={ref}></div>
             </S.MainContainer>
         </>
     );
