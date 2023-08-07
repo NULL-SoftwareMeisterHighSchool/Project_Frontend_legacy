@@ -54,7 +54,6 @@ const SkillBlog = () => {
                 setData: setSkillData,
                 query: searchInput,
                 data: skillData,
-                newData,
             });
         } else {
             getBlog({
