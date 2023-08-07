@@ -38,3 +38,7 @@ export const putEditMe = async ({
     return resPutEditMe;
 };
 
+export const getUserMeTiny = async () => {
+    const res = await instance.get(`${router}/me/tiny`,);
+    return res;
+};
