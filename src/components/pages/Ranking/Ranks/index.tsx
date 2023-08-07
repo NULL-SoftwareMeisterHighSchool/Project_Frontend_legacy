@@ -2,44 +2,48 @@ import UserIcon from "@components/common/UserIcon";
 import * as S from "./style";
 import { Body2 } from "@styles/text.style";
 type Props = {
-    place: number;
     name: string;
-    studentNumber: number;
-    major: string;
     school: string;
-    classNumber: number;
+    admissionYear: number;
+    commitCount: number;
     score: number;
+    rank: number;
 };
 
 const Ranks = ({
-    place,
     name,
-    studentNumber,
-    major,
     school,
-    classNumber,
+    admissionYear,
+    commitCount,
     score,
+    rank,
 }: Props) => {
     return (
         <S.Container>
-            <S.Rank rank={place}>
-                <Body2>{place}</Body2>
+            <S.Rank rank={rank}>
+                <Body2>{rank}</Body2>
             </S.Rank>
             <div>
-                <UserIcon backWidth="40px"/>
+                <UserIcon backWidth="40px" />
                 <Body2>{name}</Body2>
             </div>
             <div>
-                <Body2>{studentNumber}</Body2>
+                <Body2>
+                    {school === "DSM"
+                        ? "대덕"
+                        : school === "GSM"
+                        ? "광주"
+                        : school === "DGSM"
+                        ? "대구"
+                        : "부산"}
+                    소프트웨어마이스터고
+                </Body2>
             </div>
             <div>
-                <Body2>{major}</Body2>
+                <Body2>{admissionYear}년</Body2>
             </div>
             <div>
-                <Body2>{school}SW마이스터고</Body2>
-            </div>
-            <div>
-                <Body2>{classNumber}기</Body2>
+                <Body2>{commitCount}</Body2>
             </div>
             <div>
                 <Body2>{score}점</Body2>
