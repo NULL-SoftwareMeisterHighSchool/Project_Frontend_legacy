@@ -53,7 +53,6 @@ const EnRolledSignup = () => {
             router("/login");
         },
         onError: (err) => {
-            console.log(err)
             alert("회원가입에 실패하였습니다.");
             setPageNum(1);
         },
