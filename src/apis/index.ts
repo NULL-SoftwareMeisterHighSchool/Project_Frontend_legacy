@@ -30,10 +30,10 @@ instance.interceptors.response.use(
     (response) => response,
     (error: AxiosError<AxiosError>) => {
         if (axios.isAxiosError(error) && error.response) {
-            const { message } = error.response.data;
+            const { message, status } = error.response.data;
             const refreshToken = getCookie("refreshToken");
 
-            if (message === "Expired Token" || message === "Can Not Access") {
+            if (message === "유효하지 않은 엑세스 토큰입니다" || status === 404) {
                 if (refreshToken) {
                     postRefresh().then((data) => {
                         setCookie("accessToken", data.accessToken, {
