@@ -39,7 +39,7 @@ const SkillBlog = () => {
     const [filterData, setFilterData] = useState("최신순");
 
     /** axios 연동 함수 */
-    const getConcatSkillData = (newData?: boolean) => {
+    const getSkillData = (newData?: boolean) => {
         if (newData) {
             getBlog({
                 type: "TECH",
@@ -76,11 +76,11 @@ const SkillBlog = () => {
 
     /** 필터 변경시 데이터 받아오기 */
     useEffect(() => {
-        getConcatSkillData();
+        getSkillData();
     }, [filterData]);
 
     useEffect(() => {
-        getConcatSkillData(true);
+        getSkillData(true);
     }, []);
 
     const [ref, inView] = useInView();
@@ -89,7 +89,7 @@ const SkillBlog = () => {
     useEffect(() => {
         if (inView && !loading) {
             setLoading(true);
-            getConcatSkillData();
+            getSkillData();
             setLoading(false);
         }
     }, [inView]);
@@ -100,7 +100,7 @@ const SkillBlog = () => {
                 <SearchFilter
                     onKeyDown={(e: React.KeyboardEvent) => {
                         if (e.keyCode === 13) {
-                            // getSkillData(0);
+                            getSkillData();
                         }
                     }}
                     searchVal={searchInput}
@@ -119,16 +119,7 @@ const SkillBlog = () => {
                         />
                     ))}
                 </S.BlogContainer>
-                {/* <Button
-                    value="더보기"
-                    state="GRAY"
-                    onClick={() => getConcatSkillData({ offset: 0, limit: 12 })}
-                /> */}
-
-                <div style={{ height: "1000px", backgroundColor: "red" }}>
-                    asd
-                </div>
-                <div ref={ref}>hello</div>
+                <div ref={ref}></div>
             </S.MainContainer>
         </>
     );
