@@ -18,6 +18,10 @@ export const User = styled.div`
         align-items: center;
         gap: 20px;
     }
+    @media (max-width:1200px) {
+        align-items: start;
+        flex-direction: column;
+    }
 `;
 
 export const ProfileUpdateBtn = styled.div`
@@ -30,6 +34,9 @@ export const ProfileUpdateBtn = styled.div`
     cursor: pointer;
     >p{
         color: ${color.grayDark2};
+    }
+    @media (max-width:1200px) {
+        margin: 40px 0 0 10px;
     }
 `;
 
@@ -63,6 +70,9 @@ export const UserContectSection = styled.div`
     justify-content: center;
     align-items: flex-start;
     gap: 12px;
+    @media (max-width:1250px){
+        padding: 0px 0px;
+    }
 `;
 
 export const UserContectInfo = styled.div`
