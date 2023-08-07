@@ -55,8 +55,7 @@ export type getBlogProps = {
     limit: number;
     order: string;
     setData: React.Dispatch<React.SetStateAction<skillDataProps>>;
-    data: skillDataProps;
-    newData?: boolean;
+    data?: skillDataProps;
 };
 
 export type postCommentType = {

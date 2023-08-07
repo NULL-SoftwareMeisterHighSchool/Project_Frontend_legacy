@@ -21,7 +21,6 @@ export const getBlog = async ({
     order,
     setData,
     data,
-    newData,
 }: getBlogProps) => {
     const response = await instance.get(
         `${router}?offfset=${offset}&limit=${limit}&type=${type}&authorID=${
@@ -31,7 +30,7 @@ export const getBlog = async ({
         }&query=${query ?? ""}&order=${order}`
     );
     const resData = response.data;
-    if (newData) {
+    if (data) {
         setData(resData);
     } else {
         setData({
