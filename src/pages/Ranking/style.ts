@@ -22,7 +22,7 @@ export const RanksContainer = styled.div`
 
 export const RankHeader = styled.div`
     display: grid;
-    grid-template-columns: 1fr 2.5fr 2fr 2fr 2.5fr 1fr 2fr;
+    grid-template-columns: 0.7fr 2fr 2fr 1.4fr 1fr 0.5fr;
     padding: 0px 12px;
     height: 50px;
     align-items: center;
@@ -39,48 +39,23 @@ export const RankHeader = styled.div`
     min-width: max-content;
     gap: 10px;
 
-    @media screen and (max-width: 1350px) {
-        grid-template-columns: 1fr 2.5fr 2fr 2fr 2.5fr 2fr;
-        > div {
-            &:nth-child(6) {
-                display: none;
-            }
+    @media screen and (max-width: 1400px) {
+        grid-template-columns: 0.7fr 2fr 2fr 1fr 0.5fr;
+        >div:nth-child(4){
+            display: none;
         }
     }
-
-    @media screen and (max-width: 1300px) {
-        grid-template-columns: 1fr 2.5fr 2fr 2.5fr 2fr;
-        > div {
-            &:nth-child(3) {
-                display: none;
-            }
-        }
-    }
-
     @media screen and (max-width: 1200px) {
-        grid-template-columns: 1fr 2.5fr 2fr 2fr;
-        > div {
-            &:nth-child(5) {
-                display: none;
-            }
+        grid-template-columns: 0.7fr 2fr 1fr 0.5fr;
+        >div:nth-child(3){
+            display: none;
+        }
+    }
+    @media screen and (max-width:1100px) {
+        grid-template-columns: 0.7fr 2fr 0.5fr;
+        >div:nth-child(6){
+            display: none;
         }
     }
 
-    @media screen and (max-width: 1100px) {
-        grid-template-columns: 1fr 2.5fr 2fr 2fr;
-        > div {
-            &:nth-child(4) {
-                display: none;
-            }
-        }
-    }
-
-    @media screen and (max-width: 1000px) {
-        grid-template-columns: 1fr 2.5fr 2fr;
-        > div {
-            &:nth-child(7) {
-                display: none;
-            }
-        }
-    }
 `;
