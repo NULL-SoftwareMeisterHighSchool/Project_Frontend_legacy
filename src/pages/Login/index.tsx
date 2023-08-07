@@ -29,18 +29,18 @@ const Login = () => {
 
     const { mutate: loginMutate } = useMutation(postLogin, {
         onSuccess: (res) => {
-            setCookie("accessToken", res.data.accessToken.token, {
+            setCookie("accessToken", res.data.access.token, {
                 path: "/",
-                expires: getExpiredCookieHours(res.data.accessToken.expiresAt),
+                expires: getExpiredCookieHours(res.data.access.expiresAt),
             });
             setCookie("refreshToken", res.data.refresh.token, {
                 path: "/",
                 expires: getExpiredCookieHours(res.data.refresh.expiresAt),
             });
-            router("/login");
+            router("/");
         },
         onError: () => {
-            alert("회원가입에 실패했습니다.");
+            alert("로그인에 실패했습니다.");
         },
     });
 
@@ -58,8 +58,8 @@ const Login = () => {
         <AuthLayout position="left">
             <div>
                 <S.Title>
-                    <BodyLarge>Sign In</BodyLarge>
-                    <TitleLarge>회원가입</TitleLarge>
+                    <BodyLarge>Log In</BodyLarge>
+                    <TitleLarge>로그인</TitleLarge>
                 </S.Title>
                 <S.InputContainer>
                     <Input

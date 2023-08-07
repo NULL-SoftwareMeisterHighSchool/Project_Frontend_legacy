@@ -47,7 +47,7 @@ export const postSignupStudent = async ({
 }: postSignupStudentProps) => {
     const resPostSignupStudent = await instance.post(
         `${router}/signup/student`,
-        { school, email, admissionYear, name, userID, password, githubID }
+        { school, email, admissionYear, name, accountName:userID, password, githubID }
     );
 
     return resPostSignupStudent;
