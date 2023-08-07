@@ -4,12 +4,12 @@ import BlogPost from "@components/pages/SkillBlog/BlogPost";
 import StackName from "@components/pages/Mypage/Stack";
 import Post from "@components/common/Post";
 import { BodyStrong } from "@styles/text.style";
-import UpdateProfile from "@components/pages/Mypage/UpdateProfile";
+import { SkillBlogDefaultImg } from "@assets/images/allfiles";
 import { useState } from "react";
 import { useQuery } from "react-query";
+import { delCookie } from "@utils/cookies"
 import useDate from "@hooks/useDate";
 import { getUserMe } from "@apis/users";
-import { SkillBlogDefaultImg } from "@assets/images/allfiles";
 import UserIcon from "@components/common/UserIcon";
 
 const Mypage = () => {
@@ -119,7 +119,12 @@ const Mypage = () => {
                     </div>
                     <S.BtnArea>
                         <S.Btn
-                            onClick={() => setUpdateProfileOpen(true)}
+                            onClick={() => {
+                                delCookie('refreshToken', {path : '/'});
+                                delCookie('accessToken', {path : '/'});
+                                alert("로그아웃");
+                                window.location.href = "/";
+                            }}
                         >
                             <BodyStrong>로그아웃</BodyStrong>
                         </S.Btn>
