@@ -13,7 +13,8 @@ export type getGitProps = {
         score: number;
     }>
     >;
-  
+};
+
 export type putEditMeProps = {
     bio: string;
     stacks: string[];
