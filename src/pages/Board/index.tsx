@@ -7,6 +7,7 @@ import { LeftArrow } from "@assets/images/icon/LeftArrow";
 import { RightArrow } from "@assets/images/icon/RightArrow";
 import { color } from "@styles/theme.style";
 import { getBlog } from "@apis/article";
+import Pagination from "react-js-pagination";
 import useDate from "@hooks/useDate";
 import TitlePath from "@components/common/TitlePath";
 
@@ -31,7 +32,7 @@ const Board = () => {
     const getBlogData = (limit: number) => {
         getBlog({
             type: "GENERAL",
-            offset: 0,
+            offset: (page - 1) * limit + 1,
             limit: limit,
             order:
                 filterData === "최신순"
@@ -48,18 +49,30 @@ const Board = () => {
     /** blog 데이터 */
     const [blogData, setBlogData] = useState<blogDataProps>({
         article: [],
-        total: 0,
+        total: 80,
     });
     /** 검색어 */
     const [searchInput, setSearchInput] = useState<string>("");
     /** 필터 */
     const [filterData, setFilterData] = useState("최신순");
     
-    /** 필터 변경시 데이터 받아오기 */
-    useEffect(() => {
-        getBlogData(30);
-    }, [filterData]);
+    const [page, setPage] = useState(1);
     
+    const handlePageChange = (page:number) => {
+        setPage(page);
+        //console.log(page);
+    };
+
+    /** 필터 변경시 데이터 받아오기 */
+    useEffect(()=>{
+            setPage(1);
+            getBlogData(8);
+    },[filterData]);
+
+    useEffect(()=>{
+        getBlogData(8);
+    },[page]);
+
     return (
         <>
             <TitlePath title="게시판" path="Menu > 게시판" />
@@ -67,6 +80,7 @@ const Board = () => {
                 <SearchFilter
                     onKeyDown={(e: React.KeyboardEvent) => {
                         if (e.keyCode === 13) {
+                            setPage(1);
                             getBlogData(0);
                         }
                     }}
@@ -86,6 +100,23 @@ const Board = () => {
                         />
                     ))}
                 </S.Content>
+                <Pagination
+                    activePage={page}
+                    itemsCountPerPage={8}
+                    totalItemsCount={blogData.total}
+                    pageRangeDisplayed={5}
+                    prevPageText={
+                        <S.ArrowButton>
+                            <LeftArrow width="16" fill={color.black} />
+                        </S.ArrowButton>
+                    }
+                    nextPageText={
+                        <S.ArrowButton>
+                            <RightArrow width="16" fill={color.black} />
+                        </S.ArrowButton>
+                    }
+                    onChange={handlePageChange}
+                />
             </S.BoardContainer>
         </>
     );
