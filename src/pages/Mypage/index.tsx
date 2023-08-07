@@ -93,13 +93,15 @@ const Mypage = () => {
             <S.MypageContainer>
                 <S.User>
                     <div>
-                        <UserIcon backWidth="80px" iconWidth={44}/>
-                        <S.UserIntro>
-                            <S.UserName>{userData.name}</S.UserName>
-                            <S.UserDescript>
-                                {userData.bio}
-                            </S.UserDescript>
-                        </S.UserIntro>
+                        <S.UserSection>
+                            <UserIcon backWidth="80px" iconWidth={44}/>
+                            <S.UserIntro>
+                                <S.UserName>{userData.name}</S.UserName>
+                                <S.UserDescript>
+                                    {userData.bio}
+                                </S.UserDescript>
+                            </S.UserIntro>
+                        </S.UserSection>
                         <S.UserContectSection>
                             <S.UserContectInfo>
                                 <S.UserContectTitle>Email</S.UserContectTitle>
@@ -115,11 +117,18 @@ const Mypage = () => {
                             </S.UserContectInfo>
                         </S.UserContectSection>
                     </div>
-                    <S.ProfileUpdateBtn
-                        onClick={() => setUpdateProfileOpen(true)}
-                    >
-                        <BodyStrong>프로필 수정</BodyStrong>
-                    </S.ProfileUpdateBtn>
+                    <S.BtnArea>
+                        <S.Btn
+                            onClick={() => setUpdateProfileOpen(true)}
+                        >
+                            <BodyStrong>로그아웃</BodyStrong>
+                        </S.Btn>
+                        <S.Btn
+                            onClick={() => setUpdateProfileOpen(true)}
+                        >
+                            <BodyStrong>프로필 수정</BodyStrong>
+                        </S.Btn>
+                    </S.BtnArea>
                 </S.User>
                 <S.Stack>
                     {userData.stacks.map(v=><StackName>{v}</StackName>)}
