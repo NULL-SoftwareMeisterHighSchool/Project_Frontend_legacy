@@ -68,7 +68,7 @@ const EnRolledSignup = () => {
         code: "",
         userID: "",
         password: "",
-        emailCode: true, // 수정 필요
+        emailCode: false, // 수정 필요
         githubID: "",
     });
 
