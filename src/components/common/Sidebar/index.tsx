@@ -30,11 +30,9 @@ export const Sidebar = () => {
         []
     );
     const [userData, setUserData] = useState({ id: 0, name: "" });
-    const [nowData, setNowData] = useState(false);
 
     const {} = useQuery("getUserMeTiny", getUserMeTiny, {
         onSuccess: (res) => {
-            setNowData(true);
             setUserData(res.data);
         },
         onError: () => {
@@ -45,7 +43,7 @@ export const Sidebar = () => {
     return (
         <>
             <S.Bar>
-                {nowData ? (
+                {userData.name ? (
                     <S.User>
                         <UserIcon backWidth="36px" iconWidth={20} />
                         <span>{userData.name}</span>
