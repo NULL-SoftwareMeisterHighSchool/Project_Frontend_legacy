@@ -22,6 +22,7 @@ const Input = ({
   txtBtn,
   onClick,
   onChange,
+  onKeyDown
 }: InputPropTypes) => {
   return (
     <div>
@@ -36,6 +37,7 @@ const Input = ({
         {txtBtn && <S.TxtBtn onClick={onClick}>{txtBtn}</S.TxtBtn>}
       </S.Titlebox>
       <S.Input
+        onKeyDown={onKeyDown}
         state={state}
         style={{ width }}
         onChange={onChange}

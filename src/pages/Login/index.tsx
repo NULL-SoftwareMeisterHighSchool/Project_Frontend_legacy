@@ -1,58 +1,97 @@
 import React from "react";
-import Eye from "@assets/images/pages/Eye.svg";
-import EyeClose from "@assets/images/pages/EyeClose.svg";
-import LoginIcon from "@assets/images/pages/LoginIcon.svg";
-import LoginImg from "@assets/images/pages/LoginImg.jpg";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import * as S from "./style";
+import { useMutation } from "react-query";
+
+import AuthLayout from "@layouts/AuthLayout";
+import { Body2, BodyLarge, BodyStrong, TitleLarge } from "@styles/text.style";
+import Input from "@components/common/Input";
+import Button from "@components/common/Button";
+import { useNavigate } from "react-router-dom";
+import { postLogin } from "@apis/auth";
+import { setCookie } from "@utils/cookies";
+import { getExpiredCookieHours } from "@utils/expires";
 
 const Login = () => {
-	const [isClicked, setIsClicked] = useState<boolean>(false);
+    const router = useNavigate();
+    const [userData, setUserData] = useState({
+        id: "",
+        password: "",
+    });
 
-	const handleClick = () => {
-		setIsClicked(!isClicked);
-	};
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setUserData({
+            ...userData,
+            [name]: value,
+        });
+    };
 
-	return (
-		<S.Container>
-			<S.LoginForm>
-				<S.Wrapper>
-					<S.Title>
-						<S.Subtitle>Log in</S.Subtitle>
-						<S.LoginTitle>로그인</S.LoginTitle>
-					</S.Title>
-					<S.Inputs>
-						<S.Id>
-							<S.Subtitle>아이디</S.Subtitle>
-							<S.InputBox>
-								<S.Input placeholder="아이디를 입력해 주세요" />
-							</S.InputBox>
-						</S.Id>
-						<S.Password>
-							<S.Subtitle>비밀번호</S.Subtitle>
-							<S.InputBox>
-								<S.Input
-									type={isClicked ? "text" : "password"}
-									placeholder="비밀번호를 입력해 주세요"
-								/>
-								<img onClick={handleClick} src={isClicked ? EyeClose : Eye} />
-							</S.InputBox>
-						</S.Password>
-					</S.Inputs>
-					<S.Auth>
-						<S.Subtitle>
-							회원이 아니신가요? <Link to="/Signup">회원가입</Link>
-						</S.Subtitle>
-						<S.LoginBtn>로그인</S.LoginBtn>
-					</S.Auth>
-				</S.Wrapper>
-			</S.LoginForm>
-			<S.LoginImage src={LoginImg}>
-				<img src={LoginIcon} />
-			</S.LoginImage>
-		</S.Container>
-	);
+    const { mutate: loginMutate } = useMutation(postLogin, {
+        onSuccess: (res) => {
+            setCookie("accessToken", res.data.access.token, {
+                path: "/",
+                expires: getExpiredCookieHours(res.data.access.expiresAt),
+            });
+            setCookie("refreshToken", res.data.refresh.token, {
+                path: "/",
+                expires: getExpiredCookieHours(res.data.refresh.expiresAt),
+            });
+            router("/");
+        },
+        onError: () => {
+            alert("로그인에 실패했습니다.");
+        },
+    });
+
+    const LoginOnClick = () => {
+        if (userData.id === "") {
+            alert("아이디를 입력해주세요.");
+        } else if (userData.password === "") {
+            alert("비밀번호를 입력해주세요.");
+        } else {
+            loginMutate(userData);
+        }
+    };
+
+    return (
+        <AuthLayout position="left">
+            <div>
+                <S.Title>
+                    <BodyLarge>Log In</BodyLarge>
+                    <TitleLarge>로그인</TitleLarge>
+                </S.Title>
+                <S.InputContainer>
+                    <Input
+                        title="아이디"
+                        width="100%"
+                        placeholder="아이디를 입력해 주세요"
+                        name="id"
+                        onChange={onChange}
+                    />
+                    <Input
+                        title="비밀번호"
+                        width="100%"
+                        placeholder="비밀번호를 입력해 주세요"
+                        name="password"
+                        onChange={onChange}
+                        type="password"
+                    />
+                </S.InputContainer>
+                <S.SubmitContainer>
+                    <div>
+                        <Body2>회원이신가요?</Body2>
+                        <BodyStrong>로그인</BodyStrong>
+                    </div>
+                    <Button
+                        height="48px"
+                        value="로그인"
+                        onClick={() => LoginOnClick()}
+                    />
+                </S.SubmitContainer>
+            </div>
+        </AuthLayout>
+    );
 };
 
 export default Login;
