@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { color } from "./theme.style";
 import reset from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
@@ -89,6 +90,26 @@ const GlobalStyle = createGlobalStyle`
         padding: 0px;
         border: 0px;
         vertical-align: baseline;
+    }
+
+    .CircularProgressbar {
+        width: 120px;
+        height: 120px;
+    }
+
+    .CircularProgressbar-text {
+        font-family: 'Pretendard';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 36px;
+        color: ${color.primaryBase};
+     }
+    
+    @media screen and (max-width: 1000px){
+        *{
+            display: none;
+        }
     }
 `;
 

@@ -4,6 +4,8 @@ import { BodyStrong, Title } from "@styles/text.style";
 import { Clear } from "@assets/images/icon/Clear";
 import Input from "@components/common/Input";
 import { useEffect, useState } from "react";
+import { useMutation } from "react-query";
+import { putEditMe } from "@apis/users";
 
 interface UpdateProfileProps {
     val: boolean;
@@ -78,6 +80,17 @@ const UpdateProfile = ({
         }
     };
 
+    const { mutate: updateMutate } = useMutation(putEditMe, {
+        onSuccess: () => {
+            setVal(false);
+            setUserData(userDataUpdate);
+        },
+        onError: () => {
+            alert("회원정보 수정 실패했습니다.");
+            setUserDataUpdate(userData);
+        },
+    });
+
     return (
         <>
             {val && (
@@ -149,15 +162,19 @@ const UpdateProfile = ({
                             </S.Skill>
                         ))}
                     </S.SkillContainer>
-                    {btnState ? (
-                        <S.UpdateBtn>
-                            <BodyStrong>프로필 수정하기</BodyStrong>
-                        </S.UpdateBtn>
-                    ) : (
-                        <S.UpdateBtn disabled>
-                            <BodyStrong>프로필 수정하기</BodyStrong>
-                        </S.UpdateBtn>
-                    )}
+                    <S.UpdateBtn
+                        disabled={!btnState}
+                        onClick={() =>
+                            updateMutate({
+                                bio: userData.introduction,
+                                stacks: userData.skill,
+                                githubURL: userData.github,
+                                portfolioURL: userData.portfolio,
+                            })
+                        }
+                    >
+                        <BodyStrong>프로필 수정하기</BodyStrong>
+                    </S.UpdateBtn>
                 </Modal>
             )}
         </>
