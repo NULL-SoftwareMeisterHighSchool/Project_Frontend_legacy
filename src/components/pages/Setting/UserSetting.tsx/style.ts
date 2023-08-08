@@ -33,8 +33,8 @@ export const Icon = styled.div`
     background-color: ${color.grayLight2};
     border-radius: 50%;
 `
-export const Title = styled.p<{ gray?: boolean }>`
+export const Title = styled.p<{ color:string }>`
     font-size: 14px;
     white-space: nowrap;
-    color: ${props => props.gray ? color.grayDark1 : "black"}
+    color: ${props => props.color ? props.color : "black"}
 `
