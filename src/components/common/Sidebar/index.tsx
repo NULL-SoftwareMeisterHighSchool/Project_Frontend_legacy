@@ -14,7 +14,7 @@ import { Edit } from "@assets/images/icon/Edit";
 import WritePopUp from "@components/common/WritePopUp";
 import UserIcon from "@components/common/UserIcon";
 
-import { SetStateAction, useCallback, useState } from "react";
+import { SetStateAction, useCallback, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getUserMeTiny } from "@apis/users";
 import Button from "../Button";
@@ -32,14 +32,16 @@ export const Sidebar = () => {
 
     const navigate = useNavigate();
 
-    const {} = useQuery("getUserMeTiny", getUserMeTiny, {
-        onSuccess: (res) => {
-            setUserData(res.data);
-        },
-        onError: () => {
-            console.log("Error");
-        },
-    });
+    useEffect(()=>{
+        const {} = useQuery("getUserMeTiny", getUserMeTiny, {
+            onSuccess: (res) => {
+                setUserData(res.data);
+            },
+            onError: () => {
+                console.log("Error");
+            },
+        });
+    },[]);
 
     return (
         <>

@@ -22,6 +22,11 @@ export const getGit = async ({ setGitData }: getGitProps) => {
     return resGetGit;
 };
 
+export const getUserMe = async () => {
+    const res = await instance.get(`${router}/me`,);
+    return res;
+};
+
 export const putEditMe = async ({
     bio,
     stacks,

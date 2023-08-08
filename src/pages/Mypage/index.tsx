@@ -1,83 +1,156 @@
 import TitlePath from "@components/common/TitlePath";
 import * as S from "./style";
-import skilldata from "@fixtures/skillBoard.json";
 import BlogPost from "@components/pages/SkillBlog/BlogPost";
 import StackName from "@components/pages/Mypage/Stack";
 import Post from "@components/common/Post";
-import Dummy from "@fixtures/board.json";
 import { BodyStrong } from "@styles/text.style";
-import UpdateProfile from "@components/pages/Mypage/UpdateProfile";
-import { useState } from "react";
+import { SkillBlogDefaultImg } from "@assets/images/allfiles";
+import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import { delCookie } from "@utils/cookies"
+import useDate from "@hooks/useDate";
+import { getUserMe } from "@apis/users";
 import UserIcon from "@components/common/UserIcon";
 
 const Mypage = () => {
     const [updateProfileOpen, setUpdateProfileOpen] = useState(false);
     const [userData, setUserData] = useState({
-        introduction: "대덕소마고 재학중인 디자이너입니다.",
-        github: "https://github.com/asdf1234",
-        portfolio: "https://hahahoho.com/pofol",
-        skill: ["React","Djanggo","Spring","Nest.js"]
-    });
-    const [userData2, setUserData2] = useState({
         name: "김규하",
-        email: "kwon@akdjf.kro.kr"
-
+        email: "kwon@akdjf.kro.kr",
+        bio: "대덕소마고 재학중인 디자이너입니다.",
+        githubURL: "https://github.com/asdf1234",
+        portfolioURL: "https://hahahoho.com/pofol",
+        stacks: ["React","Djanggo","Spring","Nest.js"],
+        articles: {
+            general:[
+                {
+                    id : 1,
+                    title: "나의 멋진 React 공부 일지",
+                    thumbnail: "",
+                    summary: "오늘 리액트 공부를 했다",
+                    author: {
+                        id: 1,
+                        name: "권강빈"
+                    },
+                    createdAt: "2016-10-27T17:13:40"
+                },
+                {
+                    id : 2,
+                    title: "나의 멋진 React 공부 일지",
+                    thumbnail: "",
+                    summary: "오늘 리액트 공부를 했다",
+                    author: {
+                        id: 1,
+                        name: "권강빈"
+                    },
+                    createdAt: "2016-10-27T17:13:40"
+                }
+            ],
+            tech:[
+                {
+                    id : 1,
+                    title: "나의 멋진 React 공부 일지",
+                    thumbnail: "",
+                    summary: "오늘 리액트 공부를 했다",
+                    author: {
+                        id: 1,
+                        name: "권강빈"
+                    },
+                    createdAt: "2016-10-27T17:13:40"
+                },
+                {
+                    id : 2,
+                    title: "나의 멋진 React 공부 일지",
+                    thumbnail: "",
+                    summary: "오늘 리액트 공부를 했다",
+                    author: {
+                        id: 1,
+                        name: "권강빈"
+                    },
+                    createdAt: "2016-10-27T17:13:40"
+                }
+            ]
+        }
     });
-    const skillBlog = skilldata.post;
+
+    useEffect(()=>{
+        const { } = useQuery("getUserMe", getUserMe, {
+            onSuccess: (res)=>{
+                setUserData(res.data);
+            },
+            onError: ()=>{
+                console.log("Error");
+            }
+        });
+    },[]);
     return (
         <>
             <TitlePath title="마이페이지" path="Menu > 마이페이지" />
-            <UpdateProfile
+            {/* <UpdateProfile
                 val={updateProfileOpen}
                 setVal={setUpdateProfileOpen}
                 userData={userData}
                 setUserData={setUserData}
-            />
+            /> */}
             <S.MypageContainer>
                 <S.User>
                     <div>
-                        <UserIcon backWidth="80px" iconWidth={44}/>
-                        <S.UserIntro>
-                            <S.UserName>{userData2.name}</S.UserName>
-                            <S.UserDescript>
-                                {userData.introduction}
-                            </S.UserDescript>
-                        </S.UserIntro>
+                        <S.UserSection>
+                            <UserIcon backWidth="80px" iconWidth={44}/>
+                            <S.UserIntro>
+                                <S.UserName>{userData.name}</S.UserName>
+                                <S.UserDescript>
+                                    {userData.bio}
+                                </S.UserDescript>
+                            </S.UserIntro>
+                        </S.UserSection>
                         <S.UserContectSection>
                             <S.UserContectInfo>
                                 <S.UserContectTitle>Email</S.UserContectTitle>
                                 <S.UserContect>
-                                    {userData2.email}
+                                    {userData.email}
                                 </S.UserContect>
                             </S.UserContectInfo>
                             <S.UserContectInfo>
                                 <S.UserContectTitle>Github</S.UserContectTitle>
                                 <S.UserContect>
-                                    {userData.github}
+                                    {userData.githubURL}
                                 </S.UserContect>
                             </S.UserContectInfo>
                         </S.UserContectSection>
                     </div>
-                    <S.ProfileUpdateBtn
-                        onClick={() => setUpdateProfileOpen(true)}
-                    >
-                        <BodyStrong>프로필 수정</BodyStrong>
-                    </S.ProfileUpdateBtn>
+                    <S.BtnArea>
+                        <S.Btn
+                            onClick={() => {
+                                delCookie('refreshToken', {path : '/'});
+                                delCookie('accessToken', {path : '/'});
+                                alert("로그아웃");
+                                window.location.href = "/";
+                            }}
+                        >
+                            <BodyStrong>로그아웃</BodyStrong>
+                        </S.Btn>
+                        <S.Btn
+                            onClick={() => setUpdateProfileOpen(true)}
+                        >
+                            <BodyStrong>프로필 수정</BodyStrong>
+                        </S.Btn>
+                    </S.BtnArea>
                 </S.User>
                 <S.Stack>
-                    {userData.skill.map(v=><StackName>{v}</StackName>)}
+                    {userData.stacks.map(v=><StackName>{v}</StackName>)}
                 </S.Stack>
                 <S.Blog>
                     <S.SubTitle>내가 작성한 블로그</S.SubTitle>
                     <S.BlogContainer>
-                        {skillBlog.map((data) => (
+                        {userData.articles.tech.map((data) => (
                             <BlogPost
                                 key={data.id}
                                 id={data.id}
-                                name={data.name}
+                                name={data.author.name}
                                 summary={data.summary}
-                                titleImg={data.titleImg}
-                                date={data.date}
+                                titleImg={data.thumbnail === "" ? SkillBlogDefaultImg : ""}
+                                date={useDate(data.createdAt).date}
                             />
                         ))}
                     </S.BlogContainer>
@@ -85,12 +158,12 @@ const Mypage = () => {
                 <S.Post>
                     <S.SubTitle>내가 작성한 게시물</S.SubTitle>
                     <S.PostContainer>
-                        {Dummy.post.map((post) => (
+                        {userData.articles.general.map((post) => (
                             <Post
                                 id={post.id}
                                 title={post.title}
-                                name={post.name}
-                                date={post.date}
+                                name={post.author.name}
+                                date={useDate(post.createdAt).date}
                                 to=""
                             />
                         ))}

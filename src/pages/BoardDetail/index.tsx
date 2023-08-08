@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { color } from '@styles/theme.style';
 import { useParams } from 'react-router-dom';
 import { Favorite } from '@assets/images/icon/Favorite';
@@ -45,7 +45,9 @@ const BoardDetail = () => {
         },
     ],
   });
-  const { } = useQuery("getBlogDetail", () => getBlogDetail({ setdata, id }));
+  useEffect(()=>{
+    const { } = useQuery("getBlogDetail", () => getBlogDetail({ setdata, id }));
+  },[]);
   return (
     <>
       {
