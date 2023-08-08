@@ -1,32 +1,42 @@
 import React, { useEffect, useState } from "react";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import * as S from "./style";
-import { postWrite } from "@apis/article";
 import Toast from "@components/pages/WriteBoard/Toast";
-import { articleTypeAtom } from "@atoms/articleType";
-import {
-    RecoilRoot,
-    atom,
-    selector,
-    useRecoilState,
-    useRecoilValue,
-  } from 'recoil';
+import { getboardDetail, patchWrite } from '@apis/article';
+import { useParams } from "react-router-dom";
 
 const UpdateBoard = () => {
+    const { id } = useParams();
     const [title, setTitle] = useState("");
-    const articleType = useRecoilValue(articleTypeAtom);
+    const [articleType, setArticleType] = useState("GENERAL");
     const [blogContent, setBlogContent] = useState(
         "## 내용을 입력해주세요.\n이것은 내용입니다. 호호호"
     );
-    const { mutate: writeMutate } = useMutation(postWrite, {
+    const { mutate: patchwriteMutate } = useMutation(patchWrite, {
         onSuccess: ()=>{
-            alert("글 작성 성공");
+            alert("글 수정 성공");
             window.location.href = "/";
         },
         onError: ()=>{
-            alert("글 작성 실패!!!");
+            alert("글 수정 실패!!!");
         }
     });
+    const { refetch } = useQuery("getUpdate", ()=>getboardDetail(id), {
+        onSuccess: (res)=>{
+            setTitle(res.data.title);
+            setArticleType(res.data.articleType);
+            setBlogContent(res.data.body);
+        },
+        onError: ()=>{
+            console.log("Error");
+        },
+        enabled: false
+    });
+
+    useEffect(() => {
+        refetch();
+    }, []);
+
     return (
         <>
             <S.Header>
@@ -36,7 +46,7 @@ const UpdateBoard = () => {
                     }
                 </S.STitle>
                 <S.Post onClick={()=>{
-                    writeMutate({title, articleType, blogContent})
+                    patchwriteMutate({id, title, articleType, blogContent})
                 }}>글 게시하기</S.Post>
             </S.Header>
             <S.TitleInput
@@ -51,4 +61,4 @@ const UpdateBoard = () => {
     );
 };
 
-export default WriteBoard;
+export default UpdateBoard;
