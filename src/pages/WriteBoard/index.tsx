@@ -3,10 +3,18 @@ import { useMutation } from "react-query";
 import * as S from "./style";
 import { postWrite } from "@apis/article";
 import Toast from "@components/pages/WriteBoard/Toast";
+import { articleTypeAtom } from "@atoms/articleType";
+import {
+    RecoilRoot,
+    atom,
+    selector,
+    useRecoilState,
+    useRecoilValue,
+  } from 'recoil';
 
 const WriteBoard = () => {
     const [title, setTitle] = useState("");
-    const [articleType, setArticleType] = useState("GENERAL");
+    const articleType = useRecoilValue(articleTypeAtom);
     const [blogContent, setBlogContent] = useState(
         "## 내용을 입력해주세요.\n이것은 내용입니다. 호호호"
     );
