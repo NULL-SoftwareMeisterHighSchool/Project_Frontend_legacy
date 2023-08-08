@@ -5,6 +5,13 @@ import GlobalStyle from "@styles/global.style";
 import { BrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { CookiesProvider } from "react-cookie";
+import {
+    RecoilRoot,
+    atom,
+    selector,
+    useRecoilState,
+    useRecoilValue,
+  } from 'recoil';
 
 const queryClient = new QueryClient();
 
@@ -14,10 +21,12 @@ const queryClient = new QueryClient();
 // }
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-    <CookiesProvider>
-        <QueryClientProvider client={queryClient}>
-            <GlobalStyle />
-            <RouterProvider router={App} />
-        </QueryClientProvider>
-    </CookiesProvider>
+    <RecoilRoot>
+        <CookiesProvider>
+            <QueryClientProvider client={queryClient}>
+                <GlobalStyle />
+                <RouterProvider router={App} />
+            </QueryClientProvider>
+        </CookiesProvider>
+    </RecoilRoot>
 );
