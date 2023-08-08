@@ -113,7 +113,7 @@ const SkillBlog = () => {
                             id={data.id}
                             name={data.author.name}
                             summary={data.summary}
-                            titleImg={data.thumbnail ?? SkillBlogDefaultImg}
+                            titleImg={data.thumbnail===""? SkillBlogDefaultImg : data.thumbnail}
                             date={useDate(data.createdAt).date}
                         />
                     ))}
