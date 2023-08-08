@@ -41,10 +41,10 @@ instance.interceptors.response.use(
                             expires: getExpiredCookieHours(data.expiresAt),
                         });
                     }).catch(()=>{
-                        window.location.href = "/login"
+                        // window.location.href = "/login"
                     });
                 } else {
-                    window.location.href = "/login";
+                    // window.location.href = "/login";
                 }
             } else return Promise.reject(error);
         }

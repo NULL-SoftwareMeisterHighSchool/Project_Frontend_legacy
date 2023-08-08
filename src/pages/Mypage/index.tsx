@@ -5,7 +5,8 @@ import StackName from "@components/pages/Mypage/Stack";
 import Post from "@components/common/Post";
 import { BodyStrong } from "@styles/text.style";
 import { SkillBlogDefaultImg } from "@assets/images/allfiles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import { delCookie } from "@utils/cookies"
 import useDate from "@hooks/useDate";
 import { getUserMe } from "@apis/users";
@@ -75,15 +76,16 @@ const Mypage = () => {
     });
 
     const {articles,name, email, ...changeUserData} = userData;
-
-    const { } = useQuery("getUserMe", getUserMe, {
-        onSuccess: (res)=>{
-            setUserData(res.data);
-        },
-        onError: ()=>{
-            console.log("Error");
-        }
-    });
+    useEffect(()=>{
+        const { } = useQuery("getUserMe", getUserMe, {
+            onSuccess: (res)=>{
+                setUserData(res.data);
+            },
+            onError: ()=>{
+                console.log("Error");
+            }
+        });
+    },[]);
     return (
         <>
             <TitlePath title="마이페이지" path="Menu > 마이페이지" />

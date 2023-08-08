@@ -7,7 +7,6 @@ import "react-circular-progressbar/dist/styles.css";
 import Post from "@components/common/Post";
 import Banner from "@components/pages/Main/Banner";
 import Record from "@components/pages/Main/Record";
-import Dummy from "@fixtures/board.json";
 import { useQuery } from "react-query";
 import { getGit } from "@apis/users";
 import { getBlog } from "@apis/article";
@@ -54,27 +53,29 @@ const Main = () => {
         contributedRepositoryCount: 15,
         score: 1000
     });
-    const { } = useQuery("userGit", () => getGit({ setGitData }));
+    useEffect(()=>{
+        const { } = useQuery("userGit", () => getGit({ setGitData }));
     
-    const {} = useQuery("GENERAL", () =>
-        getBlog({
-            type: "GENERAL",
-            offset: 0,
-            limit: 8,
-            order: "LIKES",
-            setData: setBlogData
-        })
-    );
+        const {} = useQuery("GENERAL", () =>
+            getBlog({
+                type: "GENERAL",
+                offset: 0,
+                limit: 8,
+                order: "LIKES",
+                setData: setBlogData
+            })
+        );
 
-    const {} = useQuery("TECH", () =>
-        getBlog({
-            type: "TECH",
-            offset: 0,
-            limit: 8,
-            order: "LIKES",
-            setData: setSkillData
-        })
-    );
+        const {} = useQuery("TECH", () =>
+            getBlog({
+                type: "TECH",
+                offset: 0,
+                limit: 8,
+                order: "LIKES",
+                setData: setSkillData
+            })
+        );
+    },[]);
     
     const setGrade = (score:number):string => {
         if(score >= 10000){
