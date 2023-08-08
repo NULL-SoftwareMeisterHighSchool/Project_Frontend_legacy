@@ -68,3 +68,10 @@ export type postWriteType = {
     articleType : string;
     blogContent : string;
 }
+
+export type patchWriteType = {
+    id : string | undefined;
+    title : string;
+    articleType : string;
+    blogContent : string;
+}
