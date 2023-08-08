@@ -260,10 +260,14 @@ const EnRolledSignup = () => {
                         })}
                 </S.InputContainer>
                 <S.SubmitContainer>
-                    <div>
-                        <Body2>회원이신가요?</Body2>
-                        <BodyStrong>로그인</BodyStrong>
-                    </div>
+                    {pageNum === 1 && (
+                        <div>
+                            <Body2>회원이신가요?</Body2>
+                            <BodyStrong onClick={() => router("/login")}>
+                                로그인
+                            </BodyStrong>
+                        </div>
+                    )}
                     <Button
                         height="48px"
                         value={pageNum === 1 ? "다음" : "회원가입"}

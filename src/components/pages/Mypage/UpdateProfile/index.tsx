@@ -4,33 +4,31 @@ import { BodyStrong, Title } from "@styles/text.style";
 import { Clear } from "@assets/images/icon/Clear";
 import Input from "@components/common/Input";
 import { useEffect, useState } from "react";
-import { useMutation } from "react-query";
 import { putEditMe } from "@apis/users";
+import { useMutation } from "react-query";
 
 interface UpdateProfileProps {
     val: boolean;
     setVal: React.Dispatch<React.SetStateAction<boolean>>;
     userData: UserDateType;
-    setUserData: React.Dispatch<React.SetStateAction<UserDateType>>;
 }
 interface UserDateType {
-    introduction: string;
-    github: string;
-    portfolio: string;
-    skill: string[];
+    bio: string;
+    githubURL: string;
+    portfolioURL: string;
+    stacks: string[];
 }
 const UpdateProfile = ({
     val,
     setVal,
     userData,
-    setUserData, //추후에 연동할것을 생각하여 미리 prop으로 받음
 }: UpdateProfileProps) => {
     const [inputSkill, setInutSkill] = useState<string>("");
     const [userDataUpdate, setUserDataUpdate] = useState<UserDateType>({
-        introduction: "",
-        github: "",
-        portfolio: "",
-        skill: [],
+        bio: "",
+        githubURL: "",
+        portfolioURL: "",
+        stacks: [],
     });
     const [btnState, setBtnState] = useState<boolean>(false);
 
@@ -38,11 +36,12 @@ const UpdateProfile = ({
         if (inputSkill.trim()) {
             setUserDataUpdate({
                 ...userDataUpdate,
-                skill: [inputSkill.trim(), ...userDataUpdate.skill],
+                stacks: [inputSkill.trim(), ...userDataUpdate.stacks],
             });
             setInutSkill("");
         }
     };
+
     const skillOnchange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInutSkill(e.target.value);
     };
@@ -54,40 +53,37 @@ const UpdateProfile = ({
         });
     };
     useEffect(() => {
-        setUserDataUpdate({ ...userData, introduction: userData.introduction });
+        setUserDataUpdate({ ...userData, bio: userData.bio });
     }, []);
 
     useEffect(() => {
         changeBtnState();
     }, [userDataUpdate]);
+
     const changeBtnState = () => {
-        console.log(userData.skill, userDataUpdate.skill);
-        const arr1 = userData.skill;
-        const arr2 = userDataUpdate.skill;
+        const arr1 = userData.stacks;
+        const arr2 = userDataUpdate.stacks;
 
         if (
-            userDataUpdate.github === userData.github &&
-            userDataUpdate.introduction === userData.introduction &&
-            userDataUpdate.portfolio === userData.portfolio &&
+            userDataUpdate.githubURL === userData.githubURL &&
+            userDataUpdate.bio === userData.bio &&
+            userDataUpdate.portfolioURL === userData.portfolioURL &&
             arr1.length === arr2.length &&
             arr1.every((value, idx) => value === arr2[idx])
         ) {
             setBtnState(false);
-            console.log("true");
         } else {
             setBtnState(true);
-            console.log("false");
         }
     };
 
     const { mutate: updateMutate } = useMutation(putEditMe, {
         onSuccess: () => {
             setVal(false);
-            setUserData(userDataUpdate);
         },
         onError: () => {
             alert("회원정보 수정 실패했습니다.");
-            setUserDataUpdate(userData);
+            //setUserDataUpdate(userData);
         },
     });
 
@@ -102,33 +98,33 @@ const UpdateProfile = ({
                     <Input
                         width="100%"
                         title="한줄소개"
-                        name="introduction"
+                        name="bio"
                         placeholder="한줄소개를 입력해주세요"
                         onChange={onChange}
-                        value={userDataUpdate.introduction}
+                        value={userDataUpdate.bio}
                     />
                     <Input
                         width="100%"
                         title="Github 링크"
-                        name="github"
+                        name="githubURL"
                         placeholder="Github 링크를 입력해주세요"
                         onChange={onChange}
-                        value={userDataUpdate.github}
+                        value={userDataUpdate.githubURL}
                     />
                     <Input
                         width="100%"
                         title="포트폴리오 링크"
-                        name="portfolio"
+                        name="portfolioURL"
                         placeholder="포트폴리오 링크를 입력해주세요"
                         onChange={onChange}
-                        value={userDataUpdate.portfolio}
+                        value={userDataUpdate.portfolioURL}
                     />
                     <S.InputBtnContainer>
                         <div>
                             <Input
                                 width="100%"
                                 title="기술스택"
-                                name="skill"
+                                name="stacks"
                                 placeholder="기술스택을 입력하여 추가해주세요"
                                 onChange={skillOnchange}
                                 value={inputSkill}
@@ -144,14 +140,14 @@ const UpdateProfile = ({
                         </button>
                     </S.InputBtnContainer>
                     <S.SkillContainer>
-                        {userDataUpdate.skill.map((skill, i) => (
+                        {userDataUpdate.stacks.map((skill, i) => (
                             <S.Skill key={skill + i}>
                                 <BodyStrong>{skill}</BodyStrong>
                                 <p
                                     onClick={() => {
                                         setUserDataUpdate({
                                             ...userDataUpdate,
-                                            skill: userDataUpdate.skill.filter(
+                                            stacks: userDataUpdate.stacks.filter(
                                                 (_, index) => index !== i
                                             ),
                                         });
@@ -166,10 +162,10 @@ const UpdateProfile = ({
                         disabled={!btnState}
                         onClick={() =>
                             updateMutate({
-                                bio: userData.introduction,
-                                stacks: userData.skill,
-                                githubURL: userData.github,
-                                portfolioURL: userData.portfolio,
+                                bio: userDataUpdate.bio,
+                                stacks: userDataUpdate.stacks,
+                                githubURL: userDataUpdate.githubURL,
+                                portfolioURL: userDataUpdate.portfolioURL,
                             })
                         }
                     >
