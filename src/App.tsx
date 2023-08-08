@@ -9,6 +9,7 @@ import Login from "@pages/Login";
 import Main from "@pages/Main";
 import Mypage from "@pages/Mypage";
 import Password from "@pages/Password";
+import PersonInfo from "@pages/PersonInfo";
 import Ranking from "@pages/Ranking";
 import Setting from "@pages/Setting";
 import SkillBlog from "@pages/SkillBlog";
@@ -81,6 +82,9 @@ const app = createBrowserRouter([
     {
         path: "/*",
         element: <Error />,
-    },
+    },{
+        path:"/개인정보처리방침",
+        element:<PersonInfo/>
+    }
 ]);
 export default app;
