@@ -7,12 +7,11 @@ import { BodyStrong } from "@styles/text.style";
 import { SkillBlogDefaultImg } from "@assets/images/allfiles";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { delCookie } from "@utils/cookies"
+import { delCookie } from "@utils/cookies";
 import useDate from "@hooks/useDate";
 import { getUserMe } from "@apis/users";
 import UserIcon from "@components/common/UserIcon";
 import UpdateProfile from "@components/pages/Mypage/UpdateProfile";
-import { useQuery } from "react-query";
 
 const Mypage = () => {
     const [updateProfileOpen, setUpdateProfileOpen] = useState(false);
@@ -22,70 +21,72 @@ const Mypage = () => {
         bio: "대덕소마고 재학중인 디자이너입니다.",
         githubURL: "https://github.com/asdf1234",
         portfolioURL: "https://hahahoho.com/pofol",
-        stacks: ["React","Djanggo","Spring","Nest.js"],
+        stacks: ["React", "Djanggo", "Spring", "Nest.js"],
         articles: {
-            general:[
+            general: [
                 {
-                    id : 1,
+                    id: 1,
                     title: "나의 멋진 React 공부 일지",
                     thumbnail: "",
                     summary: "오늘 리액트 공부를 했다",
                     author: {
                         id: 1,
-                        name: "권강빈"
+                        name: "권강빈",
                     },
-                    createdAt: "2016-10-27T17:13:40"
+                    createdAt: "2016-10-27T17:13:40",
                 },
                 {
-                    id : 2,
+                    id: 2,
                     title: "나의 멋진 React 공부 일지",
                     thumbnail: "",
                     summary: "오늘 리액트 공부를 했다",
                     author: {
                         id: 1,
-                        name: "권강빈"
+                        name: "권강빈",
                     },
-                    createdAt: "2016-10-27T17:13:40"
-                }
+                    createdAt: "2016-10-27T17:13:40",
+                },
             ],
-            tech:[
+            tech: [
                 {
-                    id : 1,
+                    id: 1,
                     title: "나의 멋진 React 공부 일지",
                     thumbnail: "",
                     summary: "오늘 리액트 공부를 했다",
                     author: {
                         id: 1,
-                        name: "권강빈"
+                        name: "권강빈",
                     },
-                    createdAt: "2016-10-27T17:13:40"
+                    createdAt: "2016-10-27T17:13:40",
                 },
                 {
-                    id : 2,
+                    id: 2,
                     title: "나의 멋진 React 공부 일지",
                     thumbnail: "",
                     summary: "오늘 리액트 공부를 했다",
                     author: {
                         id: 1,
-                        name: "권강빈"
+                        name: "권강빈",
                     },
-                    createdAt: "2016-10-27T17:13:40"
-                }
-            ]
-        }
+                    createdAt: "2016-10-27T17:13:40",
+                },
+            ],
+        },
     });
 
-    const {articles,name, email, ...changeUserData} = userData;
-    useEffect(()=>{
-        const { } = useQuery("getUserMe", getUserMe, {
-            onSuccess: (res)=>{
-                setUserData(res.data);
-            },
-            onError: ()=>{
-                console.log("Error");
-            }
-        });
-    },[]);
+    const { articles, name, email, ...changeUserData } = userData;
+    const { refetch } = useQuery("getUserMe", getUserMe, {
+        onSuccess: (res) => {
+            setUserData(res.data);
+        },
+        onError: () => {
+            console.log("Error");
+        },
+        enabled: false,
+    });
+    useEffect(() => {
+        refetch();
+    }, []);
     return (
         <>
             <TitlePath title="마이페이지" path="Menu > 마이페이지" />
@@ -98,20 +99,16 @@ const Mypage = () => {
                 <S.User>
                     <div>
                         <S.UserSection>
-                            <UserIcon backWidth="80px" iconWidth={44}/>
+                            <UserIcon backWidth="80px" iconWidth={44} />
                             <S.UserIntro>
                                 <S.UserName>{userData.name}</S.UserName>
-                                <S.UserDescript>
-                                    {userData.bio}
-                                </S.UserDescript>
+                                <S.UserDescript>{userData.bio}</S.UserDescript>
                             </S.UserIntro>
                         </S.UserSection>
                         <S.UserContectSection>
                             <S.UserContectInfo>
                                 <S.UserContectTitle>Email</S.UserContectTitle>
-                                <S.UserContect>
-                                    {userData.email}
-                                </S.UserContect>
+                                <S.UserContect>{userData.email}</S.UserContect>
                             </S.UserContectInfo>
                             <S.UserContectInfo>
                                 <S.UserContectTitle>Github</S.UserContectTitle>
@@ -124,23 +121,23 @@ const Mypage = () => {
                     <S.BtnArea>
                         <S.Btn
                             onClick={() => {
-                                delCookie('refreshToken', {path : '/'});
-                                delCookie('accessToken', {path : '/'});
+                                delCookie("refreshToken", { path: "/" });
+                                delCookie("accessToken", { path: "/" });
                                 alert("로그아웃");
                                 window.location.href = "/";
                             }}
                         >
                             <BodyStrong>로그아웃</BodyStrong>
                         </S.Btn>
-                        <S.Btn
-                            onClick={() => setUpdateProfileOpen(true)}
-                        >
+                        <S.Btn onClick={() => setUpdateProfileOpen(true)}>
                             <BodyStrong>프로필 수정</BodyStrong>
                         </S.Btn>
                     </S.BtnArea>
                 </S.User>
                 <S.Stack>
-                    {userData.stacks.map(v=><StackName>{v}</StackName>)}
+                    {userData.stacks.map((v) => (
+                        <StackName>{v}</StackName>
+                    ))}
                 </S.Stack>
                 <S.Blog>
                     <S.SubTitle>내가 작성한 블로그</S.SubTitle>
@@ -151,7 +148,11 @@ const Mypage = () => {
                                 id={data.id}
                                 name={data.author.name}
                                 summary={data.summary}
-                                titleImg={data.thumbnail === "" ? SkillBlogDefaultImg : ""}
+                                titleImg={
+                                    data.thumbnail === ""
+                                        ? SkillBlogDefaultImg
+                                        : ""
+                                }
                                 date={useDate(data.createdAt).date}
                             />
                         ))}

@@ -32,16 +32,19 @@ export const Sidebar = () => {
 
     const navigate = useNavigate();
 
-    useEffect(()=>{
-        const {} = useQuery("getUserMeTiny", getUserMeTiny, {
-            onSuccess: (res) => {
-                setUserData(res.data);
-            },
-            onError: () => {
-                console.log("Error");
-            },
-        });
-    },[]);
+    const { refetch } = useQuery("getUserMeTiny", getUserMeTiny, {
+        onSuccess: (res) => {
+            setUserData(res.data);
+        },
+        onError: () => {
+            console.log("Error");
+        },
+        enabled: false,
+    });
+
+    useEffect(() => {
+        refetch();
+    }, []);
 
     return (
         <>
