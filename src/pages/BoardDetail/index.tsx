@@ -12,9 +12,8 @@ import UserIcon from "@components/common/UserIcon";
 import View from "@components/pages/BoardDetail/Viewer";
 import CommentWrite from "@components/pages/BoardDetail/Comment";
 import * as S from "./style";
-import { useQuery } from "react-query";
-import { getboardDetail } from "@apis/article";
-import { postLike } from "@apis/article";
+import { useMutation, useQuery } from "react-query";
+import { getboardDetail, postLike } from "@apis/article";
 import useDate from "@hooks/useDate";
 
 const BoardDetail = () => {
@@ -29,7 +28,7 @@ const BoardDetail = () => {
             id: 2,
             name: "권강빈",
         },
-        isLiked: true,
+        isLiked: false,
         isAuthor: true,
         likes: 12,
         commentCount: 11,
@@ -44,6 +43,15 @@ const BoardDetail = () => {
                 createdAt: "2016-10-27T17:13:40",
             },
         ],
+    });
+
+    const { mutateAsync: likeMutate } = useMutation(postLike,{
+        onSuccess: ()=>{
+            console.log("Success");
+        },
+        onError: ()=>{
+            console.error("Error");
+        }
     });
 
     const { refetch } = useQuery(
@@ -82,18 +90,19 @@ const BoardDetail = () => {
                     <S.Line />
                     <S.IconSection>
                         <S.Icons>
-                            <S.IconInfo>
+                            <S.IconInfo
+                            onClick={() => {
+                                likeMutate
+                            }}>
                                 {data.isLiked ? (
                                     <Favorite
                                         fill={color.critical}
                                         width="24px"
-                                        onClick={() => postLike}
                                     />
                                 ) : (
                                     <Favorite
                                         fill={color.grayBase}
                                         width="24px"
-                                        onClick={() => postLike}
                                     />
                                 )}
                                 {data.isLiked}
