@@ -11,6 +11,8 @@ import { delCookie } from "@utils/cookies"
 import useDate from "@hooks/useDate";
 import { getUserMe } from "@apis/users";
 import UserIcon from "@components/common/UserIcon";
+import UpdateProfile from "@components/pages/Mypage/UpdateProfile";
+import { useQuery } from "react-query";
 
 const Mypage = () => {
     const [updateProfileOpen, setUpdateProfileOpen] = useState(false);
@@ -73,6 +75,7 @@ const Mypage = () => {
         }
     });
 
+    const {articles,name, email, ...changeUserData} = userData;
     useEffect(()=>{
         const { } = useQuery("getUserMe", getUserMe, {
             onSuccess: (res)=>{
@@ -86,12 +89,11 @@ const Mypage = () => {
     return (
         <>
             <TitlePath title="마이페이지" path="Menu > 마이페이지" />
-            {/* <UpdateProfile
+            <UpdateProfile
                 val={updateProfileOpen}
                 setVal={setUpdateProfileOpen}
-                userData={userData}
-                setUserData={setUserData}
-            /> */}
+                userData={changeUserData}
+            />
             <S.MypageContainer>
                 <S.User>
                     <div>
