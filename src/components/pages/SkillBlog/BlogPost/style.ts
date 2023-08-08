@@ -13,7 +13,7 @@ export const MainContainer = styled.div`
   > img {
     width: 100%;
     height: 171px;
-    object-fill: cover;
+    object-fit: cover;
     border-radius: 8px;
   }
 `;

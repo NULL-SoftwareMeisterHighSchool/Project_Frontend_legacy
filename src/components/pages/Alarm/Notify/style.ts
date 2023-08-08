@@ -1,12 +1,11 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import { NotifyPropTypes } from "./index";
 import { color } from "@styles/theme.style";
 import { Body, BodyStrong } from "@styles/text.style";
 
 
-export const Notify = styled(Link)<NotifyPropTypes>`
+export const Notify = styled(Link)`
 	display: flex;
 	flex-direction: row;
 	align-items: flex-start;
@@ -24,11 +23,6 @@ export const Notify = styled(Link)<NotifyPropTypes>`
 	&:hover{
 		background-color: ${color.grayLight2};
 	}
-`;
-
-export const Profile = styled.img`
-	width: 40px;
-	height: 40px;
 `;
 
 export const NotifyInfo = styled.div`

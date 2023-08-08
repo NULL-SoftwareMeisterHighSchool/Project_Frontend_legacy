@@ -12,14 +12,45 @@ export const MypageContainer = styled.div`
 export const User = styled.div`
     display: flex;
     align-items: center;
-    gap: 20px;
+    justify-content: space-between;
+    >div{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    @media (max-width:1200px) {
+        align-items: start;
+        flex-direction: column;
+    }
 `;
 
-export const UserImg = styled.div`
-    width: 80px;
-    height: 80px;
-    border-radius: 80px;
-    background-color: ${color.grayDark2};
+export const UserSection = styled.div`
+    display: flex;
+    align-items: center;
+    min-width: max-content;
+    gap: 20px
+`;
+
+export const BtnArea = styled.div`
+    display: flex;
+    gap: 6px
+`;
+
+export const Btn = styled.div`
+    padding: 14px 20px;
+    min-width: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ${color.grayLight2};
+    border-radius: 8px;
+    cursor: pointer;
+    >p{
+        color: ${color.grayDark2};
+    }
+    @media (max-width:1200px) {
+        margin: 40px 0 0 10px;
+    }
 `;
 
 export const UserIntro = styled.div`
@@ -29,7 +60,17 @@ export const UserIntro = styled.div`
     gap: 4px;
 `;
 
+export const UserInformation = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 12px;
+`;
+
 export const UserName = styled(Title)`
+`;
+
+export const Email = styled(Body2)`
+    color: ${color.grayDark1};
 `;
 
 export const UserDescript = styled(BodyLarge)`
@@ -42,6 +83,9 @@ export const UserContectSection = styled.div`
     justify-content: center;
     align-items: flex-start;
     gap: 12px;
+    @media (max-width:1350px){
+        padding: 0px 12px;
+    }
 `;
 
 export const UserContectInfo = styled.div`
@@ -92,4 +136,5 @@ export const Post = styled.div`
 export const PostContainer = styled.div`
     display: flex;
     flex-direction: column;
+    width: 100%;
 `;
