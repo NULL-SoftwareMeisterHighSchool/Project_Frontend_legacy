@@ -1,5 +1,5 @@
 import { getBlogDetailProps, getBlogProps } from "./type";
-import { postCommentType, postWriteType } from "./type";
+import { postCommentType, postWriteType, patchWriteType } from "./type";
 import { instance } from "..";
 
 const router = `/articles`;
@@ -7,6 +7,11 @@ const router = `/articles`;
 export const getBlogDetail = async ({ setdata, id }: getBlogDetailProps) => {
     const response = await instance.get(`${router}/${id}`);
     setdata(response.data);
+    return response;
+};
+
+export const getboardDetail = async ( id : string | undefined ) => {
+    const response = await instance.get(`${router}/${id}`);
     return response;
 };
 
@@ -56,6 +61,19 @@ export const postWrite = async ({
     blogContent
 }:postWriteType) => {
     await instance.post(`${router}/`, {
+        title, 
+        articleType, 
+        blogContent
+    });
+};
+
+export const patchWrite = async ({
+    id,
+    title,
+    articleType,
+    blogContent
+}:patchWriteType) => {
+    await instance.patch(`${router}/${id}`, {
         title, 
         articleType, 
         blogContent

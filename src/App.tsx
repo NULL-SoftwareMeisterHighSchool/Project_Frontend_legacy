@@ -14,6 +14,7 @@ import Ranking from "@pages/Ranking";
 import Setting from "@pages/Setting";
 import SkillBlog from "@pages/SkillBlog";
 import WriteBoard from "@pages/WriteBoard";
+import UpdateBoard from "@pages/UpdateBoard";
 import { createBrowserRouter } from "react-router-dom";
 
 const app = createBrowserRouter([
@@ -61,7 +62,11 @@ const app = createBrowserRouter([
     },
     {
       path:"/write",
-      element:<WriteBoard/>
+      element:<UpdateBoard/>
+    },
+    {
+        path:"/updateblog/:id",
+        element:<WriteBoard/>
     },
     {
         path: "/graduatesign",
