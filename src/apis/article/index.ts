@@ -25,7 +25,7 @@ export const getBlog = async ({
     limit,
     order,
     setData,
-    data,
+    data, // 일반 블로그는 사용하면 안됨. 기술블로그만 사용
 }: getBlogProps) => {
     const response = await instance.get(
         `${router}?offfset=${offset}&limit=${limit}&type=${type}&authorID=${
@@ -36,12 +36,12 @@ export const getBlog = async ({
     );
     const resData = response.data;
     if (data) {
-        setData(resData);
-    } else {
         setData({
             total: resData.total,
             article: data.article.concat(resData.artocle),
         });
+    } else {
+        setData(resData);
     }
 };
 
