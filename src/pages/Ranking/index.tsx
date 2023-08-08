@@ -16,7 +16,6 @@ type rankingDataType = {
 };
 
 const Ranking = () => {
-    const {} = useQuery("users", () => getRank({ setRankData, filterData }));
     const [rankData, setRankData] = useState<rankingDataType[]>([]);
 
     const [filterData, setFilterData] = useState({
@@ -25,6 +24,7 @@ const Ranking = () => {
     });
     useEffect(() => {
         getRank({ setRankData, filterData });
+        const {} = useQuery("users", () => getRank({ setRankData, filterData }));
     }, [filterData]);
 
     return (
