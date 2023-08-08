@@ -5,13 +5,7 @@ import GlobalStyle from "@styles/global.style";
 import { BrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { CookiesProvider } from "react-cookie";
-import {
-    RecoilRoot,
-    atom,
-    selector,
-    useRecoilState,
-    useRecoilValue,
-  } from 'recoil';
+import { RecoilRoot } from 'recoil';
 
 const queryClient = new QueryClient();
 
