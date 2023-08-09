@@ -62,3 +62,16 @@ export type postCommentType = {
     id: string | undefined;
     body: string;
 }
+
+export type postWriteType = {
+    title : string;
+    articleType : string;
+    blogContent : string;
+}
+
+export type patchWriteType = {
+    id : string | undefined;
+    title : string;
+    articleType : string;
+    blogContent : string;
+}

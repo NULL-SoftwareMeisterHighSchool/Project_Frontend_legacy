@@ -4,10 +4,8 @@ import BlogPost from "@components/pages/SkillBlog/BlogPost";
 import { SkillBlogDefaultImg } from "@assets/images/allfiles";
 import TitlePath from "@components/common/TitlePath";
 import React, { useEffect, useState } from "react";
-import { useQuery } from "react-query";
 import { getBlog } from "@apis/article";
 import useDate from "@hooks/useDate";
-import Button from "@components/common/Button";
 import { useInView } from "react-intersection-observer";
 
 type skillDataProps = {
@@ -113,7 +111,7 @@ const SkillBlog = () => {
                             id={data.id}
                             name={data.author.name}
                             summary={data.summary}
-                            titleImg={data.thumbnail ?? SkillBlogDefaultImg}
+                            titleImg={data.thumbnail===""? SkillBlogDefaultImg : data.thumbnail}
                             date={useDate(data.createdAt).date}
                         />
                     ))}

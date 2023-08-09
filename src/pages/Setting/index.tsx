@@ -10,8 +10,10 @@ import { RemoveCircle } from "@assets/images/icon/RemoveCircle";
 import { useState } from "react";
 import Modal from "@components/common/modal";
 import TitlePath from "@components/common/TitlePath";
+import { useNavigate } from "react-router-dom";
 
 const Setting = () => {
+    const navigate = useNavigate();
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     return (
         <>
@@ -57,7 +59,9 @@ const Setting = () => {
                         />
                     }
                     colorType={color.grayDark1}
-                    onClick={() => {}}
+                    onClick={() => {
+                        navigate('/개인정보처리방침')
+                    }}
                 />
                 <UserSetting
                     title="회원 탈퇴"
