@@ -16,6 +16,8 @@ const CommentWrite = ({
     const { mutateAsync: commentMutate } = useMutation(postComment, {
         onSuccess: () => {
           console.log("Success");
+          alert("댓글 작성 성공");
+          setBody("");
         },
         onError: () => {
           alert('댓글작성 실패');
@@ -36,8 +38,6 @@ const CommentWrite = ({
                         if (e.key === "Enter" && !e.shiftKey && body.length > 0) {
                             e.preventDefault();
                             commentMutate({ id, body });
-                            alert("댓글 작성 성공");
-                            setBody("");
                         }
                     }}/>
                 </div>
@@ -47,14 +47,11 @@ const CommentWrite = ({
                     ()=>{
                         if(body.length > 0){
                             commentMutate({ id, body });
-                            alert("댓글 작성 성공");
-                            setBody("");
-                        }
-                        else{
-                            alert("빈칸입니다");
                         }
                     }
-                }/>
+                }
+                disabled={body.length < 0 ? true : false}
+                />
             </S.InputBtnContainer>
         </S.CommentInfo>
     );
