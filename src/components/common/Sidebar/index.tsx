@@ -13,11 +13,11 @@ import { Setting } from "@assets/images/icon/Setting";
 import { Edit } from "@assets/images/icon/Edit";
 import WritePopUp from "@components/common/WritePopUp";
 import UserIcon from "@components/common/UserIcon";
-
+import { useSetRecoilState } from "recoil";
+import { profileIdAtom } from "@atoms/profile"
 import { SetStateAction, useCallback, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getUserMeTiny } from "@apis/users";
-import Button from "../Button";
 import { useNavigate } from "react-router-dom";
 import { BodyStrong } from "@styles/text.style";
 
@@ -29,12 +29,13 @@ export const Sidebar = () => {
         []
     );
     const [userData, setUserData] = useState({ id: 0, name: "" });
-
+    const setMyId = useSetRecoilState(profileIdAtom);
     const navigate = useNavigate();
 
     const { refetch } = useQuery("getUserMeTiny", getUserMeTiny, {
         onSuccess: (res) => {
             setUserData(res.data);
+            setMyId(res.data.id);
         },
         onError: () => {
             console.log("Error");
@@ -114,7 +115,7 @@ export const Sidebar = () => {
                             <Alarm width={24} />
                         </Option> */}
                         <Option
-                            to="/mypage"
+                            to={"/profile/"+userData.id}
                             pagename="마이페이지"
                             category={category}
                             onSelect={onSelect}
