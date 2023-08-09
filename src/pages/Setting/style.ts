@@ -23,6 +23,7 @@ export const UserBtnContainer = styled.div`
     display: flex;
     gap: 12px;
     > button {
+        cursor: pointer;
         padding: 14px;
         border-radius: 8px;
         width: 100%;
