@@ -2,11 +2,15 @@ import UserIcon from "@components/common/UserIcon";
 import { More } from "@assets/images/icon/More";
 import { Delete } from "@assets/images/icon/Delete";
 import { CommentStateType } from "./comment.type";
-import { useState } from "react";
+import { deleteComment } from "@apis/article";
+import { useMutation } from "react-query";
+import { useState, useEffect } from "react";
+
 import Modal from "@components/common/modal";
 import * as S from "./style";
 
 export interface ComentType {
+  commentID: number;
   username: string;
   content: String;
   date: String;
@@ -16,6 +20,7 @@ export interface ComentType {
 }
 
 const Comment = ({
+  commentID,
   username,
   content,
   date,
@@ -25,6 +30,15 @@ const Comment = ({
 }: ComentType) => {
   const [commentOpen, setCommentOpen] = useState<boolean>(false);
   const [modal, setModal] = useState<boolean>(false);
+  const { mutateAsync: deleteCommentMutate } = useMutation(deleteComment, {
+    onSuccess: ()=>{
+      alert("삭제 성공");
+    },
+    onError: ()=>{
+      alert("삭제 실패");
+    },
+  });
+
   return (
     <>
       {commentOpen && (
@@ -37,7 +51,9 @@ const Comment = ({
             <button onClick={()=>{
               setCommentOpen(false);
             }}>취소</button>
-            <button>댓글 삭제하기</button>
+            <button onClick={()=>{
+              deleteCommentMutate(commentID);
+            }}>댓글 삭제하기</button>
           </S.UserBtnContainer>
         </Modal>
       )}

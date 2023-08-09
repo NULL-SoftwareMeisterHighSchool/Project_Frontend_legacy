@@ -16,10 +16,13 @@ import Comment from "@components/pages/BoardDetail/Comment";
 import * as S from "./style";
 import { useMutation, useQuery } from "react-query";
 import { getboardDetail, postLike } from "@apis/article";
+import { articleIdAtom } from "@atoms/articleId";
+import { useSetRecoilState } from "recoil"; 
 import useDate from "@hooks/useDate";
 
 const BoardDetail = () => {
     const { id } = useParams();
+    const setBlogId = useSetRecoilState(articleIdAtom);
     const [showPopUp, setShowPopUp] = useState<boolean>(false);
     const [blogOpen, setBlogOpen] = useState<boolean>(false);
     const [data, setdata] = useState({
@@ -72,6 +75,7 @@ const BoardDetail = () => {
     
     useEffect(() => {
         refetch();
+        setBlogId(String(id));
     }, []);
 
     return (
@@ -175,6 +179,7 @@ const BoardDetail = () => {
                         {data.comments.map((post, index) => (
                             <Comment
                                 key={index}
+                                commentID = {post.commentID}
                                 username={post.author.name}
                                 content={post.content}
                                 to={"/profile/" + post.author.id}
