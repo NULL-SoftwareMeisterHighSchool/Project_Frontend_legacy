@@ -1,9 +1,37 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
 import { color } from "@styles/theme.style";
-import { TitleLarge2, Body2, BodyLarge2, SubTitle } from "@styles/text.style";
+import { Title ,TitleLarge2, Body2, BodyLarge2, SubTitle } from "@styles/text.style";
 
+export const UseTitleContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+`;
+export const UserTitle = styled(Title)`
+    color: ${color.critical};
+`;
+export const UserSubTitle = styled(BodyLarge2)`
+    color: ${color.critical};
+`;
+
+export const UserBtnContainer = styled.div`
+    display: flex;
+    gap: 12px;
+    > button {
+        padding: 14px;
+        border-radius: 8px;
+        width: 100%;
+        &:first-child {
+            background-color: ${color.grayLight2};
+            color: ${color.grayDark2};
+        }
+        &:last-child {
+            background-color: ${color.critical};
+            color: white;
+        }
+    }
+`;
 
 export const Post = styled.main`
     display: flex;
@@ -20,7 +48,7 @@ export const Thumbnail = styled.div`
     gap: 40px;
 `; 
 
-export const Title = styled(TitleLarge2)`
+export const PostTitle = styled(TitleLarge2)`
     width: fit-content;
     height: 57px;
 
@@ -98,6 +126,13 @@ export const IconText = styled(Body2)`
 `;
 
 export const UpdateIcon = styled(Link)`
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+`;
+
+export const DeleteIcon = styled.div`
     display: flex;
     align-items: center;
     gap: 4px;

@@ -8,6 +8,7 @@ import { Eye } from "@assets/images/icon/Eye";
 import { Edit } from "@assets/images/icon/Edit";
 import { More } from "@assets/images/icon/More";
 import { Delete } from "@assets/images/icon/Delete";
+import Modal from "@components/common/modal";
 import Comment from "@components/common/Comment";
 import SharePopUp from "@components/pages/SharePopUp";
 import UserIcon from "@components/common/UserIcon";
@@ -21,6 +22,7 @@ import useDate from "@hooks/useDate";
 const BoardDetail = () => {
     const { id } = useParams();
     const [showPopUp, setShowPopUp] = useState<boolean>(false);
+    const [blogOpen, setBlogOpen] = useState<boolean>(false);
     const [data, setdata] = useState({
         title: "Awesome 한 이것 사용 후기",
         views: 12,
@@ -76,10 +78,24 @@ const BoardDetail = () => {
     return (
         <>
             {showPopUp && <SharePopUp setShowPopUp={setShowPopUp} />}
+            {blogOpen && (
+                <Modal setVal={setBlogOpen}>
+                    <S.UseTitleContainer>
+                        <S.UserTitle>정말로 게시글을 삭제하실건가요?</S.UserTitle>
+                        <S.UserSubTitle>
+                        삭제한 게시글은 되돌릴 수 없어요.
+                        </S.UserSubTitle>
+                    </S.UseTitleContainer>
+                    <S.UserBtnContainer>
+                        <button>취소</button>
+                        <button>게시글 삭제하기</button>
+                    </S.UserBtnContainer>
+                </Modal>
+            )}
             <>
                 <S.Post>
                     <S.Thumbnail>
-                        <S.Title>{data.title}</S.Title>
+                        <S.PostTitle>{data.title}</S.PostTitle>
                         <S.Profile>
                             <UserIcon backWidth="48px" iconWidth={26} />
                             <S.ProfileInfo>
@@ -136,7 +152,9 @@ const BoardDetail = () => {
                                             fill={color.primaryBase}
                                         >게시글 수정하기</S.UpdateText>
                                     </S.UpdateIcon>
-                                    <S.UpdateIcon to={"/updateblog/"+id}>
+                                    <S.DeleteIcon onClick={()=>{
+                                        setBlogOpen(true);
+                                    }}>
                                         <Delete
                                             fill={color.critical}
                                             width="24px"
@@ -144,7 +162,7 @@ const BoardDetail = () => {
                                         <S.UpdateText
                                             fill={color.critical}
                                         >게시글 삭제하기</S.UpdateText>
-                                    </S.UpdateIcon>
+                                    </S.DeleteIcon>
                                 </>    
                             ) : (
                                 ""
