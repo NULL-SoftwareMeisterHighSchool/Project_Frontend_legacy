@@ -22,7 +22,6 @@ const BoardDetail = () => {
     const { id } = useParams();
     const [showPopUp, setShowPopUp] = useState<boolean>(false);
     const [blogOpen, setBlogOpen] = useState<boolean>(false);
-    const [commentOpen, setCommentOpen] = useState<boolean>(false);
     const [data, setdata] = useState({
         title: "Awesome 한 이것 사용 후기",
         views: 12,
@@ -87,22 +86,10 @@ const BoardDetail = () => {
                         </S.UserSubTitle>
                     </S.UseTitleContainer>
                     <S.UserBtnContainer>
-                        <button>취소</button>
+                        <button onClick={()=>{
+                            setBlogOpen(false);
+                        }}>취소</button>
                         <button>게시글 삭제하기</button>
-                    </S.UserBtnContainer>
-                </Modal>
-            )}
-            {commentOpen && (
-                <Modal setVal={setCommentOpen}>
-                    <S.UseTitleContainer>
-                        <S.UserTitle>정말로 댓글을 삭제하실건가요?</S.UserTitle>
-                        <S.UserSubTitle>
-                        삭제한 댓글은 되돌릴 수 없어요.
-                        </S.UserSubTitle>
-                    </S.UseTitleContainer>
-                    <S.UserBtnContainer>
-                        <button>취소</button>
-                        <button>댓글 삭제하기</button>
                     </S.UserBtnContainer>
                 </Modal>
             )}

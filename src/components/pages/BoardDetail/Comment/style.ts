@@ -2,8 +2,39 @@
 import styled, { css, FlattenSimpleInterpolation } from "styled-components";
 
 import { CommentStateType } from "./comment.type";
-import { BodyStrong, Body2, Body } from "@styles/text.style";
+import { BodyStrong, Body2, Body, Title, BodyLarge2 } from "@styles/text.style";
 import { color } from "@styles/theme.style";
+
+export const UseTitleContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+`;
+export const UserTitle = styled(Title)`
+    color: ${color.critical};
+`;
+export const UserSubTitle = styled(BodyLarge2)`
+    color: ${color.critical};
+`;
+
+export const UserBtnContainer = styled.div`
+    display: flex;
+    gap: 12px;
+    > button {
+        padding: 14px;
+        border-radius: 8px;
+        width: 100%;
+        &:first-child {
+            background-color: ${color.grayLight2};
+            color: ${color.grayDark2};
+        }
+        &:last-child {
+            background-color: ${color.critical};
+            color: white;
+        }
+    }
+`;
+
 
 export const Comment = styled.div<{ state : CommentStateType }>`
     position: relative;
