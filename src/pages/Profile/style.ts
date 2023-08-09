@@ -82,7 +82,7 @@ export const UserContectSection = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    gap: 12px;
+    gap: 12px 0px;
     @media (max-width:1350px){
         padding: 0px 12px;
     }
@@ -90,10 +90,12 @@ export const UserContectSection = styled.div`
 
 export const UserContectInfo = styled.div`
     display: flex;
+    align-items: center;
+    gap: 12px;
 `;
 
 export const UserContectTitle = styled(Body2)`
-    width: 64px;
+    width: min-content;
     color: ${color.grayDark1};
 `;
 
