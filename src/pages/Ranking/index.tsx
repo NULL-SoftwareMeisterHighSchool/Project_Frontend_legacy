@@ -22,9 +22,19 @@ const Ranking = () => {
         user: "전체",
         school: "전체 학교",
     });
+    const { refetch } = useQuery(
+        "users",
+        () => getRank({ setRankData, filterData }),
+        {
+            enabled: false,
+        }
+    );
+
+    useEffect(()=>{
+        refetch();
+    },[])
     useEffect(() => {
         getRank({ setRankData, filterData });
-        const {} = useQuery("users", () => getRank({ setRankData, filterData }));
     }, [filterData]);
 
     return (
