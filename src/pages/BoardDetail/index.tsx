@@ -6,14 +6,13 @@ import { ChatBubble } from "@assets/images/icon/ChatBubble";
 import { Share } from "@assets/images/icon/Share";
 import { Eye } from "@assets/images/icon/Eye";
 import { Edit } from "@assets/images/icon/Edit";
-import { More } from "@assets/images/icon/More";
 import { Delete } from "@assets/images/icon/Delete";
 import Modal from "@components/common/modal";
-import Comment from "@components/common/Comment";
 import SharePopUp from "@components/pages/SharePopUp";
 import UserIcon from "@components/common/UserIcon";
 import View from "@components/pages/BoardDetail/Viewer";
-import CommentWrite from "@components/pages/BoardDetail/Comment";
+import CommentWrite from "@components/pages/BoardDetail/CommentWrite";
+import Comment from "@components/pages/BoardDetail/Comment";
 import * as S from "./style";
 import { useMutation, useQuery } from "react-query";
 import { getboardDetail, postLike } from "@apis/article";
@@ -23,6 +22,7 @@ const BoardDetail = () => {
     const { id } = useParams();
     const [showPopUp, setShowPopUp] = useState<boolean>(false);
     const [blogOpen, setBlogOpen] = useState<boolean>(false);
+    const [commentOpen, setCommentOpen] = useState<boolean>(false);
     const [data, setdata] = useState({
         title: "Awesome 한 이것 사용 후기",
         views: 12,
@@ -89,6 +89,20 @@ const BoardDetail = () => {
                     <S.UserBtnContainer>
                         <button>취소</button>
                         <button>게시글 삭제하기</button>
+                    </S.UserBtnContainer>
+                </Modal>
+            )}
+            {commentOpen && (
+                <Modal setVal={setCommentOpen}>
+                    <S.UseTitleContainer>
+                        <S.UserTitle>정말로 댓글을 삭제하실건가요?</S.UserTitle>
+                        <S.UserSubTitle>
+                        삭제한 댓글은 되돌릴 수 없어요.
+                        </S.UserSubTitle>
+                    </S.UseTitleContainer>
+                    <S.UserBtnContainer>
+                        <button>취소</button>
+                        <button>댓글 삭제하기</button>
                     </S.UserBtnContainer>
                 </Modal>
             )}
@@ -171,13 +185,14 @@ const BoardDetail = () => {
                     </S.IconSection>
                     <CommentWrite id={id} />
                     <S.Comment>
-                        {data.comments.map((post) => (
+                        {data.comments.map((post, index) => (
                             <Comment
-                                username={data.comments[0].author.name}
-                                content={data.comments[0].content}
-                                to={"/profile/" + data.comments[0].author.id}
-                                date={useDate(data.comments[0].createdAt).date}
-                                time={useDate(data.comments[0].createdAt).time}
+                                key={index}
+                                username={post.author.name}
+                                content={post.content}
+                                to={"/profile/" + post.author.id}
+                                date={useDate(post.createdAt).date}
+                                time={useDate(post.createdAt).time}
                             />
                         ))}
                     </S.Comment>
