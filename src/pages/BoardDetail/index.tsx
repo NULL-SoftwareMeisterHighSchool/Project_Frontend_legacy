@@ -6,6 +6,8 @@ import { ChatBubble } from "@assets/images/icon/ChatBubble";
 import { Share } from "@assets/images/icon/Share";
 import { Eye } from "@assets/images/icon/Eye";
 import { Edit } from "@assets/images/icon/Edit";
+import { More } from "@assets/images/icon/More";
+import { Delete } from "@assets/images/icon/Delete";
 import Comment from "@components/common/Comment";
 import SharePopUp from "@components/pages/SharePopUp";
 import UserIcon from "@components/common/UserIcon";
@@ -124,13 +126,26 @@ const BoardDetail = () => {
                                 <Share fill={color.grayDark1} width="24px" />
                             </S.IconInfo>
                             {data.isAuthor ? (
-                                <S.UpdateIcon to={"/updateblog/"+id}>
-                                    <Edit
-                                        fill={color.primaryBase}
-                                        width="24px"
-                                    />
-                                    <S.UpdateText>게시글 수정하기</S.UpdateText>
-                                </S.UpdateIcon>
+                                <>
+                                    <S.UpdateIcon to={"/updateblog/"+id}>
+                                        <Edit
+                                            fill={color.primaryBase}
+                                            width="24px"
+                                        />
+                                        <S.UpdateText
+                                            fill={color.primaryBase}
+                                        >게시글 수정하기</S.UpdateText>
+                                    </S.UpdateIcon>
+                                    <S.UpdateIcon to={"/updateblog/"+id}>
+                                        <Delete
+                                            fill={color.critical}
+                                            width="24px"
+                                        />
+                                        <S.UpdateText
+                                            fill={color.critical}
+                                        >게시글 삭제하기</S.UpdateText>
+                                    </S.UpdateIcon>
+                                </>    
                             ) : (
                                 ""
                             )}

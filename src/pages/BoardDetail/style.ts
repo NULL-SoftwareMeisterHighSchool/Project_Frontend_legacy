@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import ReactMarkdown from "react-markdown";
 import { Link } from "react-router-dom";
 
 import { color } from "@styles/theme.style";
-import { TitleLarge2, Body2, BodyLarge2, BodyStrong, SubTitle } from "@styles/text.style";
+import { TitleLarge2, Body2, BodyLarge2, SubTitle } from "@styles/text.style";
 
 
 export const Post = styled.main`
@@ -105,8 +104,8 @@ export const UpdateIcon = styled(Link)`
     text-decoration: none;
 `;
 
-export const UpdateText = styled(Body2)`
-    color: ${color.primaryBase};
+export const UpdateText = styled(Body2)<{ fill: string; }>`
+  color: ${(props) => props.fill};
 `;
 
 export const Comment = styled.div`
