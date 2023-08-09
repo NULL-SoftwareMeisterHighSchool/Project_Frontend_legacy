@@ -6,6 +6,7 @@ import { BodyStrong, Body2, Body } from "@styles/text.style";
 import { color } from "@styles/theme.style";
 
 export const Comment = styled.div<{ state : CommentStateType }>`
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -38,7 +39,7 @@ export const CommentContents = styled.div`
     padding: 0px;
     gap: 10px;
 
-    width: 600px;
+    width: 100%;
     height: 40px;
 `;
 
@@ -51,21 +52,22 @@ export const Column = styled.div`
     gap: 6px;
 `;
 
+export const Row = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px;
+    gap: 10px;
+    width: 100%;
+`;
+
 export const CommentName = styled(BodyStrong)`
-    width: 69px;
-    height: 17px;
-
     line-height: 17px;
-
     color: ${color.black};
 `;
 
 export const CommentContent = styled(Body2)`
-    width: 550px;
-    height: 17px;
-
     line-height: 17px;
-
     color: ${color.black};
 `;
 
@@ -79,4 +81,22 @@ export const CommentInfo = styled.div`
 
 export const CommentInfoText = styled(Body)`
     color: ${color.grayDark1};
+`;
+
+export const CommentDelet = styled.div`
+    display: flex;
+    padding: 12px;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
+    background-color: #FFE6D8;
+
+    width: max-content;
+
+    position: absolute;
+    left: 654px;
+`;
+
+export const CommentDeletText = styled(BodyStrong)`
+    color: ${color.critical};
 `;
