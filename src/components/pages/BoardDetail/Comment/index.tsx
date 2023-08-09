@@ -14,23 +14,16 @@ const CommentWrite = ({
 }:Props) => {
     const [ body, setBody ] = useState('');
     const { mutateAsync: commentMutate } = useMutation(postComment, {
-        // onSuccess: () => {
-        //   console.log('Comment posted successfully!');
-        // },
-        // onError: () => {
-        //   alert('댓글작성 실패');
-        // }
-      });
-
-    const handleCommentSubmit = async () => {
-        try {
-          const response = await commentMutate({ id, body });
-          console.log("Comment posted successfully!", response);
-        } catch (error) {
-          console.error("Failed to post comment", error);
-          alert("댓글 작성 실패");
+        onSuccess: () => {
+          console.log("Success");
+          alert("댓글 작성 성공");
+          setBody("");
+        },
+        onError: () => {
+          alert('댓글작성 실패');
         }
-    };
+      });
+      
     return (  
         <S.CommentInfo>
             <S.InputBtnContainer>
@@ -42,19 +35,23 @@ const CommentWrite = ({
                     onChange={(e)=>{setBody(e.target.value)}}
                     value={body}
                     onKeyDown={(e)=>{
-                        if (e.key === "Enter" && !e.shiftKey) {
+                        if (e.key === "Enter" && !e.shiftKey && body.length > 0) {
                             e.preventDefault();
-                            handleCommentSubmit();
-                          }
+                            commentMutate({ id, body });
+                        }
                     }}/>
                 </div>
                 <Button 
                 value="댓글 작성"
                 onClick={
                     ()=>{
-                        handleCommentSubmit();
+                        if(body.length > 0){
+                            commentMutate({ id, body });
+                        }
                     }
-                }/>
+                }
+                disabled={body.length < 0 ? true : false}
+                />
             </S.InputBtnContainer>
         </S.CommentInfo>
     );

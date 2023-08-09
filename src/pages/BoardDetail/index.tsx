@@ -13,8 +13,7 @@ import View from "@components/pages/BoardDetail/Viewer";
 import CommentWrite from "@components/pages/BoardDetail/Comment";
 import * as S from "./style";
 import { useMutation, useQuery } from "react-query";
-import { getBlogDetail, postComment } from "@apis/article";
-import { postLike } from "@apis/article";
+import { getboardDetail, postLike } from "@apis/article";
 import useDate from "@hooks/useDate";
 
 const BoardDetail = () => {
@@ -29,8 +28,8 @@ const BoardDetail = () => {
             id: 2,
             name: "권강빈",
         },
-        isLiked: true,
-        isAuthor: false,
+        isLiked: false,
+        isAuthor: true,
         likes: 12,
         commentCount: 11,
         comments: [
@@ -46,10 +45,24 @@ const BoardDetail = () => {
         ],
     });
 
+    const { mutateAsync: likeMutate } = useMutation(postLike,{
+        onSuccess: ()=>{
+            console.log("Success");
+        },
+        onError: ()=>{
+            console.error("Error");
+        }
+    });
+
     const { refetch } = useQuery(
         "getBlogDetail",
-        () => getBlogDetail({ setdata, id }),
-        {
+        () => getboardDetail(id),{
+            onSuccess: (res)=>{
+                setdata(res.data);
+            },
+            onError: ()=>{
+                console.log("Error");
+            },
             enabled: false,
         }
     );
@@ -77,18 +90,19 @@ const BoardDetail = () => {
                     <S.Line />
                     <S.IconSection>
                         <S.Icons>
-                            <S.IconInfo>
+                            <S.IconInfo
+                            onClick={() => {
+                                likeMutate
+                            }}>
                                 {data.isLiked ? (
                                     <Favorite
                                         fill={color.critical}
                                         width="24px"
-                                        onClick={() => postLike}
                                     />
                                 ) : (
                                     <Favorite
                                         fill={color.grayBase}
                                         width="24px"
-                                        onClick={() => postLike}
                                     />
                                 )}
                                 {data.isLiked}
@@ -110,7 +124,7 @@ const BoardDetail = () => {
                                 <Share fill={color.grayDark1} width="24px" />
                             </S.IconInfo>
                             {data.isAuthor ? (
-                                <S.UpdateIcon to="/">
+                                <S.UpdateIcon to={"/updateblog/"+id}>
                                     <Edit
                                         fill={color.primaryBase}
                                         width="24px"

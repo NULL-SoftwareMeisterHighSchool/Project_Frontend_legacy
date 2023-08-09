@@ -4,12 +4,6 @@ import { instance } from "..";
 
 const router = `/articles`;
 
-export const getBlogDetail = async ({ setdata, id }: getBlogDetailProps) => {
-    const response = await instance.get(`${router}/${id}`);
-    setdata(response.data);
-    return response;
-};
-
 export const getboardDetail = async ( id : string | undefined ) => {
     const response = await instance.get(`${router}/${id}`);
     return response;
