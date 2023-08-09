@@ -1,5 +1,7 @@
 import { getBlogDetailProps, getBlogProps } from "./type";
 import { postCommentType, postWriteType, patchWriteType } from "./type";
+import { useRecoilValue } from "recoil"; 
+import { articleIdAtom } from "@atoms/articleId";
 import { instance } from "..";
 
 const router = `/articles`;
@@ -47,6 +49,11 @@ export const postComment = async ({body, id} : postCommentType) => {
     await instance.post(`${router}/${id}/comments`, {
         body
     });
+};
+
+export const deleteComment = async (commentID : number) => {
+    const id = useRecoilValue(articleIdAtom);
+    await instance.delete(`${router}/${id}/comments/${commentID}`, {});
 };
 
 export const postWrite = async ({
