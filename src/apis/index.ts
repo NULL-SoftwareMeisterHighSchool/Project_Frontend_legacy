@@ -33,7 +33,7 @@ instance.interceptors.response.use(
             const { message } = error.response.data;
             const refreshToken = getCookie("refreshToken");
 
-            if (message === "Expired Token" || message === "Can Not Access") {
+            if (message === "유효하지 않은 엑세스 토큰입니다") {
                 if (refreshToken) {
                     postRefresh().then((data) => {
                         setCookie("accessToken", data.accessToken, {
@@ -41,10 +41,10 @@ instance.interceptors.response.use(
                             expires: getExpiredCookieHours(data.expiresAt),
                         });
                     }).catch(()=>{
-                        window.location.href = "/login"
+                        // window.location.href = "/login"
                     });
                 } else {
-                    window.location.href = "/login";
+                    // window.location.href = "/login";
                 }
             } else return Promise.reject(error);
         }

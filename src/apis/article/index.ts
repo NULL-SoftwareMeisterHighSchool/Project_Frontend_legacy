@@ -1,5 +1,5 @@
 import { getBlogDetailProps, getBlogProps } from "./type";
-import { postCommentType } from "./type";
+import { postCommentType, postWriteType } from "./type";
 import { instance } from "..";
 
 const router = `/articles`;
@@ -47,5 +47,17 @@ export const postLike = async ({ id }: getBlogDetailProps) => {
 export const postComment = async ({body, id} : postCommentType) => {
     await instance.post(`${router}/${id}/comments`, {
         body
+    });
+};
+
+export const postWrite = async ({
+    title,
+    articleType,
+    blogContent
+}:postWriteType) => {
+    await instance.post(`${router}/`, {
+        title, 
+        articleType, 
+        blogContent
     });
 };
