@@ -1,5 +1,5 @@
 import * as S from './style';
-import Peofile from  '@assets/images/Alarm.png'
+import UserIcon from '@components/common/UserIcon';
 
 export interface NotifyPropTypes {
     id : number;
@@ -7,13 +7,12 @@ export interface NotifyPropTypes {
     title : string;
     date : string;
     time : string;
-    width? : string;
 }
 
-const Notify = ({ id, to, title, date, time, width = '1280px' }: NotifyPropTypes) => {
+const Notify = ({ id, to, title, date, time }: NotifyPropTypes) => {
  return(
-    <S.Notify key={id} to={to} width = {width} >
-        <S.Profile src={Peofile}/>
+    <S.Notify key={id} to={to} >
+        <UserIcon backWidth='40px' iconWidth={28}/>
         <S.NotifyInfo>
             <S.Title>{title}</S.Title>
             <S.TimeInfo>
