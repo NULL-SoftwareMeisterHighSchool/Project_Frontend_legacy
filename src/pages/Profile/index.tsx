@@ -8,14 +8,18 @@ import { SkillBlogDefaultImg } from "@assets/images/allfiles";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { delCookie } from "@utils/cookies";
-
+import { useRecoilValue } from "recoil";
+import { profileIdAtom } from "@atoms/profile";
 import useDate from "@hooks/useDate";
 import { getUserMe } from "@apis/users";
 import UserIcon from "@components/common/UserIcon";
 import UpdateProfile from "@components/pages/Mypage/UpdateProfile";
+import { useParams } from "react-router-dom";
 
 const Mypage = () => {
     const [updateProfileOpen, setUpdateProfileOpen] = useState(false);
+    const myId = useRecoilValue(profileIdAtom);
+    const { id } = useParams();
     const [userData, setUserData] = useState({
         name: "김규하",
         email: "kwon@akdjf.kro.kr",
@@ -75,6 +79,28 @@ const Mypage = () => {
         },
     });
 
+    const Authority = () => {
+        if(myId === id){
+            return(
+                <S.BtnArea>
+                    <S.Btn
+                        onClick={() => {
+                            delCookie("refreshToken", { path: "/" });
+                            delCookie("accessToken", { path: "/" });
+                            alert("로그아웃");
+                            window.location.href = "/";
+                        }}
+                    >
+                        <BodyStrong>로그아웃</BodyStrong>
+                    </S.Btn>
+                    <S.Btn onClick={() => setUpdateProfileOpen(true)}>
+                        <BodyStrong>프로필 수정</BodyStrong>
+                    </S.Btn>
+                </S.BtnArea>
+            );
+        }
+    }
+
     const { articles, name, email, ...changeUserData } = userData;
     const { refetch } = useQuery("getUserMe", getUserMe, {
         onSuccess: (res) => {
@@ -88,6 +114,7 @@ const Mypage = () => {
     useEffect(() => {
         refetch();
     }, []);
+    
     return (
         <>
             <TitlePath title="마이페이지" path="Menu > 마이페이지" />
@@ -118,22 +145,10 @@ const Mypage = () => {
                                 </S.UserContect>
                             </S.UserContectInfo>
                         </S.UserContectSection>
-                    </div>
-                    <S.BtnArea>
-                        <S.Btn
-                            onClick={() => {
-                                delCookie("refreshToken", { path: "/" });
-                                delCookie("accessToken", { path: "/" });
-                                alert("로그아웃");
-                                window.location.href = "/";
-                            }}
-                        >
-                            <BodyStrong>로그아웃</BodyStrong>
-                        </S.Btn>
-                        <S.Btn onClick={() => setUpdateProfileOpen(true)}>
-                            <BodyStrong>프로필 수정</BodyStrong>
-                        </S.Btn>
-                    </S.BtnArea>
+                    </div>                    
+                    {
+                        Authority()
+                    }
                 </S.User>
                 <S.Stack>
                     {userData.stacks.map((v) => (

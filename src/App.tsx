@@ -7,7 +7,7 @@ import Error from "@pages/Error";
 import GraduateSignup from "@pages/GraduateSignup";
 import Login from "@pages/Login";
 import Main from "@pages/Main";
-import Mypage from "@pages/Mypage";
+import Profile from "@pages/Profile";
 import Password from "@pages/Password";
 import PersonInfo from "@pages/PersonInfo";
 import Ranking from "@pages/Ranking";
@@ -27,12 +27,8 @@ const app = createBrowserRouter([
                 element: <Main />,
             },
             {
-                path: "mypage",
-                element: <Mypage />,
-            },
-            {
                 path: "profile/:id",
-                element: <Mypage />,
+                element: <Profile />,
             },
             {
                 path: "ranking",
