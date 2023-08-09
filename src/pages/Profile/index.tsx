@@ -80,7 +80,7 @@ const Mypage = () => {
     });
 
     const Authority = () => {
-        if(myId === id){
+        if(myId == id){
             return(
                 <S.BtnArea>
                     <S.Btn
