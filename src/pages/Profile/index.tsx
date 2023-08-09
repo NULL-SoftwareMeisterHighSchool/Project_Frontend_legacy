@@ -24,7 +24,7 @@ const Mypage = () => {
         name: "김규하",
         email: "kwon@akdjf.kro.kr",
         bio: "대덕소마고 재학중인 디자이너입니다.",
-        githubURL: "https://github.com/asdf1234",
+        githubID: "kwonkangbin",
         portfolioURL: "https://hahahoho.com/pofol",
         stacks: ["React", "Djanggo", "Spring", "Nest.js"],
         articles: {
@@ -129,14 +129,17 @@ const Mypage = () => {
                         <S.UserSection>
                             <UserIcon backWidth="80px" iconWidth={44} />
                             <S.UserIntro>
-                                <S.UserName>{userData.name}</S.UserName>
+                                <S.UserContectInfo>
+                                    <S.UserName>{userData.name}</S.UserName>
+                                    <S.UserContect>2022019@bssm.hs.kr</S.UserContect>
+                                </S.UserContectInfo>
                                 <S.UserDescript>{userData.bio}</S.UserDescript>
                             </S.UserIntro>
                         </S.UserSection>
                         <S.UserContectSection>
                             <S.UserContectInfo>
-                                <S.UserContectTitle>Email</S.UserContectTitle>
-                                <S.UserContect>{userData.email}</S.UserContect>
+                                <S.UserContectTitle>portfolio</S.UserContectTitle>
+                                <S.UserContect>{userData.portfolioURL}</S.UserContect>
                             </S.UserContectInfo>
                             <S.UserContectInfo>
                                 <S.UserContectTitle>Github</S.UserContectTitle>
