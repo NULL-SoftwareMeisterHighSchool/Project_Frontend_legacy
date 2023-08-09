@@ -144,7 +144,7 @@ const Mypage = () => {
                             <S.UserContectInfo>
                                 <S.UserContectTitle>Github</S.UserContectTitle>
                                 <S.UserContect>
-                                    {userData.githubURL}
+                                    {userData.githubID}
                                 </S.UserContect>
                             </S.UserContectInfo>
                         </S.UserContectSection>
