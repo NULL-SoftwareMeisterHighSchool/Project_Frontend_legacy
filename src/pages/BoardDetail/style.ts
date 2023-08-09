@@ -1,16 +1,45 @@
 import styled from "styled-components";
-import ReactMarkdown from "react-markdown";
 import { Link } from "react-router-dom";
-
 import { color } from "@styles/theme.style";
-import { TitleLarge2, Body2, BodyLarge2, BodyStrong, SubTitle } from "@styles/text.style";
+import { Title ,TitleLarge2, Body2, BodyLarge2, SubTitle } from "@styles/text.style";
 
+export const UseTitleContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+`;
+export const UserTitle = styled(Title)`
+    color: ${color.critical};
+`;
+export const UserSubTitle = styled(BodyLarge2)`
+    color: ${color.critical};
+`;
+
+export const UserBtnContainer = styled.div`
+    display: flex;
+    gap: 12px;
+    > button {
+        padding: 14px;
+        border-radius: 8px;
+        width: 100%;
+        &:first-child {
+            background-color: ${color.grayLight2};
+            color: ${color.grayDark2};
+        }
+        &:last-child {
+            background-color: ${color.critical};
+            color: white;
+        }
+    }
+`;
 
 export const Post = styled.main`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
- 
+    
+    width: 640px !important;
+    margin: 0 auto;
     gap: 40px;
 `; 
 
@@ -21,7 +50,7 @@ export const Thumbnail = styled.div`
     gap: 40px;
 `; 
 
-export const Title = styled(TitleLarge2)`
+export const PostTitle = styled(TitleLarge2)`
     width: fit-content;
     height: 57px;
 
@@ -105,8 +134,15 @@ export const UpdateIcon = styled(Link)`
     text-decoration: none;
 `;
 
-export const UpdateText = styled(Body2)`
-    color: ${color.primaryBase};
+export const DeleteIcon = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+`;
+
+export const UpdateText = styled(Body2)<{ fill: string; }>`
+  color: ${(props) => props.fill};
 `;
 
 export const Comment = styled.div`
