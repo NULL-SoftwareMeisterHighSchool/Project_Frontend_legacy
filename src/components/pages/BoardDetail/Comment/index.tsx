@@ -1,60 +1,45 @@
-import Button from "@components/common/Button";
-import * as S from "./style";
-import Input from "@components/common/Input";
-import { useMutation } from 'react-query';
-import { postComment } from '@apis/article';
-import { useState } from "react";
+import UserIcon from "@components/common/UserIcon";
+import { CommentStateType } from './comment.type'
+import * as S from './style'
 
-type Props = {
-    id: string | undefined;
+export interface ComentType{
+    username: string;
+    content: String;
+    date: String;
+    time: String;
+    to: any;
+    state?: CommentStateType;
 }
 
-const CommentWrite = ({
-    id
-}:Props) => {
-    const [ body, setBody ] = useState('');
-    const { mutateAsync: commentMutate } = useMutation(postComment, {
-        onSuccess: () => {
-          console.log("Success");
-          alert("댓글 작성 성공");
-          setBody("");
-        },
-        onError: () => {
-          alert('댓글작성 실패');
-        }
-      });
-      
-    return (  
-        <S.CommentInfo>
-            <S.InputBtnContainer>
-                <div>
-                    <Input 
-                    title="댓글 작성" 
-                    width="100%" 
-                    placeholder="댓글 내용을 입력해 주세요"
-                    onChange={(e)=>{setBody(e.target.value)}}
-                    value={body}
-                    onKeyDown={(e)=>{
-                        if (e.key === "Enter" && !e.shiftKey && body.length > 0) {
-                            e.preventDefault();
-                            commentMutate({ id, body });
-                        }
-                    }}/>
-                </div>
-                <Button 
-                value="댓글 작성"
-                onClick={
-                    ()=>{
-                        if(body.length > 0){
-                            commentMutate({ id, body });
-                        }
-                    }
-                }
-                disabled={body.length < 0 ? true : false}
-                />
-            </S.InputBtnContainer>
-        </S.CommentInfo>
+const Comment = (
+    {
+        username,
+        content,
+        date,
+        time,
+        to,
+        state = "COMMENT",
+    }:
+ComentType) => {
+    return(
+        <S.Comment state={state}>
+            <S.CommentContents>
+            <UserIcon 
+            backWidth="40px" 
+            iconWidth={22}
+            onClick={()=>{window.location.replace(to)}}
+            />
+            <S.Column>
+                <S.CommentName onClick={()=>{window.location.replace(to)}}>{username}</S.CommentName>
+                <S.CommentContent>{content}</S.CommentContent>
+            </S.Column>
+            </S.CommentContents>
+            <S.CommentInfo>
+                <S.CommentInfoText>{date}</S.CommentInfoText>
+                <S.CommentInfoText>{time}</S.CommentInfoText>
+            </S.CommentInfo>
+        </S.Comment>
     );
-}
- 
-export default CommentWrite;
+} 
+
+export default Comment;
