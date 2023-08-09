@@ -37,7 +37,9 @@ export const Post = styled.main`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
- 
+    
+    width: 640px !important;
+    margin: 0 auto;
     gap: 40px;
 `; 
 
