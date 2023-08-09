@@ -13,7 +13,7 @@ import { Setting } from "@assets/images/icon/Setting";
 import { Edit } from "@assets/images/icon/Edit";
 import WritePopUp from "@components/common/WritePopUp";
 import UserIcon from "@components/common/UserIcon";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { profileIdAtom } from "@atoms/profile"
 import { SetStateAction, useCallback, useEffect, useState } from "react";
 import { useQuery } from "react-query";
@@ -29,7 +29,8 @@ export const Sidebar = () => {
         []
     );
     const [userData, setUserData] = useState({ id: 0, name: "" });
-    const setMyId = useSetRecoilState(profileIdAtom);
+    const [myId, setMyId] = useRecoilState(profileIdAtom);
+    
     const navigate = useNavigate();
 
     const { refetch } = useQuery("getUserMeTiny", getUserMeTiny, {
@@ -50,7 +51,7 @@ export const Sidebar = () => {
     return (
         <>
             <S.Bar>
-                {userData.name ? (
+                {myId ? (
                     <>
                         <S.User>
                             <UserIcon backWidth="36px" iconWidth={20} />
@@ -103,7 +104,7 @@ export const Sidebar = () => {
                         <Trophy width={24} />
                     </Option>
                 </S.Menu>
-                {userData.name && (
+                {myId && (
                     <S.Menu>
                         <S.Subtitle>User</S.Subtitle>
                         {/* <Option
