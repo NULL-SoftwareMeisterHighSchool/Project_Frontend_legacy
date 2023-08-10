@@ -46,7 +46,7 @@ const UpdateBoard = () => {
                     }
                 </S.STitle>
                 <S.Post onClick={()=>{
-                    patchwriteMutate({id, title, articleType, blogContent})
+                    patchwriteMutate({id, title, blogContent})
                 }}>글 게시하기</S.Post>
             </S.Header>
             <S.TitleInput
