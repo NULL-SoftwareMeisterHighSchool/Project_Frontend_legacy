@@ -15,7 +15,7 @@ import CommentWrite from "@components/pages/BoardDetail/CommentWrite";
 import Comment from "@components/pages/BoardDetail/Comment";
 import * as S from "./style";
 import { useMutation, useQuery } from "react-query";
-import { getboardDetail, postLike } from "@apis/article";
+import { getboardDetail, postLike, deleteBlog } from "@apis/article";
 import { articleIdAtom } from "@atoms/articleId";
 import { useSetRecoilState } from "recoil"; 
 import useDate from "@hooks/useDate";
@@ -60,6 +60,15 @@ const BoardDetail = () => {
         }
     });
 
+    const { mutateAsync: deleteBlogMutate } = useMutation(deleteBlog,{
+        onSuccess: ()=>{
+            alert("게시물 삭제 성공!");
+        },
+        onError: ()=>{
+            alert("게시물 삭제 실패!");
+        }
+    });
+
     const { refetch } = useQuery(
         "getBlogDetail",
         () => getboardDetail(id),{
@@ -93,7 +102,10 @@ const BoardDetail = () => {
                         <button onClick={()=>{
                             setBlogOpen(false);
                         }}>취소</button>
-                        <button>게시글 삭제하기</button>
+                        <button onClick={()=>{
+                            deleteBlogMutate(id);
+                            setBlogOpen(false);
+                        }}>게시글 삭제하기</button>
                     </S.UserBtnContainer>
                 </Modal>
             )}

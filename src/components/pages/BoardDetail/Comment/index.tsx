@@ -33,9 +33,13 @@ const Comment = ({
   const { mutateAsync: deleteCommentMutate } = useMutation(deleteComment, {
     onSuccess: ()=>{
       alert("삭제 성공");
+      setCommentOpen(false);
+      setModal(false);
     },
     onError: ()=>{
       alert("삭제 실패");
+      setCommentOpen(false);
+      setModal(false);
     },
   });
 
