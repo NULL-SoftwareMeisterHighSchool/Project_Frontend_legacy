@@ -30,6 +30,7 @@ const BoardDetail = () => {
     const [data, setdata] = useState({
         title: "Awesome 한 이것 사용 후기",
         views: 12,
+        likes: 15,
         body: "qkqhsaldkfjls",
         createdAt: "2016-10-27T17:13:40",
         author: {
@@ -38,7 +39,6 @@ const BoardDetail = () => {
         },
         isLiked: false,
         isAuthor: true,
-        likes: 12,
         commentCount: 11,
         comments: [
             {
@@ -51,15 +51,6 @@ const BoardDetail = () => {
                 createdAt: "2016-10-27T17:13:40",
             },
         ],
-    });
-
-    const { mutateAsync: likeMutate } = useMutation(postLike,{
-        onSuccess: ()=>{
-            console.log("Success");
-        },
-        onError: ()=>{
-            console.error("Error");
-        }
     });
 
     const { mutateAsync: deleteBlogMutate } = useMutation(deleteBlog,{
@@ -84,6 +75,16 @@ const BoardDetail = () => {
             enabled: false,
         }
     );
+
+    const { mutateAsync: likeMutate } = useMutation(postLike,{
+        onSuccess: ()=>{
+            console.log("Success");
+            refetch();
+        },
+        onError: ()=>{
+            console.error("Error");
+        }
+    });
     
     useEffect(() => {
         refetch();
@@ -130,7 +131,7 @@ const BoardDetail = () => {
                         <S.Icons>
                             <S.IconPointer
                             onClick={() => {
-                                likeMutate
+                                likeMutate(id);
                             }}>
                                 {data.isLiked ? (
                                     <Favorite
@@ -143,7 +144,7 @@ const BoardDetail = () => {
                                         width="24px"
                                     />
                                 )}
-                                {data.isLiked}
+                                {data.likes}
                             </S.IconPointer>
                             <S.IconInfo>
                                 <ChatBubble

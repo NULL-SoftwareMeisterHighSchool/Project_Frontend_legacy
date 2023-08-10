@@ -47,7 +47,7 @@ export const deleteBlog = async (id:string | undefined) => {
     await instance.delete(`${router}/${id}`, {});
 }
 
-export const postLike = async ({ id }: getBlogDetailProps) => {
+export const postLike = async (id : string | undefined) => {
     await instance.post(`${router}/${id}/like`, {});
 };
 
