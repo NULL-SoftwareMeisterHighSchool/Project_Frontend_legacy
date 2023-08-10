@@ -9,7 +9,7 @@ const UpdateBoard = () => {
     const { id } = useParams();
     const [title, setTitle] = useState("");
     const [articleType, setArticleType] = useState("GENERAL");
-    const [blogContent, setBlogContent] = useState(
+    const [content, setBlogContent] = useState(
         "## 내용을 입력해주세요.\n이것은 내용입니다. 호호호"
     );
     const { mutate: patchwriteMutate } = useMutation(patchWrite, {
@@ -46,7 +46,7 @@ const UpdateBoard = () => {
                     }
                 </S.STitle>
                 <S.Post onClick={()=>{
-                    patchwriteMutate({id, title, articleType, blogContent})
+                    patchwriteMutate({id, title, content})
                 }}>글 게시하기</S.Post>
             </S.Header>
             <S.TitleInput
@@ -56,7 +56,7 @@ const UpdateBoard = () => {
                     setTitle(e.target.value)
                 }
             />
-            <Toast content={blogContent} setContent={setBlogContent} />
+            <Toast content={content} setContent={setBlogContent} />
         </>
     );
 };

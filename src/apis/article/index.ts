@@ -43,6 +43,10 @@ export const getBlog = async ({
     }
 };
 
+export const deleteBlog = async (id:string | undefined) => {
+    await instance.delete(`${router}/${id}`, {});
+}
+
 export const postLike = async ({ id }: getBlogDetailProps) => {
     await instance.post(`${router}/${id}/like`, {});
 };
@@ -60,25 +64,23 @@ export const deleteComment = async (commentID : number) => {
 
 export const postWrite = async ({
     title,
-    articleType,
-    blogContent,
+    type,
+    content,
 }: postWriteType) => {
     await instance.post(`${router}/`, {
         title,
-        articleType,
-        blogContent,
+        type,
+        content,
     });
 };
 
 export const patchWrite = async ({
     id,
     title,
-    articleType,
-    blogContent,
+    content,
 }: patchWriteType) => {
     await instance.patch(`${router}/${id}`, {
         title,
-        articleType,
-        blogContent,
+        content,
     });
 };
