@@ -5,6 +5,7 @@ import { CommentStateType } from "./comment.type";
 import { deleteComment } from "@apis/article";
 import { useMutation } from "react-query";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 import Modal from "@components/common/modal";
 import * as S from "./style";
@@ -28,6 +29,7 @@ const Comment = ({
   to,
   state = "COMMENT",
 }: ComentType) => {
+  const { id } = useParams();
   const [commentOpen, setCommentOpen] = useState<boolean>(false);
   const [modal, setModal] = useState<boolean>(false);
   const { mutateAsync: deleteCommentMutate } = useMutation(deleteComment, {
@@ -56,7 +58,7 @@ const Comment = ({
               setCommentOpen(false);
             }}>취소</button>
             <button onClick={()=>{
-              deleteCommentMutate(commentID);
+              deleteCommentMutate({id, commentID});
             }}>댓글 삭제하기</button>
           </S.UserBtnContainer>
         </Modal>
