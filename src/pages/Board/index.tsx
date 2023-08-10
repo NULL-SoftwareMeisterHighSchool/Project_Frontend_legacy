@@ -31,7 +31,7 @@ const Board = () => {
     const getBlogData = (limit: number) => {
         getBlog({
             type: "GENERAL",
-            offset: (page - 1) * limit + 1,
+            offset: (page - 1) * (limit + 1),
             limit: limit,
             order:
                 filterData === "최신순"
@@ -95,7 +95,7 @@ const Board = () => {
                             name={post.author.name}
                             title={post.summary}
                             date={useDate(post.createdAt).date}
-                            to="/"
+                            to={"/blogdetail/"+post.id}
                         />
                     ))}
                 </S.Content>
