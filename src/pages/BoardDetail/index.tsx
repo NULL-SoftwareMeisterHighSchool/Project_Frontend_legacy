@@ -189,7 +189,7 @@ const BoardDetail = () => {
                             )}
                         </S.Icons>
                     </S.IconSection>
-                    <CommentWrite id={id} />
+                    <CommentWrite id={id} func={refetch}/>
                     <S.Comment>
                         {data.comments.map((post, index) => (
                             <Comment
