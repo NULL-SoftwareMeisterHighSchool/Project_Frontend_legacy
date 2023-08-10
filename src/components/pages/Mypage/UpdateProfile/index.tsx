@@ -11,6 +11,7 @@ interface UpdateProfileProps {
     val: boolean;
     setVal: React.Dispatch<React.SetStateAction<boolean>>;
     userData: UserDateType;
+    refetch: () => void;
 }
 interface UserDateType {
     bio: string;
@@ -22,6 +23,7 @@ const UpdateProfile = ({
     val,
     setVal,
     userData,
+    refetch,
 }: UpdateProfileProps) => {
     const [inputSkill, setInutSkill] = useState<string>("");
     const [userDataUpdate, setUserDataUpdate] = useState<UserDateType>({
@@ -33,11 +35,16 @@ const UpdateProfile = ({
     const [btnState, setBtnState] = useState<boolean>(false);
 
     const enterSkill = () => {
-        if (inputSkill.trim()) {
-            setUserDataUpdate({
-                ...userDataUpdate,
-                stacks: [inputSkill.trim(), ...userDataUpdate.stacks],
-            });
+        if (userDataUpdate.stacks.length < 5) {
+            if (inputSkill.trim()) {
+                setUserDataUpdate({
+                    ...userDataUpdate,
+                    stacks: [inputSkill.trim(), ...userDataUpdate.stacks],
+                });
+                setInutSkill("");
+            }
+        } else {
+            alert("최대 5개까지 입력 가능합니다.");
             setInutSkill("");
         }
     };
@@ -80,10 +87,10 @@ const UpdateProfile = ({
     const { mutate: updateMutate } = useMutation(putEditMe, {
         onSuccess: () => {
             setVal(false);
+            refetch();
         },
         onError: () => {
             alert("회원정보 수정 실패했습니다.");
-            //setUserDataUpdate(userData);
         },
     });
 
@@ -105,9 +112,9 @@ const UpdateProfile = ({
                     />
                     <Input
                         width="100%"
-                        title="Github 링크"
+                        title="Github 아이디"
                         name="githubURL"
-                        placeholder="Github 링크를 입력해주세요"
+                        placeholder="Github 아이디를 입력해주세요"
                         onChange={onChange}
                         value={userDataUpdate.githubID}
                     />

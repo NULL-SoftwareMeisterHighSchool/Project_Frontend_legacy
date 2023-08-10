@@ -119,6 +119,7 @@ const Mypage = () => {
         <>
             <TitlePath title="마이페이지" path="Menu > 마이페이지" />
             <UpdateProfile
+                refetch={refetch}
                 val={updateProfileOpen}
                 setVal={setUpdateProfileOpen}
                 userData={changeUserData}

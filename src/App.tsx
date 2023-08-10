@@ -58,11 +58,11 @@ const app = createBrowserRouter([
     },
     {
       path:"/write",
-      element:<UpdateBoard/>
+      element:<WriteBoard/>
     },
     {
         path:"/updateblog/:id",
-        element:<WriteBoard/>
+        element:<UpdateBoard/>
     },
     {
         path: "/graduatesign",
