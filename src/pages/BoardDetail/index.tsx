@@ -18,10 +18,12 @@ import { useMutation, useQuery } from "react-query";
 import { getboardDetail, postLike, deleteBlog } from "@apis/article";
 import { articleIdAtom } from "@atoms/articleId";
 import { useSetRecoilState } from "recoil"; 
+import { useNavigate } from "react-router-dom";
 import useDate from "@hooks/useDate";
 
 const BoardDetail = () => {
     const { id } = useParams();
+    const navigate = useNavigate();
     const setBlogId = useSetRecoilState(articleIdAtom);
     const [showPopUp, setShowPopUp] = useState<boolean>(false);
     const [blogOpen, setBlogOpen] = useState<boolean>(false);
@@ -63,6 +65,7 @@ const BoardDetail = () => {
     const { mutateAsync: deleteBlogMutate } = useMutation(deleteBlog,{
         onSuccess: ()=>{
             alert("게시물 삭제 성공!");
+            navigate("/");
         },
         onError: ()=>{
             alert("게시물 삭제 실패!");
