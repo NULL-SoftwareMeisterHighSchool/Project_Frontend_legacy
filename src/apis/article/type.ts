@@ -30,8 +30,8 @@ type CommentType = {
 };
 
 type skillDataProps = {
-    article: blogType[];
-    total: number;
+    articles: blogType[];
+    totalCount: number;
 };
 type blogType = {
     id: number;
@@ -64,6 +64,13 @@ export type postCommentType = {
 }
 
 export type postWriteType = {
+    title : string;
+    articleType : string;
+    blogContent : string;
+}
+
+export type patchWriteType = {
+    id : string | undefined;
     title : string;
     articleType : string;
     blogContent : string;

@@ -8,19 +8,18 @@ import { Menu } from "@assets/images/icon/Menu";
 import { BulletinBoard } from "@assets/images/icon/BulletinBoard";
 import { Computer } from "@assets/images/icon/Computer";
 import { Trophy } from "@assets/images/icon/Trophy";
-import { Alarm } from "@assets/images/icon/Alarm";
 import { User } from "@assets/images/icon/User";
 import { Setting } from "@assets/images/icon/Setting";
-import { Infomation } from "@assets/images/icon/Infomation";
 import { Edit } from "@assets/images/icon/Edit";
 import WritePopUp from "@components/common/WritePopUp";
 import UserIcon from "@components/common/UserIcon";
-
-import { SetStateAction, useCallback, useState } from "react";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { profileIdAtom } from "@atoms/profile"
+import { SetStateAction, useCallback, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getUserMeTiny } from "@apis/users";
-import Button from "../Button";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { BodyStrong } from "@styles/text.style";
 
 export const Sidebar = () => {
     const [category, setCategory] = useState("all");
@@ -30,34 +29,46 @@ export const Sidebar = () => {
         []
     );
     const [userData, setUserData] = useState({ id: 0, name: "" });
+    const [myId, setMyId] = useRecoilState(profileIdAtom);
+    
+    const navigate = useNavigate();
 
-    const {} = useQuery("getUserMeTiny", getUserMeTiny, {
+    const { refetch } = useQuery("getUserMeTiny", getUserMeTiny, {
         onSuccess: (res) => {
             setUserData(res.data);
+            setMyId(res.data.id);
         },
         onError: () => {
             console.log("Error");
         },
+        enabled: false,
     });
+
+    useEffect(() => {
+        refetch();
+    }, []);
 
     return (
         <>
             <S.Bar>
-                {userData.name ? (
-                    <S.User>
-                        <UserIcon backWidth="36px" iconWidth={20} />
-                        <span>{userData.name}</span>
-                    </S.User>
+                {myId ? (
+                    <>
+                        <S.User>
+                            <UserIcon backWidth="36px" iconWidth={20} />
+                            <span>{userData.name}</span>
+                        </S.User>
+                        <S.Write onClick={() => setShowPopUp(true)}>
+                            <Edit width={24} fill={color.grayDark1} />
+                            <S.WriteText>글쓰기</S.WriteText>
+                        </S.Write>
+                    </>
                 ) : (
-                    <S.LoginBtn>
-                        <S.LinkTag to="/login">로그인</S.LinkTag>
+                    <S.LoginBtn onClick={() => navigate("/login")}>
+                        <BodyStrong>로그인</BodyStrong>
                     </S.LoginBtn>
                 )}
                 <S.Line />
-                <S.Write onClick={() => setShowPopUp(true)}>
-                    <Edit width={24} fill={color.grayDark1} />
-                    <S.WriteText>글쓰기</S.WriteText>
-                </S.Write>
+
                 <S.Menu>
                     <S.Subtitle>Menu</S.Subtitle>
                     <Option
@@ -93,34 +104,36 @@ export const Sidebar = () => {
                         <Trophy width={24} />
                     </Option>
                 </S.Menu>
-                <S.Menu>
-                    <S.Subtitle>User</S.Subtitle>
-                    <Option
-                        to="/alarm"
-                        pagename="알림"
-                        category={category}
-                        onSelect={onSelect}
-                    >
-                        <Alarm width={24} />
-                    </Option>
-                    <Option
-                        to="/mypage"
-                        pagename="마이페이지"
-                        category={category}
-                        onSelect={onSelect}
-                    >
-                        <User width={24} />
-                    </Option>
-                    <Option
-                        to="/setting"
-                        pagename="설정"
-                        category={category}
-                        onSelect={onSelect}
-                    >
-                        <Setting width={24} />
-                    </Option>
-                    {/* <Option to='/' pagename='개발자 소개' category={category} onSelect={onSelect}><Infomation width={24} /></Option> */}
-                </S.Menu>
+                {myId && (
+                    <S.Menu>
+                        <S.Subtitle>User</S.Subtitle>
+                        {/* <Option
+                            to="/alarm"
+                            pagename="알림"
+                            category={category}
+                            onSelect={onSelect}
+                        >
+                            <Alarm width={24} />
+                        </Option> */}
+                        <Option
+                            to={"/profile/"+userData.id}
+                            pagename="마이페이지"
+                            category={category}
+                            onSelect={onSelect}
+                        >
+                            <User width={24} />
+                        </Option>
+                        <Option
+                            to="/setting"
+                            pagename="설정"
+                            category={category}
+                            onSelect={onSelect}
+                        >
+                            <Setting width={24} />
+                        </Option>
+                        {/* <Option to='/' pagename='개발자 소개' category={category} onSelect={onSelect}><Infomation width={24} /></Option> */}
+                    </S.Menu>
+                )}
             </S.Bar>
             {showPopUp ? <WritePopUp setShowPopUp={setShowPopUp} /> : null}
         </>

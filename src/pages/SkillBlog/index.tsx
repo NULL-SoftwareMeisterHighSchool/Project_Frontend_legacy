@@ -4,15 +4,13 @@ import BlogPost from "@components/pages/SkillBlog/BlogPost";
 import { SkillBlogDefaultImg } from "@assets/images/allfiles";
 import TitlePath from "@components/common/TitlePath";
 import React, { useEffect, useState } from "react";
-import { useQuery } from "react-query";
 import { getBlog } from "@apis/article";
 import useDate from "@hooks/useDate";
-import Button from "@components/common/Button";
 import { useInView } from "react-intersection-observer";
 
 type skillDataProps = {
-    article: blogType[];
-    total: number;
+    articles: blogType[];
+    totalCount: number;
 };
 type blogType = {
     id: number;
@@ -30,8 +28,8 @@ type blogType = {
 const SkillBlog = () => {
     /** skill blog 데이터 */
     const [skillData, setSkillData] = useState<skillDataProps>({
-        article: [],
-        total: 0,
+        articles: [],
+        totalCount: 0,
     });
     /** 검색어 */
     const [searchInput, setSearchInput] = useState<string>("");
@@ -43,7 +41,7 @@ const SkillBlog = () => {
         if (newData) {
             getBlog({
                 type: "TECH",
-                offset: skillData.article.length,
+                offset: skillData.articles.length,
                 limit: 20,
                 order:
                     filterData === "최신순"
@@ -107,13 +105,17 @@ const SkillBlog = () => {
                     setFilterData={setFilterData}
                 />
                 <S.BlogContainer>
-                    {skillData.article.map((data) => (
+                    {skillData.articles.map((data:blogType) => (
                         <BlogPost
                             key={data.id}
                             id={data.id}
                             name={data.author.name}
                             summary={data.summary}
-                            titleImg={data.thumbnail===""? SkillBlogDefaultImg : data.thumbnail}
+                            titleImg={
+                                data.thumbnail === ""
+                                    ? SkillBlogDefaultImg
+                                    : data.thumbnail
+                            }
                             date={useDate(data.createdAt).date}
                         />
                     ))}

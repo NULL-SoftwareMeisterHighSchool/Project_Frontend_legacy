@@ -47,3 +47,8 @@ export const getUserMeTiny = async () => {
     const res = await instance.get(`${router}/me/tiny`,);
     return res;
 };
+
+export const delMeWithdraw = async()=>{
+    const res = await instance.delete(`${router}/me/withdraw`);
+    return res;
+}

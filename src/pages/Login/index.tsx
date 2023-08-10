@@ -80,8 +80,8 @@ const Login = () => {
                 </S.InputContainer>
                 <S.SubmitContainer>
                     <div>
-                        <Body2>회원이신가요?</Body2>
-                        <BodyStrong>로그인</BodyStrong>
+                        <Body2>회원이 아니신가요?</Body2>
+                        <BodyStrong onClick={()=>router('/enrollsign')}>회원가입</BodyStrong>
                     </div>
                     <Button
                         height="48px"

@@ -7,7 +7,6 @@ import "react-circular-progressbar/dist/styles.css";
 import Post from "@components/common/Post";
 import Banner from "@components/pages/Main/Banner";
 import Record from "@components/pages/Main/Record";
-import Dummy from "@fixtures/board.json";
 import { useQuery } from "react-query";
 import { getGit } from "@apis/users";
 import { getBlog } from "@apis/article";
@@ -35,7 +34,7 @@ type blogType = {
 };
 
 const Main = () => {
-    const [gitGrade, setGitGrade] = useState('');
+    const [gitGrade, setGitGrade] = useState("");
     const [skillData, setSkillData] = useState<boardDataProps>({
         article: [],
         total: 0,
@@ -52,47 +51,68 @@ const Main = () => {
         issueCount: 13,
         pullRequestCount: 14,
         contributedRepositoryCount: 15,
-        score: 1000
+        score: 1000,
     });
-    const { } = useQuery("userGit", () => getGit({ setGitData }));
-    
-    const {} = useQuery("GENERAL", () =>
-        getBlog({
-            type: "GENERAL",
-            offset: 0,
-            limit: 8,
-            order: "LIKES",
-            setData: setBlogData
-        })
+    const { refetch: userGitRefetch } = useQuery(
+        "userGit",
+        () => getGit({ setGitData }),
+        {
+            enabled: false,
+        }
     );
 
-    const {} = useQuery("TECH", () =>
-        getBlog({
-            type: "TECH",
-            offset: 0,
-            limit: 8,
-            order: "LIKES",
-            setData: setSkillData
-        })
+    const { refetch: generalRefetch } = useQuery(
+        "GENERAL",
+        () =>
+            getBlog({
+                type: "GENERAL",
+                offset: 0,
+                limit: 8,
+                order: "LIKES",
+                setData: setBlogData,
+            }),
+        {
+            enabled: false,
+        }
     );
-    
-    const setGrade = (score:number):string => {
-        if(score >= 10000){
-            return 'S';
-        }else if(score >= 5000) {
-            return 'A';
-        }else if(score >= 2000) {
-            return 'B';
-        }else if(score >= 800) {
-            return 'C';
-        }else if(score >= 200) {
-            return 'D';
-        }else if(score >= 50) {
-            return 'E';
-        }else{
-            return 'F';
-        } 
-    }
+
+    const { refetch: techRefetch } = useQuery(
+        "TECH",
+        () =>
+            getBlog({
+                type: "TECH",
+                offset: 0,
+                limit: 8,
+                order: "LIKES",
+                setData: setSkillData,
+            }),
+        {
+            enabled: false,
+        }
+    );
+    useEffect(() => {
+        userGitRefetch();
+        generalRefetch();
+        techRefetch();
+    }, []);
+
+    const setGrade = (score: number): string => {
+        if (score >= 10000) {
+            return "S";
+        } else if (score >= 5000) {
+            return "A";
+        } else if (score >= 2000) {
+            return "B";
+        } else if (score >= 800) {
+            return "C";
+        } else if (score >= 200) {
+            return "D";
+        } else if (score >= 50) {
+            return "E";
+        } else {
+            return "F";
+        }
+    };
 
     return (
         <>
@@ -100,7 +120,7 @@ const Main = () => {
             <S.Github>
                 <S.Score>
                     <CircularProgressbarWithChildren
-                        value={gitData.score/100}
+                        value={gitData.score / 100}
                         text={setGrade(gitData.score)}
                         styles={buildStyles({
                             // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
@@ -108,7 +128,7 @@ const Main = () => {
 
                             // How long animation takes to go from one percentage to another, in seconds
                             pathTransitionDuration: 0.5,
-                            textSize: '30px',
+                            textSize: "30px",
                             // Colors
                             pathColor: `rgba(0, 132, 219)`,
                             trailColor: "#EFF4F4",
@@ -121,9 +141,18 @@ const Main = () => {
                     </S.CircularText>
                 </S.Score>
                 <S.Comprehensive>
-                    <Record title="Total Stars Earned" score={gitData.starCount} />
-                    <Record title="Total Commits" score={gitData.contributionCount} />
-                    <Record title="Total PRs" score={gitData.pullRequestCount} />
+                    <Record
+                        title="Total Stars Earned"
+                        score={gitData.starCount}
+                    />
+                    <Record
+                        title="Total Commits"
+                        score={gitData.contributionCount}
+                    />
+                    <Record
+                        title="Total PRs"
+                        score={gitData.pullRequestCount}
+                    />
                     <Record title="Total Issues" score={gitData.issueCount} />
                     <Record
                         title="Contributed to"

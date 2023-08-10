@@ -1,8 +1,6 @@
-import { Link } from "react-router-dom";
-import { BackGround } from "./../modal/style";
 import styled from "styled-components";
 
-import { Body, Body2, BodyLarge, BodyStrong } from "@styles/text.style";
+import { Body, Body2, BodyStrong } from "@styles/text.style";
 import { color } from "@styles/theme.style";
 
 export const Bar = styled.nav`
@@ -82,10 +80,6 @@ export const LoginBtn = styled.div`
         background-color: ${color.grayLight1};
     }
 `;
-export const LinkTag = styled(Link)`
-	text-decoration: none;
-	color:${color.black}
-`
 export const WriteText = styled(BodyStrong)`
     color: ${color.grayDark1};
 `;
