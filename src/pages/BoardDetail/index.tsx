@@ -128,7 +128,7 @@ const BoardDetail = () => {
                     <S.Line />
                     <S.IconSection>
                         <S.Icons>
-                            <S.IconInfo
+                            <S.IconPointer
                             onClick={() => {
                                 likeMutate
                             }}>
@@ -144,7 +144,7 @@ const BoardDetail = () => {
                                     />
                                 )}
                                 {data.isLiked}
-                            </S.IconInfo>
+                            </S.IconPointer>
                             <S.IconInfo>
                                 <ChatBubble
                                     fill={color.grayBase}
@@ -158,9 +158,9 @@ const BoardDetail = () => {
                                 <Eye fill={color.grayDark1} width="24px" />
                                 <S.IconText>{data.views}</S.IconText>
                             </S.IconInfo>
-                            <S.IconInfo onClick={() => setShowPopUp(true)}>
+                            <S.IconPointer onClick={() => setShowPopUp(true)}>
                                 <Share fill={color.grayDark1} width="24px" />
-                            </S.IconInfo>
+                            </S.IconPointer>
                             {data.isAuthor ? (
                                 <>
                                     <S.UpdateIcon to={"/updateblog/"+id}>
@@ -181,6 +181,7 @@ const BoardDetail = () => {
                                         />
                                         <S.UpdateText
                                             fill={color.critical}
+                                            style={{cursor: 'pointer'}}
                                         >게시글 삭제하기</S.UpdateText>
                                     </S.DeleteIcon>
                                 </>    

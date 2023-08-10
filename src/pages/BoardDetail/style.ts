@@ -123,6 +123,13 @@ export const IconInfo = styled(Body2)`
     gap: 4px;
 `;
 
+export const IconPointer = styled(Body2)`
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+`;
+
 export const IconText = styled(Body2)`
     color: ${color.grayDark1};
 `;
