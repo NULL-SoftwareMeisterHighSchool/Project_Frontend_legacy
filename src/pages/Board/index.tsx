@@ -40,7 +40,6 @@ const Board = () => {
                     ? "VIEWS"
                     : "LIKES",
             setData: setBlogData,
-            data: blogData,
             query: searchInput,
         });
     };
@@ -93,7 +92,7 @@ const Board = () => {
                             key={post.id}
                             id={post.id}
                             name={post.author.name}
-                            title={post.summary}
+                            title={post.title}
                             date={useDate(post.createdAt).date}
                             to={"/blogdetail/"+post.id}
                         />
