@@ -15,7 +15,7 @@ import {
 const WriteBoard = () => {
     const [title, setTitle] = useState("");
     const type = useRecoilValue(articleTypeAtom);
-    const [blogContent, setBlogContent] = useState(
+    const [content, setBlogContent] = useState(
         "## 내용을 입력해주세요.\n이것은 내용입니다. 호호호"
     );
     const { mutate: writeMutate } = useMutation(postWrite, {
@@ -36,7 +36,7 @@ const WriteBoard = () => {
                     }
                 </S.STitle>
                 <S.Post onClick={()=>{
-                    writeMutate({title, type, blogContent})
+                    writeMutate({title, type, content})
                 }}>글 게시하기</S.Post>
             </S.Header>
             <S.TitleInput
@@ -46,7 +46,7 @@ const WriteBoard = () => {
                     setTitle(e.target.value)
                 }
             />
-            <Toast content={blogContent} setContent={setBlogContent} />
+            <Toast content={content} setContent={setBlogContent} />
         </>
     );
 };
