@@ -43,7 +43,7 @@ export const getBlog = async ({
     }
 };
 
-export const deleteBlog = async (id:number) => {
+export const deleteBlog = async (id:string | undefined) => {
     await instance.delete(`${router}/${id}`, {});
 }
 
