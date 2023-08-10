@@ -1,3 +1,4 @@
+import { BodyLarge2 } from "@styles/text.style";
 import * as S from "./style";
 
 type BlogPropsType = {
@@ -6,10 +7,11 @@ type BlogPropsType = {
   summary: string;
   titleImg?: string;
   date: string;
+  to:string;
 }
-const BlogPost = ({ id,name,summary, titleImg, date }: BlogPropsType) => {
+const BlogPost = ({ id,name,summary, titleImg, date,to }: BlogPropsType) => {
   return (
-    <S.MainContainer>
+    <S.MainContainer to={to}>
       {titleImg && <img src={titleImg} />}
       <S.Title>
         <S.TitleText>{name}</S.TitleText>
@@ -17,7 +19,7 @@ const BlogPost = ({ id,name,summary, titleImg, date }: BlogPropsType) => {
         <S.TitleText>{date}</S.TitleText>
       </S.Title>
 
-      <p>{summary}</p>
+      <BodyLarge2>{summary}</BodyLarge2>
     </S.MainContainer>
   )
 }
