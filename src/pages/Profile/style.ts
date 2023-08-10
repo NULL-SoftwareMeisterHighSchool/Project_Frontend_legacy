@@ -18,10 +18,27 @@ export const User = styled.div`
         align-items: center;
         gap: 20px;
     }
+    @media (max-width:1200px) {
+        align-items: start;
+        flex-direction: column;
+    }
 `;
 
-export const ProfileUpdateBtn = styled.div`
+export const UserSection = styled.div`
+    display: flex;
+    align-items: center;
+    min-width: max-content;
+    gap: 20px
+`;
+
+export const BtnArea = styled.div`
+    display: flex;
+    gap: 6px
+`;
+
+export const Btn = styled.div`
     padding: 14px 20px;
+    min-width: max-content;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,6 +47,9 @@ export const ProfileUpdateBtn = styled.div`
     cursor: pointer;
     >p{
         color: ${color.grayDark2};
+    }
+    @media (max-width:1200px) {
+        margin: 40px 0 0 10px;
     }
 `;
 
@@ -62,15 +82,20 @@ export const UserContectSection = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    gap: 12px;
+    gap: 12px 0px;
+    @media (max-width:1350px){
+        padding: 0px 12px;
+    }
 `;
 
 export const UserContectInfo = styled.div`
     display: flex;
+    align-items: center;
+    gap: 12px;
 `;
 
 export const UserContectTitle = styled(Body2)`
-    width: 64px;
+    width: min-content;
     color: ${color.grayDark1};
 `;
 
