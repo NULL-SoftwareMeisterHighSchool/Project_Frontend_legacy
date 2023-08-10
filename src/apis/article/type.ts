@@ -30,8 +30,8 @@ type CommentType = {
 };
 
 type skillDataProps = {
-    article: blogType[];
-    total: number;
+    articles: blogType[];
+    totalCount: number;
 };
 type blogType = {
     id: number;
