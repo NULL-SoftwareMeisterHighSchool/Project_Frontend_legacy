@@ -23,7 +23,7 @@ type DropdownType = {
     text: string;
 };
 const emailRex = new RegExp("^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$");
-const urlRex = new RegExp("(http[s]?|ftp):\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}")
+
 const EnRolledSignup = () => {
     const router = useNavigate();
 
@@ -50,13 +50,13 @@ const EnRolledSignup = () => {
         onSuccess: () => {
             router("/login");
         },
-        onError: () => {
+        onError: (err) => {
             alert("회원가입에 실패하였습니다.");
             setPageNum(1);
         },
     });
 
-    const [pageNum, setPageNum] = useState(2);
+    const [pageNum, setPageNum] = useState(1);
 
     const [userData, setUserData] = useState({
         school: "",
@@ -66,10 +66,9 @@ const EnRolledSignup = () => {
         code: "",
         userID: "",
         password: "",
-        emailCode: true,
+        emailCode: true, // 수정 필요
         githubID: "",
     });
-    const { emailCode, ...sendData } = userData;
 
     const [userSchool, setUserSchool] = useState<DropdownType | undefined>({
         text: "대덕SW마이스터고",
@@ -125,7 +124,7 @@ const EnRolledSignup = () => {
             type: "url",
             name: "githubID",
             title: "GitHub",
-            placeholder: "Github 주소를 입력해 주세요",
+            placeholder: "Github 아이디를 입력해 주세요",
         },
     ];
     const schoolSelect = [
@@ -168,14 +167,27 @@ const EnRolledSignup = () => {
             alert("비밀번호를 입력해주세요.");
         } else if (userData.githubID === "") {
             alert("Github를 입력해주세요.");
-        } else if(!urlRex.test(userData.githubID)){
-			alert("Github 형식이 올바르지 않습니다.")
-		}else if(userData.password.length < 8){
-            alert("비밀번호 길이가 8자 이상이어야 합니다.")
-        }else if(userData.password.length > 16){
-            alert("비밀번호 길이가 16자 이하이어야 합니다.")
-        }else {
-            signupStudent(sendData);
+        } else if (userData.password.length < 8) {
+            alert("비밀번호 길이가 8자 이상이어야 합니다.");
+        } else if (userData.password.length > 16) {
+            alert("비밀번호 길이가 16자 이하이어야 합니다.");
+        } else {
+            signupStudent({
+                school:
+                    userData.school === "대덕SW마이스터고"
+                        ? "DSM"
+                        : userData.school === "대구SW마이스터고"
+                        ? "DGSM"
+                        : userData.school === "광주SW마이스터고"
+                        ? "GSM"
+                        : "BSM",
+                email: userData.email,
+                admissionYear: Number(userData.admissionYear),
+                name: userData.name,
+                userID: userData.userID,
+                password: userData.password,
+                githubID: userData.githubID,
+            });
         }
     };
 
@@ -244,10 +256,14 @@ const EnRolledSignup = () => {
                         })}
                 </S.InputContainer>
                 <S.SubmitContainer>
-                    <div>
-                        <Body2>회원이신가요?</Body2>
-                        <BodyStrong>로그인</BodyStrong>
-                    </div>
+                    {pageNum === 1 && (
+                        <div>
+                            <Body2>회원이신가요?</Body2>
+                            <BodyStrong onClick={() => router("/login")}>
+                                로그인
+                            </BodyStrong>
+                        </div>
+                    )}
                     <Button
                         height="48px"
                         value={pageNum === 1 ? "다음" : "회원가입"}
@@ -256,7 +272,7 @@ const EnRolledSignup = () => {
                                 ? () => onClickPage()
                                 : () => onClickSignUp()
                         }
-						disabled={!userData.emailCode}
+                        disabled={!userData.emailCode}
                     />
                 </S.SubmitContainer>
             </div>

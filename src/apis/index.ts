@@ -1,4 +1,8 @@
-import axios, { AxiosError } from 'axios';
+import { getCookie, setCookie } from "@utils/cookies";
+import axios, { AxiosError } from "axios";
+import { useMutation } from "react-query";
+import { postRefresh } from "./auth";
+import { getExpiredCookieHours } from "@utils/expires";
 
 export const instance = axios.create({
     baseURL: `${import.meta.env.VITE_BASEURL}`,
@@ -7,7 +11,7 @@ export const instance = axios.create({
 
 instance.interceptors.request.use(
     (config) => {
-        const accessToken = localStorage.getItem("access");
+        const accessToken = getCookie("accessToken");
         const returnConfig = {
             ...config,
         };
@@ -22,23 +26,27 @@ instance.interceptors.request.use(
     (error: AxiosError) => Promise.reject(error)
 );
 
-// 리프레시 수정중
-// instance.interceptors.response.use(
-//     (response) => response,
-//     (error: AxiosError<AxiosError>) => {
-//         if (axios.isAxiosError(error) && error.response) {
-//             const { config } = error;
-//             const refreshToken = localStorage.getItem("refresh");
-//             if (
-//                 error.response.data.message === "Expired Token" ||
-//                 error.response.data.message === "Can Not Access"
-//             ) {
-//                 if (refreshToken) {
-                    
-//                 } else {
-//                     window.location.href = "/login";
-//                 }
-//             } else return Promise.reject(error);
-//         }
-//     }
-// );
+instance.interceptors.response.use(
+    (response) => response,
+    (error: AxiosError<AxiosError>) => {
+        if (axios.isAxiosError(error) && error.response) {
+            const { message } = error.response.data;
+            const refreshToken = getCookie("refreshToken");
+
+            if (message === "유효하지 않은 엑세스 토큰입니다") {
+                if (refreshToken) {
+                    postRefresh().then((data) => {
+                        setCookie("accessToken", data.accessToken, {
+                            path: "/",
+                            expires: getExpiredCookieHours(data.expiresAt),
+                        });
+                    }).catch(()=>{
+                        // window.location.href = "/login"
+                    });
+                } else {
+                    // window.location.href = "/login";
+                }
+            } else return Promise.reject(error);
+        }
+    }
+);

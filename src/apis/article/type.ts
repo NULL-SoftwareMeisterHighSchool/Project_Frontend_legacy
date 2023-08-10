@@ -55,11 +55,23 @@ export type getBlogProps = {
     limit: number;
     order: string;
     setData: React.Dispatch<React.SetStateAction<skillDataProps>>;
-    data: skillDataProps;
-    newData?: boolean;
+    data?: skillDataProps;
 };
 
 export type postCommentType = {
     id: string | undefined;
     body: string;
+}
+
+export type postWriteType = {
+    title : string;
+    articleType : string;
+    blogContent : string;
+}
+
+export type patchWriteType = {
+    id : string | undefined;
+    title : string;
+    articleType : string;
+    blogContent : string;
 }

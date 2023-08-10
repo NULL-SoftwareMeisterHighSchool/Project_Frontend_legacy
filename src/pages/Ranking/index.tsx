@@ -16,13 +16,23 @@ type rankingDataType = {
 };
 
 const Ranking = () => {
-    const {} = useQuery("users", () => getRank({ setRankData, filterData }));
     const [rankData, setRankData] = useState<rankingDataType[]>([]);
 
     const [filterData, setFilterData] = useState({
         user: "전체",
         school: "전체 학교",
     });
+    const { refetch } = useQuery(
+        "users",
+        () => getRank({ setRankData, filterData }),
+        {
+            enabled: false,
+        }
+    );
+
+    useEffect(()=>{
+        refetch();
+    },[])
     useEffect(() => {
         getRank({ setRankData, filterData });
     }, [filterData]);
