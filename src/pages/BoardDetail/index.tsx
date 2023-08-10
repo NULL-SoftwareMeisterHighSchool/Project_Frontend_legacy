@@ -200,6 +200,7 @@ const BoardDetail = () => {
                                 to={"/profile/" + post.author.id}
                                 date={useDate(post.createdAt).date}
                                 time={useDate(post.createdAt).time}
+                                func={refetch}
                             />
                         ))}
                     </S.Comment>

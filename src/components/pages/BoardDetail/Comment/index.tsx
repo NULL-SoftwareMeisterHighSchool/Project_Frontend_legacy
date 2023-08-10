@@ -14,6 +14,7 @@ export interface ComentType {
   commentID: number;
   username: string;
   content: String;
+  func: ()=>void;
   date: String;
   time: String;
   to: any;
@@ -24,6 +25,7 @@ const Comment = ({
   commentID,
   username,
   content,
+  func,
   date,
   time,
   to,
@@ -37,6 +39,7 @@ const Comment = ({
       alert("삭제 성공");
       setCommentOpen(false);
       setModal(false);
+      func();
     },
     onError: ()=>{
       alert("삭제 실패");
