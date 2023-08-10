@@ -4,13 +4,16 @@ import { Delete } from "@assets/images/icon/Delete";
 import { CommentStateType } from "./comment.type";
 import { deleteComment } from "@apis/article";
 import { useMutation } from "react-query";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { profileIdAtom } from "@atoms/profile";
 
 import Modal from "@components/common/modal";
 import * as S from "./style";
 
 export interface ComentType {
+  authorId: number; 
   commentID: number;
   username: string;
   content: String;
@@ -22,6 +25,7 @@ export interface ComentType {
 }
 
 const Comment = ({
+  authorId,
   commentID,
   username,
   content,
@@ -32,6 +36,7 @@ const Comment = ({
   state = "COMMENT",
 }: ComentType) => {
   const { id } = useParams();
+  const myId = useRecoilValue(profileIdAtom);
   const [commentOpen, setCommentOpen] = useState<boolean>(false);
   const [modal, setModal] = useState<boolean>(false);
   const { mutateAsync: deleteCommentMutate } = useMutation(deleteComment, {
@@ -86,15 +91,18 @@ const Comment = ({
               </S.CommentName>
               <S.CommentContent>{content}</S.CommentContent>
             </S.Column>
-            <div
-              onClick={() => {
-                {
-                  modal ? setModal(false) : setModal(true);
-                }
-              }}
-            >
-              <More />
-            </div>
+            {
+              Number(myId) === authorId &&
+                <div
+                onClick={() => {
+                  {
+                    modal ? setModal(false) : setModal(true);
+                  }
+                }}
+              >
+                <More />
+              </div> 
+            }
           </S.Row>
           {modal && (
             <S.CommentDelet onClick={()=>{

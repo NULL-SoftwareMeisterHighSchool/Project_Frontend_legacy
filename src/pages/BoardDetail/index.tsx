@@ -196,6 +196,7 @@ const BoardDetail = () => {
                         {data.comments.map((post, index) => (
                             <Comment
                                 key={index}
+                                authorId={post.author.id}
                                 commentID = {post.commentID}
                                 username={post.author.name}
                                 content={post.content}
