@@ -6,7 +6,7 @@ import { instance } from "..";
 
 const router = `/articles`;
 
-export const getboardDetail = async ( id : string | undefined ) => {
+export const getboardDetail = async (id: string | undefined) => {
     const response = await instance.get(`${router}/${id}`);
     return response;
 };
@@ -24,17 +24,19 @@ export const getBlog = async ({
     data, // 일반 블로그는 사용하면 안됨. 기술블로그만 사용
 }: getBlogProps) => {
     const response = await instance.get(
-        `${router}?offfset=${offset}&limit=${limit}&type=${type}&authorID=${
-            authorID ?? ""
-        }&duration_start=${duration_start ?? ""}&duration_end=${
-            duration_end ?? ""
-        }&query=${query ?? ""}&order=${order}`
+        `${router}?offset=${Number(offset)}&limit=${Number(
+            limit
+        )}&type=${type}&order=${order}${
+            authorID ? "&authorID=" + Number(authorID) : ""
+        }${duration_start ? "&duration_start=" + duration_start : ""}${
+            duration_end ? "&duration_end=" + duration_end : ""
+        }${query ? "&query=" + query : ""}`
     );
     const resData = response.data;
     if (data) {
         setData({
-            total: resData.total,
-            article: data.article.concat(resData.artocle),
+            totalCount: resData.totalCount,
+            articles: data.articles.concat(resData.articles),
         });
     } else {
         setData(resData);
@@ -45,9 +47,9 @@ export const postLike = async ({ id }: getBlogDetailProps) => {
     await instance.post(`${router}/${id}/like`, {});
 };
 
-export const postComment = async ({body, id} : postCommentType) => {
+export const postComment = async ({ body, id }: postCommentType) => {
     await instance.post(`${router}/${id}/comments`, {
-        body
+        body,
     });
 };
 
@@ -59,12 +61,12 @@ export const deleteComment = async (commentID : number) => {
 export const postWrite = async ({
     title,
     articleType,
-    blogContent
-}:postWriteType) => {
+    blogContent,
+}: postWriteType) => {
     await instance.post(`${router}/`, {
-        title, 
-        articleType, 
-        blogContent
+        title,
+        articleType,
+        blogContent,
     });
 };
 
@@ -72,11 +74,11 @@ export const patchWrite = async ({
     id,
     title,
     articleType,
-    blogContent
-}:patchWriteType) => {
+    blogContent,
+}: patchWriteType) => {
     await instance.patch(`${router}/${id}`, {
-        title, 
-        articleType, 
-        blogContent
+        title,
+        articleType,
+        blogContent,
     });
 };
