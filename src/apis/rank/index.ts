@@ -25,7 +25,7 @@ export const getRank = async ({ setRankData, filterData }: getRankProps) => {
 
     console.log(school, grade);
     const resGetRank = await instance.get(
-        `${router}/?school=${school}&size=30&grade=${grade}`
+        `${router}/?size=30${school && "&school="+school}${grade&&"&grade="+grade}`
     );
     setRankData(resGetRank.data.rank);
 };
