@@ -43,6 +43,10 @@ export const getBlog = async ({
     }
 };
 
+export const deleteBlog = async (id:number) => {
+    await instance.delete(`${router}/${id}`, {});
+}
+
 export const postLike = async ({ id }: getBlogDetailProps) => {
     await instance.post(`${router}/${id}/like`, {});
 };
