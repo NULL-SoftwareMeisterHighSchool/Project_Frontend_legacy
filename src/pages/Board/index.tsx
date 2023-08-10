@@ -31,7 +31,7 @@ const Board = () => {
     const getBlogData = (limit: number) => {
         getBlog({
             type: "GENERAL",
-            offset: (page - 1) * limit + 1,
+            offset: (page - 1) * (limit + 1),
             limit: limit,
             order:
                 filterData === "최신순"
@@ -40,7 +40,6 @@ const Board = () => {
                     ? "VIEWS"
                     : "LIKES",
             setData: setBlogData,
-            data: blogData,
             query: searchInput,
         });
     };
@@ -93,9 +92,9 @@ const Board = () => {
                             key={post.id}
                             id={post.id}
                             name={post.author.name}
-                            title={post.summary}
+                            title={post.title}
                             date={useDate(post.createdAt).date}
-                            to="/"
+                            to={"/blogdetail/"+post.id}
                         />
                     ))}
                 </S.Content>
