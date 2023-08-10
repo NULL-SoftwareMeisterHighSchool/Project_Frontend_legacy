@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import AppLayout from "@layouts/AppLayout";
 import * as S from "./style";
 import Post from "@components/common/Post";
 import SearchFilter from "@components/pages/SkillBlog/SearchFilter";
@@ -12,8 +11,8 @@ import useDate from "@hooks/useDate";
 import TitlePath from "@components/common/TitlePath";
 
 type blogDataProps = {
-    article: blogType[];
-    total: number;
+    articles: blogType[];
+    totalCount: number;
 };
 type blogType = {
     id: number;
@@ -48,8 +47,8 @@ const Board = () => {
     
     /** blog 데이터 */
     const [blogData, setBlogData] = useState<blogDataProps>({
-        article: [],
-        total: 80,
+        articles: [],
+        totalCount: 80,
     });
     /** 검색어 */
     const [searchInput, setSearchInput] = useState<string>("");
@@ -89,7 +88,7 @@ const Board = () => {
                     setFilterData={setFilterData}
                 />
                 <S.Content>
-                    {blogData.article.map((post) => (
+                    {blogData.articles.map((post) => (
                         <Post
                             key={post.id}
                             id={post.id}
@@ -103,7 +102,7 @@ const Board = () => {
                 <Pagination
                     activePage={page}
                     itemsCountPerPage={8}
-                    totalItemsCount={blogData.total}
+                    totalItemsCount={blogData.totalCount}
                     pageRangeDisplayed={5}
                     prevPageText={
                         <S.ArrowButton>

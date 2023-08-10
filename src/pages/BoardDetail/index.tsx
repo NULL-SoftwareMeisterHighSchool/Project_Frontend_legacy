@@ -6,19 +6,25 @@ import { ChatBubble } from "@assets/images/icon/ChatBubble";
 import { Share } from "@assets/images/icon/Share";
 import { Eye } from "@assets/images/icon/Eye";
 import { Edit } from "@assets/images/icon/Edit";
-import Comment from "@components/common/Comment";
+import { Delete } from "@assets/images/icon/Delete";
+import Modal from "@components/common/modal";
 import SharePopUp from "@components/pages/SharePopUp";
 import UserIcon from "@components/common/UserIcon";
 import View from "@components/pages/BoardDetail/Viewer";
-import CommentWrite from "@components/pages/BoardDetail/Comment";
+import CommentWrite from "@components/pages/BoardDetail/CommentWrite";
+import Comment from "@components/pages/BoardDetail/Comment";
 import * as S from "./style";
 import { useMutation, useQuery } from "react-query";
-import { getboardDetail, postLike } from "@apis/article";
+import { getboardDetail, postLike, deleteBlog } from "@apis/article";
+import { articleIdAtom } from "@atoms/articleId";
+import { useSetRecoilState } from "recoil"; 
 import useDate from "@hooks/useDate";
 
 const BoardDetail = () => {
     const { id } = useParams();
+    const setBlogId = useSetRecoilState(articleIdAtom);
     const [showPopUp, setShowPopUp] = useState<boolean>(false);
+    const [blogOpen, setBlogOpen] = useState<boolean>(false);
     const [data, setdata] = useState({
         title: "Awesome 한 이것 사용 후기",
         views: 12,
@@ -54,6 +60,15 @@ const BoardDetail = () => {
         }
     });
 
+    const { mutateAsync: deleteBlogMutate } = useMutation(deleteBlog,{
+        onSuccess: ()=>{
+            alert("게시물 삭제 성공!");
+        },
+        onError: ()=>{
+            alert("게시물 삭제 실패!");
+        }
+    });
+
     const { refetch } = useQuery(
         "getBlogDetail",
         () => getboardDetail(id),{
@@ -69,15 +84,35 @@ const BoardDetail = () => {
     
     useEffect(() => {
         refetch();
+        setBlogId(String(id));
     }, []);
 
     return (
         <>
             {showPopUp && <SharePopUp setShowPopUp={setShowPopUp} />}
+            {blogOpen && (
+                <Modal setVal={setBlogOpen}>
+                    <S.UseTitleContainer>
+                        <S.UserTitle>정말로 게시글을 삭제하실건가요?</S.UserTitle>
+                        <S.UserSubTitle>
+                        삭제한 게시글은 되돌릴 수 없어요.
+                        </S.UserSubTitle>
+                    </S.UseTitleContainer>
+                    <S.UserBtnContainer>
+                        <button onClick={()=>{
+                            setBlogOpen(false);
+                        }}>취소</button>
+                        <button onClick={()=>{
+                            deleteBlogMutate(id);
+                            setBlogOpen(false);
+                        }}>게시글 삭제하기</button>
+                    </S.UserBtnContainer>
+                </Modal>
+            )}
             <>
                 <S.Post>
                     <S.Thumbnail>
-                        <S.Title>{data.title}</S.Title>
+                        <S.PostTitle>{data.title}</S.PostTitle>
                         <S.Profile>
                             <UserIcon backWidth="48px" iconWidth={26} />
                             <S.ProfileInfo>
@@ -124,13 +159,28 @@ const BoardDetail = () => {
                                 <Share fill={color.grayDark1} width="24px" />
                             </S.IconInfo>
                             {data.isAuthor ? (
-                                <S.UpdateIcon to={"/updateblog/"+id}>
-                                    <Edit
-                                        fill={color.primaryBase}
-                                        width="24px"
-                                    />
-                                    <S.UpdateText>게시글 수정하기</S.UpdateText>
-                                </S.UpdateIcon>
+                                <>
+                                    <S.UpdateIcon to={"/updateblog/"+id}>
+                                        <Edit
+                                            fill={color.primaryBase}
+                                            width="24px"
+                                        />
+                                        <S.UpdateText
+                                            fill={color.primaryBase}
+                                        >게시글 수정하기</S.UpdateText>
+                                    </S.UpdateIcon>
+                                    <S.DeleteIcon onClick={()=>{
+                                        setBlogOpen(true);
+                                    }}>
+                                        <Delete
+                                            fill={color.critical}
+                                            width="24px"
+                                        />
+                                        <S.UpdateText
+                                            fill={color.critical}
+                                        >게시글 삭제하기</S.UpdateText>
+                                    </S.DeleteIcon>
+                                </>    
                             ) : (
                                 ""
                             )}
@@ -138,13 +188,15 @@ const BoardDetail = () => {
                     </S.IconSection>
                     <CommentWrite id={id} />
                     <S.Comment>
-                        {data.comments.map((post) => (
+                        {data.comments.map((post, index) => (
                             <Comment
-                                username={data.comments[0].author.name}
-                                content={data.comments[0].content}
-                                to={"/profile/" + data.comments[0].author.id}
-                                date={useDate(data.comments[0].createdAt).date}
-                                time={useDate(data.comments[0].createdAt).time}
+                                key={index}
+                                commentID = {post.commentID}
+                                username={post.author.name}
+                                content={post.content}
+                                to={"/profile/" + post.author.id}
+                                date={useDate(post.createdAt).date}
+                                time={useDate(post.createdAt).time}
                             />
                         ))}
                     </S.Comment>

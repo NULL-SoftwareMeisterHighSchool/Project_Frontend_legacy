@@ -119,6 +119,7 @@ const Mypage = () => {
         <>
             <TitlePath title="마이페이지" path="Menu > 마이페이지" />
             <UpdateProfile
+                refetch={refetch}
                 val={updateProfileOpen}
                 setVal={setUpdateProfileOpen}
                 userData={changeUserData}
@@ -166,13 +167,14 @@ const Mypage = () => {
                                 key={data.id}
                                 id={data.id}
                                 name={data.author.name}
-                                summary={data.summary}
+                                summary={data.title}
                                 titleImg={
                                     data.thumbnail === ""
                                         ? SkillBlogDefaultImg
                                         : ""
                                 }
                                 date={useDate(data.createdAt).date}
+                                to={"/blogdetail/"+data.id}
                             />
                         ))}
                     </S.BlogContainer>
@@ -186,7 +188,7 @@ const Mypage = () => {
                                 title={post.title}
                                 name={post.author.name}
                                 date={useDate(post.createdAt).date}
-                                to=""
+                                to={"/blogdetail/"+post.id}
                             />
                         ))}
                     </S.PostContainer>
