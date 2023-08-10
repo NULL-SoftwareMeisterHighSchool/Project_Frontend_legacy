@@ -65,7 +65,7 @@ const Setting = () => {
                         <Lock width={24} height={24} fill={color.primaryBase} />
                     }
                     colorType={color.black}
-                    onClick={() => {}}
+                    onClick={() => {navigate('/pwchange')}}
                 />
                 {/* <UserSetting
                     title="이메일 변경"
