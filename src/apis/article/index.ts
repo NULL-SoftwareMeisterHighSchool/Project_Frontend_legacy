@@ -64,12 +64,12 @@ export const deleteComment = async (commentID : number) => {
 
 export const postWrite = async ({
     title,
-    articleType,
+    type,
     blogContent,
 }: postWriteType) => {
     await instance.post(`${router}/`, {
         title,
-        articleType,
+        type,
         blogContent,
     });
 };
@@ -77,12 +77,10 @@ export const postWrite = async ({
 export const patchWrite = async ({
     id,
     title,
-    articleType,
     blogContent,
 }: patchWriteType) => {
     await instance.patch(`${router}/${id}`, {
         title,
-        articleType,
         blogContent,
     });
 };
