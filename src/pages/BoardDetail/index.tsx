@@ -18,16 +18,19 @@ import { useMutation, useQuery } from "react-query";
 import { getboardDetail, postLike, deleteBlog } from "@apis/article";
 import { articleIdAtom } from "@atoms/articleId";
 import { useSetRecoilState } from "recoil"; 
+import { useNavigate } from "react-router-dom";
 import useDate from "@hooks/useDate";
 
 const BoardDetail = () => {
     const { id } = useParams();
+    const navigate = useNavigate();
     const setBlogId = useSetRecoilState(articleIdAtom);
     const [showPopUp, setShowPopUp] = useState<boolean>(false);
     const [blogOpen, setBlogOpen] = useState<boolean>(false);
     const [data, setdata] = useState({
         title: "Awesome 한 이것 사용 후기",
         views: 12,
+        likes: 15,
         body: "qkqhsaldkfjls",
         createdAt: "2016-10-27T17:13:40",
         author: {
@@ -36,7 +39,6 @@ const BoardDetail = () => {
         },
         isLiked: false,
         isAuthor: true,
-        likes: 12,
         commentCount: 11,
         comments: [
             {
@@ -51,18 +53,10 @@ const BoardDetail = () => {
         ],
     });
 
-    const { mutateAsync: likeMutate } = useMutation(postLike,{
-        onSuccess: ()=>{
-            console.log("Success");
-        },
-        onError: ()=>{
-            console.error("Error");
-        }
-    });
-
     const { mutateAsync: deleteBlogMutate } = useMutation(deleteBlog,{
         onSuccess: ()=>{
             alert("게시물 삭제 성공!");
+            navigate("/");
         },
         onError: ()=>{
             alert("게시물 삭제 실패!");
@@ -81,6 +75,16 @@ const BoardDetail = () => {
             enabled: false,
         }
     );
+
+    const { mutateAsync: likeMutate } = useMutation(postLike,{
+        onSuccess: ()=>{
+            console.log("Success");
+            refetch();
+        },
+        onError: ()=>{
+            console.error("Error");
+        }
+    });
     
     useEffect(() => {
         refetch();
@@ -125,9 +129,9 @@ const BoardDetail = () => {
                     <S.Line />
                     <S.IconSection>
                         <S.Icons>
-                            <S.IconInfo
+                            <S.IconPointer
                             onClick={() => {
-                                likeMutate
+                                likeMutate(id);
                             }}>
                                 {data.isLiked ? (
                                     <Favorite
@@ -140,8 +144,8 @@ const BoardDetail = () => {
                                         width="24px"
                                     />
                                 )}
-                                {data.isLiked}
-                            </S.IconInfo>
+                                {data.likes}
+                            </S.IconPointer>
                             <S.IconInfo>
                                 <ChatBubble
                                     fill={color.grayBase}
@@ -155,9 +159,9 @@ const BoardDetail = () => {
                                 <Eye fill={color.grayDark1} width="24px" />
                                 <S.IconText>{data.views}</S.IconText>
                             </S.IconInfo>
-                            <S.IconInfo onClick={() => setShowPopUp(true)}>
+                            <S.IconPointer onClick={() => setShowPopUp(true)}>
                                 <Share fill={color.grayDark1} width="24px" />
-                            </S.IconInfo>
+                            </S.IconPointer>
                             {data.isAuthor ? (
                                 <>
                                     <S.UpdateIcon to={"/updateblog/"+id}>
@@ -178,6 +182,7 @@ const BoardDetail = () => {
                                         />
                                         <S.UpdateText
                                             fill={color.critical}
+                                            style={{cursor: 'pointer'}}
                                         >게시글 삭제하기</S.UpdateText>
                                     </S.DeleteIcon>
                                 </>    
@@ -186,17 +191,19 @@ const BoardDetail = () => {
                             )}
                         </S.Icons>
                     </S.IconSection>
-                    <CommentWrite id={id} />
+                    <CommentWrite id={id} func={refetch}/>
                     <S.Comment>
                         {data.comments.map((post, index) => (
                             <Comment
                                 key={index}
+                                authorId={post.author.id}
                                 commentID = {post.commentID}
                                 username={post.author.name}
                                 content={post.content}
                                 to={"/profile/" + post.author.id}
                                 date={useDate(post.createdAt).date}
                                 time={useDate(post.createdAt).time}
+                                func={refetch}
                             />
                         ))}
                     </S.Comment>

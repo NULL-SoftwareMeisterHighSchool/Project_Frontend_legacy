@@ -74,3 +74,8 @@ export type patchWriteType = {
     title : string;
     content : string;
 }
+
+export type deleteCommentType = {
+    id : string | undefined;
+    commentID : number;
+}

@@ -7,10 +7,12 @@ import { useState } from "react";
 
 type Props = {
     id: string | undefined;
+    func: ()=>void;
 }
 
 const CommentWrite = ({
-    id
+    id,
+    func
 }:Props) => {
     const [ body, setBody ] = useState('');
     const { mutateAsync: commentMutate } = useMutation(postComment, {
@@ -18,6 +20,7 @@ const CommentWrite = ({
           console.log("Success");
           alert("댓글 작성 성공");
           setBody("");
+          func();
         },
         onError: () => {
           alert('댓글작성 실패');
