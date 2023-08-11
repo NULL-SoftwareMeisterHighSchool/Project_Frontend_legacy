@@ -73,12 +73,12 @@ export const postWrite = async ({
     });
 };
 
-export const patchWrite = async ({
+export const putWrite = async ({
     id,
     title,
     content,
 }: patchWriteType) => {
-    await instance.patch(`${router}/${id}`, {
+    await instance.put(`${router}/${id}`, {
         title,
         content,
     });
