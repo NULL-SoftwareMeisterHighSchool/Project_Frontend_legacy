@@ -40,8 +40,10 @@ const Setting = () => {
     const myid = useRecoilValue(profileIdAtom);
 
     useEffect(()=>{
-        if(!myid) alertError("로그인 후 이용 가능합니다.")
-        navigate("/login")
+        if (!myid) {
+            alertError("로그인 후 이용 가능합니다.");
+            navigate("/login");
+        }
     },[])
 
     return (
