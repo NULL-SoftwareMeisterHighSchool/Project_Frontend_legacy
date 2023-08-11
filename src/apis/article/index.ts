@@ -1,5 +1,5 @@
 import { getBlogDetailProps, getBlogProps } from "./type";
-import { postCommentType, postWriteType, patchWriteType, deleteCommentType } from "./type";
+import { postCommentType, postWriteType, putWriteType, deleteCommentType } from "./type";
 import { useRecoilValue } from "recoil"; 
 import { articleIdAtom } from "@atoms/articleId";
 import { instance } from "..";
@@ -76,10 +76,10 @@ export const postWrite = async ({
 export const putWrite = async ({
     id,
     title,
-    content,
-}: patchWriteType) => {
+    content2,
+}: putWriteType) => {
     await instance.put(`${router}/${id}`, {
         title,
-        content,
+        "content" : content2,
     });
 };
