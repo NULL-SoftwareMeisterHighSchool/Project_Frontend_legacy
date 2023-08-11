@@ -44,6 +44,8 @@ type blogType = {
         name: string;
     };
     createdAt: string;
+    likes: number;
+    views: number;
 };
 export type getBlogProps = {
     type: string;
@@ -73,4 +75,9 @@ export type patchWriteType = {
     id : string | undefined;
     title : string;
     content : string;
+}
+
+export type deleteCommentType = {
+    id : string | undefined;
+    commentID : number;
 }

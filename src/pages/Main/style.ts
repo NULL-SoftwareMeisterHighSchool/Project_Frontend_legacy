@@ -128,7 +128,6 @@ export const Board = styled.div`
 	padding: 0px;
 
 	width: 100%;
-	height: 424px;
 `;
 
 

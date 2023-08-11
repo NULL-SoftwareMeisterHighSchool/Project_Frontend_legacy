@@ -16,8 +16,8 @@ import TitlePath from "@components/common/TitlePath";
 import useDate from "@hooks/useDate";
 
 type boardDataProps = {
-    article: blogType[];
-    total: number;
+    articles: blogType[];
+    totalCount: number;
 };
 
 type blogType = {
@@ -36,13 +36,13 @@ type blogType = {
 const Main = () => {
     const [gitGrade, setGitGrade] = useState("");
     const [skillData, setSkillData] = useState<boardDataProps>({
-        article: [],
-        total: 0,
+        articles: [],
+        totalCount: 0,
     });
 
     const [blogData, setBlogData] = useState<boardDataProps>({
-        article: [],
-        total: 0,
+        articles: [],
+        totalCount: 0,
     });
 
     const [gitData, setGitData] = useState({
@@ -169,7 +169,7 @@ const Main = () => {
                         to="/blog"
                     />
                     <S.Board>
-                        {blogData.article.map((post) => (
+                        {blogData.articles.map((post) => (
                             <Post
                                 id={post.id}
                                 title={post.title}
@@ -188,7 +188,7 @@ const Main = () => {
                         to="/skill"
                     />
                     <S.Board>
-                        {skillData.article.map((post) => (
+                        {skillData.articles.map((post) => (
                             <Post
                                 id={post.id}
                                 title={post.title}
