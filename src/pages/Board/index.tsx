@@ -25,6 +25,8 @@ type blogType = {
         name: string;
     };
     createdAt: string;
+    likes: number;
+    views: number;
 };
 
 const Board = () => {
