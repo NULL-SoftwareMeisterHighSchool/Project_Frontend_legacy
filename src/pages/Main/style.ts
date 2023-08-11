@@ -48,6 +48,17 @@ export const ScoreTitle = styled(SubTitle)`
 	order: 0;
 	flex-grow: 0;
 `;
+export const ScoreTitleLogin =styled(SubTitle)`
+	cursor: pointer;
+	font-family: 'Pretendard';
+	font-style: normal;
+	line-height: 28px;
+	color: ${color.primaryDark1};
+	transition: all 0.4s ease-in-out;
+	&:hover{
+		scale: 1.1;
+	}
+`
 
 export const ScoreSubtitle = styled(BodyLarge)`
 	font-family: 'Pretendard';
@@ -128,7 +139,6 @@ export const Board = styled.div`
 	padding: 0px;
 
 	width: 100%;
-	height: 424px;
 `;
 
 

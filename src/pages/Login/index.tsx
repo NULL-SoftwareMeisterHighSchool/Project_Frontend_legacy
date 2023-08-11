@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { postLogin } from "@apis/auth";
 import { setCookie } from "@utils/cookies";
 import { getExpiredCookieHours } from "@utils/expires";
+import { alertError, alertSuccess, alertWarning } from "@utils/toastify";
 
 const Login = () => {
     const router = useNavigate();
@@ -38,17 +39,18 @@ const Login = () => {
                 expires: getExpiredCookieHours(res.data.refresh.expiresAt),
             });
             router("/");
+            alertSuccess("로그인 성공했습니다.")
         },
         onError: () => {
-            alert("로그인에 실패했습니다.");
+            alertError("로그인에 실패했습니다.");
         },
     });
 
     const LoginOnClick = () => {
         if (userData.id === "") {
-            alert("아이디를 입력해주세요.");
+            alertWarning("아이디를 입력해주세요.");
         } else if (userData.password === "") {
-            alert("비밀번호를 입력해주세요.");
+            alertWarning("비밀번호를 입력해주세요.");
         } else {
             loginMutate(userData);
         }

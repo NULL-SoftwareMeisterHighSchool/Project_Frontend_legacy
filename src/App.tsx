@@ -7,13 +7,14 @@ import Error from "@pages/Error";
 import GraduateSignup from "@pages/GraduateSignup";
 import Login from "@pages/Login";
 import Main from "@pages/Main";
-import Mypage from "@pages/Mypage";
+import Profile from "@pages/Profile";
 import Password from "@pages/Password";
 import PersonInfo from "@pages/PersonInfo";
 import Ranking from "@pages/Ranking";
 import Setting from "@pages/Setting";
 import SkillBlog from "@pages/SkillBlog";
 import WriteBoard from "@pages/WriteBoard";
+import UpdateBoard from "@pages/UpdateBoard";
 import { createBrowserRouter } from "react-router-dom";
 
 const app = createBrowserRouter([
@@ -26,12 +27,8 @@ const app = createBrowserRouter([
                 element: <Main />,
             },
             {
-                path: "mypage",
-                element: <Mypage />,
-            },
-            {
                 path: "profile/:id",
-                element: <Mypage />,
+                element: <Profile />,
             },
             {
                 path: "ranking",
@@ -62,6 +59,10 @@ const app = createBrowserRouter([
     {
       path:"/write",
       element:<WriteBoard/>
+    },
+    {
+        path:"/updateblog/:id",
+        element:<UpdateBoard/>
     },
     {
         path: "/graduatesign",

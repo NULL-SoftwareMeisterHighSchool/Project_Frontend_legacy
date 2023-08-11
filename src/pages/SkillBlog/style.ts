@@ -16,14 +16,19 @@ export const BlogContainer = styled.div`
   grid-template-columns:1fr;
   grid-template-rows:auto;
 
-  @media screen and (min-width: 1100px){
+  @media screen and (min-width: 900px){
     grid-template-columns:repeat(2, 1fr);
   }
-  @media screen and (min-width: 1400px){
+  @media screen and (min-width: 1250px){
     grid-template-columns:repeat(3, 1fr);
   }
-  
   @media screen and (min-width: 1650px){
     grid-template-columns:repeat(4, 1fr);
   }
 `;
+
+export const StateBar = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+`

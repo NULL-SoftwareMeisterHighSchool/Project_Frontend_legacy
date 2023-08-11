@@ -8,71 +8,59 @@ import { SkillBlogDefaultImg } from "@assets/images/allfiles";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { delCookie } from "@utils/cookies";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { profileIdAtom, profileNameAtom } from "@atoms/profile";
 import useDate from "@hooks/useDate";
 import { getUserMe } from "@apis/users";
 import UserIcon from "@components/common/UserIcon";
 import UpdateProfile from "@components/pages/Mypage/UpdateProfile";
+import { useNavigate, useParams } from "react-router-dom";
+import { USERDATATYPE } from "../../types/profile";
+import { alertSuccess } from "@utils/toastify";
+
 
 const Mypage = () => {
+    const navigate = useNavigate();
     const [updateProfileOpen, setUpdateProfileOpen] = useState(false);
-    const [userData, setUserData] = useState({
-        name: "김규하",
-        email: "kwon@akdjf.kro.kr",
-        bio: "대덕소마고 재학중인 디자이너입니다.",
-        githubURL: "https://github.com/asdf1234",
-        portfolioURL: "https://hahahoho.com/pofol",
-        stacks: ["React", "Djanggo", "Spring", "Nest.js"],
+    const [myId, setMyId] = useRecoilState(profileIdAtom);
+    const setMyName = useSetRecoilState(profileNameAtom);
+    const { id } = useParams();
+    const [userData, setUserData] = useState<USERDATATYPE>({
+        name: "",
+        email: "",
+        bio: "",
+        githubID: "",
+        portfolioURL: "",
+        stacks: [],
         articles: {
-            general: [
-                {
-                    id: 1,
-                    title: "나의 멋진 React 공부 일지",
-                    thumbnail: "",
-                    summary: "오늘 리액트 공부를 했다",
-                    author: {
-                        id: 1,
-                        name: "권강빈",
-                    },
-                    createdAt: "2016-10-27T17:13:40",
-                },
-                {
-                    id: 2,
-                    title: "나의 멋진 React 공부 일지",
-                    thumbnail: "",
-                    summary: "오늘 리액트 공부를 했다",
-                    author: {
-                        id: 1,
-                        name: "권강빈",
-                    },
-                    createdAt: "2016-10-27T17:13:40",
-                },
-            ],
-            tech: [
-                {
-                    id: 1,
-                    title: "나의 멋진 React 공부 일지",
-                    thumbnail: "",
-                    summary: "오늘 리액트 공부를 했다",
-                    author: {
-                        id: 1,
-                        name: "권강빈",
-                    },
-                    createdAt: "2016-10-27T17:13:40",
-                },
-                {
-                    id: 2,
-                    title: "나의 멋진 React 공부 일지",
-                    thumbnail: "",
-                    summary: "오늘 리액트 공부를 했다",
-                    author: {
-                        id: 1,
-                        name: "권강빈",
-                    },
-                    createdAt: "2016-10-27T17:13:40",
-                },
-            ],
+            general: [],
+            tech: [],
         },
     });
+
+    const Authority = () => {
+        if (String(myId) === id) {
+            return (
+                <S.BtnArea>
+                    <S.Btn
+                        onClick={() => {
+                            delCookie("refreshToken", { path: "/" });
+                            delCookie("accessToken", { path: "/" });
+                            setMyId("")
+                            setMyName("")
+                            alertSuccess("로그아웃");
+                            navigate('/');
+                        }}
+                    >
+                        <BodyStrong>로그아웃</BodyStrong>
+                    </S.Btn>
+                    <S.Btn onClick={() => setUpdateProfileOpen(true)}>
+                        <BodyStrong>프로필 수정</BodyStrong>
+                    </S.Btn>
+                </S.BtnArea>
+            );
+        }
+    };
 
     const { articles, name, email, ...changeUserData } = userData;
     const { refetch } = useQuery("getUserMe", getUserMe, {
@@ -87,10 +75,12 @@ const Mypage = () => {
     useEffect(() => {
         refetch();
     }, []);
+
     return (
         <>
             <TitlePath title="마이페이지" path="Menu > 마이페이지" />
             <UpdateProfile
+                refetch={refetch}
                 val={updateProfileOpen}
                 setVal={setUpdateProfileOpen}
                 userData={changeUserData}
@@ -101,38 +91,33 @@ const Mypage = () => {
                         <S.UserSection>
                             <UserIcon backWidth="80px" iconWidth={44} />
                             <S.UserIntro>
-                                <S.UserName>{userData.name}</S.UserName>
+                                <S.UserContectInfo>
+                                    <S.UserName>{userData.name}</S.UserName>
+                                    <S.UserContect>
+                                        {userData.email}
+                                    </S.UserContect>
+                                </S.UserContectInfo>
                                 <S.UserDescript>{userData.bio}</S.UserDescript>
                             </S.UserIntro>
                         </S.UserSection>
                         <S.UserContectSection>
                             <S.UserContectInfo>
-                                <S.UserContectTitle>Email</S.UserContectTitle>
-                                <S.UserContect>{userData.email}</S.UserContect>
+                                <S.UserContectTitle>
+                                    portfolio
+                                </S.UserContectTitle>
+                                <S.UserContect>
+                                    {userData.portfolioURL}
+                                </S.UserContect>
                             </S.UserContectInfo>
                             <S.UserContectInfo>
                                 <S.UserContectTitle>Github</S.UserContectTitle>
                                 <S.UserContect>
-                                    {userData.githubURL}
+                                    {userData.githubID}
                                 </S.UserContect>
                             </S.UserContectInfo>
                         </S.UserContectSection>
                     </div>
-                    <S.BtnArea>
-                        <S.Btn
-                            onClick={() => {
-                                delCookie("refreshToken", { path: "/" });
-                                delCookie("accessToken", { path: "/" });
-                                alert("로그아웃");
-                                window.location.href = "/";
-                            }}
-                        >
-                            <BodyStrong>로그아웃</BodyStrong>
-                        </S.Btn>
-                        <S.Btn onClick={() => setUpdateProfileOpen(true)}>
-                            <BodyStrong>프로필 수정</BodyStrong>
-                        </S.Btn>
-                    </S.BtnArea>
+                    {Authority()}
                 </S.User>
                 <S.Stack>
                     {userData.stacks.map((v) => (
@@ -147,13 +132,16 @@ const Mypage = () => {
                                 key={data.id}
                                 id={data.id}
                                 name={data.author.name}
-                                summary={data.summary}
+                                summary={data.title}
                                 titleImg={
                                     data.thumbnail === ""
                                         ? SkillBlogDefaultImg
                                         : ""
                                 }
                                 date={useDate(data.createdAt).date}
+                                to={"/blogdetail/" + data.id}
+                                likes={data.likes}
+                                views={data.views}
                             />
                         ))}
                     </S.BlogContainer>
@@ -167,7 +155,7 @@ const Mypage = () => {
                                 title={post.title}
                                 name={post.author.name}
                                 date={useDate(post.createdAt).date}
-                                to=""
+                                to={"/blogdetail/" + post.id}
                             />
                         ))}
                     </S.PostContainer>

@@ -1,3 +1,5 @@
+import { BLOGTYPE } from "../../types/blog";
+
 export type getBlogDetailProps = {
     setdata: React.Dispatch<
         React.SetStateAction<{
@@ -30,21 +32,10 @@ type CommentType = {
 };
 
 type skillDataProps = {
-    article: blogType[];
-    total: number;
+    articles: BLOGTYPE[];
+    totalCount: number;
 };
-type blogType = {
-    id: number;
-    type: string;
-    title: string;
-    thumbnail: string;
-    summary: string;
-    author: {
-        id: number;
-        name: string;
-    };
-    createdAt: string;
-};
+
 export type getBlogProps = {
     type: string;
     authorID?: string;
@@ -65,6 +56,17 @@ export type postCommentType = {
 
 export type postWriteType = {
     title : string;
-    articleType : string;
-    blogContent : string;
+    type : string;
+    content : string;
+}
+
+export type patchWriteType = {
+    id : string | undefined;
+    title : string;
+    content : string;
+}
+
+export type deleteCommentType = {
+    id : string | undefined;
+    commentID : number;
 }

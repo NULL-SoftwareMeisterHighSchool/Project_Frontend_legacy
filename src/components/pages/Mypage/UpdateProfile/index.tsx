@@ -6,15 +6,17 @@ import Input from "@components/common/Input";
 import { useEffect, useState } from "react";
 import { putEditMe } from "@apis/users";
 import { useMutation } from "react-query";
+import { alertError, alertWarning } from "@utils/toastify";
 
 interface UpdateProfileProps {
     val: boolean;
     setVal: React.Dispatch<React.SetStateAction<boolean>>;
     userData: UserDateType;
+    refetch: () => void;
 }
 interface UserDateType {
     bio: string;
-    githubURL: string;
+    githubID: string;
     portfolioURL: string;
     stacks: string[];
 }
@@ -22,22 +24,28 @@ const UpdateProfile = ({
     val,
     setVal,
     userData,
+    refetch,
 }: UpdateProfileProps) => {
     const [inputSkill, setInutSkill] = useState<string>("");
     const [userDataUpdate, setUserDataUpdate] = useState<UserDateType>({
         bio: "",
-        githubURL: "",
+        githubID: "",
         portfolioURL: "",
         stacks: [],
     });
     const [btnState, setBtnState] = useState<boolean>(false);
 
     const enterSkill = () => {
-        if (inputSkill.trim()) {
-            setUserDataUpdate({
-                ...userDataUpdate,
-                stacks: [inputSkill.trim(), ...userDataUpdate.stacks],
-            });
+        if (userDataUpdate.stacks.length < 5) {
+            if (inputSkill.trim()) {
+                setUserDataUpdate({
+                    ...userDataUpdate,
+                    stacks: [inputSkill.trim(), ...userDataUpdate.stacks],
+                });
+                setInutSkill("");
+            }
+        } else {
+            alertWarning("최대 5개까지 입력 가능합니다.");
             setInutSkill("");
         }
     };
@@ -65,7 +73,7 @@ const UpdateProfile = ({
         const arr2 = userDataUpdate.stacks;
 
         if (
-            userDataUpdate.githubURL === userData.githubURL &&
+            userDataUpdate.githubID === userData.githubID &&
             userDataUpdate.bio === userData.bio &&
             userDataUpdate.portfolioURL === userData.portfolioURL &&
             arr1.length === arr2.length &&
@@ -80,10 +88,10 @@ const UpdateProfile = ({
     const { mutate: updateMutate } = useMutation(putEditMe, {
         onSuccess: () => {
             setVal(false);
+            refetch();
         },
         onError: () => {
-            alert("회원정보 수정 실패했습니다.");
-            //setUserDataUpdate(userData);
+            alertError("회원정보 수정 실패했습니다.");
         },
     });
 
@@ -105,11 +113,11 @@ const UpdateProfile = ({
                     />
                     <Input
                         width="100%"
-                        title="Github 링크"
+                        title="Github 아이디"
                         name="githubURL"
-                        placeholder="Github 링크를 입력해주세요"
+                        placeholder="Github 아이디를 입력해주세요"
                         onChange={onChange}
-                        value={userDataUpdate.githubURL}
+                        value={userDataUpdate.githubID}
                     />
                     <Input
                         width="100%"
@@ -164,7 +172,7 @@ const UpdateProfile = ({
                             updateMutate({
                                 bio: userDataUpdate.bio,
                                 stacks: userDataUpdate.stacks,
-                                githubURL: userDataUpdate.githubURL,
+                                githubURL: userDataUpdate.githubID,
                                 portfolioURL: userDataUpdate.portfolioURL,
                             })
                         }
