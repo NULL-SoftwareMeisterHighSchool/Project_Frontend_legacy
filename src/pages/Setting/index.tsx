@@ -6,15 +6,16 @@ import { color } from "@styles/theme.style";
 import { Lock } from "@assets/images/icon/Lock";
 import { Mail } from "@assets/images/icon/Mail";
 import { RemoveCircle } from "@assets/images/icon/RemoveCircle";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "@components/common/modal";
 import TitlePath from "@components/common/TitlePath";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
 import { delMeWithdraw } from "@apis/users";
 import { delCookie } from "@utils/cookies";
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { profileIdAtom } from "@atoms/profile";
+import { alertError } from "@utils/toastify";
 
 const Setting = () => {
     const navigate = useNavigate();
@@ -31,9 +32,19 @@ const Setting = () => {
             navigate('/');
         },
         onError:()=>{
-            alert("회원 탈퇴에서 에러가 발생했습니다.")
+            alertError("회원 탈퇴에서 에러가 발생했습니다.")
         }
     })
+
+
+    const myid = useRecoilValue(profileIdAtom);
+
+    useEffect(()=>{
+        if (!myid) {
+            alertError("로그인 후 이용 가능합니다.");
+            navigate("/login");
+        }
+    },[])
 
     return (
         <>

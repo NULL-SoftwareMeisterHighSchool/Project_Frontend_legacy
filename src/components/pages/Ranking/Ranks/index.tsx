@@ -1,6 +1,7 @@
 import UserIcon from "@components/common/UserIcon";
 import * as S from "./style";
 import { Body2 } from "@styles/text.style";
+import { useNavigate } from "react-router-dom";
 type Props = {
     name: string;
     school: string;
@@ -8,6 +9,7 @@ type Props = {
     commitCount: number;
     score: number;
     rank: number;
+    id:number;
 };
 
 const Ranks = ({
@@ -17,9 +19,11 @@ const Ranks = ({
     commitCount,
     score,
     rank,
+    id
 }: Props) => {
+    const navigate = useNavigate();
     return (
-        <S.Container>
+        <S.Container onClick={()=> navigate('/profile/'+id)}>
             <S.Rank rank={rank}>
                 <Body2>{rank}</Body2>
             </S.Rank>

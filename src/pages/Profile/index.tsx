@@ -8,19 +8,22 @@ import { SkillBlogDefaultImg } from "@assets/images/allfiles";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { delCookie } from "@utils/cookies";
-import { useRecoilValue } from "recoil";
-import { profileIdAtom } from "@atoms/profile";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { profileIdAtom, profileNameAtom } from "@atoms/profile";
 import useDate from "@hooks/useDate";
-import { getUserMe } from "@apis/users";
+import { getUser } from "@apis/users";
 import UserIcon from "@components/common/UserIcon";
 import UpdateProfile from "@components/pages/Mypage/UpdateProfile";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { USERDATATYPE } from "../../types/profile";
+import { alertSuccess } from "@utils/toastify";
 
 
 const Mypage = () => {
+    const navigate = useNavigate();
     const [updateProfileOpen, setUpdateProfileOpen] = useState(false);
-    const myId = useRecoilValue(profileIdAtom);
+    const [myId, setMyId] = useRecoilState(profileIdAtom);
+    const setMyName = useSetRecoilState(profileNameAtom);
     const { id } = useParams();
     const [userData, setUserData] = useState<USERDATATYPE>({
         name: "",
@@ -43,8 +46,10 @@ const Mypage = () => {
                         onClick={() => {
                             delCookie("refreshToken", { path: "/" });
                             delCookie("accessToken", { path: "/" });
-                            alert("로그아웃");
-                            window.location.href = "/";
+                            setMyId("")
+                            setMyName("")
+                            alertSuccess("로그아웃");
+                            navigate('/');
                         }}
                     >
                         <BodyStrong>로그아웃</BodyStrong>
@@ -58,7 +63,7 @@ const Mypage = () => {
     };
 
     const { articles, name, email, ...changeUserData } = userData;
-    const { refetch } = useQuery("getUserMe", getUserMe, {
+    const { refetch } = useQuery("getUser", ()=>getUser(id), {
         onSuccess: (res) => {
             setUserData(res.data);
         },
@@ -73,7 +78,7 @@ const Mypage = () => {
 
     return (
         <>
-            <TitlePath title="마이페이지" path="Menu > 마이페이지" />
+            <TitlePath title={`${String(myId) === id ? "마이":userData.name} 페이지`} path="Menu > 프로필" />
             <UpdateProfile
                 refetch={refetch}
                 val={updateProfileOpen}

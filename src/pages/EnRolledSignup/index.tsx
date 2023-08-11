@@ -11,6 +11,12 @@ import LeftArrow from "@assets/images/pages/LeftArrow.svg";
 import { useNavigate } from "react-router-dom";
 import Dropdown from "@components/common/Dropdown";
 import { postSendEmail, postSignupStudent, postVerify } from "@apis/auth";
+import {
+    alertError,
+    alertInfo,
+    alertSuccess,
+    alertWarning,
+} from "@utils/toastify";
 
 type DropdownType = {
     text: string;
@@ -23,16 +29,16 @@ const EnRolledSignup = () => {
     const [emailSend, setEmailSend] = useState(false);
     const { mutate: sendEmailMutate } = useMutation(postSendEmail, {
         onSuccess: () => {
-            alert("이메일이 전송되었습니다.");
+            alertInfo("이메일이 발송되었습니다.", 1500);
             setEmailSend(false);
         },
         onError: ({ response }) => {
             if (response.status === 400) {
-                alert("학교 이메일을 입력해주세요");
+                alertWarning("학교 이메일을 입력해주세요");
             } else if (response.status === 409) {
-                alert("이미 회원가입된 이메일입니다.");
+                alertWarning("이미 회원가입된 이메일입니다.");
             } else {
-                alert("에러 발생. 관리자에게 문의해주세요.");
+                alertError("에러 발생. 관리자에게 문의해주세요.");
             }
             setEmailSend(false);
         },
@@ -44,20 +50,23 @@ const EnRolledSignup = () => {
             setPageNum(2);
         },
         onError: () => {
-            alert("인증번호가 틀렸습니다.");
+            alertError("인증번호가 틀렸습니다.", 1500);
         },
     });
 
     const { mutate: signupStudent } = useMutation(postSignupStudent, {
         onSuccess: () => {
+            alertSuccess("회원가입에 성공했습니다.", 2000);
             router("/login");
         },
-        onError: ({response}) => {
-            if(response.data.statusCode === 409){
-                alert(response.data.message)
+        onError: ({ response }) => {
+            if (response.data.statusCode === 409) {
+                alertError(response.data.message);
+            } else {
+                alertError(
+                    "회원가입에 실패하였습니다. 관리자에게 문의해주세요"
+                );
             }
-            else{alert("회원가입에 실패하였습니다. 관리자에게 문의해주세요");}
-            // setPageNum(1);
         },
     });
 
@@ -98,18 +107,18 @@ const EnRolledSignup = () => {
 
     const onClickPage = () => {
         if (userData.admissionYear === 0) {
-            alert("입학연도를 입력해주세요.");
+            alertWarning("입학연도를 입력해주세요.");
         } else if (
             userData.admissionYear < 2015 ||
             userData.admissionYear > now.getFullYear()
         ) {
-            alert("입학년도가 잘못되었습니다.");
+            alertWarning("입학년도가 잘못되었습니다.");
         } else if (userData.email === "") {
-            alert("이메일을 입력해주세요.");
+            alertWarning("이메일을 입력해주세요.");
         } else if (!emailRex.test(userData.email)) {
-            alert("이메일 형식이 올바르지 않습니다.");
+            alertWarning("이메일 형식이 올바르지 않습니다.");
         } else if (userData.code === "") {
-            alert("인증번호를 입력해주세요");
+            alertWarning("인증번호를 입력해주세요");
         } else {
             verifyMutate({ email: userData.email, code: userData.code.trim() });
         }
@@ -117,17 +126,18 @@ const EnRolledSignup = () => {
 
     const onClickSignUp = () => {
         if (userData.name === "") {
-            alert("이름를 입력해주세요.");
+            alertWarning("이름를 입력해주세요.");
         } else if (userData.password === "") {
-            alert("아이디를 입력해주세요.");
+            alertWarning("아이디를 입력해주세요.");
         } else if (userData.password === "") {
-            alert("비밀번호를 입력해주세요.");
+            alertWarning("비밀번호를 입력해주세요.");
         } else if (userData.githubID === "") {
-            alert("Github를 입력해주세요.");
-        } else if (userData.password.length < 8) {
-            alert("비밀번호 길이가 8자 이상이어야 합니다.");
-        } else if (userData.password.length > 16) {
-            alert("비밀번호 길이가 16자 이하이어야 합니다.");
+            alertWarning("Github를 입력해주세요.");
+        } else if (
+            userData.password.length < 8 ||
+            userData.password.length > 16
+        ) {
+            alertWarning("비밀번호 길이는 8자 이상 16자 이하이어야 합니다.");
         } else {
             signupStudent({
                 school:
@@ -194,6 +204,7 @@ const EnRolledSignup = () => {
                             txtBtn="이메일 인증하기"
                             onClick={() => {
                                 if (!emailSend) {
+                                    alertInfo("이메일 전송중입니다.", 1500);
                                     setEmailSend(true);
                                     sendEmailMutate({ email: userData.email });
                                 }

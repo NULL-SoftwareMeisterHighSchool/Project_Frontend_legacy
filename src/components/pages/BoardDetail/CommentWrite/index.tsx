@@ -4,6 +4,7 @@ import Input from "@components/common/Input";
 import { useMutation } from 'react-query';
 import { postComment } from '@apis/article';
 import { useState } from "react";
+import { alertError, alertSuccess } from "@utils/toastify";
 
 type Props = {
     id: string | undefined;
@@ -18,12 +19,12 @@ const CommentWrite = ({
     const { mutateAsync: commentMutate } = useMutation(postComment, {
         onSuccess: () => {
           console.log("Success");
-          alert("댓글 작성 성공");
+          alertSuccess("댓글 작성 성공헸습니다.");
           setBody("");
           func();
         },
         onError: () => {
-          alert('댓글작성 실패');
+          alertError('댓글 작성 실패했습니다.');
         }
       });
       
