@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import * as S from "./style";
-import Toast from "@components/pages/WriteBoard/Toast";
 import { getboardDetail, putWrite } from '@apis/article';
 import { useParams } from "react-router-dom";
 import { alertError, alertSuccess } from "@utils/toastify";
 
 const UpdateBoard = () => {
+    const Toast = React.lazy(() => import("@components/pages/WriteBoard/Toast"));
     const { id } = useParams();
     const [title, setTitle] = useState("");
     const [articleType, setArticleType] = useState("GENERAL");
@@ -55,7 +55,9 @@ const UpdateBoard = () => {
                     setTitle(e.target.value)
                 }
             />
-            <Toast content={content} setContent={setBlogContent} />
+            <React.Suspense fallback={<div>Loading...</div>}>
+                <Toast content={content} setContent={setBlogContent} />
+            </React.Suspense>
         </>
     );
 };
