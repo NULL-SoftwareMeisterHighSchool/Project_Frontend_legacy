@@ -3,8 +3,10 @@ import { useMutation, useQuery } from "react-query";
 import * as S from "./style";
 import Toast from "@components/pages/WriteBoard/Toast";
 import { getboardDetail, putWrite } from '@apis/article';
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { alertError, alertSuccess } from "@utils/toastify";
+import { useRecoilValue } from "recoil";
+import { profileIdAtom } from "@atoms/profile";
 
 const UpdateBoard = () => {
     const { id } = useParams();
@@ -35,6 +37,14 @@ const UpdateBoard = () => {
     useEffect(() => {
         refetch();
     }, []);
+
+    const myid = useRecoilValue(profileIdAtom);
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        if(!myid) alertError("로그인 후 이용 가능합니다.")
+        navigate("/login")
+    },[])
 
     return (
         <>

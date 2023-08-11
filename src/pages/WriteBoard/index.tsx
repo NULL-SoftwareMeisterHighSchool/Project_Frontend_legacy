@@ -12,6 +12,8 @@ import {
     useRecoilValue,
   } from 'recoil';
 import { alertError, alertSuccess } from "@utils/toastify";
+import { profileIdAtom } from "@atoms/profile";
+import { useNavigate } from "react-router-dom";
 
 const WriteBoard = () => {
     const [title, setTitle] = useState("");
@@ -26,6 +28,13 @@ const WriteBoard = () => {
             alertError("글 작성 실패했습니다.");
         }
     });
+    const myid = useRecoilValue(profileIdAtom);
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        if(!myid) alertError("로그인 후 이용 가능합니다.")
+        navigate("/login")
+    },[])
     return (
         <>
             <S.Header>
