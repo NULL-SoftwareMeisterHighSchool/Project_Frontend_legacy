@@ -14,11 +14,13 @@ import useDate from "@hooks/useDate";
 import { getUserMe } from "@apis/users";
 import UserIcon from "@components/common/UserIcon";
 import UpdateProfile from "@components/pages/Mypage/UpdateProfile";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { USERDATATYPE } from "../../types/profile";
+import { alertSuccess } from "@utils/toastify";
 
 
 const Mypage = () => {
+    const navigate = useNavigate();
     const [updateProfileOpen, setUpdateProfileOpen] = useState(false);
     const [myId, setMyId] = useRecoilState(profileIdAtom);
     const setMyName = useSetRecoilState(profileNameAtom);
@@ -46,8 +48,8 @@ const Mypage = () => {
                             delCookie("accessToken", { path: "/" });
                             setMyId("")
                             setMyName("")
-                            alert("로그아웃");
-                            window.location.href = "/";
+                            alertSuccess("로그아웃");
+                            navigate('/');
                         }}
                     >
                         <BodyStrong>로그아웃</BodyStrong>

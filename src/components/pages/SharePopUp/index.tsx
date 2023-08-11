@@ -5,6 +5,7 @@ import { ContentPaste } from '@assets/images/icon/ContentPaste';
 import { color } from '@styles/theme.style';
 import { useLocation } from 'react-router-dom';
 import Modal from '@components/common/modal';
+import { alertError, alertSuccess } from '@utils/toastify';
 
 interface PropTypes {
     setShowPopUp: React.Dispatch<React.SetStateAction<boolean>>;
@@ -17,9 +18,9 @@ const PopUp = ({ setShowPopUp }:PropTypes) => {
         try {
             await navigator.clipboard.writeText(location);
             setShowPopUp(false);
-            alert('복사 성공!');
+            alertSuccess('복사 성공!');
         } catch (error) {
-            alert('복사 실패!');
+            alertError('복사 실패!');
         }
     };
 

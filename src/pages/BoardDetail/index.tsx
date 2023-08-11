@@ -19,6 +19,7 @@ import { articleIdAtom } from "@atoms/articleId";
 import { useSetRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
 import useDate from "@hooks/useDate";
+import { alertError, alertSuccess } from "@utils/toastify";
 import { BLOGDETAILTYPE } from "../../types/blog";
 
 const BoardDetail = () => {
@@ -46,14 +47,14 @@ const BoardDetail = () => {
         comments: [],
     });
 
-    const { mutateAsync: deleteBlogMutate } = useMutation(deleteBlog, {
-        onSuccess: () => {
-            alert("게시물 삭제 성공!");
+    const { mutateAsync: deleteBlogMutate } = useMutation(deleteBlog,{
+        onSuccess: ()=>{
+            alertSuccess("게시물이 삭제되었습니다.");
             navigate("/");
         },
-        onError: () => {
-            alert("게시물 삭제 실패!");
-        },
+        onError: ()=>{
+            alertError("게시물 삭제에 실패했습니다.");
+        }
     });
 
     const { refetch } = useQuery("getBlogDetail", () => getboardDetail(id), {

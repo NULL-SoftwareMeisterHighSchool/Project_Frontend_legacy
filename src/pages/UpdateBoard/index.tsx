@@ -4,6 +4,7 @@ import * as S from "./style";
 import Toast from "@components/pages/WriteBoard/Toast";
 import { getboardDetail, putWrite } from '@apis/article';
 import { useParams } from "react-router-dom";
+import { alertError, alertSuccess } from "@utils/toastify";
 
 const UpdateBoard = () => {
     const { id } = useParams();
@@ -12,11 +13,11 @@ const UpdateBoard = () => {
     const [content, setBlogContent] = useState("");
     const { mutate: putwriteMutate } = useMutation(putWrite, {
         onSuccess: ()=>{
-            alert("글 수정 성공");
+            alertSuccess("글 수정에 성공했습니다.");
             window.location.href = "/";
         },
         onError: ()=>{
-            alert("글 수정 실패!!!");
+            alertError("글 수정에 실패했습니다.");
         }
     });
     const { refetch } = useQuery("getUpdate", ()=>getboardDetail(id), {

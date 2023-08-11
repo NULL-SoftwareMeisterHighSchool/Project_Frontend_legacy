@@ -8,6 +8,7 @@ import Button from "@components/common/Button";
 import { useMutation } from "react-query";
 import { patchEditPassword } from "@apis/users";
 import { useNavigate } from "react-router-dom";
+import { alertError, alertSuccess, alertWarning } from "@utils/toastify";
 
 const Password = () => {
     const router = useNavigate();
@@ -26,25 +27,25 @@ const Password = () => {
 
     const { mutate: editPasswordMutate } = useMutation(patchEditPassword, {
         onSuccess: () => {
-            alert("비밀번호 변경이 완료되었습니다.");
+            alertSuccess("비밀번호 변경이 완료되었습니다.");
             router("/setting");
         },
         onError: () => {
-            alert("비밀번호 변경 실패했습니다.");
+            alertError("비밀번호 변경 실패했습니다.");
         },
     });
 
     const onClickPwChange = () => {
         if (userData.currentPassword === "") {
-            alert("기존 비밀번호를 입력해주세요.");
+            alertWarning("기존 비밀번호를 입력해주세요.");
         } else if (userData.newPassword === "새로운 비밀번호를 입력해주세요.") {
-            alert("새로운 비밀번호를 입력해주세요.");
+            alertWarning("새로운 비밀번호를 입력해주세요.");
         } else if (userData.currentPassword === userData.newPassword) {
-            alert("기존 비밀번호와 다르게 설정해주세요.");
+            alertWarning("기존 비밀번호와 다르게 설정해주세요.");
         } else if (userData.currentPassword.length < 8) {
-            alert("비밀번호 길이가 8자 이상이어야 합니다.");
+            alertWarning("비밀번호 길이가 8자 이상이어야 합니다.");
         } else if (userData.currentPassword.length > 16) {
-            alert("비밀번호 길이가 16자 이하이어야 합니다.");
+            alertWarning("비밀번호 길이가 16자 이하이어야 합니다.");
         } else {
             editPasswordMutate(userData);
         }
