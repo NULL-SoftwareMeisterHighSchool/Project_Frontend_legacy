@@ -8,9 +8,7 @@ import { test } from "node:test";
 
 type Props = {
     content: string;
-    setContent: React.Dispatch<React.SetStateAction<string>>;
-    testContent: string;
-    setTestContent: React.Dispatch<React.SetStateAction<string>>;
+    setContent2: React.Dispatch<React.SetStateAction<string>>;
 };
 
 type HookCallback = (url: string, text?: string) => void;
@@ -21,16 +19,15 @@ export type HookMap = {
 
 const BASE_URL = `${import.meta.env.VITE_ARTICLE}`;
 
-const Toast = ({ content, setContent, testContent, setTestContent }: Props) => {
+const Toast = ({ content, setContent2 }: Props) => {
     const editorRef = useRef<any>(null); //error해결을 위해 any 사용
     const onChange = () => {
         /** error : 'editorRef.current'은(는) 'null'일 수 있습니다. 발생 - 일단 해결*/
-        setTestContent(editorRef.current.getInstance().getMarkdown());
+        setContent2(editorRef.current.getInstance().getMarkdown());
     };
 
     useEffect(() => {
         editorRef.current?.getInstance().setHTML(content);
-        setTestContent(content);
     }, [content]);
 
     return (
