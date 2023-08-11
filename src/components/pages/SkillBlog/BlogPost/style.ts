@@ -43,3 +43,14 @@ export const Summary = styled(BodyLarge2)`
     font-style: normal;
     color: ${color.black};
 `;
+
+export const LikeViewContainer = styled.div`
+    display: flex;
+    gap: 12px;
+    > div {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        color:${color.grayDark1}
+    }
+`;

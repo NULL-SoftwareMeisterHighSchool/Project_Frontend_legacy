@@ -24,6 +24,8 @@ type blogType = {
         name: string;
     };
     createdAt: string;
+    likes: number;
+    views: number;
 };
 
 const SkillBlog = () => {
@@ -47,13 +49,13 @@ const SkillBlog = () => {
                 order:
                     filterData === "최신순"
                         ? "TIME"
-                        : filterData === "최신순"
+                        : filterData === "조회수순"
                         ? "VIEWS"
                         : "LIKES",
                 setData: setSkillData,
                 query: searchInput,
             });
-        } else if(skillData.articles.length < skillData.totalCount){
+        } else if (skillData.articles.length < skillData.totalCount) {
             getBlog({
                 type: "TECH",
                 offset: skillData.articles.length,
@@ -73,7 +75,7 @@ const SkillBlog = () => {
 
     /** 필터 변경시 데이터 받아오기 */
     useEffect(() => {
-        getSkillData();
+        getSkillData(true);
     }, [filterData]);
 
     useEffect(() => {
@@ -90,6 +92,7 @@ const SkillBlog = () => {
             setLoading(false);
         }
     }, [inView]);
+
     return (
         <>
             <TitlePath title="기술 블로그" path="Menu > 기술블로그" />
@@ -97,7 +100,7 @@ const SkillBlog = () => {
                 <SearchFilter
                     onKeyDown={(e: React.KeyboardEvent) => {
                         if (e.keyCode === 13) {
-                            getSkillData();
+                            getSkillData(true);
                         }
                     }}
                     searchVal={searchInput}
@@ -105,25 +108,29 @@ const SkillBlog = () => {
                     setFilterData={setFilterData}
                 />
                 <S.BlogContainer>
-                    {skillData.articles.map((data:blogType) => (
+                    {skillData.articles.map((data: blogType) => (
                         <BlogPost
-                            to={"/blogdetail/"+data.id}
+                            to={"/blogdetail/" + data.id}
                             key={data.id}
                             id={data.id}
                             name={data.author.name}
-                            summary={data.summary}
+                            summary={data.title}
                             titleImg={
                                 data.thumbnail === ""
                                     ? SkillBlogDefaultImg
                                     : data.thumbnail
                             }
-                            date={useDate(data.createdAt).date}
+                            date={useDate(data.createdAt).date+" "+useDate(data.createdAt).time}
+                            likes={data.likes}
+                            views={data.views}
                         />
                     ))}
                 </S.BlogContainer>
                 <S.StateBar ref={ref}>
                     {loading && <BodyLarge2>loading...</BodyLarge2>}
-                    {skillData.articles.length >= skillData.totalCount &&<BodyLarge2>더 불러올 게시글이 없습니다.</BodyLarge2>}
+                    {skillData.articles.length >= skillData.totalCount && (
+                        <BodyLarge2>더 불러올 게시글이 없습니다.</BodyLarge2>
+                    )}
                 </S.StateBar>
             </S.MainContainer>
         </>

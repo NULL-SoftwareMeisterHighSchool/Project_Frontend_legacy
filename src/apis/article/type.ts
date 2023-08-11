@@ -44,6 +44,8 @@ type blogType = {
         name: string;
     };
     createdAt: string;
+    likes: number;
+    views: number;
 };
 export type getBlogProps = {
     type: string;
