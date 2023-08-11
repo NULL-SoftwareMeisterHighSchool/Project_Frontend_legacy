@@ -15,9 +15,7 @@ import {
 const WriteBoard = () => {
     const [title, setTitle] = useState("");
     const type = useRecoilValue(articleTypeAtom);
-    const [content, setBlogContent] = useState(
-        "## 내용을 입력해주세요.\n이것은 내용입니다. 호호호"
-    );
+    const [content, setBlogContent] = useState("");
     const { mutate: writeMutate } = useMutation(postWrite, {
         onSuccess: ()=>{
             alert("글 작성 성공");
