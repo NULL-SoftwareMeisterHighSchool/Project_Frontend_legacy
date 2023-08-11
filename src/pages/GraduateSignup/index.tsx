@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as S from "./style";
 
 import Button from "@components/common/Button";
@@ -8,6 +8,8 @@ import AuthLayout from "@layouts/AuthLayout";
 import { Body2, BodyLarge, BodyStrong, TitleLarge } from "@styles/text.style";
 import LeftArrow from "@assets/images/pages/LeftArrow.svg";
 import { Plus } from "@assets/images/icon/Plus";
+import { useNavigate } from "react-router-dom";
+import { alertError } from "@utils/toastify";
 
 type ArrayType = {
   name: string, title: string, value: string, placeholder: string
@@ -42,6 +44,13 @@ const GraduateSignup = () => {
     })
   }
 
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+      alertError("현재 사용이 불가능한 페이지입니다.")
+      navigate("/")
+  },[])
+  
   return (
     <AuthLayout position="right" >
       <div>

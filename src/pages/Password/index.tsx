@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as S from "./style";
 import AuthLayout from "@layouts/AuthLayout";
 
@@ -9,6 +9,8 @@ import { useMutation } from "react-query";
 import { patchEditPassword } from "@apis/users";
 import { useNavigate } from "react-router-dom";
 import { alertError, alertSuccess, alertWarning } from "@utils/toastify";
+import { useRecoilValue } from "recoil";
+import { profileIdAtom } from "@atoms/profile";
 
 const Password = () => {
     const router = useNavigate();
@@ -50,6 +52,15 @@ const Password = () => {
             editPasswordMutate(userData);
         }
     };
+
+    const myid = useRecoilValue(profileIdAtom);
+
+    useEffect(()=>{
+        if (!myid) {
+            alertError("로그인 후 이용 가능합니다.");
+            router("/login");
+        }
+    })
 
     return (
         <AuthLayout position="right">

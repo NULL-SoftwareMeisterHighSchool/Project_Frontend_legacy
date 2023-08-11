@@ -13,6 +13,7 @@ type rankingDataType = {
     admissionYear: number;
     commitCount: number;
     score: number;
+    id:number
 };
 
 const Ranking = () => {

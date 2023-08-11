@@ -11,7 +11,7 @@ import { delCookie } from "@utils/cookies";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { profileIdAtom, profileNameAtom } from "@atoms/profile";
 import useDate from "@hooks/useDate";
-import { getUserMe } from "@apis/users";
+import { getUser } from "@apis/users";
 import UserIcon from "@components/common/UserIcon";
 import UpdateProfile from "@components/pages/Mypage/UpdateProfile";
 import { useNavigate, useParams } from "react-router-dom";
@@ -63,7 +63,7 @@ const Mypage = () => {
     };
 
     const { articles, name, email, ...changeUserData } = userData;
-    const { refetch } = useQuery("getUserMe", getUserMe, {
+    const { refetch } = useQuery("getUser", ()=>getUser(id), {
         onSuccess: (res) => {
             setUserData(res.data);
         },
@@ -78,7 +78,7 @@ const Mypage = () => {
 
     return (
         <>
-            <TitlePath title="마이페이지" path="Menu > 마이페이지" />
+            <TitlePath title={`${String(myId) === id ? "마이":userData.name} 페이지`} path="Menu > 프로필" />
             <UpdateProfile
                 refetch={refetch}
                 val={updateProfileOpen}
