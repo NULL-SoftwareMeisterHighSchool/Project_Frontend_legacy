@@ -25,6 +25,8 @@ type blogType = {
         name: string;
     };
     createdAt: string;
+    likes: number;
+    views: number;
 };
 
 const Board = () => {
@@ -92,7 +94,7 @@ const Board = () => {
                             key={post.id}
                             id={post.id}
                             name={post.author.name}
-                            title={post.title}
+                            title={post.summary}
                             date={useDate(post.createdAt).date}
                             to={"/blogdetail/"+post.id}
                         />
