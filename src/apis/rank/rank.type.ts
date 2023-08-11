@@ -4,6 +4,7 @@ type rankingDataType = {
     admissionYear: number;
     commitCount: number;
     score: number;
+    id:number;
 };
 
 export type getRankProps = {
