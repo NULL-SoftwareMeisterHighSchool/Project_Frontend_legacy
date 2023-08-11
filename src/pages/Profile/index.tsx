@@ -8,8 +8,8 @@ import { SkillBlogDefaultImg } from "@assets/images/allfiles";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { delCookie } from "@utils/cookies";
-import { useRecoilValue } from "recoil";
-import { profileIdAtom } from "@atoms/profile";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { profileIdAtom, profileNameAtom } from "@atoms/profile";
 import useDate from "@hooks/useDate";
 import { getUserMe } from "@apis/users";
 import UserIcon from "@components/common/UserIcon";
@@ -20,7 +20,8 @@ import { USERDATATYPE } from "../../types/profile";
 
 const Mypage = () => {
     const [updateProfileOpen, setUpdateProfileOpen] = useState(false);
-    const myId = useRecoilValue(profileIdAtom);
+    const [myId, setMyId] = useRecoilState(profileIdAtom);
+    const setMyName = useSetRecoilState(profileNameAtom);
     const { id } = useParams();
     const [userData, setUserData] = useState<USERDATATYPE>({
         name: "",
@@ -43,6 +44,8 @@ const Mypage = () => {
                         onClick={() => {
                             delCookie("refreshToken", { path: "/" });
                             delCookie("accessToken", { path: "/" });
+                            setMyId("")
+                            setMyName("")
                             alert("로그아웃");
                             window.location.href = "/";
                         }}
