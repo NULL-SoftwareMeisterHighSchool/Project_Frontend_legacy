@@ -14,27 +14,21 @@ import { useState, useEffect } from "react";
 import * as S from "./style";
 import TitlePath from "@components/common/TitlePath";
 import useDate from "@hooks/useDate";
+import { BLOGTYPE } from "../../types/blog";
+import { useRecoilValue } from "recoil";
+import { profileIdAtom, profileNameAtom } from "@atoms/profile";
+import { useNavigate } from "react-router-dom";
 
 type boardDataProps = {
-    articles: blogType[];
+    articles: BLOGTYPE[];
     totalCount: number;
 };
 
-type blogType = {
-    id: number;
-    type: string;
-    title: string;
-    thumbnail: string;
-    summary: string;
-    author: {
-        id: number;
-        name: string;
-    };
-    createdAt: string;
-};
-
 const Main = () => {
-    const [gitGrade, setGitGrade] = useState("");
+    const myId = useRecoilValue(profileIdAtom);
+    const myName = useRecoilValue(profileNameAtom);
+    const navigate = useNavigate();
+
     const [skillData, setSkillData] = useState<boardDataProps>({
         articles: [],
         totalCount: 0,
@@ -46,12 +40,12 @@ const Main = () => {
     });
 
     const [gitData, setGitData] = useState({
-        contributionCount: 100,
-        starCount: 12,
-        issueCount: 13,
-        pullRequestCount: 14,
-        contributedRepositoryCount: 15,
-        score: 1000,
+        contributionCount: 0,
+        starCount: 0,
+        issueCount: 0,
+        pullRequestCount: 0,
+        contributedRepositoryCount: 0,
+        score: 0,
     });
     const { refetch: userGitRefetch } = useQuery(
         "userGit",
@@ -136,27 +130,38 @@ const Main = () => {
                         })}
                     />
                     <S.CircularText>
-                        <S.ScoreTitle>Text.User&apos;s</S.ScoreTitle>
-                        <S.ScoreSubtitle>Github Stats</S.ScoreSubtitle>
+                        {myId ? (
+                            <>
+                                <S.ScoreTitle>{myName}&apos;s</S.ScoreTitle>
+                                <S.ScoreSubtitle>Github Stats</S.ScoreSubtitle>
+                            </>
+                        ) : (
+                            <S.ScoreTitleLogin onClick={()=>navigate('/login')}>
+                                로그인 후 이용가능합니다.
+                            </S.ScoreTitleLogin>
+                        )}
                     </S.CircularText>
                 </S.Score>
                 <S.Comprehensive>
                     <Record
                         title="Total Stars Earned"
-                        score={gitData.starCount}
+                        score={myId ? gitData.starCount : 0}
                     />
                     <Record
                         title="Total Commits"
-                        score={gitData.contributionCount}
+                        score={myId ? gitData.contributionCount : 0}
                     />
                     <Record
                         title="Total PRs"
-                        score={gitData.pullRequestCount}
+                        score={myId ? gitData.pullRequestCount : 0}
                     />
-                    <Record title="Total Issues" score={gitData.issueCount} />
+                    <Record
+                        title="Total Issues"
+                        score={myId ? gitData.issueCount : 0}
+                    />
                     <Record
                         title="Contributed to"
-                        score={gitData.contributedRepositoryCount}
+                        score={myId ? gitData.contributedRepositoryCount : 0}
                     />
                 </S.Comprehensive>
             </S.Github>

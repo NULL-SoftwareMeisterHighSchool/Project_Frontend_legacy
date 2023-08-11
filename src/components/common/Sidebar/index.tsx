@@ -13,8 +13,8 @@ import { Setting } from "@assets/images/icon/Setting";
 import { Edit } from "@assets/images/icon/Edit";
 import WritePopUp from "@components/common/WritePopUp";
 import UserIcon from "@components/common/UserIcon";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { profileIdAtom } from "@atoms/profile"
+import { useRecoilState } from "recoil";
+import { profileIdAtom, profileNameAtom } from "@atoms/profile"
 import { SetStateAction, useCallback, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getUserMeTiny } from "@apis/users";
@@ -30,13 +30,15 @@ export const Sidebar = () => {
     );
     const [userData, setUserData] = useState({ id: 0, name: "" });
     const [myId, setMyId] = useRecoilState(profileIdAtom);
-    
+    const [myName, setMyName] = useRecoilState(profileNameAtom);
+
     const navigate = useNavigate();
 
     const { refetch } = useQuery("getUserMeTiny", getUserMeTiny, {
         onSuccess: (res) => {
             setUserData(res.data);
             setMyId(res.data.id);
+            setMyName(res.data.name)
         },
         onError: () => {
             console.log("Error");

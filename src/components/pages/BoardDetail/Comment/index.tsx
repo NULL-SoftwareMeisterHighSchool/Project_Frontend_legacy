@@ -11,6 +11,7 @@ import { profileIdAtom } from "@atoms/profile";
 
 import Modal from "@components/common/modal";
 import * as S from "./style";
+import { alertError, alertSuccess } from "@utils/toastify";
 
 export interface ComentType {
   authorId: number; 
@@ -41,13 +42,13 @@ const Comment = ({
   const [modal, setModal] = useState<boolean>(false);
   const { mutateAsync: deleteCommentMutate } = useMutation(deleteComment, {
     onSuccess: ()=>{
-      alert("삭제 성공");
+      alertSuccess("댓글 삭제 성공헀습니다.");
       setCommentOpen(false);
       setModal(false);
       func();
     },
     onError: ()=>{
-      alert("삭제 실패");
+      alertError("댓글 삭제 실패했습니다.");
       setCommentOpen(false);
       setModal(false);
     },

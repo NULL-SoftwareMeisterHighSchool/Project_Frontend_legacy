@@ -15,6 +15,7 @@ import { delMeWithdraw } from "@apis/users";
 import { delCookie } from "@utils/cookies";
 import { useSetRecoilState } from "recoil";
 import { profileIdAtom } from "@atoms/profile";
+import { alertError } from "@utils/toastify";
 
 const Setting = () => {
     const navigate = useNavigate();
@@ -31,7 +32,7 @@ const Setting = () => {
             navigate('/');
         },
         onError:()=>{
-            alert("회원 탈퇴에서 에러가 발생했습니다.")
+            alertError("회원 탈퇴에서 에러가 발생했습니다.")
         }
     })
 
