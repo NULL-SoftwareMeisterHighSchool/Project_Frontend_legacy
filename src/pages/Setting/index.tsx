@@ -1,7 +1,6 @@
 import * as S from "./style";
 
 import UserSetting from "@components/pages/Setting/UserSetting.tsx";
-import AppLayout from "@layouts/AppLayout";
 import { Infomation } from "@assets/images/icon/Infomation";
 import { color } from "@styles/theme.style";
 import { Lock } from "@assets/images/icon/Lock";
@@ -9,11 +8,36 @@ import { Mail } from "@assets/images/icon/Mail";
 import { RemoveCircle } from "@assets/images/icon/RemoveCircle";
 import { useState } from "react";
 import Modal from "@components/common/modal";
+import TitlePath from "@components/common/TitlePath";
+import { useNavigate } from "react-router-dom";
+import { useMutation } from "react-query";
+import { delMeWithdraw } from "@apis/users";
+import { delCookie } from "@utils/cookies";
+import { useSetRecoilState } from "recoil";
+import { profileIdAtom } from "@atoms/profile";
 
 const Setting = () => {
+    const navigate = useNavigate();
     const [modalOpen, setModalOpen] = useState<boolean>(false);
+
+    const setProfileIdAtom = useSetRecoilState(profileIdAtom);
+
+
+    const {mutate:meWithdraw} = useMutation(delMeWithdraw,{
+        onSuccess:()=>{
+            delCookie("accessToken",{path:"/"})
+            delCookie("refreshToken",{path:"/"});
+            setProfileIdAtom("")
+            navigate('/');
+        },
+        onError:()=>{
+            alert("회원 탈퇴에서 에러가 발생했습니다.")
+        }
+    })
+
     return (
-        <AppLayout title="설정" path="User > 설정">
+        <>
+            <TitlePath title="설정" path="User > 설정" />
             {modalOpen && (
                 <Modal setVal={setModalOpen}>
                     <S.UseTitleContainer>
@@ -23,8 +47,14 @@ const Setting = () => {
                         </S.UserSubTitle>
                     </S.UseTitleContainer>
                     <S.UserBtnContainer>
-                        <button>취소</button>
-                        <button>회원 탈퇴 하기</button>
+                        <button onClick={()=>setModalOpen(false)}>취소</button>
+                        <button onClick={()=>{
+                            if(confirm("진짜 탈퇴하시겠습니까??")){
+                                meWithdraw();
+                            }else{
+                                setModalOpen(false)
+                            }
+                        }}>회원 탈퇴 하기</button>
                     </S.UserBtnContainer>
                 </Modal>
             )}
@@ -35,16 +65,16 @@ const Setting = () => {
                         <Lock width={24} height={24} fill={color.primaryBase} />
                     }
                     colorType={color.black}
-                    onClick={() => {}}
+                    onClick={() => {navigate('/pwchange')}}
                 />
-                <UserSetting
+                {/* <UserSetting
                     title="이메일 변경"
                     icon={
                         <Mail width={24} height={24} fill={color.primaryBase} />
                     }
                     colorType={color.black}
                     onClick={() => {}}
-                />
+                /> */}
                 <UserSetting
                     title="개인정보 처리방침"
                     icon={
@@ -55,7 +85,9 @@ const Setting = () => {
                         />
                     }
                     colorType={color.grayDark1}
-                    onClick={() => {}}
+                    onClick={() => {
+                        navigate('/개인정보처리방침')
+                    }}
                 />
                 <UserSetting
                     title="회원 탈퇴"
@@ -70,7 +102,7 @@ const Setting = () => {
                     onClick={() => setModalOpen(true)}
                 />
             </S.Container>
-        </AppLayout>
+        </>
     );
 };
 

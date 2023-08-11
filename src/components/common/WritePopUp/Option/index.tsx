@@ -7,15 +7,18 @@ interface OptionPropsType {
 	to : string;
 	optionName : string;
 	icon: ReactNode;
+	onClick: ()=>void;
 }
 
 const Option = ({
 	to, 
 	optionName,
-	icon
+	icon,
+	onClick
 }:OptionPropsType) => {
 	return (
 		<S.Option 
+			onClick={onClick}
 			to={to}
 		>
 			<S.OptionInfo>

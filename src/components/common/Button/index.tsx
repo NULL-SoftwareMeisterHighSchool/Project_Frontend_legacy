@@ -6,19 +6,27 @@ interface ButtonPropTypes extends React.ButtonHTMLAttributes<HTMLButtonElement> 
 	width?: string;
 	height?: string;
 	state?: ButtonStateType;
-	fontSize?: string;
-	value?: string | number;
+	value?: string;
+	onClick?: ()=>void;
 }
 
 const Button = ({
+	width,
+	onClick,
 	state = "DEFAULT",
-	fontSize = "14px",
 	value,
 	disabled,
 }: ButtonPropTypes) => {
 	return (
-		<S.Button state={state} disabled={disabled} fontSize={fontSize}>
-			{value}
+		<S.Button 
+		state={state} 
+		disabled={disabled} 
+		onClick={onClick}
+		style={{width}}
+		>
+			<S.Value>
+				{value}
+			</S.Value>
 		</S.Button>
 	);
 };
