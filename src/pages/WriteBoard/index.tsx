@@ -16,9 +16,7 @@ import { alertError, alertSuccess } from "@utils/toastify";
 const WriteBoard = () => {
     const [title, setTitle] = useState("");
     const type = useRecoilValue(articleTypeAtom);
-    const [content, setBlogContent] = useState(
-        "## 내용을 입력해주세요.\n이것은 내용입니다. 호호호"
-    );
+    const [content, setBlogContent] = useState("");
     const { mutate: writeMutate } = useMutation(postWrite, {
         onSuccess: ()=>{
             alertSuccess("글 작성에 성공했습니다.");
