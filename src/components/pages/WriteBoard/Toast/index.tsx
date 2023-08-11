@@ -3,6 +3,7 @@ import "@toast-ui/editor/dist/toastui-editor.css";
 import "@toast-ui/editor/dist/i18n/ko-kr";
 import { useRef, useEffect } from "react";
 import axios from "axios";
+import { instance } from "@apis/index";
 
 type Props = {
     content: string;
@@ -28,7 +29,7 @@ const Toast = ({ content, setContent }: Props) => {
     return (
         <Editor
             initialValue={
-                content ?? "## 내용을 입력해주세요.\n이것은 내용입니다. 호호호"
+                content ?? "## 내용을 입력해주세요."
             }
             // onChange={() => setContents(editorRef.current.getInstance().getHTML())}
             onChange={onChange}
