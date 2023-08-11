@@ -16,7 +16,8 @@ export type HookMap = {
     addImageBlobHook?: (blob: Blob | File, callback: HookCallback) => void;
   };
 
-const BASE_URL = `${import.meta.env.VITE_BASEURL}/images`;
+const BASE_URL = `${import.meta.env.VITE_ARTICLE}`;
+
 
 const Toast = ({ content, setContent }: Props) => {
     const editorRef = useRef<any>(null); //error해결을 위해 any 사용
@@ -25,7 +26,7 @@ const Toast = ({ content, setContent }: Props) => {
         /** error : 'editorRef.current'은(는) 'null'일 수 있습니다. 발생 - 일단 해결*/
         setContent(editorRef.current.getInstance().getMarkdown())
     };
-
+    console.log(console.log(BASE_URL));
     return (
         <Editor
             initialValue={
@@ -42,22 +43,19 @@ const Toast = ({ content, setContent }: Props) => {
             height="calc(100vh - 190px)"
             hooks={{
                 addImageBlobHook: async (blob, callback) => {
+                  const formData = new FormData();
+                  formData.append("image", blob); 
+
                   try {
-                    const imageData = new FormData();
-                    const file = new File([blob], encodeURI(blob.name), {
-                      type: blob.type,
+                    const res = await instance.post(`${BASE_URL}/images`, formData, {
+                      headers: { 
+                        "Content-Type": "multipart/form-data",
+                       },
                     });
-                    imageData.append("image", file);
-                    const response = await axios.post(`${BASE_URL}`, imageData, {
-                        headers: {
-                            "Content-Type": "multipart/form-data",
-                        },
-                        withCredentials: true,
-                    });
-                    const imageUrl = response.data.url;
-                    callback(imageUrl, "image");
-                  } catch (error) {
-                    console.log(error);
+                    callback(res.data.url, `image`);
+                  } catch (err: any) {
+                    console.error(err);
+                    callback(`이미지 업로드 실패, ${err.message}`);
                   }
                 },
               }}
