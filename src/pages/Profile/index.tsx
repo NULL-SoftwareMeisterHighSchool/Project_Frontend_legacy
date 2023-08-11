@@ -78,7 +78,7 @@ const Mypage = () => {
 
     return (
         <>
-            <TitlePath title="마이페이지" path="Menu > 마이페이지" />
+            <TitlePath title={`${String(myId) === id ? "마이":userData.name} 페이지`} path="Menu > 프로필" />
             <UpdateProfile
                 refetch={refetch}
                 val={updateProfileOpen}
