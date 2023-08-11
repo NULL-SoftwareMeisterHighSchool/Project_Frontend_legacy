@@ -5,6 +5,7 @@ import { color } from '@styles/theme.style';
 
 export const Github = styled.div`
 	display: flex;
+	flex-wrap: wrap;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
@@ -12,9 +13,14 @@ export const Github = styled.div`
 	gap: 20px;
 
 	width: 100%;
-	height: 160px;
+	min-width: max-content;
+	height: max-content;
+	@media screen and (max-width: 1600px){
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
 `;
-
 
 export const Score = styled.div`
 	display: flex;
@@ -62,8 +68,16 @@ export const Comprehensive = styled.div`
 	padding: 0px;
 	gap: 80px;
 
-	@media screen and (max-width: 1800px) {
-        gap: 40px;
+	@media screen and (max-width: 1266px) {
+        display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+		gap: 40px 80px;
+    }
+
+	@media screen and (max-width: 1154px) {
+        display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		gap: 40px 80px;
     }
 `;
 
@@ -75,6 +89,11 @@ export const BannerArea = styled.div`
 	gap: 40px;
 
 	width: 100%;
+	@media (max-width: 1200px) {
+  		& {
+    		flex-direction: column;
+  		}
+	}
 `;
 
 export const BoardArea = styled.div`
@@ -85,6 +104,21 @@ export const BoardArea = styled.div`
 	gap: 40px;
 
 	width: 100%;
+	min-width: fit-content;
+	@media (max-width: 1600px) {
+  		& {
+    		flex-direction: column;
+  		}
+	}
+`;
+
+export const BlogContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	padding: 0px;
+
+	width: 100%;
+	gap: 40px;
 `;
 
 export const Board = styled.div`
@@ -94,7 +128,6 @@ export const Board = styled.div`
 	padding: 0px;
 
 	width: 100%;
-	height: 424px;
 `;
 
 

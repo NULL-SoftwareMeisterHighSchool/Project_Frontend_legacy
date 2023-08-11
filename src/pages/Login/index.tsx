@@ -9,6 +9,8 @@ import Input from "@components/common/Input";
 import Button from "@components/common/Button";
 import { useNavigate } from "react-router-dom";
 import { postLogin } from "@apis/auth";
+import { setCookie } from "@utils/cookies";
+import { getExpiredCookieHours } from "@utils/expires";
 
 const Login = () => {
     const router = useNavigate();
@@ -26,11 +28,19 @@ const Login = () => {
     };
 
     const { mutate: loginMutate } = useMutation(postLogin, {
-        onSuccess: () => {
-            router("/login");
+        onSuccess: (res) => {
+            setCookie("accessToken", res.data.access.token, {
+                path: "/",
+                expires: getExpiredCookieHours(res.data.access.expiresAt),
+            });
+            setCookie("refreshToken", res.data.refresh.token, {
+                path: "/",
+                expires: getExpiredCookieHours(res.data.refresh.expiresAt),
+            });
+            router("/");
         },
         onError: () => {
-            alert("회원가입에 실패했습니다.");
+            alert("로그인에 실패했습니다.");
         },
     });
 
@@ -48,8 +58,8 @@ const Login = () => {
         <AuthLayout position="left">
             <div>
                 <S.Title>
-                    <BodyLarge>Sign In</BodyLarge>
-                    <TitleLarge>회원가입</TitleLarge>
+                    <BodyLarge>Log In</BodyLarge>
+                    <TitleLarge>로그인</TitleLarge>
                 </S.Title>
                 <S.InputContainer>
                     <Input
@@ -70,8 +80,8 @@ const Login = () => {
                 </S.InputContainer>
                 <S.SubmitContainer>
                     <div>
-                        <Body2>회원이신가요?</Body2>
-                        <BodyStrong>로그인</BodyStrong>
+                        <Body2>회원이 아니신가요?</Body2>
+                        <BodyStrong onClick={()=>router('/enrollsign')}>회원가입</BodyStrong>
                     </div>
                     <Button
                         height="48px"
