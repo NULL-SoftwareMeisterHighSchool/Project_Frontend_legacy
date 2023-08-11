@@ -11,6 +11,7 @@ import {
     useRecoilState,
     useRecoilValue,
   } from 'recoil';
+import { alertError, alertSuccess } from "@utils/toastify";
 
 const WriteBoard = () => {
     const [title, setTitle] = useState("");
@@ -20,11 +21,11 @@ const WriteBoard = () => {
     );
     const { mutate: writeMutate } = useMutation(postWrite, {
         onSuccess: ()=>{
-            alert("글 작성 성공");
+            alertSuccess("글 작성에 성공했습니다.");
             window.location.href = "/";
         },
         onError: ()=>{
-            alert("글 작성 실패!!!");
+            alertError("글 작성 실패했습니다.");
         }
     });
     return (

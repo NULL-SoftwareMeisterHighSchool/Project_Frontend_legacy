@@ -20,6 +20,7 @@ import { articleIdAtom } from "@atoms/articleId";
 import { useSetRecoilState } from "recoil"; 
 import { useNavigate } from "react-router-dom";
 import useDate from "@hooks/useDate";
+import { alertError, alertSuccess } from "@utils/toastify";
 
 const BoardDetail = () => {
     const { id } = useParams();
@@ -55,11 +56,11 @@ const BoardDetail = () => {
 
     const { mutateAsync: deleteBlogMutate } = useMutation(deleteBlog,{
         onSuccess: ()=>{
-            alert("게시물 삭제 성공!");
+            alertSuccess("게시물이 삭제되었습니다.");
             navigate("/");
         },
         onError: ()=>{
-            alert("게시물 삭제 실패!");
+            alertError("게시물 삭제에 실패했습니다.");
         }
     });
 

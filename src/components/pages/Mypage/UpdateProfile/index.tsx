@@ -6,6 +6,7 @@ import Input from "@components/common/Input";
 import { useEffect, useState } from "react";
 import { putEditMe } from "@apis/users";
 import { useMutation } from "react-query";
+import { alertError, alertWarning } from "@utils/toastify";
 
 interface UpdateProfileProps {
     val: boolean;
@@ -44,7 +45,7 @@ const UpdateProfile = ({
                 setInutSkill("");
             }
         } else {
-            alert("최대 5개까지 입력 가능합니다.");
+            alertWarning("최대 5개까지 입력 가능합니다.");
             setInutSkill("");
         }
     };
@@ -90,7 +91,7 @@ const UpdateProfile = ({
             refetch();
         },
         onError: () => {
-            alert("회원정보 수정 실패했습니다.");
+            alertError("회원정보 수정 실패했습니다.");
         },
     });
 
