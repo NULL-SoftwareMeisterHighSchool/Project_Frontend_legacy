@@ -174,13 +174,14 @@ const Main = () => {
                         to="/blog"
                     />
                     <S.Board>
-                        {blogData.articles.map((post) => (
+                        {blogData.articles.map((post, index) => (
                             <Post
+                                key={index}
                                 id={post.id}
                                 title={post.title}
                                 name={post.author.name}
                                 date={useDate(post.createdAt).date}
-                                to=""
+                                to={"/blogdetail/" + post.id}
                             />
                         ))}
                     </S.Board>
@@ -193,13 +194,14 @@ const Main = () => {
                         to="/skill"
                     />
                     <S.Board>
-                        {skillData.articles.map((post) => (
+                        {skillData.articles.map((post, index) => (
                             <Post
+                                key={index}
                                 id={post.id}
                                 title={post.title}
                                 name={post.author.name}
                                 date={useDate(post.createdAt).date}
-                                to=""
+                                to={"/blogdetail/" + post.id}
                             />
                         ))}
                     </S.Board>
