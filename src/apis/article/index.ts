@@ -1,5 +1,5 @@
 import { getBlogDetailProps, getBlogProps } from "./type";
-import { postCommentType, postWriteType, patchWriteType } from "./type";
+import { postCommentType, postWriteType, patchWriteType, deleteCommentType } from "./type";
 import { useRecoilValue } from "recoil"; 
 import { articleIdAtom } from "@atoms/articleId";
 import { instance } from "..";
@@ -47,7 +47,7 @@ export const deleteBlog = async (id:string | undefined) => {
     await instance.delete(`${router}/${id}`, {});
 }
 
-export const postLike = async ({ id }: getBlogDetailProps) => {
+export const postLike = async (id : string | undefined) => {
     await instance.post(`${router}/${id}/like`, {});
 };
 
@@ -57,32 +57,29 @@ export const postComment = async ({ body, id }: postCommentType) => {
     });
 };
 
-export const deleteComment = async (commentID : number) => {
-    const id = useRecoilValue(articleIdAtom);
+export const deleteComment = async ({ id, commentID } : deleteCommentType) => {
     await instance.delete(`${router}/${id}/comments/${commentID}`, {});
 };
 
 export const postWrite = async ({
     title,
-    articleType,
-    blogContent,
+    type,
+    content,
 }: postWriteType) => {
     await instance.post(`${router}/`, {
         title,
-        articleType,
-        blogContent,
+        type,
+        content,
     });
 };
 
 export const patchWrite = async ({
     id,
     title,
-    articleType,
-    blogContent,
+    content,
 }: patchWriteType) => {
     await instance.patch(`${router}/${id}`, {
         title,
-        articleType,
-        blogContent,
+        content,
     });
 };

@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import { getBlog } from "@apis/article";
 import useDate from "@hooks/useDate";
 import { useInView } from "react-intersection-observer";
+import { BodyLarge2 } from "@styles/text.style";
 
 type skillDataProps = {
     articles: blogType[];
@@ -41,6 +42,20 @@ const SkillBlog = () => {
         if (newData) {
             getBlog({
                 type: "TECH",
+                offset: 0,
+                limit: 20,
+                order:
+                    filterData === "최신순"
+                        ? "TIME"
+                        : filterData === "최신순"
+                        ? "VIEWS"
+                        : "LIKES",
+                setData: setSkillData,
+                query: searchInput,
+            });
+        } else if(skillData.articles.length < skillData.totalCount){
+            getBlog({
+                type: "TECH",
                 offset: skillData.articles.length,
                 limit: 20,
                 order:
@@ -52,21 +67,6 @@ const SkillBlog = () => {
                 setData: setSkillData,
                 query: searchInput,
                 data: skillData,
-            });
-        } else {
-            getBlog({
-                type: "TECH",
-                offset: 0,
-                limit: 20,
-                order:
-                    filterData === "최신순"
-                        ? "TIME"
-                        : filterData === "최신순"
-                        ? "VIEWS"
-                        : "LIKES",
-                setData: setSkillData,
-                data: skillData,
-                query: searchInput,
             });
         }
     };
@@ -107,6 +107,7 @@ const SkillBlog = () => {
                 <S.BlogContainer>
                     {skillData.articles.map((data:blogType) => (
                         <BlogPost
+                            to={"/blogdetail/"+data.id}
                             key={data.id}
                             id={data.id}
                             name={data.author.name}
@@ -120,7 +121,10 @@ const SkillBlog = () => {
                         />
                     ))}
                 </S.BlogContainer>
-                <div ref={ref}></div>
+                <S.StateBar ref={ref}>
+                    {loading && <BodyLarge2>loading...</BodyLarge2>}
+                    {skillData.articles.length >= skillData.totalCount &&<BodyLarge2>더 불러올 게시글이 없습니다.</BodyLarge2>}
+                </S.StateBar>
             </S.MainContainer>
         </>
     );

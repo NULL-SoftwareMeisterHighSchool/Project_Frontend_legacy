@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import AppLayout from "@layouts/AppLayout";
 import * as S from "./style";
 import Post from "@components/common/Post";
 import SearchFilter from "@components/pages/SkillBlog/SearchFilter";
@@ -12,8 +11,8 @@ import useDate from "@hooks/useDate";
 import TitlePath from "@components/common/TitlePath";
 
 type blogDataProps = {
-    article: blogType[];
-    total: number;
+    articles: blogType[];
+    totalCount: number;
 };
 type blogType = {
     id: number;
@@ -32,7 +31,7 @@ const Board = () => {
     const getBlogData = (limit: number) => {
         getBlog({
             type: "GENERAL",
-            offset: (page - 1) * limit + 1,
+            offset: (page - 1) * (limit + 1),
             limit: limit,
             order:
                 filterData === "최신순"
@@ -41,15 +40,14 @@ const Board = () => {
                     ? "VIEWS"
                     : "LIKES",
             setData: setBlogData,
-            data: blogData,
             query: searchInput,
         });
     };
     
     /** blog 데이터 */
     const [blogData, setBlogData] = useState<blogDataProps>({
-        article: [],
-        total: 80,
+        articles: [],
+        totalCount: 80,
     });
     /** 검색어 */
     const [searchInput, setSearchInput] = useState<string>("");
@@ -89,21 +87,21 @@ const Board = () => {
                     setFilterData={setFilterData}
                 />
                 <S.Content>
-                    {blogData.article.map((post) => (
+                    {blogData.articles.map((post) => (
                         <Post
                             key={post.id}
                             id={post.id}
                             name={post.author.name}
-                            title={post.summary}
+                            title={post.title}
                             date={useDate(post.createdAt).date}
-                            to="/"
+                            to={"/blogdetail/"+post.id}
                         />
                     ))}
                 </S.Content>
                 <Pagination
                     activePage={page}
                     itemsCountPerPage={8}
-                    totalItemsCount={blogData.total}
+                    totalItemsCount={blogData.totalCount}
                     pageRangeDisplayed={5}
                     prevPageText={
                         <S.ArrowButton>

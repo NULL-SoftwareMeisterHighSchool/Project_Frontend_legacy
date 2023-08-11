@@ -65,13 +65,17 @@ export type postCommentType = {
 
 export type postWriteType = {
     title : string;
-    articleType : string;
-    blogContent : string;
+    type : string;
+    content : string;
 }
 
 export type patchWriteType = {
     id : string | undefined;
     title : string;
-    articleType : string;
-    blogContent : string;
+    content : string;
+}
+
+export type deleteCommentType = {
+    id : string | undefined;
+    commentID : number;
 }
