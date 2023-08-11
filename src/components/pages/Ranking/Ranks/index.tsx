@@ -9,6 +9,7 @@ type Props = {
     commitCount: number;
     score: number;
     rank: number;
+    id:number;
 };
 
 const Ranks = ({
@@ -18,10 +19,11 @@ const Ranks = ({
     commitCount,
     score,
     rank,
+    id
 }: Props) => {
     const navigate = useNavigate();
     return (
-        <S.Container onClick={()=>navigate('/profile/')}>
+        <S.Container onClick={()=> navigate('/profile/'+id)}>
             <S.Rank rank={rank}>
                 <Body2>{rank}</Body2>
             </S.Rank>
