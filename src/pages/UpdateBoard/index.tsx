@@ -9,9 +9,7 @@ const UpdateBoard = () => {
     const { id } = useParams();
     const [title, setTitle] = useState("");
     const [articleType, setArticleType] = useState("GENERAL");
-    const [content, setBlogContent] = useState(
-        "## 내용을 입력해주세요.\n이것은 내용입니다. 호호호"
-    );
+    const [content, setBlogContent] = useState("");
     const { mutate: putwriteMutate } = useMutation(putWrite, {
         onSuccess: ()=>{
             alert("글 수정 성공");
