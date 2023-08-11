@@ -15,73 +15,29 @@ import { getUserMe } from "@apis/users";
 import UserIcon from "@components/common/UserIcon";
 import UpdateProfile from "@components/pages/Mypage/UpdateProfile";
 import { useParams } from "react-router-dom";
+import { USERDATATYPE } from "../../types/profile";
+
 
 const Mypage = () => {
     const [updateProfileOpen, setUpdateProfileOpen] = useState(false);
     const myId = useRecoilValue(profileIdAtom);
     const { id } = useParams();
-    const [userData, setUserData] = useState({
-        name: "김규하",
-        email: "kwon@akdjf.kro.kr",
-        bio: "대덕소마고 재학중인 디자이너입니다.",
-        githubID: "kwonkangbin",
-        portfolioURL: "https://hahahoho.com/pofol",
-        stacks: ["React", "Djanggo", "Spring", "Nest.js"],
+    const [userData, setUserData] = useState<USERDATATYPE>({
+        name: "",
+        email: "",
+        bio: "",
+        githubID: "",
+        portfolioURL: "",
+        stacks: [],
         articles: {
-            general: [
-                {
-                    id: 1,
-                    title: "나의 멋진 React 공부 일지",
-                    thumbnail: "",
-                    summary: "오늘 리액트 공부를 했다",
-                    author: {
-                        id: 1,
-                        name: "권강빈",
-                    },
-                    createdAt: "2016-10-27T17:13:40",
-                },
-                {
-                    id: 2,
-                    title: "나의 멋진 React 공부 일지",
-                    thumbnail: "",
-                    summary: "오늘 리액트 공부를 했다",
-                    author: {
-                        id: 1,
-                        name: "권강빈",
-                    },
-                    createdAt: "2016-10-27T17:13:40",
-                },
-            ],
-            tech: [
-                {
-                    id: 1,
-                    title: "나의 멋진 React 공부 일지",
-                    thumbnail: "",
-                    summary: "오늘 리액트 공부를 했다",
-                    author: {
-                        id: 1,
-                        name: "권강빈",
-                    },
-                    createdAt: "2016-10-27T17:13:40",
-                },
-                {
-                    id: 2,
-                    title: "나의 멋진 React 공부 일지",
-                    thumbnail: "",
-                    summary: "오늘 리액트 공부를 했다",
-                    author: {
-                        id: 1,
-                        name: "권강빈",
-                    },
-                    createdAt: "2016-10-27T17:13:40",
-                },
-            ],
+            general: [],
+            tech: [],
         },
     });
 
     const Authority = () => {
-        if(String(myId) === id){
-            return(
+        if (String(myId) === id) {
+            return (
                 <S.BtnArea>
                     <S.Btn
                         onClick={() => {
@@ -99,7 +55,7 @@ const Mypage = () => {
                 </S.BtnArea>
             );
         }
-    }
+    };
 
     const { articles, name, email, ...changeUserData } = userData;
     const { refetch } = useQuery("getUserMe", getUserMe, {
@@ -114,7 +70,7 @@ const Mypage = () => {
     useEffect(() => {
         refetch();
     }, []);
-    
+
     return (
         <>
             <TitlePath title="마이페이지" path="Menu > 마이페이지" />
@@ -132,15 +88,21 @@ const Mypage = () => {
                             <S.UserIntro>
                                 <S.UserContectInfo>
                                     <S.UserName>{userData.name}</S.UserName>
-                                    <S.UserContect>2022019@bssm.hs.kr</S.UserContect>
+                                    <S.UserContect>
+                                        {userData.email}
+                                    </S.UserContect>
                                 </S.UserContectInfo>
                                 <S.UserDescript>{userData.bio}</S.UserDescript>
                             </S.UserIntro>
                         </S.UserSection>
                         <S.UserContectSection>
                             <S.UserContectInfo>
-                                <S.UserContectTitle>portfolio</S.UserContectTitle>
-                                <S.UserContect>{userData.portfolioURL}</S.UserContect>
+                                <S.UserContectTitle>
+                                    portfolio
+                                </S.UserContectTitle>
+                                <S.UserContect>
+                                    {userData.portfolioURL}
+                                </S.UserContect>
                             </S.UserContectInfo>
                             <S.UserContectInfo>
                                 <S.UserContectTitle>Github</S.UserContectTitle>
@@ -149,10 +111,8 @@ const Mypage = () => {
                                 </S.UserContect>
                             </S.UserContectInfo>
                         </S.UserContectSection>
-                    </div>                    
-                    {
-                        Authority()
-                    }
+                    </div>
+                    {Authority()}
                 </S.User>
                 <S.Stack>
                     {userData.stacks.map((v) => (
@@ -174,7 +134,9 @@ const Mypage = () => {
                                         : ""
                                 }
                                 date={useDate(data.createdAt).date}
-                                to={"/blogdetail/"+data.id}
+                                to={"/blogdetail/" + data.id}
+                                likes={data.likes}
+                                views={data.views}
                             />
                         ))}
                     </S.BlogContainer>
@@ -188,7 +150,7 @@ const Mypage = () => {
                                 title={post.title}
                                 name={post.author.name}
                                 date={useDate(post.createdAt).date}
-                                to={"/blogdetail/"+post.id}
+                                to={"/blogdetail/" + post.id}
                             />
                         ))}
                     </S.PostContainer>
