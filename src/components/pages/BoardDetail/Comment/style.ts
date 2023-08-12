@@ -1,4 +1,3 @@
-
 import styled, { css, FlattenSimpleInterpolation } from "styled-components";
 
 import { CommentStateType } from "./comment.type";
@@ -35,9 +34,7 @@ export const UserBtnContainer = styled.div`
     }
 `;
 
-
-export const Comment = styled.div<{ state : CommentStateType }>`
-    position: relative;
+export const Comment = styled.div<{ state: CommentStateType }>`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -46,8 +43,8 @@ export const Comment = styled.div<{ state : CommentStateType }>`
 
     height: 100px;
     width: 100%;
-    
-    background: #F3F3F3;
+
+    background: #f3f3f3;
     border-radius: 8px;
 
     ${({ state }) => state && getCommentStyle[state]}
@@ -61,7 +58,7 @@ const getCommentStyle: Record<CommentStateType, FlattenSimpleInterpolation> = {
         width: 570px;
         margin-left: 70px;
     `,
-}
+};
 
 export const CommentContents = styled.div`
     display: flex;
@@ -72,6 +69,7 @@ export const CommentContents = styled.div`
 
     width: 100%;
     height: 40px;
+    position: relative;
 `;
 
 export const Column = styled.div`
@@ -120,12 +118,15 @@ export const CommentDelet = styled.div`
     align-items: center;
     gap: 8px;
     border-radius: 8px;
-    background-color: #FFE6D8;
+    background-color: #ffe6d8;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.12);
 
     width: max-content;
 
     position: absolute;
-    left: 654px;
+    right: -30px;
+    top:-50px;
+    transform: translate(100%, 100%);
 `;
 
 export const CommentDeletText = styled(BodyStrong)`

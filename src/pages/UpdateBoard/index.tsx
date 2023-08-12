@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import * as S from "./style";
 import { getboardDetail, putWrite } from "@apis/article";
-import { useParams } from "react-router-dom";
 import { alertError, alertSuccess } from "@utils/toastify";
 import Toast from "@components/pages/WriteBoard/Toast";
 import { useNavigate, useParams } from "react-router-dom";
