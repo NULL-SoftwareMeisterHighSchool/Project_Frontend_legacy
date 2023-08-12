@@ -12,6 +12,7 @@ import { profileIdAtom } from "@atoms/profile";
 import Modal from "@components/common/modal";
 import * as S from "./style";
 import { alertError, alertSuccess } from "@utils/toastify";
+import { color } from "@styles/theme.style";
 
 export interface ComentType {
   authorId: number; 
@@ -96,23 +97,25 @@ const Comment = ({
               Number(myId) === authorId &&
                 <div
                 onClick={() => {
-                  {
-                    modal ? setModal(false) : setModal(true);
-                  }
+                  // {
+                  //   modal ? setModal(false) : setModal(true);
+                  // }
+                  setCommentOpen(true)
                 }}
               >
-                <More />
+                {/* <More /> */}
+                <Delete fill={color.grayDark1} width={20}/>
               </div> 
             }
           </S.Row>
-          {modal && (
+          {/* {modal && (
             <S.CommentDelet onClick={()=>{
                 setCommentOpen(true);
             }}>
               <Delete />
               <S.CommentDeletText>댓글 삭제하기</S.CommentDeletText>
             </S.CommentDelet>
-          )}
+          )} */}
         </S.CommentContents>
         <S.CommentInfo>
           <S.CommentInfoText>{date}</S.CommentInfoText>
