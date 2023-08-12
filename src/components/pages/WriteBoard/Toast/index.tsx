@@ -2,9 +2,7 @@ import { Editor } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import "@toast-ui/editor/dist/i18n/ko-kr";
 import { useRef, useEffect, useState } from "react";
-import axios from "axios";
 import { instance } from "@apis/index";
-import { test } from "node:test";
 
 type Props = {
     content: string;
@@ -28,6 +26,7 @@ const Toast = ({ content, setContent2 }: Props) => {
 
     useEffect(() => {
         editorRef.current?.getInstance().setHTML(content);
+        setContent2(content);
     }, [content]);
 
     return (
