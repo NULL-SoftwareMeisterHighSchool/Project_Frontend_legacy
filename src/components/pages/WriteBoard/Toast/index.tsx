@@ -25,7 +25,7 @@ const Toast = ({ content, setContent2 }: Props) => {
     };
 
     useEffect(() => {
-        editorRef.current?.getInstance().setHTML(content);
+        editorRef.current?.getInstance().setMarkdown(content);
         setContent2(content);
     }, [content]);
 
