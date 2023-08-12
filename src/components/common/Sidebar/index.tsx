@@ -22,7 +22,7 @@ import { useNavigate } from "react-router-dom";
 import { BodyStrong } from "@styles/text.style";
 
 export const Sidebar = () => {
-    const [category, setCategory] = useState("all");
+    const [category, setCategory] = useState("메인");
     const [showPopUp, setShowPopUp] = useState<boolean>(false);
     const onSelect = useCallback(
         (category: SetStateAction<string>) => setCategory(category),
