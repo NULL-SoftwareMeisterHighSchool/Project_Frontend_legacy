@@ -60,10 +60,10 @@ export type postWriteType = {
     content : string;
 }
 
-export type patchWriteType = {
+export type putWriteType = {
     id : string | undefined;
     title : string;
-    content : string;
+    content2 : string;
 }
 
 export type deleteCommentType = {
