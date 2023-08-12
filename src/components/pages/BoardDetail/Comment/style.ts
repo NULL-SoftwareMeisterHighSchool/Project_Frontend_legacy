@@ -88,6 +88,11 @@ export const Row = styled.div`
     padding: 0px;
     gap: 10px;
     width: 100%;
+    > div{
+        >svg{
+            cursor: pointer;
+        }
+    }
 `;
 
 export const CommentName = styled(BodyStrong)`
@@ -124,7 +129,7 @@ export const CommentDelet = styled.div`
     width: max-content;
 
     position: absolute;
-    right: -30px;
+    right: 10%;
     top:-50px;
     transform: translate(100%, 100%);
 `;

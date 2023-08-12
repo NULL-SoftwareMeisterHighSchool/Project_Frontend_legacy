@@ -19,7 +19,7 @@ import { getCookie } from "@utils/cookies";
 const WriteBoard = () => {
     const [title, setTitle] = useState("");
     const type = useRecoilValue(articleTypeAtom);
-    const [content, setBlogContent] = useState("");
+    const [content, setContent] = useState("");
     const { mutate: writeMutate } = useMutation(postWrite, {
         onSuccess: () => {
             alertSuccess("글 작성에 성공했습니다.");
@@ -60,7 +60,7 @@ const WriteBoard = () => {
                     setTitle(e.target.value)
                 }
             />
-            <Toast content={content} setContent={setBlogContent} />
+            <Toast content={content} setContent2={setContent} />
         </>
     );
 };

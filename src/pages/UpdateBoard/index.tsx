@@ -12,8 +12,8 @@ const UpdateBoard = () => {
     const { id } = useParams();
     const [title, setTitle] = useState("");
     const [articleType, setArticleType] = useState("GENERAL");
-    const [content, setBlogContent] = useState("");
-    const[testContent, setTestContent] = useState("");
+    const [content, setContent] = useState("");
+    const[content2, setContent2] = useState("");
 
     const { mutate: putwriteMutate } = useMutation(putWrite, {
         onSuccess: () => {
@@ -29,7 +29,7 @@ const UpdateBoard = () => {
         onSuccess: (res) => {
             setTitle(res.data.title);
             setArticleType(res.data.articleType);
-            setBlogContent(res.data.body);
+            setContent(res.data.body);
         },
         onError: () => {
             console.log("Error");
@@ -61,7 +61,7 @@ const UpdateBoard = () => {
                 </S.STitle>
                 <S.Post
                     onClick={() => {
-                        putwriteMutate({ id, title, content:testContent });
+                        putwriteMutate({ id, title, content2 });
                     }}
                 >
                     글 수정하기
@@ -74,7 +74,7 @@ const UpdateBoard = () => {
                     setTitle(e.target.value)
                 }
             />
-            <Toast content={content} setContent={setBlogContent} setTestContent={setTestContent} testContent={testContent}/>
+            <Toast content={content} setContent2={setContent2}/>
         </>
     );
 };
