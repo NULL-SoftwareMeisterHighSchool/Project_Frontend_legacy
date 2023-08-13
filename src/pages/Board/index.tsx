@@ -9,24 +9,11 @@ import { getBlog } from "@apis/article";
 import Pagination from "react-js-pagination";
 import useDate from "@hooks/useDate";
 import TitlePath from "@components/common/TitlePath";
+import { BLOGTYPE } from "../../types/blog";
 
 type blogDataProps = {
-    articles: blogType[];
+    articles: BLOGTYPE[];
     totalCount: number;
-};
-type blogType = {
-    id: number;
-    type: string;
-    title: string;
-    thumbnail: string;
-    summary: string;
-    author: {
-        id: number;
-        name: string;
-    };
-    createdAt: string;
-    likes: number;
-    views: number;
 };
 
 const Board = () => {

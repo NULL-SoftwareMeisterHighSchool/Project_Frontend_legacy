@@ -8,25 +8,13 @@ import { getBlog } from "@apis/article";
 import useDate from "@hooks/useDate";
 import { useInView } from "react-intersection-observer";
 import { BodyLarge2 } from "@styles/text.style";
+import { BLOGTYPE } from "../../types/blog";
 
 type skillDataProps = {
-    articles: blogType[];
+    articles: BLOGTYPE[];
     totalCount: number;
 };
-type blogType = {
-    id: number;
-    type: string;
-    title: string;
-    thumbnail: string;
-    summary: string;
-    author: {
-        id: number;
-        name: string;
-    };
-    createdAt: string;
-    likes: number;
-    views: number;
-};
+``
 
 const SkillBlog = () => {
     /** skill blog 데이터 */
@@ -108,7 +96,7 @@ const SkillBlog = () => {
                     setFilterData={setFilterData}
                 />
                 <S.BlogContainer>
-                    {skillData.articles.map((data: blogType) => (
+                    {skillData.articles.map((data: BLOGTYPE) => (
                         <BlogPost
                             to={"/blogdetail/" + data.id}
                             key={data.id}

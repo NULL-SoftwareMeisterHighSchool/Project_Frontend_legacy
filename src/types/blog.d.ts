@@ -1,4 +1,5 @@
 export type BLOGTYPE = {
+    type:string;
     id: number;
     title: string;
     thumbnail: string;

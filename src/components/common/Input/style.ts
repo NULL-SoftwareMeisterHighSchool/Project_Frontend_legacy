@@ -1,4 +1,4 @@
-import { InputStateType } from '../../../types/common/input.type';
+import { InputStateType } from './input.type';
 import styled, { css, FlattenSimpleInterpolation } from "styled-components";
 import { BodyLarge, BodyStrong } from '@styles/text.style';
 import {color} from '@styles/theme.style';
