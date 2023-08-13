@@ -29,4 +29,9 @@ export default defineConfig({
   optimizeDeps: {
     include: ['@toast-ui/react-editor'],
   },
+  esbuild:{
+    define:{
+      this:"window"
+    }
+  }
 });
