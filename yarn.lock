@@ -45,7 +45,7 @@ __metadata:
     remark-gfm: ^3.0.1
     styled-components: ^5.3.9
     styled-reset: ^4.4.6
-    typescript: "*"
+    typescript: latest
     vite: ^4.3.9
   languageName: unknown
   linkType: soft
@@ -5918,7 +5918,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:*":
+"typescript@npm:latest":
   version: 5.1.6
   resolution: "typescript@npm:5.1.6"
   bin:
@@ -5928,7 +5928,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@*#~builtin<compat/typescript>":
+"typescript@patch:typescript@latest#~builtin<compat/typescript>":
   version: 5.1.6
   resolution: "typescript@patch:typescript@npm%3A5.1.6#~builtin<compat/typescript>::version=5.1.6&hash=85af82"
   bin:

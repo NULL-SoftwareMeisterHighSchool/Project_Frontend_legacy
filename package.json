@@ -47,7 +47,7 @@
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "latest",
     "msw": "^1.2.2",
-    "typescript": "*",
+    "typescript": "latest",
     "vite": "^4.3.9"
   },
   "packageManager": "yarn@3.5.0",
