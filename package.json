@@ -30,7 +30,8 @@
     "recoil": "^0.7.7",
     "remark-gfm": "^3.0.1",
     "styled-components": "^5.3.9",
-    "styled-reset": "^4.4.6"
+    "styled-reset": "^4.4.6",
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
     "@types/eslint": "^8",
