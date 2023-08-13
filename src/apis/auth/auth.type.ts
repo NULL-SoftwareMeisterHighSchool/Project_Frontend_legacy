@@ -19,9 +19,9 @@ export type postSignupStudentProps = {
     email: string;
     admissionYear: number;
     name: string;
-    userid: string;
+    userID: string;
     password: string;
-    githubId: string;
+    githubID: string;
 }
 
 // /** 졸업생 회원가입 prop */
