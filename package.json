@@ -15,6 +15,7 @@
     "@toast-ui/react-editor": "^3.2.3",
     "@types/node": "^18.15.11",
     "axios": "^1.4.0",
+    "esbuild": "0.18.20",
     "react": "latest",
     "react-circular-progressbar": "^2.1.0",
     "react-cookie": "^4.1.1",
