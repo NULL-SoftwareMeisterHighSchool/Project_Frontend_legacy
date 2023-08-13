@@ -6,7 +6,7 @@ import { LeftArrow } from "@assets/images/icon/LeftArrow";
 import { RightArrow } from "@assets/images/icon/RightArrow";
 import { color } from "@styles/theme.style";
 import { getBlog } from "@apis/article";
-import Pagination from "react-js-pagination";
+// import Pagination from "react-js-pagination";
 import useDate from "@hooks/useDate";
 import TitlePath from "@components/common/TitlePath";
 import { BLOGTYPE } from "../../types/blog";
@@ -87,7 +87,7 @@ const Board = () => {
                         />
                     ))}
                 </S.Content>
-                <Pagination
+                {/* <Pagination
                     activePage={page}
                     itemsCountPerPage={8}
                     totalItemsCount={blogData.totalCount}
@@ -103,7 +103,7 @@ const Board = () => {
                         </S.ArrowButton>
                     }
                     onChange={handlePageChange}
-                />
+                /> */}
             </S.BoardContainer>
         </>
     );
