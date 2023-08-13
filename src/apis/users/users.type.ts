@@ -4,6 +4,7 @@ export type patchEditPasswordProps = {
     newPassword: string;
 };
 
+
 export type getGitProps = {
     setGitData: React.Dispatch<React.SetStateAction<{
         contributionCount: number;
@@ -22,3 +23,7 @@ export type putEditMeProps = {
     githubURL: string;
     portfolioURL: string;
 };
+
+export type userDataProps = {
+    id:string
+}

@@ -61,7 +61,7 @@ const UpdateProfile = ({
         });
     };
     useEffect(() => {
-        setUserDataUpdate({ ...userData, bio: userData.bio });
+        setUserDataUpdate({ ...userData});
     }, []);
 
     useEffect(() => {
