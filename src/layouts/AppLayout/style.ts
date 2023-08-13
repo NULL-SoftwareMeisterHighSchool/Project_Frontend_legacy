@@ -1,18 +1,14 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    height: 100vh;
     display: flex;
 `;
-
 export const Content = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap:40px;
     width: 100%;
-    padding: 60px 200px;
-    margin-left: 240px;
-    gap: 40px;
-
-    overflow-y: scroll;
+    padding: 60px 10%;
+    overflow-y: auto;
+    height: 100vh;
 `;

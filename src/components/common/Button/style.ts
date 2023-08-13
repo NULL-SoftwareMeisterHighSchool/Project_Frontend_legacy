@@ -1,15 +1,14 @@
-import { ButtonStateType } from "../../../types/common/button.type";
+import { ButtonStateType } from "./button.type";
 import styled, { css, FlattenSimpleInterpolation } from "styled-components";
 import { color } from "@styles/theme.style";
+import { BodyStrong } from "@styles/text.style";
 
 export const Button = styled.button<{
 	state: ButtonStateType;
-	fontSize: string;
 }>`
 	padding: 14px 22px;
 	border-radius: 8px;
 	cursor: pointer;
-	font-size: ${({ fontSize }) => fontSize};
 	color: ${color.white};
 	${({ state }) => state && getButtonStyle[state]}
 	${({ disabled }) =>
@@ -19,6 +18,8 @@ export const Button = styled.button<{
 			color: ${color.grayBase};
 		`};
 `;
+
+export const Value = styled(BodyStrong)``;
 
 const getButtonStyle: Record<ButtonStateType, FlattenSimpleInterpolation> = {
 	DEFAULT: css`
@@ -70,7 +71,7 @@ const getButtonStyle: Record<ButtonStateType, FlattenSimpleInterpolation> = {
 		background-color: ${color.grayLight2};
 		color: ${color.grayDark2};
 		:hover {
-			background-color: ${color.grayLight1};
+			background-color: ${color.grayBase};
 			color: ${color.white};
 		}
 		:active {

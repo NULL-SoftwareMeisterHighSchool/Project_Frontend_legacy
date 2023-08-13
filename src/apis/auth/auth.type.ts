@@ -1,11 +1,20 @@
-/** 로그인 prop */
-export interface postLoginProps {
+
+export type postLoginProps = {
     id: string;
     password: string;
 }
 
-/** 학생 회원가입 prop */
-export interface postStudentSignupProps {
+
+export type postSendEmailProps = {
+    email: string;
+}
+
+export type postVerifyProps = {
+    email: string;
+    code: string;
+}
+
+export type postSignupStudentProps = {
     school: string;
     email: string;
     admissionYear: number;
@@ -25,3 +34,14 @@ export interface postEmailProps {
     email: string;
 }
 
+
+export type AuthorizationResponse = {
+    access: {
+        expiresAt: Date;
+        token: string;
+    };
+    refresh: {
+        expiresAt: Date;
+        token: string;
+    };
+}

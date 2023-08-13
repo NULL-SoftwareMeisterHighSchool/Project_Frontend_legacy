@@ -8,8 +8,8 @@ const SearchFilter = () => {
   return (
     <S.MainContainer>
       <SearchBar placeholder="Placeholder" />
-      <Dropdown describe="전체" items={filter1}/>
-      <Dropdown describe="최신순" items={filter2}/>
+      {/* <Dropdown describe="전체" items={filter1}/>
+      <Dropdown describe="최신순" items={filter2}/> */}
     </S.MainContainer>
   )
 }

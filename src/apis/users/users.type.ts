@@ -1,10 +1,24 @@
-/** 비밀번호 수정 prop */
-export interface patchPasswordProps {
-    password: string;
-    new_password: string;
-}
 
-/** 유저 데이터 prop */
-export interface userDataProps {
-    id: string;
-}
+export type patchEditPasswordProps = {
+    currentPassword: string;
+    newPassword: string;
+};
+
+export type getGitProps = {
+    setGitData: React.Dispatch<React.SetStateAction<{
+        contributionCount: number;
+        starCount: number;
+        issueCount: number;
+        pullRequestCount: number;
+        contributedRepositoryCount: number;
+        score: number;
+    }>
+    >;
+};
+
+export type putEditMeProps = {
+    bio: string;
+    stacks: string[];
+    githubURL: string;
+    portfolioURL: string;
+};

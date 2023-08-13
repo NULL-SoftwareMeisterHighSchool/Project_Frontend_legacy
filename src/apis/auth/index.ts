@@ -1,79 +1,65 @@
-import { postLoginProps, postStudentSignupProps, postEmailProps } from './auth.type';
-import axios from "axios";
 
-/** 로그인 */
+import {
+    AuthorizationResponse,
+    postSendEmailProps,
+    postSignupStudentProps,
+    postVerifyProps,
+} from "./auth.type";
+
+import { postLoginProps } from "./auth.type";
+import { instance } from "..";
+import { getCookie } from "@utils/cookies";
+
+const router = `/auth`;
+
 export const postLogin = async ({ id, password }: postLoginProps) => {
-    const outingLogin = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASEURL}/user/login`,
-        {
-            id,
-            password,
-        }
-    );
+    const resPostLogin = await instance.post(`${router}/login`, {
+        id,
+        password,
+    });
 
-    return outingLogin;
+    return resPostLogin;
 };
 
-/** 재학생 회원가입 */
-export const postStudentSignup = async ({
+export const postSendEmail = async ({ email }: postSendEmailProps) => {
+    const resPostSendEmail = await instance.post(`${router}/send-mail`, {
+        email,
+    });
+
+    return resPostSendEmail;
+};
+
+export const postVerify = async ({ email, code }: postVerifyProps) => {
+    const resPostVerify = await instance.post(`${router}/verify`, {
+        email,
+        code,
+    });
+    return resPostVerify;
+};
+
+export const postSignupStudent = async ({
     school,
     email,
     admissionYear,
     name,
-    userid,
+    userID,
     password,
-    githubId,
-}: postStudentSignupProps) => {
-    const outingStudentSignup = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASEURL}/user/signup/student`,
-        {
-            school,
-            email,
-            admissionYear,
-            name,
-            userid,
-            password,
-            githubId,
-        }
+    githubID,
+}: postSignupStudentProps) => {
+    const resPostSignupStudent = await instance.post(
+        `${router}/signup/student`,
+        { school, email, admissionYear, name, accountName:userID, password, githubID }
     );
-    return outingStudentSignup;
+
+    return resPostSignupStudent;
 };
 
-// /** 졸업생 회원가입 */
-// export const postGraduatedSignup = async ({
-//     school,
-//     email,
-//     admission_year,
-//     name,
-//     id,
-//     password,
-//     github,
-//     image,
-// }: postGraduatedSignnupProps) => {
-//     const outingGraduatedSignup = await axios.post(
-//         `${process.env.NEXT_PUBLIC_BASEURL}/user/signup/graduated`,
-//         {
-//             school,
-//             email,
-//             admission_year,
-//             name,
-//             id,
-//             password,
-//             github,
-//             image,
-//         }
-//     );
-//     return outingGraduatedSignup;
-// };
-
-/** 이메일 인증 */
-export const postEmail = async ({ email }: postEmailProps) => {
-    const outingEmail = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASEURL}/emailsend`,
+export const postRefresh = async () => {
+    const response = await instance.post(
+        `${router}/refresh`,
         {
-            email,
+            refreshToken: getCookie("refreshToken"),
         }
     );
-
-    return outingEmail;
+    return response.data;
 };

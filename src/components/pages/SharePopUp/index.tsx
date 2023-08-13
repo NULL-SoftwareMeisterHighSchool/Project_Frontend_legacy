@@ -3,22 +3,24 @@ import { useState } from 'react';
 import { Close } from '@assets/images/icon/Close';
 import { ContentPaste } from '@assets/images/icon/ContentPaste';
 import { color } from '@styles/theme.style';
+import { useLocation } from 'react-router-dom';
 import Modal from '@components/common/modal';
+import { alertError, alertSuccess } from '@utils/toastify';
 
 interface PropTypes {
     setShowPopUp: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const PopUp = ({ setShowPopUp }:PropTypes) => {
+    const location = window.document.location.href;
     const [isHovered, setIsHovered] = useState(false);
-
     const handleCopyClipBoard = async (text: string) => {
         try {
-            await navigator.clipboard.writeText(text);
+            await navigator.clipboard.writeText(location);
             setShowPopUp(false);
-            alert('복사 성공!');
+            alertSuccess('복사 성공!');
         } catch (error) {
-            alert('복사 실패!');
+            alertError('복사 실패!');
         }
     };
 
@@ -53,7 +55,7 @@ const PopUp = ({ setShowPopUp }:PropTypes) => {
             <S.Share>
                 <S.Url>
                     <div>링크</div>
-                    <div>https://somei-in/blog/asdf1234</div>
+                    <div>{location}</div>
                 </S.Url>    
                 <ContentPaste 
                 width="24px" 
