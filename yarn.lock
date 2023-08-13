@@ -38,7 +38,7 @@ __metadata:
     react-hook-form: ^7.45.2
     react-intersection-observer: ^9.5.2
     react-is: ^18.2.0
-    react-js-pagination: 3.0.3
+    react-js-pagination: ^3.0.3
     react-markdown: ^8.0.7
     react-query: ^3.39.3
     react-router-dom: ^6.10.0
@@ -4955,7 +4955,7 @@ eslint-plugin-react@latest:
   languageName: node
   linkType: hard
 
-"react-js-pagination@npm:3.0.3":
+"react-js-pagination@npm:^3.0.3":
   version: 3.0.3
   resolution: "react-js-pagination@npm:3.0.3"
   dependencies:
